@@ -25,15 +25,18 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = ["/assets/material_theme/css/material.css",
-                   ]
-app_include_js = [
-                    "/assets/material_theme/js/material.js",
-                    "/assets/material_theme/js/material-theme-customizer.js",
-                    "/assets/material_theme/js/theme.js",]
+# Material CSS is loaded conditionally only when Material theme is active
+# app_include_css = ["/assets/material_theme/css/material.css",
+#                    ]
+# Material JS is loaded conditionally only when Material theme is active
+# app_include_js = [
+#                     "/assets/material_theme/js/material.js",
+#                     "/assets/material_theme/js/material-theme-customizer.js",
+#                     "/assets/material_theme/js/theme.js",]
 
 # include js, css files in header of web template
-web_include_css = "/assets/material_theme/css/material.css"
+# Material CSS is loaded conditionally only when Material theme is active
+# web_include_css = "/assets/material_theme/css/material.css"
 # web_include_js = "/assets/material_theme/js/material-theme-website.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -204,7 +207,7 @@ update_website_context = ["material_theme.utils.update_material_theme_context"]
 
 # Request Events
 # ----------------
-# before_request = ["material_theme.utils.before_request"]
+before_request = ["material_theme.utils.before_request"]
 # after_request = ["material_theme.utils.after_request"]
 
 # Job Events

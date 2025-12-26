@@ -68,8 +68,7 @@
     --md-font-weight-bold: 700;
   }
   
-  /* Apply Material Theme variables globally when CSS is loaded */
-  html {
+html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] {
     /* Map your theme variables to material Design variables */
     --primary: var(--md-sys-color-primary);
     --dt-primary-color: var(--md-sys-color-primary);
@@ -78,23 +77,14 @@
     --blue: var(--md-sys-color-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material], [data-theme-mode=material] {
-    /* Map your theme variables to material Design variables */
-    --primary: var(--md-sys-color-primary);
-    --dt-primary-color: var(--md-sys-color-primary);
-    --blue-avatar-bg: var(--md-sys-color-primary);
-    --blue-avatar-color: var(--md-sys-color-primary);
-    --blue: var(--md-sys-color-primary);
-  }
-  
-  /* General Styling */
-  html body,
-  [data-theme=material], [data-theme-mode=material] body {
-    font-family: var(--md-font-family);
-    background-color: var(--md-grey-100);
-    color: var(--md-grey-900);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* General Styling - ONLY for Material theme */
+  html[data-theme="material"],
+  html[data-theme-mode="material"], body[data-theme-mode="material"] {
+    font-family: var(--md-font-family) !important;
+    background-color: var(--md-sys-color-background) !important;
+    color: var(--md-sys-color-on-background) !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
     /* font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: var(--md-background);
@@ -103,23 +93,23 @@
     line-height: 1.5; */
   }
 /*   
-  html, [data-theme=material], [data-theme-mode=material] a {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] a {
     font-weight: 500;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
   }
 */
-  html, [data-theme=material], [data-theme-mode=material] a:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] a:hover {
     color: var(--md-sys-color-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .small, 
-  html, [data-theme=material], [data-theme-mode=material] small {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .small, 
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] small {
     font-size: 95%;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .h6.uppercase, 
-  html, [data-theme=material], [data-theme-mode=material] h6.uppercase {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .h6.uppercase, 
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] h6.uppercase {
     font-weight: 500;
     font-size: 0.875rem;
     letter-spacing: 0.1rem;
@@ -127,17 +117,17 @@
   }
   
   /* Containers and Layout */
-  html, [data-theme=material], [data-theme-mode=material] .page-container,
-  html, [data-theme=material], [data-theme-mode=material] .layout-main-section {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .page-container,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .layout-main-section {
     background-color: var(--md-sys-color-surface-bright);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .layout-side-section {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .layout-side-section {
     font-size: 14px;
   }
   
   /* Navigation Bar */
-  html, [data-theme=material], [data-theme-mode=material] .navbar {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar {
     /* background-color: var(--md-primary) !important; */
     background: linear-gradient(to right, var(--md-sys-color-primary), var(--md-sys-color-primary)) !important;
     border: none !important;
@@ -147,56 +137,56 @@
     align-items: center;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .navbar-nav > li > a {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-nav > li > a {
     color: var(--md-sys-color-on-primary) !important;
     font-weight: 800;
     /* padding: 16px; */
     transition: background-color 0.2s;
   }
   
-  /* html, [data-theme=material], [data-theme-mode=material] .navbar-nav > li > a:hover {
+  /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-nav > li > a:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: var(--md-sys-color-on-primary) !important;
   } */
   
-  html, [data-theme=material], [data-theme-mode=material] .navbar-brand:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-brand:hover {
     color: var(--md-sys-color-on-primary) !important;
   }
   
   /* Sidebar Navigation */
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item {
     /* border-radius: 0 24px 24px 0; */
     margin-right: 8px;
     transition: background-color 0.2s;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item.selected {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item.selected {
     background-color: var(--md-sys-color-primary);
     box-shadow: var(--md-shadow-2);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item.selected a {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item.selected a {
     color: var(--md-sys-color-on-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item.selected a svg {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item.selected a svg {
     fill: var(--md-sys-color-on-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item:hover {
     background-color: var(--md-sys-color-primary-container);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item:hover a {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item:hover a {
     color: var(--md-sys-color-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .standard-sidebar-item:hover svg {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .standard-sidebar-item:hover svg {
     fill: var(--md-sys-color-primary);
   }
   
   /* Cards/Widgets */
-  html, [data-theme=material], [data-theme-mode=material] .widget {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget {
     /* background-color: var(--md-surface); */
     background-color: var(--md-sys-color-surface-bright);
     border: none;
@@ -208,36 +198,36 @@
     /* padding: 5px 5px; */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .widget:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget:hover {
     box-shadow: var(--md-shadow-2);
     border-bottom: 1px solid var(--md-sys-color-primary);
   }
   
-  /* html, [data-theme=material], [data-theme-mode=material] .widget .widget-head {
+  /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget .widget-head {
     padding: 16px;
   } */
   
-  html, [data-theme=material], [data-theme-mode=material] .widget .widget-head .widget-title {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget .widget-head .widget-title {
     font-size: 15px;
     font-weight: 500;
     color: var(--md-sys-color-on-primary-container);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .widget.shortcut-widget-box .widget-head .widget-title i {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title i {
     color: var(--md-sys-color-primary);
   }
   
-  /* html, [data-theme=material], [data-theme-mode=material] .widget-body {
+  /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body {
     padding: 8px 16px 16px 16px;
   } */
   
-  html, [data-theme=material], [data-theme-mode=material] .widget-body .link-item {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body .link-item {
     /* padding: 8px 16px; */
     border-radius: 4px;
     /* transition: background-color 0.2s, color 0.2s; */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .widget-body .link-item:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body .link-item:hover {
     color: var(--md-sys-color-on-primary);
     background-color: var(--md-sys-color-primary);
   }
@@ -246,20 +236,20 @@
   }
   
   /* Dropdowns */
-  html, [data-theme=material], [data-theme-mode=material] .dropdown-menu {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-menu {
     border-radius: 4px;
     box-shadow: var(--md-shadow-2);
     border: none;
     padding: 8px 0;
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .dropdown-item
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-item
   {
     border-radius: 4px;
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .dropdown-item:hover,
-  html, [data-theme=material], [data-theme-mode=material] .dropdown-item:focus
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-item:hover,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-item:focus
   {
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary);
@@ -267,14 +257,14 @@
     font-weight: bold;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .dropdown-menu > li > a {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-menu > li > a {
     font-size: 14px;
     color: var(--md-sys-color-on-primary-container);
     font-weight: 400;
     /* padding: 12px 16px; */
   }
   
-  /* html, [data-theme=material], [data-theme-mode=material] .dropdown-menu > li > a:hover {
+  /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .dropdown-menu > li > a:hover {
     background-color: rgba(98, 0, 238, 0.08);
     color: var(--md-primary);
   } */
@@ -283,44 +273,44 @@
     color: #fff;
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .awesomplete > ul {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .awesomplete > ul {
     border-radius: 4px;
     box-shadow: var(--md-shadow-2);
     border: none;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .awesomplete > ul > li {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .awesomplete > ul > li {
     /* padding: 12px 16px; */
     transition: background-color 0.2s, color 0.2s;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .awesomplete > ul > li[aria-selected=true] {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .awesomplete > ul > li[aria-selected=true] {
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary);
   }
  
-  html, [data-theme=material], [data-theme-mode=material] .awesomplete > ul > li:hover {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .awesomplete > ul > li:hover {
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary) !important;
     box-shadow: var(--md-shadow-1);
   } 
   
   /* Page Heading */
-  html, [data-theme=material], [data-theme-mode=material] .page-head {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .page-head {
     border-bottom: none !important;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
     background-color: var(--md-sys-color-surface-bright);
     /* padding: 16px 24px; */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .page-title .title-text {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .page-title .title-text {
     color: var(--md-sys-color-on-primary-container);
     font-size: 20px;
     font-weight: 800;
     letter-spacing: 0.15px;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .section-head {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .section-head {
     font-size: 16px;
     /* font-weight: 500; */
     color: var(--md-sys-color-on-primary-container);
@@ -329,13 +319,13 @@
   }
   
   /* List Views */
-  html, [data-theme=material], [data-theme-mode=material] .list-row-head {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .list-row-head {
     /* background-color: var(--md-surface); */
     border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
     /* padding: 8px 16px; */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .navbar-home img {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-home img {
     max-height: 48px;
     width: auto;
     border-radius: 8px;
@@ -350,7 +340,7 @@
   }
   
   /* Buttons */
-  html, [data-theme=material], [data-theme-mode=material] .btn {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn {
     border-radius: 4px;
     font-weight: 500;
     text-transform: uppercase;
@@ -361,71 +351,71 @@
     border: none;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary {
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary);
     box-shadow: var(--md-shadow-1);
     border: 1px solid var(--md-sys-color-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary:hover,
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary:focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary.focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary:active,
-  html, [data-theme=material], [data-theme-mode=material] .btn-primary.active,
-  html, [data-theme=material], [data-theme-mode=material] .open > .dropdown-toggle.btn-primary {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary:hover,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary:focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary.focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary:active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary.active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .open > .dropdown-toggle.btn-primary {
     background-color: var(--md-sys-color-primary) !important;
     color: var(--md-sys-color-on-primary) !important;
     box-shadow: var(--md-shadow-1);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-default {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default {
     background-color: transparent;
     color: var(--md-sys-color-primary);
     box-shadow: var(--md-shadow-1);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .nav-link.active {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .nav-link.active {
     font-weight: 600;
     color: var(--text-color);
     border-bottom: 3px solid var(--md-sys-color-primary) !important;
     /* box-shadow: var(--md-shadow-4); */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-default:hover,
-  html, [data-theme=material], [data-theme-mode=material] .btn-default:focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-default.focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-default:active,
-  html, [data-theme=material], [data-theme-mode=material] .btn-default.active,
-  html, [data-theme=material], [data-theme-mode=material] .open > .dropdown-toggle.btn-default {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default:hover,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default:focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default.focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default:active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default.active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .open > .dropdown-toggle.btn-default {
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary) !important;
     box-shadow: var(--md-shadow-1);
     border-bottom: 1px solid var(--md-sys-color-primary);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary {
     background-color: var(--md-sys-color-primary-container) !important;
     color: var(--md-sys-color-primary);
     box-shadow: var(--md-shadow-1);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary:hover,
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary:focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary.focus,
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary:active,
-  html, [data-theme=material], [data-theme-mode=material] .btn-secondary.active,
-  html, [data-theme=material], [data-theme-mode=material] .open > .dropdown-toggle.btn-secondary {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary:hover,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary:focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary.focus,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary:active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary.active,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .open > .dropdown-toggle.btn-secondary {
     background-color: var(--md-sys-color-primary) !important;
     color: var(--md-sys-color-on-primary) !important;
     box-shadow: var(--md-shadow-2);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .std-form-layout > .form-layout > .form-page {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .std-form-layout > .form-layout > .form-page {
     background-color: var(--md-sys-color-surface-bright);
   }
   /* Form Controls */
-  html, [data-theme=material], [data-theme-mode=material] .form-control {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .form-control {
     border-radius: 4px;
     border-bottom: 1px solid var(--md-sys-color-primary);
     box-shadow: var(--md-shadow-form);
@@ -435,7 +425,7 @@
   }
 
 
-  html, [data-theme=material], [data-theme-mode=material] .like-disabled-input {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .like-disabled-input {
     /* background-color: #e7eaeb; */
     background-color: var(--md-sys-color-surface-dim);
     border-bottom: 1px solid var(--md-sys-color-primary);
@@ -447,29 +437,29 @@
     background-color: unset;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .form-control:focus {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .form-control:focus {
     border-color: var(--md-sys-color-primary);
     box-shadow: none;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .control-label {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .control-label {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.6);
     margin-bottom: 8px;
   }
   
   /* Checkboxes */
-  html, [data-theme=material], [data-theme-mode=material] input[type=checkbox] {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] input[type=checkbox] {
     border-radius: 2px;
     transition: background-color 0.2s;
   }
     
-  html, [data-theme=material], [data-theme-mode=material] input[type=checkbox]:checked:before {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] input[type=checkbox]:checked:before {
     color: var(--md-sys-color-on-primary);
   }
   
   /* Rich Text Editor */
-  html, [data-theme=material], [data-theme-mode=material] .frappe-control .ql-editor:not(.read-mode) {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .frappe-control .ql-editor:not(.read-mode) {
     /* background: var(--md-surface); */
     border: 1px solid rgba(0, 0, 0, 0.23);
     border-radius: 4px;
@@ -481,9 +471,9 @@
     
   } */
   /* Indicators and Badges */
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round {
     border-radius: 16px;
     /* padding: 2px 10px; */
     font-size: 12px;
@@ -491,95 +481,95 @@
     /* box-shadow: var(--md-shadow-2) !important; */
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.grey,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.grey,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.grey {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.grey,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.grey,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.grey {
     background: #525252;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.gray,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.gray,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.gray {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.gray,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.gray,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.gray {
     background: #525252;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.green,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.green,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.green {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.green,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.green,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.green {
     background: #16794c;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.blue,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.blue,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.blue {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.blue,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.blue,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.blue {
     background: #0070cc;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.red,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.red,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.red {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.red,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.red,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.red {
     background: #b52a2a;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.orange,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.orange,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.orange {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.orange,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.orange,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.orange {
     background: #bd3e0c;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.cyan,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.cyan,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.cyan {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.cyan,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.cyan,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.cyan {
     background: #267a94;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.light-blue,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.light-blue,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.light-blue {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.light-blue,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.light-blue,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.light-blue {
     background: #007be0;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.pink,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.pink,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.pink {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.pink,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.pink,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.pink {
     background: #9c2671;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.yellow,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.yellow,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.yellow {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.yellow,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.yellow,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.yellow {
     background: #ab6e05;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
 
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill.purple,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-right.purple,
-  html, [data-theme=material], [data-theme-mode=material] .indicator-pill-round.purple {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill.purple,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right.purple,
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-round.purple {
     background: #6e399d;
     color: white;
     box-shadow: var(--md-shadow-2);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .document-link-badge .count {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .document-link-badge .count {
     background-color: var(--md-sys-color-primary) !important;
     color: white !important;
     box-shadow: var(--md-shadow-1);
@@ -587,13 +577,13 @@
     padding: 2px 8px;
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .document-link-badge {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .document-link-badge {
     /* background-color: var(--md-surface) !important; */
     border-radius: 4px !important;
     box-shadow: var(--md-shadow-1);
   }
   
-  html, [data-theme=material], [data-theme-mode=material] .document-link button {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .document-link button {
     /* background: var(--md-primary) !important; */
     color: var(--md-sys-color-on-primary) !important;
     border-radius: 4px;
@@ -630,7 +620,7 @@
   
   
   /* Notifications */
-  html, [data-theme=material], [data-theme-mode=material] .notifications-icon svg {
+  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .notifications-icon svg {
     stroke: var(--md-sys-color-on-primary);
     fill: var(--md-sys-color-on-primary);
   }
