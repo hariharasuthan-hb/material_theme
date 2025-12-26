@@ -95,6 +95,10 @@
     color: var(--md-grey-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+    width: 100%;
     /* font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: var(--md-background);
@@ -633,4 +637,71 @@
   html, [data-theme=material], [data-theme-mode=material] .notifications-icon svg {
     stroke: var(--md-sys-color-on-primary);
     fill: var(--md-sys-color-on-primary);
+  }
+  
+  /* Login Page Styling - Apply to all pages including login */
+  html body,
+  body,
+  body[data-path*="login"],
+  body[data-path="/login"] {
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: fill-available !important;
+    width: 100% !important;
+  }
+  
+  /* Login page specific styles - More specific selectors */
+  html .for-login .page-card,
+  html .for-signup .page-card,
+  html .for-forgot .page-card,
+  html .for-email-login .page-card,
+  html .for-login-with-email-link .page-card,
+  body .for-login .page-card,
+  body .for-signup .page-card,
+  body .for-forgot .page-card,
+  body .for-email-login .page-card,
+  body .for-login-with-email-link .page-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Login form inputs */
+  html .for-login .form-control,
+  html .for-signup .form-control,
+  html .for-forgot .form-control,
+  html .for-email-login .form-control,
+  html .for-login-with-email-link .form-control,
+  body .for-login .form-control,
+  body .for-signup .form-control,
+  body .for-forgot .form-control,
+  body .for-email-login .form-control,
+  body .for-login-with-email-link .form-control {
+    border-radius: 6px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Login buttons */
+  html .for-login .btn-primary,
+  html .for-signup .btn-primary,
+  html .for-forgot .btn-primary,
+  html .for-email-login .btn-primary,
+  html .for-login-with-email-link .btn-primary,
+  body .for-login .btn-primary,
+  body .for-signup .btn-primary,
+  body .for-forgot .btn-primary,
+  body .for-email-login .btn-primary,
+  body .for-login-with-email-link .btn-primary {
+    background-color: var(--md-sys-color-primary, rgb(60, 96, 144)) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    border: none !important;
+  }
+  
+  /* Login page background */
+  html body[data-path*="login"],
+  body[data-path*="login"] {
+    background-color: var(--md-grey-100, #f5f5f5) !important;
   }
