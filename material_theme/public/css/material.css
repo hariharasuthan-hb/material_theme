@@ -89,16 +89,20 @@
   
   /* General Styling */
   html body,
-  [data-theme=material], [data-theme-mode=material] body {
+  [data-theme=material] body,
+  [data-theme-mode=material] body,
+  html #body,
+  [data-theme=material] #body,
+  [data-theme-mode=material] #body {
     font-family: var(--md-font-family);
     background-color: var(--md-grey-100);
     color: var(--md-grey-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    width: -webkit-fill-available;
-    width: -moz-available;
-    width: fill-available;
-    width: 100%;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: fill-available !important;
+    width: 100% !important;
     /* font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: var(--md-background);
