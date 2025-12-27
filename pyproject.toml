@@ -1,9 +1,9 @@
 [project]
-name = "material_theme"
+name = "techcloud"
 authors = [
     { name = "Itrostack LLP", email = "info@itrostack.com"}
 ]
-description = "Material Theme"
+description = "Techcloud ERP Theme"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]

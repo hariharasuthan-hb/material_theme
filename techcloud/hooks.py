@@ -1,7 +1,7 @@
-app_name = "material_theme"
-app_title = "Material Theme"
+app_name = "techcloud"
+app_title = "Techcloud ERP"
 app_publisher = "Itrostack LLP"
-app_description = "Material Theme"
+app_description = "Techcloud ERP Theme"
 app_email = "info@itrostack.com"
 app_license = "mit"
 
@@ -25,14 +25,14 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# Material CSS is loaded conditionally only when Material theme is active
-# app_include_css = ["/assets/material_theme/css/material.css",
-#                    ]
-# Material JS is loaded conditionally only when Material theme is active
+# Techcloud CSS and JS are loaded conditionally via before_request hook
+# The before_request hook in utils.py adds these to context when Material desk_theme is active
+# app_include_css = ["/assets/techcloud/css/material.css"]
 # app_include_js = [
-#                     "/assets/material_theme/js/material.js",
-#                     "/assets/material_theme/js/material-theme-customizer.js",
-#                     "/assets/material_theme/js/theme.js",]
+#     "/assets/techcloud/js/material.js",
+#     "/assets/techcloud/js/material-theme-customizer.js",
+#     "/assets/techcloud/js/theme.js"
+# ]
 
 # include js, css files in header of web template
 # Material CSS is loaded conditionally only when Material theme is active
@@ -182,11 +182,11 @@ app_license = "mit"
 # ------------------------------
 #
 override_whitelisted_methods = {
-    "frappe.core.doctype.user.user.switch_theme": "material_theme.overrides.switch_theme.switch_theme"
+    "frappe.core.doctype.user.user.switch_theme": "techcloud.overrides.switch_theme.switch_theme"
 }
 
-# Update website context to add head_html for Material Theme
-update_website_context = ["material_theme.utils.update_material_theme_context"]
+# Update website context to add head_html for Techcloud Theme
+update_website_context = ["techcloud.utils.update_techcloud_theme_context"]
 
 #
 # each overriding function accepts a `data` argument;
@@ -207,7 +207,7 @@ update_website_context = ["material_theme.utils.update_material_theme_context"]
 
 # Request Events
 # ----------------
-before_request = ["material_theme.utils.before_request"]
+before_request = ["techcloud.utils.before_request"]
 # after_request = ["material_theme.utils.after_request"]
 
 # Job Events

@@ -85,6 +85,10 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     color: var(--md-sys-color-on-background) !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+    width: 100% !important;
+    min-width: 100vw !important;
+    max-width: 100% !important;
+    width: -webkit-fill-available;
     /* font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: var(--md-background);
@@ -115,15 +119,116 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     letter-spacing: 0.1rem;
     text-transform: uppercase;
   }
-  
-  /* Containers and Layout */
-  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .page-container,
-  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .layout-main-section {
-    background-color: var(--md-sys-color-surface-bright);
+
+  /* Body width fix - match Standard theme */
+  html[data-theme="material"] body,
+  html[data-theme-mode="material"] body {
+    width: 100% !important;
+    min-width: 100vw !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    background-color: var(--md-sys-color-background) !important;
+  }
+
+  /* Containers and Layout - Full Width with Material Background */
+  html[data-theme="material"] .page-container,
+  html[data-theme-mode="material"] .page-container {
+    background-color: var(--md-sys-color-background) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section {
+    background-color: var(--md-sys-color-background) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Main section background */
+  html[data-theme="material"] .main-section,
+  html[data-theme-mode="material"] .main-section {
+    background-color: var(--md-sys-color-background) !important;
+  }
+
+  /* Layout main container background */
+  html[data-theme="material"] .layout-main,
+  html[data-theme-mode="material"] .layout-main {
+    background-color: var(--md-sys-color-background) !important;
+  }
+
+  /* Layout wrapper - ensure full width */
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+
+  /* Main section - full width layout like Standard theme (no centering) */
+  html[data-theme="material"] .main-section,
+  html[data-theme-mode="material"] .main-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove centering constraints - allow full width */
+  html[data-theme="material"] .main-section > div,
+  html[data-theme-mode="material"] .main-section > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Layout main container - full width */
+  html[data-theme="material"] .layout-main,
+  html[data-theme-mode="material"] .layout-main {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Bootstrap grid overrides - ensure full width */
+  html[data-theme="material"] .layout-main .row,
+  html[data-theme-mode="material"] .layout-main .row {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html[data-theme="material"] .layout-main-section-wrapper.col,
+  html[data-theme-mode="material"] .layout-main-section-wrapper.col,
+  html[data-theme="material"] .layout-main-section-wrapper.col-lg-10,
+  html[data-theme-mode="material"] .layout-main-section-wrapper.col-lg-10,
+  html[data-theme="material"] .layout-main-section-wrapper.col-md-12,
+  html[data-theme-mode="material"] .layout-main-section-wrapper.col-md-12 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+
+  /* Page body - full width */
+  html[data-theme="material"] .page-body,
+  html[data-theme-mode="material"] .page-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: var(--md-sys-color-background) !important;
+  }
+
+  /* Page head - Material background */
+  html[data-theme="material"] .page-head,
+  html[data-theme-mode="material"] .page-head {
+    background-color: var(--md-sys-color-background) !important;
+  }
+
+  /* Desk sidebar - Material background */
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar {
+    background-color: var(--md-sys-color-surface) !important;
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .layout-side-section {
     font-size: 14px;
+    background-color: var(--md-sys-color-background) !important;
   }
   
   /* Navigation Bar */
@@ -624,3 +729,641 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     stroke: var(--md-sys-color-on-primary);
     fill: var(--md-sys-color-on-primary);
   }
+
+/* ============================================
+   Techcloud ERP Custom Styles
+   ============================================ */
+
+/* Techcloud ERP Color Variables - Scoped to Material Theme */
+html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] {
+  --techcloud-primary-blue: #0089FF;
+  --techcloud-primary-orange: #FF6B35;
+  --techcloud-light-blue: #E3F2FD;
+  --techcloud-light-orange: #FFF3E0;
+  --techcloud-dark-gray: #333333;
+  --techcloud-medium-gray: #666666;
+  --techcloud-light-gray: #F5F5F5;
+  --techcloud-white: #FFFFFF;
+  --techcloud-border-color: #E0E0E0;
+  --techcloud-text-primary: #212121;
+  --techcloud-text-secondary: #757575;
+  --techcloud-success-green: #4CAF50;
+}
+
+/* Login Page Styles - Scoped to Material Theme */
+html[data-theme="material"] .login-container,
+html[data-theme-mode="material"] .login-container,
+body[data-theme-mode="material"] .login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, var(--techcloud-white) 100%);
+  padding: 20px;
+}
+
+html[data-theme="material"] .login-wrapper,
+html[data-theme-mode="material"] .login-wrapper,
+body[data-theme-mode="material"] .login-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  width: 100%;
+  background: var(--techcloud-white);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+html[data-theme="material"] .login-form-section,
+html[data-theme-mode="material"] .login-form-section,
+body[data-theme-mode="material"] .login-form-section {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+html[data-theme="material"] .login-illustration-section,
+html[data-theme-mode="material"] .login-illustration-section,
+body[data-theme-mode="material"] .login-illustration-section {
+  background: linear-gradient(135deg, var(--techcloud-primary-blue) 0%, #0066CC 100%);
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--techcloud-white);
+  position: relative;
+  overflow: hidden;
+}
+
+html[data-theme="material"] .login-illustration-section.orange,
+html[data-theme-mode="material"] .login-illustration-section.orange,
+body[data-theme-mode="material"] .login-illustration-section.orange {
+  background: linear-gradient(135deg, var(--techcloud-primary-orange) 0%, #E65100 100%);
+}
+
+html[data-theme="material"] .logo,
+html[data-theme-mode="material"] .logo,
+body[data-theme-mode="material"] .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--techcloud-primary-blue);
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+html[data-theme="material"] .login-title,
+html[data-theme-mode="material"] .login-title,
+body[data-theme-mode="material"] .login-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--techcloud-text-primary);
+}
+
+html[data-theme="material"] .login-subtitle,
+html[data-theme-mode="material"] .login-subtitle,
+body[data-theme-mode="material"] .login-subtitle {
+  font-size: 16px;
+  color: var(--techcloud-text-secondary);
+  margin-bottom: 40px;
+}
+
+html[data-theme="material"] .form-group,
+html[data-theme-mode="material"] .form-group,
+body[data-theme-mode="material"] .form-group {
+  margin-bottom: 24px;
+}
+
+html[data-theme="material"] .form-label,
+html[data-theme-mode="material"] .form-label,
+body[data-theme-mode="material"] .form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--techcloud-text-primary);
+  margin-bottom: 8px;
+}
+
+html[data-theme="material"] .form-input,
+html[data-theme-mode="material"] .form-input,
+body[data-theme-mode="material"] .form-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 2px solid var(--techcloud-border-color);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: var(--techcloud-white);
+}
+
+html[data-theme="material"] .form-input:focus,
+html[data-theme-mode="material"] .form-input:focus,
+body[data-theme-mode="material"] .form-input:focus {
+  outline: none;
+  border-color: var(--techcloud-primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1);
+}
+
+html[data-theme="material"] .forgot-password,
+html[data-theme-mode="material"] .forgot-password,
+body[data-theme-mode="material"] .forgot-password {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: var(--techcloud-primary-blue);
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: color 0.3s ease;
+}
+
+html[data-theme="material"] .forgot-password:hover,
+html[data-theme-mode="material"] .forgot-password:hover,
+body[data-theme-mode="material"] .forgot-password:hover {
+  color: #0066CC;
+}
+
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn,
+body[data-theme-mode="material"] .btn {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+html[data-theme="material"] .btn-primary,
+html[data-theme-mode="material"] .btn-primary,
+body[data-theme-mode="material"] .btn-primary {
+  background: var(--techcloud-primary-blue);
+  color: var(--techcloud-white);
+}
+
+html[data-theme="material"] .btn-primary:hover,
+html[data-theme-mode="material"] .btn-primary:hover,
+body[data-theme-mode="material"] .btn-primary:hover {
+  background: #0066CC;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3);
+}
+
+html[data-theme="material"] .social-login,
+html[data-theme-mode="material"] .social-login,
+body[data-theme-mode="material"] .social-login {
+  margin-top: 30px;
+  text-align: center;
+}
+
+html[data-theme="material"] .social-login-text,
+html[data-theme-mode="material"] .social-login-text,
+body[data-theme-mode="material"] .social-login-text {
+  font-size: 14px;
+  color: var(--techcloud-text-secondary);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+html[data-theme="material"] .social-login-text::before,
+html[data-theme-mode="material"] .social-login-text::before,
+body[data-theme-mode="material"] .social-login-text::before,
+html[data-theme="material"] .social-login-text::after,
+html[data-theme-mode="material"] .social-login-text::after,
+body[data-theme-mode="material"] .social-login-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: var(--techcloud-border-color);
+}
+
+html[data-theme="material"] .social-login-text::before,
+html[data-theme-mode="material"] .social-login-text::before,
+body[data-theme-mode="material"] .social-login-text::before {
+  left: 0;
+}
+
+html[data-theme="material"] .social-login-text::after,
+html[data-theme-mode="material"] .social-login-text::after,
+body[data-theme-mode="material"] .social-login-text::after {
+  right: 0;
+}
+
+html[data-theme="material"] .social-buttons,
+html[data-theme-mode="material"] .social-buttons,
+body[data-theme-mode="material"] .social-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+html[data-theme="material"] .social-btn,
+html[data-theme-mode="material"] .social-btn,
+body[data-theme-mode="material"] .social-btn {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--techcloud-border-color);
+  border-radius: 8px;
+  background: var(--techcloud-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+html[data-theme="material"] .social-btn:hover,
+html[data-theme-mode="material"] .social-btn:hover,
+body[data-theme-mode="material"] .social-btn:hover {
+  border-color: var(--techcloud-primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="material"] .social-icon,
+html[data-theme-mode="material"] .social-icon,
+body[data-theme-mode="material"] .social-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--techcloud-text-secondary);
+}
+
+html[data-theme="material"] .signup-link,
+html[data-theme-mode="material"] .signup-link,
+body[data-theme-mode="material"] .signup-link {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: var(--techcloud-text-secondary);
+}
+
+html[data-theme="material"] .signup-link a,
+html[data-theme-mode="material"] .signup-link a,
+body[data-theme-mode="material"] .signup-link a {
+  color: var(--techcloud-primary-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+html[data-theme="material"] .signup-link a:hover,
+html[data-theme-mode="material"] .signup-link a:hover,
+body[data-theme-mode="material"] .signup-link a:hover {
+  text-decoration: underline;
+}
+
+html[data-theme="material"] .illustration-content,
+html[data-theme-mode="material"] .illustration-content,
+body[data-theme-mode="material"] .illustration-content {
+  text-align: center;
+  z-index: 1;
+}
+
+html[data-theme="material"] .illustration-title,
+html[data-theme-mode="material"] .illustration-title,
+body[data-theme-mode="material"] .illustration-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+html[data-theme="material"] .illustration-subtitle,
+html[data-theme-mode="material"] .illustration-subtitle,
+body[data-theme-mode="material"] .illustration-subtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+html[data-theme="material"] .illustration-graphic,
+html[data-theme-mode="material"] .illustration-graphic,
+body[data-theme-mode="material"] .illustration-graphic {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  margin: 40px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Dashboard Styles - Scoped to Material Theme */
+html[data-theme="material"] .dashboard-container,
+html[data-theme-mode="material"] .dashboard-container,
+body[data-theme-mode="material"] .dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--techcloud-light-gray);
+}
+
+html[data-theme="material"] .sidebar,
+html[data-theme-mode="material"] .sidebar,
+body[data-theme-mode="material"] .sidebar {
+  width: 260px;
+  background: var(--techcloud-white);
+  border-right: 1px solid var(--techcloud-border-color);
+  padding: 24px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+html[data-theme="material"] .sidebar-logo,
+html[data-theme-mode="material"] .sidebar-logo,
+body[data-theme-mode="material"] .sidebar-logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--techcloud-primary-blue);
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--techcloud-border-color);
+}
+
+html[data-theme="material"] .nav-menu,
+html[data-theme-mode="material"] .nav-menu,
+body[data-theme-mode="material"] .nav-menu {
+  list-style: none;
+}
+
+html[data-theme="material"] .nav-item,
+html[data-theme-mode="material"] .nav-item,
+body[data-theme-mode="material"] .nav-item {
+  margin-bottom: 8px;
+}
+
+html[data-theme="material"] .nav-link,
+html[data-theme-mode="material"] .nav-link,
+body[data-theme-mode="material"] .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  color: var(--techcloud-text-secondary);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+html[data-theme="material"] .nav-link:hover,
+html[data-theme="material"] .nav-link.active,
+html[data-theme-mode="material"] .nav-link:hover,
+html[data-theme-mode="material"] .nav-link.active,
+body[data-theme-mode="material"] .nav-link:hover,
+body[data-theme-mode="material"] .nav-link.active {
+  background: var(--techcloud-light-blue);
+  color: var(--techcloud-primary-blue);
+}
+
+html[data-theme="material"] .main-content,
+html[data-theme-mode="material"] .main-content,
+body[data-theme-mode="material"] .main-content {
+  margin-left: 260px;
+  flex: 1;
+  padding: 32px;
+}
+
+html[data-theme="material"] .dashboard-header,
+html[data-theme-mode="material"] .dashboard-header,
+body[data-theme-mode="material"] .dashboard-header {
+  margin-bottom: 32px;
+}
+
+html[data-theme="material"] .dashboard-title,
+html[data-theme-mode="material"] .dashboard-title,
+body[data-theme-mode="material"] .dashboard-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--techcloud-text-primary);
+  margin-bottom: 8px;
+}
+
+html[data-theme="material"] .dashboard-subtitle,
+html[data-theme-mode="material"] .dashboard-subtitle,
+body[data-theme-mode="material"] .dashboard-subtitle {
+  font-size: 16px;
+  color: var(--techcloud-text-secondary);
+}
+
+html[data-theme="material"] .header-actions,
+html[data-theme-mode="material"] .header-actions,
+body[data-theme-mode="material"] .header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+html[data-theme="material"] .header-icon,
+html[data-theme-mode="material"] .header-icon,
+body[data-theme-mode="material"] .header-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: var(--techcloud-text-secondary);
+}
+
+html[data-theme="material"] .header-icon:hover,
+html[data-theme-mode="material"] .header-icon:hover,
+body[data-theme-mode="material"] .header-icon:hover {
+  background: var(--techcloud-light-gray);
+  color: var(--techcloud-text-primary);
+}
+
+html[data-theme="material"] .user-avatar,
+html[data-theme-mode="material"] .user-avatar,
+body[data-theme-mode="material"] .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--techcloud-primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+html[data-theme="material"] .stats-grid,
+html[data-theme-mode="material"] .stats-grid,
+body[data-theme-mode="material"] .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+html[data-theme="material"] .stat-card,
+html[data-theme-mode="material"] .stat-card,
+body[data-theme-mode="material"] .stat-card {
+  background: var(--techcloud-white);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+html[data-theme="material"] .stat-card:hover,
+html[data-theme-mode="material"] .stat-card:hover,
+body[data-theme-mode="material"] .stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="material"] .stat-label,
+html[data-theme-mode="material"] .stat-label,
+body[data-theme-mode="material"] .stat-label {
+  font-size: 14px;
+  color: var(--techcloud-text-secondary);
+  margin-bottom: 8px;
+}
+
+html[data-theme="material"] .stat-value,
+html[data-theme-mode="material"] .stat-value,
+body[data-theme-mode="material"] .stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--techcloud-text-primary);
+  margin-bottom: 8px;
+}
+
+html[data-theme="material"] .stat-change,
+html[data-theme-mode="material"] .stat-change,
+body[data-theme-mode="material"] .stat-change {
+  font-size: 14px;
+  color: var(--techcloud-success-green);
+}
+
+html[data-theme="material"] .charts-section,
+html[data-theme-mode="material"] .charts-section,
+body[data-theme-mode="material"] .charts-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+html[data-theme="material"] .chart-card,
+html[data-theme-mode="material"] .chart-card,
+body[data-theme-mode="material"] .chart-card {
+  background: var(--techcloud-white);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="material"] .chart-title,
+html[data-theme-mode="material"] .chart-title,
+body[data-theme-mode="material"] .chart-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--techcloud-text-primary);
+  margin-bottom: 24px;
+}
+
+html[data-theme="material"] .chart-placeholder,
+html[data-theme-mode="material"] .chart-placeholder,
+body[data-theme-mode="material"] .chart-placeholder {
+  width: 100%;
+  height: 300px;
+  background: var(--techcloud-light-gray);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--techcloud-text-secondary);
+}
+
+/* Mobile Responsive - Scoped to Material Theme */
+@media (max-width: 768px) {
+  html[data-theme="material"] .login-wrapper,
+  html[data-theme-mode="material"] .login-wrapper,
+  body[data-theme-mode="material"] .login-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="material"] .login-illustration-section,
+  html[data-theme-mode="material"] .login-illustration-section,
+  body[data-theme-mode="material"] .login-illustration-section {
+    display: none;
+  }
+
+  html[data-theme="material"] .login-form-section,
+  html[data-theme-mode="material"] .login-form-section,
+  body[data-theme-mode="material"] .login-form-section {
+    padding: 40px 30px;
+  }
+
+  html[data-theme="material"] .dashboard-container,
+  html[data-theme-mode="material"] .dashboard-container,
+  body[data-theme-mode="material"] .dashboard-container {
+    flex-direction: column;
+  }
+
+  html[data-theme="material"] .sidebar,
+  html[data-theme-mode="material"] .sidebar,
+  body[data-theme-mode="material"] .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  html[data-theme="material"] .main-content,
+  html[data-theme-mode="material"] .main-content,
+  body[data-theme-mode="material"] .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  html[data-theme="material"] .charts-section,
+  html[data-theme-mode="material"] .charts-section,
+  body[data-theme-mode="material"] .charts-section {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="material"] .stats-grid,
+  html[data-theme-mode="material"] .stats-grid,
+  body[data-theme-mode="material"] .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Utility Classes - Scoped to Material Theme */
+html[data-theme="material"] .text-center,
+html[data-theme-mode="material"] .text-center,
+body[data-theme-mode="material"] .text-center {
+  text-align: center;
+}
+
+html[data-theme="material"] .mt-20,
+html[data-theme-mode="material"] .mt-20,
+body[data-theme-mode="material"] .mt-20 {
+  margin-top: 20px;
+}
+
+html[data-theme="material"] .mb-20,
+html[data-theme-mode="material"] .mb-20,
+body[data-theme-mode="material"] .mb-20 {
+  margin-bottom: 20px;
+}
+
+html[data-theme="material"] .hidden,
+html[data-theme-mode="material"] .hidden,
+body[data-theme-mode="material"] .hidden {
+  display: none;
+}
