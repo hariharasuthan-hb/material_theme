@@ -32,3 +32,23 @@ frappe.ui.ThemeSwitcher = class CustomThemeSwitcher extends frappe.ui.ThemeSwitc
 		});
 	}
 }
+
+// Dynamically add "Material" option to desk_theme field in User form (no core file changes)
+// This runs when User form is loaded
+frappe.ui.form.on("User", {
+	refresh: function(frm) {
+		// Find the desk_theme field and add "Material" option if not present
+		if (frm.fields_dict.desk_theme && frm.fields_dict.desk_theme.df) {
+			const field = frm.fields_dict.desk_theme;
+			const current_options = field.df.options ? field.df.options.split('\n') : [];
+			
+			// Add "Material" if not already present
+			if (current_options.indexOf("Material") === -1) {
+				current_options.push("Material");
+				field.df.options = current_options.join('\n');
+				// Refresh the field to show the new option
+				field.refresh();
+			}
+		}
+	}
+});

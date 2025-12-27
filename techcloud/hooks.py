@@ -25,14 +25,14 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# Techcloud CSS and JS are loaded conditionally via before_request hook
-# The before_request hook in utils.py adds these to context when Material desk_theme is active
-# app_include_css = ["/assets/techcloud/css/material.css"]
-# app_include_js = [
-#     "/assets/techcloud/js/material.js",
-#     "/assets/techcloud/js/material-theme-customizer.js",
-#     "/assets/techcloud/js/theme.js"
-# ]
+# CSS is always loaded but scoped with html[data-theme="material"] selectors
+# JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
+app_include_css = ["/assets/techcloud/css/material.css"]
+app_include_js = [
+    "/assets/techcloud/js/material.js",
+    "/assets/techcloud/js/material-theme-customizer.js",
+    "/assets/techcloud/js/theme.js"
+]
 
 # include js, css files in header of web template
 # Material CSS is loaded conditionally only when Material theme is active
@@ -207,7 +207,9 @@ update_website_context = ["techcloud.utils.update_techcloud_theme_context"]
 
 # Request Events
 # ----------------
-before_request = ["techcloud.utils.before_request"]
+# No before_request needed - CSS loaded via app_include_css hook
+# CSS is scoped with html[data-theme="material"] so it only applies when JavaScript sets the attribute
+# before_request = ["techcloud.utils.before_request"]
 # after_request = ["material_theme.utils.after_request"]
 
 # Job Events

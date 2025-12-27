@@ -151,6 +151,12 @@ bench --site erpnext.local set-config developer_mode 1
 
 **Note:** The desk theme is still called "Material" (this is what the Techcloud app code expects). When users select "Material" as their desk theme, they'll get the Techcloud styling.
 
+**Important:** There are two approaches:
+1. **Patch approach (Recommended)**: Modifies DocType in database via patch - this is the standard Frappe way. In developer mode, Frappe exports DocType changes to JSON files (this is normal, not a core file modification).
+2. **JavaScript approach (No database changes)**: Dynamically adds option via JavaScript - works client-side only, no database/JSON changes.
+
+The JavaScript approach is already implemented in `theme.js` - it automatically adds "Material" to the dropdown when the User form loads. If you prefer not to modify the DocType, you can skip the patch/console commands below.
+
 ### 📋 General Syntax Format:
 ```bash
 bench --site <your_site_name> console
@@ -767,30 +773,52 @@ echo "/Users/bhuvanahari/frappe-bench/apps/techcloud" > env/lib/python3.10/site-
    - You should see `/assets/techcloud/css/material.css` loaded with status 200
    - If CSS is NOT loading, see troubleshooting section below
 
+## ✅ Dynamic Theme Detection (No Code Changes Required!)
+
+**Important:** The theme detection is now **fully dynamic** and works without hardcoded theme names. This means:
+
+- ✅ **No code changes needed** when importing the theme to another site
+- ✅ **Works with any theme name** that contains the app name (e.g., "Techcloud Theme", "My Techcloud Theme", etc.)
+- ✅ **Automatically detects app name** from the module path
+- ✅ **Works out of the box** when the theme is installed/imported
+
+**How it works:**
+1. The code automatically gets the app name from the module (e.g., `techcloud.utils` → `techcloud`)
+2. Checks if the active website theme name contains the app name (case-insensitive)
+3. Also checks if the theme's `theme_url` contains the app's asset path
+4. For desk theme: Checks if `desk_theme == "Material"` (this is the desk theme identifier)
+
+**This means you can:**
+- Import the theme to any site without modifying code
+- Name the Website Theme anything (as long as it contains "techcloud" or the app name)
+- The theme will automatically work based on the app name
+
+---
+
 ## Troubleshooting: CSS Not Loading
 
 ### ❌ Issue: CSS file `/assets/techcloud/css/material.css` not appearing in Network tab
 
 **Symptoms:**
-- Theme is set correctly (Website Theme = "Techcloud Theme", Desk Theme = "Material")
+- Theme is set correctly (Website Theme contains app name, Desk Theme = "Material")
 - CSS file is not loading in browser Network tab
 - Techcloud styling is not applying
 
-**Root Cause:**
-The theme name check in `techcloud/utils.py` was checking for `"Material Theme"` instead of `"Techcloud Theme"`, causing the CSS to not be added to the page context.
+**Root Cause (OLD - Fixed):**
+Previously, the code was hardcoded to check for specific theme names. This has been fixed to use dynamic detection.
 
-**Fix Applied:**
-The code in `apps/techcloud/techcloud/utils.py` has been updated to check for the correct theme name:
+**Current Implementation (Dynamic):**
+The code now automatically:
+1. Detects the app name from the module path
+2. Checks if the website theme name contains the app name
+3. Checks if the theme URL contains the app's asset path
+4. Works with any theme name that matches the app
 
-**Before (incorrect):**
-```python
-is_techcloud_theme = theme and theme.name == "Material Theme"
-```
-
-**After (correct):**
-```python
-is_techcloud_theme = theme and theme.name == "Techcloud Theme"
-```
+**Example theme names that will work:**
+- "Techcloud Theme" ✅
+- "techcloud theme" ✅
+- "My Techcloud Theme" ✅
+- "Techcloud Custom Theme" ✅
 
 **Verification:**
 After the fix, you should see in the browser Network tab:
@@ -799,13 +827,14 @@ After the fix, you should see in the browser Network tab:
 - ✅ `/assets/techcloud/js/material-theme-customizer.js` - Status 200
 - ✅ `/assets/techcloud/js/theme.js` - Status 200
 
-**If CSS still not loading after fix:**
+**If CSS still not loading:**
 1. Restart bench: `bench restart`
 2. Hard refresh browser (Cmd+Shift+R or Ctrl+Shift+R)
 3. Clear cache: `bench --site erpnext.local clear-cache`
-4. Check Error Log in ERPNext for "Techcloud CSS Debug" messages
-5. Verify Website Theme is set to "Techcloud Theme" (not "Material Theme")
+4. Check Error Log in ERPNext for CSS Debug messages (only in developer mode)
+5. Verify Website Theme name contains the app name (e.g., "techcloud" in the name)
 6. Verify Desk Theme is set to "Material" (for desk/app pages)
+7. Verify the app is properly installed: `bench --site erpnext.local list-apps`
 
 ---
 
@@ -816,6 +845,7 @@ After the fix, you should see in the browser Network tab:
 - **Asset Paths:** `/assets/techcloud/`
 - **Python Imports:** `techcloud.*`
 - **apps.txt:** Contains `techcloud`
-- **Website Theme Name:** "Techcloud Theme" (must match in utils.py)
+- **Website Theme Name:** Any name containing "techcloud" (dynamically detected, no code changes needed)
 - **Desk Theme Name:** "Material" (applies Techcloud styling)
+- **Theme Detection:** Fully dynamic - works with any theme name containing the app name
 

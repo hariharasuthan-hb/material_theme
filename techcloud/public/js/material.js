@@ -1,5 +1,32 @@
 "use strict";
 frappe.provide("itrostack.material");
+
+// Set data-theme attribute for desk pages based on desk_theme (runs early, before CSS applies)
+(function() {
+	// Check if this is a desk/app page (has frappe.boot)
+	if (window.frappe && window.frappe.boot) {
+		const desk_theme = window.frappe.boot.desk_theme || "Light";
+		// If desk_theme is "Material", set data-theme attribute so CSS applies
+		if (desk_theme.toLowerCase() === "material") {
+			if (document.documentElement) {
+				document.documentElement.setAttribute("data-theme", "material");
+				document.documentElement.setAttribute("data-theme-mode", "material");
+			}
+		}
+	}
+	// Also check on DOMContentLoaded in case frappe.boot isn't ready yet
+	document.addEventListener("DOMContentLoaded", function() {
+		if (window.frappe && window.frappe.boot) {
+			const desk_theme = window.frappe.boot.desk_theme || "Light";
+			if (desk_theme.toLowerCase() === "material") {
+				if (document.documentElement) {
+					document.documentElement.setAttribute("data-theme", "material");
+					document.documentElement.setAttribute("data-theme-mode", "material");
+				}
+			}
+		}
+	});
+})();
   //Code for Material Color Generation from google
   //refer https://www.npmjs.com/package/@material/material-color-utilities for details.
   function signum(num) {
