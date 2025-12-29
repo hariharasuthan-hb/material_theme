@@ -2732,25 +2732,284 @@ html[data-theme-mode="material"] .chart-placeholder {
   color: var(--techcloud-text-secondary) !important;
 }
 
-/* Navbar/Toolbar - Match dashboard.html header actions */
-html[data-theme="material"] .navbar,
-html[data-theme-mode="material"] .navbar,
+/* ============================================
+   Website Header/Navbar Styles
+   For pages like /me, /newsletters, etc.
+   ============================================ */
+
+/* Website Navbar - Professional Header */
+html[data-theme="material"] .navbar.navbar-light,
+html[data-theme-mode="material"] .navbar.navbar-light,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme="material"] .navbar.navbar-primary,
+html[data-theme-mode="material"] .navbar.navbar-primary,
+html[data-theme="material"] .navbar.navbar-primary.navbar-expand-lg,
+html[data-theme-mode="material"] .navbar.navbar-primary.navbar-expand-lg,
+html[data-theme="material"] body[data-path] .navbar,
+html[data-theme-mode="material"] body[data-path] .navbar {
+  background: var(--techcloud-white) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+  padding: var(--techcloud-spacing-md) 0 !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  z-index: 100 !important;
+  width: 100% !important;
+}
+
+/* Navbar Container - Centered with max-width */
+html[data-theme="material"] .navbar.navbar-light .container,
+html[data-theme-mode="material"] .navbar.navbar-light .container,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .container,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .container,
+html[data-theme="material"] .navbar .container,
+html[data-theme-mode="material"] .navbar .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 var(--techcloud-spacing-xl) !important;
+  flex-wrap: nowrap !important;
+}
+
+/* Ensure navbar itself is full width */
+html[data-theme="material"] .navbar.navbar-light,
+html[data-theme-mode="material"] .navbar.navbar-light,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure navbar brand stays on left */
+html[data-theme="material"] .navbar.navbar-light .container > .navbar-brand,
+html[data-theme-mode="material"] .navbar.navbar-light .container > .navbar-brand,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-brand,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-brand,
+html[data-theme="material"] .navbar .container > .navbar-brand,
+html[data-theme-mode="material"] .navbar .container > .navbar-brand {
+  margin-right: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure navbar nav stays on right */
+html[data-theme="material"] .navbar.navbar-light .container > .navbar-nav,
+html[data-theme-mode="material"] .navbar.navbar-light .container > .navbar-nav,
+html[data-theme="material"] .navbar.navbar-light .container > .navbar-collapse,
+html[data-theme-mode="material"] .navbar.navbar-light .container > .navbar-collapse,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-nav,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-nav,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-collapse,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .container > .navbar-collapse,
+html[data-theme="material"] .navbar .container > .navbar-nav,
+html[data-theme-mode="material"] .navbar .container > .navbar-nav,
+html[data-theme="material"] .navbar .container > .navbar-collapse,
+html[data-theme-mode="material"] .navbar .container > .navbar-collapse {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Navbar Brand (Logo/HOME link) */
+html[data-theme="material"] .navbar.navbar-light .navbar-brand,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-brand,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-brand,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-brand,
+html[data-theme="material"] .navbar-brand,
+html[data-theme-mode="material"] .navbar-brand {
+  color: var(--techcloud-primary-blue) !important;
+  font-size: 24px !important;
+  font-weight: var(--techcloud-font-weight-bold) !important;
+  text-decoration: none !important;
+  padding: var(--techcloud-spacing-sm) var(--techcloud-spacing-md) !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  transition: all var(--techcloud-transition-base) !important;
+  font-family: var(--techcloud-font-family) !important;
+  letter-spacing: -0.5px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--techcloud-spacing-sm) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Logo image in navbar brand */
+html[data-theme="material"] .navbar-brand img,
+html[data-theme-mode="material"] .navbar-brand img,
+html[data-theme="material"] .navbar-brand .app-logo,
+html[data-theme-mode="material"] .navbar-brand .app-logo {
+  height: 32px !important;
+  width: auto !important;
+  max-width: 120px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Logo text fallback (if no image) */
+html[data-theme="material"] .navbar-brand span:not(.app-logo),
+html[data-theme-mode="material"] .navbar-brand span:not(.app-logo),
+html[data-theme="material"] .navbar-brand:not(:has(img)):not(:has(.app-logo)),
+html[data-theme-mode="material"] .navbar-brand:not(:has(img)):not(:has(.app-logo)) {
+  content: "techcloud" !important;
+}
+
+/* Hide "Home" or "LOGIN" text - use JavaScript to hide if text is "LOGIN" or "Home" */
+html[data-theme="material"] .navbar-brand span[data-hide-if-login],
+html[data-theme-mode="material"] .navbar-brand span[data-hide-if-login] {
+  display: none !important;
+}
+
+/* Style navbar brand to show logo prominently - fallback for browsers without :has() */
+html[data-theme="material"] .navbar-brand,
+html[data-theme-mode="material"] .navbar-brand {
+  font-size: 24px !important;
+  font-weight: var(--techcloud-font-weight-bold) !important;
+  color: var(--techcloud-primary-blue) !important;
+  letter-spacing: -0.5px !important;
+}
+
+/* If navbar brand has image, hide text that says "LOGIN" or "Home" */
+html[data-theme="material"] .navbar-brand img + span,
+html[data-theme-mode="material"] .navbar-brand img + span,
+html[data-theme="material"] .navbar-brand .app-logo + span,
+html[data-theme-mode="material"] .navbar-brand .app-logo + span {
+  display: none !important;
+}
+
+/* If navbar brand only contains text "Home" or "LOGIN", hide it and show logo text instead */
+html[data-theme="material"] .navbar-brand::before,
+html[data-theme-mode="material"] .navbar-brand::before {
+  content: "" !important;
+}
+
+html[data-theme="material"] .navbar.navbar-light .navbar-brand:hover,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-brand:hover,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-brand:hover,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-brand:hover,
+html[data-theme="material"] .navbar-brand:hover,
+html[data-theme-mode="material"] .navbar-brand:hover {
+  color: var(--techcloud-primary-blue) !important;
+  background: var(--techcloud-light-blue) !important;
+  opacity: 0.9 !important;
+}
+
+/* Navbar Home (for desk pages) */
+html[data-theme="material"] .navbar-home,
+html[data-theme-mode="material"] .navbar-home {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--techcloud-spacing-sm) !important;
+}
+
+html[data-theme="material"] .navbar-home img,
+html[data-theme-mode="material"] .navbar-home img {
+  max-height: 32px !important;
+  width: auto !important;
+  border-radius: var(--techcloud-radius-sm) !important;
+  box-shadow: var(--techcloud-shadow-xs) !important;
+  transition: all var(--techcloud-transition-base) !important;
+}
+
+html[data-theme="material"] .navbar-home:hover img,
+html[data-theme-mode="material"] .navbar-home:hover img {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+}
+
+/* Navbar Nav Items */
+html[data-theme="material"] .navbar.navbar-light .navbar-nav,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-nav,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav,
 html[data-theme="material"] .navbar-nav,
 html[data-theme-mode="material"] .navbar-nav {
-  background: var(--techcloud-white) !important;
-  border-bottom: 1px solid var(--techcloud-border-color) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-  padding: 12px 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--techcloud-spacing-md) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+html[data-theme="material"] .navbar-nav > li,
+html[data-theme-mode="material"] .navbar-nav > li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html[data-theme="material"] .navbar.navbar-light .navbar-nav > li > a,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-nav > li > a,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav > li > a,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav > li > a,
+html[data-theme="material"] .navbar-nav > li > a,
+html[data-theme-mode="material"] .navbar-nav > li > a {
+  color: var(--techcloud-text-secondary) !important;
+  font-size: 14px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
+  text-decoration: none !important;
+  padding: var(--techcloud-spacing-sm) var(--techcloud-spacing-md) !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  transition: all var(--techcloud-transition-base) !important;
+  font-family: var(--techcloud-font-family) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+html[data-theme="material"] .navbar.navbar-light .navbar-nav > li > a:hover,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-nav > li > a:hover,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav > li > a:hover,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-nav > li > a:hover,
+html[data-theme="material"] .navbar-nav > li > a:hover,
+html[data-theme-mode="material"] .navbar-nav > li > a:hover {
+  color: var(--techcloud-primary-blue) !important;
+  background: var(--techcloud-light-blue) !important;
 }
 
 /* Header Actions - Match dashboard.html header icons */
+/* Navbar Collapse (Mobile Menu) */
+html[data-theme="material"] .navbar.navbar-light .navbar-collapse,
+html[data-theme-mode="material"] .navbar.navbar-light .navbar-collapse,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg .navbar-collapse,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg .navbar-collapse,
+html[data-theme="material"] .navbar-collapse,
+html[data-theme-mode="material"] .navbar-collapse {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-grow: 1 !important;
+}
+
+/* Navbar Toggler (Mobile Menu Button) */
+html[data-theme="material"] .navbar-toggler,
+html[data-theme-mode="material"] .navbar-toggler {
+  border: 1px solid var(--techcloud-border-color) !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  padding: var(--techcloud-spacing-sm) var(--techcloud-spacing-md) !important;
+  background: transparent !important;
+  transition: all var(--techcloud-transition-base) !important;
+}
+
+html[data-theme="material"] .navbar-toggler:hover,
+html[data-theme-mode="material"] .navbar-toggler:hover {
+  background: var(--techcloud-light-gray) !important;
+  border-color: var(--techcloud-primary-blue) !important;
+}
+
+/* Header Actions */
 html[data-theme="material"] .header-actions,
 html[data-theme-mode="material"] .header-actions,
 html[data-theme="material"] .page-actions,
 html[data-theme-mode="material"] .page-actions {
   display: flex !important;
-  gap: 12px !important;
+  gap: var(--techcloud-spacing-md) !important;
   align-items: center !important;
+  margin-left: auto !important;
 }
 
 html[data-theme="material"] .header-icon,
@@ -2772,8 +3031,15 @@ html[data-theme-mode="material"] .header-icon:hover {
   color: var(--techcloud-text-primary) !important;
 }
 
+/* User Avatar in Header */
 html[data-theme="material"] .user-avatar,
-html[data-theme-mode="material"] .user-avatar {
+html[data-theme-mode="material"] .user-avatar,
+html[data-theme="material"] .navbar .avatar,
+html[data-theme-mode="material"] .navbar .avatar,
+html[data-theme="material"] .navbar-nav .avatar,
+html[data-theme-mode="material"] .navbar-nav .avatar,
+html[data-theme="material"] .navbar-nav li .avatar,
+html[data-theme-mode="material"] .navbar-nav li .avatar {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50% !important;
@@ -2782,8 +3048,21 @@ html[data-theme-mode="material"] .user-avatar {
   align-items: center !important;
   justify-content: center !important;
   color: white !important;
-  font-weight: 600 !important;
+  font-weight: var(--techcloud-font-weight-semibold) !important;
+  font-size: 16px !important;
+  border: 2px solid var(--techcloud-white) !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+  transition: all var(--techcloud-transition-base) !important;
   cursor: pointer !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-theme="material"] .user-avatar:hover,
+html[data-theme-mode="material"] .user-avatar:hover,
+html[data-theme="material"] .navbar .avatar:hover,
+html[data-theme-mode="material"] .navbar .avatar:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--techcloud-shadow-md) !important;
 }
 
 /* Buttons */

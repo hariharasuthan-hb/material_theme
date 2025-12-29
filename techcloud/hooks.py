@@ -43,7 +43,8 @@ app_include_js = [
 web_include_css = ["/assets/techcloud/css/material.css"]
 web_include_js = [
     "/assets/techcloud/js/techcloud-login.js",
-    "/assets/techcloud/js/techcloud-icons.js"
+    "/assets/techcloud/js/techcloud-icons.js",
+    "/assets/techcloud/js/techcloud-header.js"
 ]
 # web_include_js = "/assets/material_theme/js/material-theme-website.js"
 
