@@ -11,7 +11,9 @@ frappe.provide("itrostack.material");
 	function shouldApplyMaterial() {
 		// Prefer boot value (desk pages)
 		if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-			return String(window.frappe.boot.desk_theme).toLowerCase() === "material";
+			const deskTheme = String(window.frappe.boot.desk_theme).toLowerCase();
+			// Accept both "material" and "techcloud" (Techcloud is displayed name, Material is internal)
+			return deskTheme === "material" || deskTheme === "techcloud";
 		}
 
 		// Fallback: if template/other script already set it

@@ -113,7 +113,7 @@
             return; // Icons already loaded
         }
 
-        // Try to load icons.svg
+        // Try to load icons.svg (correct path without 'public' in assets)
         const iconsPath = '/assets/techcloud/icons/icons.svg';
         fetch(iconsPath)
             .then(response => {
@@ -154,11 +154,22 @@
     }
 
     // Also run when Frappe is ready (for dynamic content)
-    if (typeof frappe !== 'undefined') {
-        frappe.ready(function() {
-            ensureIconsLoaded();
-            setTimeout(addIconsToSidebar, 300);
-        });
+    function runWhenFrappeReady() {
+        ensureIconsLoaded();
+        setTimeout(addIconsToSidebar, 300);
+    }
+    
+    if (typeof frappe !== 'undefined' && typeof frappe.ready === 'function') {
+        frappe.ready(runWhenFrappeReady);
+    } else if (typeof frappe !== 'undefined') {
+        // Frappe exists but ready is not available yet, wait for it
+        setTimeout(function() {
+            if (typeof frappe !== 'undefined' && typeof frappe.ready === 'function') {
+                frappe.ready(runWhenFrappeReady);
+            } else {
+                runWhenFrappeReady();
+            }
+        }, 100);
     }
 
     // Watch for dynamic content changes

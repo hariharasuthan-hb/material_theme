@@ -2484,19 +2484,50 @@ html[data-theme-mode="material"] .my-account-avatar .avatar {
   color: var(--techcloud-text-primary) !important;
 }
 
+/* Desk Layout Container - Match dashboard.html dashboard-container */
+html[data-theme="material"] .layout-container,
+html[data-theme-mode="material"] .layout-container,
+html[data-theme="material"] .layout-wrapper,
+html[data-theme-mode="material"] .layout-wrapper,
+html[data-theme="material"] .desk-container,
+html[data-theme-mode="material"] .desk-container,
+html[data-theme="material"] body.desk-body,
+html[data-theme-mode="material"] body.desk-body {
+  display: flex !important;
+  min-height: 100vh !important;
+  background: var(--techcloud-light-gray) !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure body has proper layout for desk */
+html[data-theme="material"] body[data-route],
+html[data-theme-mode="material"] body[data-route] {
+  background: var(--techcloud-light-gray) !important;
+  min-height: 100vh !important;
+}
+
 /* Desk Sidebar - Match dashboard.html sidebar */
 html[data-theme="material"] .desk-sidebar,
 html[data-theme-mode="material"] .desk-sidebar,
 html[data-theme="material"] .layout-side-section,
 html[data-theme-mode="material"] .layout-side-section {
   width: 260px !important;
+  min-width: 260px !important;
   background: var(--techcloud-white) !important;
   border-right: 1px solid var(--techcloud-border-color) !important;
-  padding: 24px !important;
+  padding: 32px 24px !important;
   position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
   height: 100vh !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
   box-sizing: border-box !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Sidebar Logo/Brand */
@@ -2561,13 +2592,24 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.act
 
 /* Main Content Area - Match dashboard.html main-content */
 html[data-theme="material"] .layout-main-section,
-html[data-theme-mode="material"] .layout-main-section {
+html[data-theme-mode="material"] .layout-main-section,
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .layout-main-section-wrapper {
   margin-left: 260px !important;
   flex: 1 !important;
   padding: 32px !important;
   background: var(--techcloud-light-gray) !important;
   min-height: 100vh !important;
   box-sizing: border-box !important;
+  width: calc(100% - 260px) !important;
+  max-width: calc(100% - 260px) !important;
+}
+
+/* Ensure layout-main doesn't have conflicting styles */
+html[data-theme="material"] .layout-main,
+html[data-theme-mode="material"] .layout-main {
+  background: var(--techcloud-light-gray) !important;
+  min-height: 100vh !important;
 }
 
 /* Dashboard Header - Match dashboard.html dashboard-header */
@@ -2577,6 +2619,21 @@ html[data-theme="material"] .dashboard-header,
 html[data-theme-mode="material"] .dashboard-header {
   margin-bottom: 32px !important;
   background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Page Head Content - Match dashboard.html header structure */
+html[data-theme="material"] .page-head .page-title-row,
+html[data-theme-mode="material"] .page-head .page-title-row,
+html[data-theme="material"] .page-head .row,
+html[data-theme-mode="material"] .page-head .row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 html[data-theme="material"] .page-title,
@@ -2608,6 +2665,152 @@ html[data-theme-mode="material"] .dashboard-subtitle {
   color: var(--techcloud-text-secondary) !important;
   font-family: var(--techcloud-font-family) !important;
   line-height: 1.6 !important;
+}
+
+/* Page Body - Match dashboard.html main-content styling */
+html[data-theme="material"] .page-body,
+html[data-theme-mode="material"] .page-body {
+  background: var(--techcloud-light-gray) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Form Layout - Match dashboard.html card styling */
+html[data-theme="material"] .form-layout,
+html[data-theme-mode="material"] .form-layout,
+html[data-theme="material"] .form-section,
+html[data-theme-mode="material"] .form-section {
+  background: var(--techcloud-white) !important;
+  padding: var(--techcloud-spacing-xl) !important;
+  border-radius: var(--techcloud-radius-lg) !important;
+  box-shadow: var(--techcloud-shadow-card) !important;
+  margin-bottom: var(--techcloud-spacing-lg) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Form Groups */
+html[data-theme="material"] .form-group,
+html[data-theme-mode="material"] .form-group {
+  margin-bottom: var(--techcloud-spacing-lg) !important;
+}
+
+/* Form Labels */
+html[data-theme="material"] .form-label,
+html[data-theme-mode="material"] .form-label,
+html[data-theme="material"] .control-label,
+html[data-theme-mode="material"] .control-label {
+  font-size: 14px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: var(--techcloud-spacing-sm) !important;
+  font-family: var(--techcloud-font-family) !important;
+}
+
+/* Form Controls / Inputs */
+html[data-theme="material"] .form-control,
+html[data-theme-mode="material"] .form-control,
+html[data-theme="material"] input.form-control,
+html[data-theme-mode="material"] input.form-control,
+html[data-theme="material"] textarea.form-control,
+html[data-theme-mode="material"] textarea.form-control,
+html[data-theme="material"] select.form-control,
+html[data-theme-mode="material"] select.form-control {
+  border: 1px solid var(--techcloud-border-color) !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  font-family: var(--techcloud-font-family) !important;
+  color: var(--techcloud-text-primary) !important;
+  background: var(--techcloud-white) !important;
+  transition: all var(--techcloud-transition-base) !important;
+}
+
+html[data-theme="material"] .form-control:focus,
+html[data-theme-mode="material"] .form-control:focus {
+  border-color: var(--techcloud-primary-blue) !important;
+  box-shadow: var(--techcloud-shadow-input-focus) !important;
+  outline: none !important;
+}
+
+/* Buttons - Match dashboard.html button styling */
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn,
+html[data-theme="material"] button.btn,
+html[data-theme-mode="material"] button.btn {
+  border-radius: var(--techcloud-radius-md) !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
+  font-family: var(--techcloud-font-family) !important;
+  transition: all var(--techcloud-transition-base) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+html[data-theme="material"] .btn-primary,
+html[data-theme-mode="material"] .btn-primary {
+  background: var(--techcloud-primary-blue) !important;
+  color: var(--techcloud-white) !important;
+  box-shadow: var(--techcloud-shadow-button) !important;
+}
+
+html[data-theme="material"] .btn-primary:hover,
+html[data-theme-mode="material"] .btn-primary:hover {
+  background: #0073D9 !important;
+  box-shadow: var(--techcloud-shadow-button-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+html[data-theme="material"] .btn-secondary,
+html[data-theme-mode="material"] .btn-secondary {
+  background: var(--techcloud-white) !important;
+  color: var(--techcloud-text-primary) !important;
+  border: 1px solid var(--techcloud-border-color) !important;
+}
+
+html[data-theme="material"] .btn-secondary:hover,
+html[data-theme-mode="material"] .btn-secondary:hover {
+  background: var(--techcloud-light-gray) !important;
+  border-color: var(--techcloud-primary-blue) !important;
+}
+
+/* Tables - Match dashboard.html table styling */
+html[data-theme="material"] .table,
+html[data-theme-mode="material"] .table,
+html[data-theme="material"] table,
+html[data-theme-mode="material"] table {
+  background: var(--techcloud-white) !important;
+  border-radius: var(--techcloud-radius-lg) !important;
+  overflow: hidden !important;
+  box-shadow: var(--techcloud-shadow-card) !important;
+}
+
+html[data-theme="material"] .table thead,
+html[data-theme-mode="material"] .table thead {
+  background: var(--techcloud-light-gray) !important;
+}
+
+html[data-theme="material"] .table th,
+html[data-theme-mode="material"] .table th {
+  font-weight: var(--techcloud-font-weight-semibold) !important;
+  color: var(--techcloud-text-primary) !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 16px !important;
+  border-bottom: 2px solid var(--techcloud-border-color) !important;
+}
+
+html[data-theme="material"] .table td,
+html[data-theme-mode="material"] .table td {
+  padding: 16px !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .table tbody tr:hover,
+html[data-theme-mode="material"] .table tbody tr:hover {
+  background: var(--techcloud-light-blue) !important;
 }
 
 /* Stats Grid - Match dashboard.html stats-grid */
@@ -3116,13 +3319,20 @@ html[data-theme-mode="material"] .table thead {
   html[data-theme="material"] .layout-side-section,
   html[data-theme-mode="material"] .layout-side-section {
     width: 100% !important;
+    min-width: 100% !important;
     height: auto !important;
     position: relative !important;
+    left: 0 !important;
+    padding: 20px !important;
   }
 
   html[data-theme="material"] .layout-main-section,
-  html[data-theme-mode="material"] .layout-main-section {
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
     padding: 20px !important;
   }
 

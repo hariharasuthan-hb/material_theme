@@ -23,14 +23,15 @@ frappe.provide("material.theme");
 			desk_theme = window.frappe.boot.desk_theme.toLowerCase();
 		}
 		
-		// Check if Material theme is active
+		// Check if Material theme is active (accept both "material" and "techcloud")
+		const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
 		const isMaterialTheme = theme_mode === "material" || 
 		                        root.getAttribute("data-theme") === "material" ||
-		                        desk_theme === "material";
+		                        deskThemeLower === "material" || deskThemeLower === "techcloud";
 		
 		if (isMaterialTheme) {
 			// Ensure data-theme-mode is set correctly
-			if (desk_theme === "material" && theme_mode !== "material") {
+			if ((deskThemeLower === "material" || deskThemeLower === "techcloud") && theme_mode !== "material") {
 				root.setAttribute("data-theme", "material");
 				root.setAttribute("data-theme-mode", "material");
 			}
@@ -76,10 +77,11 @@ $(document).on("toolbar_setup", function () {
 		desk_theme = window.frappe.boot.desk_theme.toLowerCase();
 	}
 	
-	// Check both data-theme-mode and desk_theme to determine if Material theme is active
+	// Check both data-theme-mode and desk_theme to determine if Material theme is active (accept both "material" and "techcloud")
+	const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
 	const isMaterialTheme = theme_mode === "material" || 
 	                        root.getAttribute("data-theme") === "material" ||
-	                        desk_theme === "material";
+	                        deskThemeLower === "material" || deskThemeLower === "techcloud";
 	
 	console.log("Theme check - data-theme-mode:", theme_mode, "desk_theme:", desk_theme, "isMaterial:", isMaterialTheme);
 	
@@ -87,8 +89,8 @@ $(document).on("toolbar_setup", function () {
 		return;
 	}
 	
-	// Ensure data-theme-mode is set correctly if desk_theme is Material
-	if (desk_theme === "material" && theme_mode !== "material") {
+	// Ensure data-theme-mode is set correctly if desk_theme is Material or Techcloud
+	if ((deskThemeLower === "material" || deskThemeLower === "techcloud") && theme_mode !== "material") {
 		root.setAttribute("data-theme", "material");
 		root.setAttribute("data-theme-mode", "material");
 	}

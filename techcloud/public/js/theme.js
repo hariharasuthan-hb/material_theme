@@ -17,7 +17,7 @@
 					this.themes = [
 						{ name: "light", label: "Frappe Light", info: "Light Theme" },
 						{ name: "dark", label: "Timeless Night", info: "Dark Theme" },
-						{ name: "material", label: "Material by Itrostack", info: "Theme By Itrostack LLP" },
+						{ name: "material", label: "Techcloud", info: "Techcloud ERP Theme by Itrostack LLP" },
 						{
 							name: "automatic",
 							label: "Automatic",
@@ -39,15 +39,16 @@
 		if (window.__techcloud_user_form_patched) return true;
 		window.__techcloud_user_form_patched = true;
 
-		// Dynamically add "Material" option to desk_theme field in User form (no core file changes)
+		// Dynamically add "Techcloud" option to desk_theme field in User form (no core file changes)
 		window.frappe.ui.form.on("User", {
 			refresh: function (frm) {
 				const field = frm && frm.fields_dict && frm.fields_dict.desk_theme;
 				if (!field || !field.df) return;
 
 				const current_options = field.df.options ? String(field.df.options).split("\n") : [];
-				if (!current_options.includes("Material")) {
-					current_options.push("Material");
+				// Add "Techcloud" if not present (maps to "material" theme internally)
+				if (!current_options.includes("Techcloud")) {
+					current_options.push("Techcloud");
 					field.df.options = current_options.join("\n");
 					field.refresh && field.refresh();
 				}

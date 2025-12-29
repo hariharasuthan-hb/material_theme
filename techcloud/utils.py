@@ -64,7 +64,8 @@ def update_techcloud_theme_context(context):
 		if not desk_theme and "desk_theme" in context:
 			desk_theme = context.get("desk_theme", "Light")
 		
-		is_techcloud_desk_theme = desk_theme and desk_theme.lower() == "material"
+		# Check if desk_theme is Material or Techcloud (both use the same theme)
+		is_techcloud_desk_theme = desk_theme and desk_theme.lower() in ["material", "techcloud"]
 		
 		# Detect if this is a desk page (has include_css and desk_theme in context)
 		is_desk_page = "include_css" in context and "desk_theme" in context

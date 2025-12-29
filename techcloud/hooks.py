@@ -67,7 +67,8 @@ web_include_js = [
 # Svg Icons
 # ------------------
 # include app icons in desk
-app_include_icons = "techcloud/public/icons/icons.svg"
+# Path is relative to app's public folder (without "public" in the path)
+app_include_icons = "techcloud/icons/icons.svg"
 
 # Home Pages
 # ----------
