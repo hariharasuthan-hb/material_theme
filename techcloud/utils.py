@@ -4,19 +4,17 @@ from frappe.utils.jinja_globals import include_style
 # No monkey patching needed! CSS is loaded via hooks and scoped with data-theme selectors
 # JavaScript sets data-theme="material" attribute based on desk_theme
 def before_request():
-	"""Set data-theme attribute via JavaScript for desk pages (no core file modifications)"""
-	# CSS is loaded via app_include_css hook in hooks.py
-	# CSS is scoped with html[data-theme="material"] so it only applies when attribute is set
-	# JavaScript in theme.js sets the data-theme attribute based on desk_theme
-	# This approach avoids monkey patching core Frappe functions
+	"""Ensure Material desk theme sets data-theme attribute correctly"""
+	# The app.html template already sets data-theme="{{ desk_theme.lower() }}"
+	# So if desk_theme is "Material", it becomes "material" automatically
+	# The JavaScript in material.js ensures it stays set even if Frappe's theme switcher tries to change it
+	# No action needed here - CSS is loaded via app_include_css hook and scoped with html[data-theme="material"]
 	pass
 
 def update_techcloud_theme_context(context):
-	"""Update website context to conditionally load Techcloud CSS for website pages only
-	Desk/app pages use app_include_css hook - no core file modifications needed"""
+	"""Update website context to conditionally load Techcloud CSS for website pages
+	Also adds script to head_html for desk pages if Material theme is active"""
 	try:
-		from frappe.website.doctype.website_theme.website_theme import get_active_theme
-		
 		# Get app name dynamically from current module (no hardcoding!)
 		# This works even if the app is renamed or imported to another site
 		try:
@@ -29,7 +27,15 @@ def update_techcloud_theme_context(context):
 		except:
 			app_name = "techcloud"
 		
-		theme = get_active_theme()
+		# Safely get active theme - may fail if database not initialized or theme doesn't exist
+		theme = None
+		try:
+			from frappe.website.doctype.website_theme.website_theme import get_active_theme
+			theme = get_active_theme()
+		except Exception as theme_error:
+			# If get_active_theme fails, continue without theme (theme is optional)
+			# Don't log as error - this is expected in some contexts (e.g., during asset build)
+			pass
 		# Dynamic theme detection: Check if theme name contains app name (case-insensitive)
 		# This works even if theme is named "Techcloud Theme", "techcloud theme", "My Techcloud Theme", etc.
 		# Also check if theme_url contains app asset path
@@ -46,26 +52,164 @@ def update_techcloud_theme_context(context):
 				app_name_lower in theme_url
 			)
 		
-		# Only handle website pages - desk pages use app_include_css hook
-		# CSS is scoped with html[data-theme="material"] so it only applies when attribute is set
-		if is_techcloud_theme:
+		# Check if user has Material desk theme (for desk pages)
+		desk_theme = None
+		if frappe.session.user and frappe.session.user != "Guest":
+			try:
+				desk_theme = frappe.db.get_value("User", frappe.session.user, "desk_theme") or "Light"
+			except:
+				pass
+		
+		# Also check desk_theme from context (set in app.py)
+		if not desk_theme and "desk_theme" in context:
+			desk_theme = context.get("desk_theme", "Light")
+		
+		is_techcloud_desk_theme = desk_theme and desk_theme.lower() == "material"
+		
+		# Detect if this is a desk page (has include_css and desk_theme in context)
+		is_desk_page = "include_css" in context and "desk_theme" in context
+		
+		# For login pages, always apply techcloud theme (if Material theme is set)
+		# Check if this is a login page - multiple detection methods
+		is_login_page = False
+		
+		# Method 1: Check context title
+		if context.get("title") == "Login":
+			is_login_page = True
+		
+		# Method 2: Check for_test field (login.html)
+		if context.get("for_test") == "login.html":
+			is_login_page = True
+		
+		# Method 3: Check path in context
+		if "path" in context:
+			path = context.get("path", "")
+			if "login" in path.lower() or path == "/":
+				is_login_page = True
+		
+		# Method 4: Check request path
+		try:
+			if frappe.request and hasattr(frappe.request, 'path'):
+				if "login" in frappe.request.path.lower():
+					is_login_page = True
+		except:
+			pass
+		
+		# Method 5: Check template name
+		if context.get("template") and "login" in str(context.get("template", "")).lower():
+			is_login_page = True
+		
+		# Handle both website and desk pages, or login pages
+		if is_techcloud_theme or (is_techcloud_desk_theme and is_desk_page) or is_login_page:
+			# IMPORTANT (Website Theme inter.css 500 fix):
+			# Frappe's generated Website Theme CSS (served from `/files/website_theme/*.css`) currently starts with:
+			#   @import "frappe/public/css/fonts/inter/inter.css";
+			# Because that is a *relative* import, the browser resolves it as:
+			#   /files/website_theme/frappe/public/css/fonts/inter/inter.css
+			# which doesn't exist and throws 500.
+			#
+			# For Techcloud, we don't need the generated Website Theme CSS at all because we load
+			# our theme via `web_include_css` / `head_html`. So we force the "Standard" path in
+			# `frappe/templates/includes/head.html` by removing `theme` from context.
+			if is_techcloud_theme or is_login_page:
+				context["theme"] = None
+
 			# For website pages only - add CSS to head_html
 			# Desk pages use app_include_css hook (no core file modifications)
 			techcloud_css_path = f"/assets/{app_name}/css/material.css"
 			
 			# Add Techcloud CSS link to head_html (for website pages)
 			# include_style() already calls bundled_asset() internally
-			techcloud_css = include_style(techcloud_css_path, preload=False)
-			current_head_html = context.get("head_html", "") or ""
-			import re
-			current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
-			if techcloud_css not in current_head_html:
-				context["head_html"] = current_head_html + techcloud_css
+			# Wrap in try-except to handle asset bundling errors gracefully
+			try:
+				# Try to get bundled asset path first
+				from frappe.utils import bundled_asset
+				bundled_css_path = bundled_asset(techcloud_css_path)
+				techcloud_css = f'<link type="text/css" rel="stylesheet" href="{bundled_css_path}">'
+				current_head_html = context.get("head_html", "") or ""
+				import re
+				current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+				if techcloud_css not in current_head_html:
+					context["head_html"] = current_head_html + techcloud_css
+			except Exception as css_error:
+				# If bundled_asset fails, try include_style
+				try:
+					techcloud_css = include_style(techcloud_css_path, preload=False)
+					current_head_html = context.get("head_html", "") or ""
+					import re
+					current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+					if techcloud_css not in current_head_html:
+						context["head_html"] = current_head_html + techcloud_css
+				except Exception as css_error2:
+					# If both fail, use direct path (silent fallback - don't log as error)
+					# This allows the page to load even if assets aren't built yet
+					techcloud_css_fallback = f'<link type="text/css" rel="stylesheet" href="{techcloud_css_path}">'
+					current_head_html = context.get("head_html", "") or ""
+					import re
+					current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+					if techcloud_css_fallback not in current_head_html:
+						context["head_html"] = current_head_html + techcloud_css_fallback
 			
-			# Add inline script to set data-theme attribute for website pages
-			# Desk pages handle this via JavaScript in material.js (no core file modifications)
-			script = '<script>(function(){if(document.documentElement){document.documentElement.setAttribute("data-theme","material");document.documentElement.setAttribute("data-theme-mode","material");}})();</script>'
+			# Add login page restructure script for login pages
+			if is_login_page:
+				login_script_path = f"/assets/{app_name}/js/techcloud-login.js"
+				# Use bundled_asset to get the correct path with hash
+				try:
+					from frappe.utils import get_assets_json
+					assets_json = get_assets_json()
+					if assets_json and login_script_path in assets_json.get("files", {}):
+						login_script_path = assets_json["files"][login_script_path]
+				except Exception as assets_error:
+					# If get_assets_json fails, use direct path
+					frappe.log_error(f"Error getting assets JSON for login script: {assets_error}", "Techcloud Theme Assets Error")
+					# Continue with direct path
+				login_script = f'<script src="{login_script_path}"></script>'
+				current_head = context.get("head_html", "")
+				if login_script not in current_head and "techcloud-login.js" not in current_head:
+					context["head_html"] = current_head + login_script
+			
+			# Add inline script to set data-theme attribute (for both website and login/website pages).
+			# Keep this script EARLY + SILENT to avoid console spam and avoid fighting with `public/js/material.js`.
+			# `public/js/material.js` is the main authority for desk pages (uses frappe.ready + small safeguards).
+			script = '''<script>
+			(function(){
+				function shouldApply() {
+					var html = document.documentElement;
+					if(!html) return false;
+					// For login/website we may not have frappe.boot yet; trust current attributes too.
+					var theme = html.getAttribute("data-theme");
+					var mode = html.getAttribute("data-theme-mode");
+					if(theme === "material" || mode === "material") return true;
+					if(window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
+						return String(window.frappe.boot.desk_theme).toLowerCase() === "material";
+					}
+					return false;
+				}
+
+				function applyAttrs() {
+					if(!shouldApply()) return;
+					var html = document.documentElement;
+					if(!html) return;
+					if(html.getAttribute("data-theme") !== "material") html.setAttribute("data-theme","material");
+					if(html.getAttribute("data-theme-mode") !== "material") html.setAttribute("data-theme-mode","material");
+					if(document.body) {
+						if(document.body.getAttribute("data-theme") !== "material") document.body.setAttribute("data-theme","material");
+						if(document.body.getAttribute("data-theme-mode") !== "material") document.body.setAttribute("data-theme-mode","material");
+					}
+				}
+
+				// Run once early + once on DOM ready (no observers, no intervals, no logs)
+				applyAttrs();
+				if(document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', applyAttrs);
+				} else {
+					applyAttrs();
+				}
+			})();
+			</script>'''
 			current_head_html = context.get("head_html", "") or ""
+			# Remove any existing techcloud theme scripts (handle both single-line and multi-line)
+			current_head_html = re.sub(r'<script[^>]*>.*?setTechcloudTheme.*?</script>', '', current_head_html, flags=re.DOTALL)
 			current_head_html = re.sub(r'<script[^>]*setAttribute[^>]*data-theme[^>]*</script>', '', current_head_html)
 			if script not in current_head_html:
 				# Add script at the beginning of head_html so it runs early

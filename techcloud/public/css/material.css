@@ -2,8 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900);
 
 :root {
-  --md-sys-color-primary: rgb(60 96 144);
-    --md-sys-color-surface-tint: rgb(60 96 144);
+  --md-sys-color-primary: rgb(254, 254, 254);
+    --md-sys-color-surface-tint: rgb(245, 246, 248);
     --md-sys-color-on-primary: rgb(255 255 255);
     --md-sys-color-primary-container: rgb(212 227 255);
     --md-sys-color-on-primary-container: rgb(0 28 58);
@@ -32,7 +32,7 @@
     --md-sys-color-inverse-surface: rgb(46 48 53);
     --md-sys-color-inverse-on-surface: rgb(240 240 247);
     --md-sys-color-inverse-primary: rgb(166 200 255);
-    --md-sys-color-primary-fixed: rgb(212 227 255);
+    --md-sys-color-primary-fixed: rgb(10, 65, 166);
     --md-sys-color-on-primary-fixed: rgb(0 28 58);
     --md-sys-color-primary-fixed-dim: rgb(166 200 255);
     --md-sys-color-on-primary-fixed-variant: rgb(34 72 118);
@@ -96,6 +96,8 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     letter-spacing: 0.15px;
     line-height: 1.5; */
   }
+
+  /* (reverted) Global box-sizing/overflow defaults were moved back to dynamic login JS */
 /*   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] a {
     font-weight: 500;
@@ -1366,4 +1368,550 @@ html[data-theme="material"] .hidden,
 html[data-theme-mode="material"] .hidden,
 body[data-theme-mode="material"] .hidden {
   display: none;
+}
+
+/* ============================================
+   Techcloud ERP Layout Styles
+   Based on HTML designs from html/material_theme/
+   ============================================ */
+
+/* Techcloud Color Variables */
+html[data-theme="material"],
+html[data-theme-mode="material"],
+body[data-theme="material"],
+body[data-theme-mode="material"] {
+  --techcloud-primary-blue: #0089FF;
+  --techcloud-primary-orange: #FF6B35;
+  --techcloud-light-blue: #E3F2FD;
+  --techcloud-light-orange: #FFF3E0;
+  --techcloud-dark-gray: #333333;
+  --techcloud-medium-gray: #666666;
+  --techcloud-light-gray: #F5F5F5;
+  --techcloud-white: #FFFFFF;
+  --techcloud-border-color: #E0E0E0;
+  --techcloud-text-primary: #212121;
+  --techcloud-text-secondary: #757575;
+  --techcloud-success-green: #4CAF50;
+}
+
+/* ============================================
+   Login Page Styles (Website Theme)
+   Two-Column Layout: Form Left, Illustration Right
+   ============================================ */
+
+/* Login Page Container - Frappe login page */
+html[data-theme="material"] body.login-page,
+html[data-theme-mode="material"] body.login-page,
+{
+  background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, var(--techcloud-white) 100%) !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  position: relative !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Page Content Container */
+html[data-theme="material"] body.login-page .page-content,
+html[data-theme-mode="material"] body.login-page .page-content,
+html[data-theme="material"] body.login-page > div,
+html[data-theme-mode="material"] body.login-page > div,
+{
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: calc(100vh - 40px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Techcloud Login Wrapper - Two Column Layout */
+html[data-theme="material"] .techcloud-login-wrapper,
+html[data-theme-mode="material"] .techcloud-login-wrapper {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  max-width: 1200px !important;
+  width: 100% !important;
+  background: var(--techcloud-white) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
+  min-height: auto !important;
+  max-height: calc(100vh - 40px) !important;
+}
+
+/* Techcloud Login Form Section */
+html[data-theme="material"] .techcloud-login-form-section,
+html[data-theme-mode="material"] .techcloud-login-form-section {
+  padding: 60px 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  background: #FFFFFF !important;
+  max-height: calc(100vh - 40px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Techcloud Login Illustration Section */
+html[data-theme="material"] .techcloud-login-illustration-section,
+html[data-theme-mode="material"] .techcloud-login-illustration-section {
+  background: linear-gradient(135deg, var(--techcloud-primary-blue) 0%, #0066CC 100%) !important;
+  padding: 60px 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: #FFFFFF !important;
+  position: relative !important;
+  overflow: hidden !important;
+  max-height: calc(100vh - 40px) !important;
+  overflow-y: auto !important;
+}
+
+/* Social Login Styles */
+html[data-theme="material"] .techcloud-social-login,
+html[data-theme-mode="material"] .techcloud-social-login {
+  margin-top: 30px !important;
+  text-align: center !important;
+}
+
+html[data-theme="material"] .techcloud-social-login-text,
+html[data-theme-mode="material"] .techcloud-social-login-text {
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+  margin-bottom: 20px !important;
+  position: relative !important;
+}
+
+html[data-theme="material"] .techcloud-social-buttons,
+html[data-theme-mode="material"] .techcloud-social-buttons {
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: center !important;
+}
+
+html[data-theme="material"] .techcloud-social-btn,
+html[data-theme-mode="material"] .techcloud-social-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border: 2px solid var(--techcloud-border-color) !important;
+  border-radius: 8px !important;
+  background: var(--techcloud-white) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="material"] .techcloud-social-btn:hover,
+html[data-theme-mode="material"] .techcloud-social-btn:hover {
+  border-color: var(--techcloud-primary-blue) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="material"] .techcloud-signup-link,
+html[data-theme-mode="material"] .techcloud-signup-link {
+  text-align: center !important;
+  margin-top: 30px !important;
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+html[data-theme="material"] .techcloud-signup-link a,
+html[data-theme-mode="material"] .techcloud-signup-link a {
+  color: var(--techcloud-primary-blue) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="material"] .techcloud-signup-link a:hover,
+html[data-theme-mode="material"] .techcloud-signup-link a:hover {
+  text-decoration: underline !important;
+}
+
+/* Login Form Section (Left Column) */
+html[data-theme="material"] .for-login,
+html[data-theme-mode="material"] .for-login {
+  display: contents !important;
+}
+
+html[data-theme="material"] .for-login .page-card-head,
+html[data-theme-mode="material"] .for-login .page-card-head {
+  display: none !important;
+}
+
+html[data-theme="material"] .for-login .login-content,
+html[data-theme-mode="material"] .for-login .login-content {
+  grid-column: 1 !important;
+  background: var(--techcloud-white) !important;
+  padding: 60px 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Add logo before form */
+html[data-theme="material"] .for-login .login-content::before,
+html[data-theme-mode="material"] .for-login .login-content::before {
+  content: "techcloud" !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-primary-blue) !important;
+  margin-bottom: 40px !important;
+  letter-spacing: -0.5px !important;
+}
+
+/* Add title before form */
+html[data-theme="material"] .for-login .login-content .page-card::before,
+html[data-theme-mode="material"] .for-login .login-content .page-card::before {
+  content: "Login to your account" !important;
+  display: block !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+/* Add subtitle */
+html[data-theme="material"] .for-login .login-content .page-card::after,
+html[data-theme-mode="material"] .for-login .login-content .page-card::after {
+  content: "Welcome back! Please enter your details." !important;
+  display: block !important;
+  font-size: 16px !important;
+  color: var(--techcloud-text-secondary) !important;
+  margin-bottom: 40px !important;
+}
+
+/* Login Card - Remove default styling */
+html[data-theme="material"] .page-card,
+html[data-theme-mode="material"] .page-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* Login Form Section */
+html[data-theme="material"] .page-card-body,
+html[data-theme-mode="material"] .page-card-body {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Illustration Section (Right Column) - Using pseudo-element */
+html[data-theme="material"] body.login-page > div::after,
+html[data-theme-mode="material"] body.login-page > div::after {
+  content: "" !important;
+  grid-column: 2 !important;
+  background: linear-gradient(135deg, var(--techcloud-primary-blue) 0%, #0066CC 100%) !important;
+  padding: 60px 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: var(--techcloud-white) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Add illustration content using CSS */
+html[data-theme="material"] body.login-page > div::before,
+html[data-theme-mode="material"] body.login-page > div::before {
+  content: "Simplify your business with techcloud ERP\A Effortlessly manage your team and operations with our comprehensive ERP solution." !important;
+  grid-column: 2 !important;
+  background: linear-gradient(135deg, var(--techcloud-primary-blue) 0%, #0066CC 100%) !important;
+  padding: 60px 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: var(--techcloud-white) !important;
+  position: relative !important;
+  z-index: 1 !important;
+  white-space: pre-line !important;
+  text-align: center !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+}
+
+/* Better approach: Use actual HTML injection via JavaScript or create a wrapper */
+/* For now, let's use a different approach with the section */
+
+/* Form Inputs */
+html[data-theme="material"] .page-card input[type="text"],
+html[data-theme="material"] .page-card input[type="email"],
+html[data-theme="material"] .page-card input[type="password"],
+html[data-theme-mode="material"] .page-card input[type="text"],
+html[data-theme-mode="material"] .page-card input[type="email"],
+html[data-theme-mode="material"] .page-card input[type="password"] {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  font-size: 16px !important;
+  border: 2px solid var(--techcloud-border-color) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  background: var(--techcloud-white) !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .page-card input:focus,
+html[data-theme-mode="material"] .page-card input:focus {
+  outline: none !important;
+  border-color: var(--techcloud-primary-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1) !important;
+}
+
+/* Form Labels */
+html[data-theme="material"] .form-label,
+html[data-theme-mode="material"] .form-label {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 8px !important;
+}
+
+/* Forgot Password Link */
+html[data-theme="material"] .forgot-password-message a,
+html[data-theme-mode="material"] .forgot-password-message a {
+  font-size: 14px !important;
+  color: var(--techcloud-primary-blue) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+html[data-theme="material"] .forgot-password-message a:hover,
+html[data-theme-mode="material"] .forgot-password-message a:hover {
+  color: #0066CC !important;
+}
+
+/* Login Button */
+html[data-theme="material"] .page-card .btn-primary,
+html[data-theme-mode="material"] .page-card .btn-primary {
+  width: 100% !important;
+  padding: 14px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: var(--techcloud-primary-blue) !important;
+  color: var(--techcloud-white) !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="material"] .page-card .btn-primary:hover,
+html[data-theme-mode="material"] .page-card .btn-primary:hover {
+  background: #0066CC !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
+}
+
+/* ============================================
+   Desk/Dashboard Styles (App Interface)
+   ============================================ */
+
+/* Desk Sidebar */
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar {
+  background: var(--techcloud-white) !important;
+  border-right: 1px solid var(--techcloud-border-color) !important;
+}
+
+/* Sidebar Logo */
+html[data-theme="material"] .desk-sidebar .sidebar-brand,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-brand {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-primary-blue) !important;
+  padding: 24px !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+}
+
+/* Sidebar Navigation Links */
+html[data-theme="material"] .desk-sidebar .nav-link,
+html[data-theme-mode="material"] .desk-sidebar .nav-link {
+  padding: 12px 16px !important;
+  color: var(--techcloud-text-secondary) !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  margin: 4px 8px !important;
+}
+
+html[data-theme="material"] .desk-sidebar .nav-link:hover,
+html[data-theme-mode="material"] .desk-sidebar .nav-link:hover,
+html[data-theme="material"] .desk-sidebar .nav-link.active,
+html[data-theme-mode="material"] .desk-sidebar .nav-link.active {
+  background: var(--techcloud-light-blue) !important;
+  color: var(--techcloud-primary-blue) !important;
+}
+
+/* Main Content Area */
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section {
+  background: var(--techcloud-light-gray) !important;
+  padding: 32px !important;
+}
+
+/* Dashboard Header */
+html[data-theme="material"] .page-title,
+html[data-theme-mode="material"] .page-title {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 8px !important;
+}
+
+html[data-theme="material"] .page-subtitle,
+html[data-theme-mode="material"] .page-subtitle {
+  font-size: 16px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+/* Cards/Widgets */
+html[data-theme="material"] .widget,
+html[data-theme-mode="material"] .widget,
+html[data-theme="material"] .card,
+html[data-theme-mode="material"] .card {
+  background: var(--techcloud-white) !important;
+  padding: 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  border: none !important;
+}
+
+html[data-theme="material"] .widget:hover,
+html[data-theme-mode="material"] .widget:hover,
+html[data-theme="material"] .card:hover,
+html[data-theme-mode="material"] .card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Stats/Value Cards */
+html[data-theme="material"] .stat-value,
+html[data-theme-mode="material"] .stat-value {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .stat-label,
+html[data-theme-mode="material"] .stat-label {
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+/* Navbar/Toolbar */
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar {
+  background: var(--techcloud-white) !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Buttons */
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn {
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="material"] .btn-primary,
+html[data-theme-mode="material"] .btn-primary {
+  background: var(--techcloud-primary-blue) !important;
+  color: var(--techcloud-white) !important;
+  border: none !important;
+}
+
+html[data-theme="material"] .btn-primary:hover,
+html[data-theme-mode="material"] .btn-primary:hover {
+  background: #0066CC !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
+}
+
+/* Forms */
+html[data-theme="material"] .form-control,
+html[data-theme-mode="material"] .form-control {
+  border: 2px solid var(--techcloud-border-color) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="material"] .form-control:focus,
+html[data-theme-mode="material"] .form-control:focus {
+  border-color: var(--techcloud-primary-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1) !important;
+  outline: none !important;
+}
+
+/* Tables */
+html[data-theme="material"] .table,
+html[data-theme-mode="material"] .table {
+  background: var(--techcloud-white) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+html[data-theme="material"] .table thead,
+html[data-theme-mode="material"] .table thead {
+  background: var(--techcloud-light-gray) !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  html[data-theme="material"] .page-card-body,
+  html[data-theme-mode="material"] .page-card-body {
+    padding: 40px 30px !important;
+  }
+
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section {
+    padding: 20px !important;
+  }
+
+  /* Mobile Login Layout */
+  html[data-theme="material"] .techcloud-login-wrapper,
+  html[data-theme-mode="material"] .techcloud-login-wrapper {
+    grid-template-columns: 1fr !important;
+    max-height: none !important;
+  }
+
+  html[data-theme="material"] .techcloud-login-illustration-section,
+  html[data-theme-mode="material"] .techcloud-login-illustration-section {
+    display: none !important;
+  }
+
+  html[data-theme="material"] .techcloud-login-form-section,
+  html[data-theme-mode="material"] .techcloud-login-form-section {
+    padding: 40px 30px !important;
+    max-height: none !important;
+  }
+
+  html[data-theme="material"] body.login-page,
+  html[data-theme-mode="material"] body.login-page {
+    padding: 10px !important;
+  }
 }

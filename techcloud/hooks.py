@@ -35,8 +35,10 @@ app_include_js = [
 ]
 
 # include js, css files in header of web template
-# Material CSS is loaded conditionally only when Material theme is active
-# web_include_css = "/assets/material_theme/css/material.css"
+# NOTE: Frappe templates iterate `web_include_css` / `web_include_js`.
+# They must be LISTS (strings would be iterated character-by-character).
+web_include_css = ["/assets/techcloud/css/material.css"]
+web_include_js = ["/assets/techcloud/js/techcloud-login.js"]
 # web_include_js = "/assets/material_theme/js/material-theme-website.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -207,9 +209,9 @@ update_website_context = ["techcloud.utils.update_techcloud_theme_context"]
 
 # Request Events
 # ----------------
-# No before_request needed - CSS loaded via app_include_css hook
-# CSS is scoped with html[data-theme="material"] so it only applies when JavaScript sets the attribute
-# before_request = ["techcloud.utils.before_request"]
+# before_request adds inline script to set data-theme attribute early for desk pages
+# CSS is loaded via app_include_css hook and scoped with html[data-theme="material"]
+before_request = ["techcloud.utils.before_request"]
 # after_request = ["material_theme.utils.after_request"]
 
 # Job Events

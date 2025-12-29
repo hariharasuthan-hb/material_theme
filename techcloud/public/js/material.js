@@ -1,31 +1,124 @@
 "use strict";
 frappe.provide("itrostack.material");
 
-// Set data-theme attribute for desk pages based on desk_theme (runs early, before CSS applies)
-(function() {
-	// Check if this is a desk/app page (has frappe.boot)
-	if (window.frappe && window.frappe.boot) {
-		const desk_theme = window.frappe.boot.desk_theme || "Light";
-		// If desk_theme is "Material", set data-theme attribute so CSS applies
-		if (desk_theme.toLowerCase() === "material") {
-			if (document.documentElement) {
-				document.documentElement.setAttribute("data-theme", "material");
-				document.documentElement.setAttribute("data-theme-mode", "material");
+// Set `data-theme="material"` and `data-theme-mode="material"` on BOTH <html> and <body>.
+// This follows the same approach as your snippet, but with a small safeguard because Frappe
+// can overwrite `data-theme-mode` during theme switching.
+(function () {
+	let isApplying = false;
+	let observerTimer = null;
+
+	function shouldApplyMaterial() {
+		// Prefer boot value (desk pages)
+		if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
+			return String(window.frappe.boot.desk_theme).toLowerCase() === "material";
+		}
+
+		// Fallback: if template/other script already set it
+		const html = document.documentElement;
+		if (!html) return false;
+		return (
+			html.getAttribute("data-theme") === "material" ||
+			html.getAttribute("data-theme-mode") === "material"
+		);
+	}
+
+	function applyMaterialAttrs() {
+		if (isApplying) return;
+		if (!shouldApplyMaterial()) return;
+
+		const html = document.documentElement;
+		if (!html) return;
+
+		const body = document.body;
+		const htmlTheme = html.getAttribute("data-theme");
+		const htmlMode = html.getAttribute("data-theme-mode");
+
+		const needsHtml = htmlTheme !== "material" || htmlMode !== "material";
+		const needsBody =
+			!!body &&
+			(body.getAttribute("data-theme") !== "material" ||
+				body.getAttribute("data-theme-mode") !== "material");
+
+		if (!needsHtml && !needsBody) return;
+
+		isApplying = true;
+		try {
+			// Exactly as required: set on <html> and <body>
+			if (needsHtml) {
+				html.setAttribute("data-theme", "material");
+				html.setAttribute("data-theme-mode", "material");
 			}
+			if (needsBody && body) {
+				body.setAttribute("data-theme", "material");
+				body.setAttribute("data-theme-mode", "material");
+			}
+		} finally {
+			// Release flag slightly later so MutationObserver doesn't re-trigger immediately
+			setTimeout(() => (isApplying = false), 50);
 		}
 	}
-	// Also check on DOMContentLoaded in case frappe.boot isn't ready yet
-	document.addEventListener("DOMContentLoaded", function() {
-		if (window.frappe && window.frappe.boot) {
-			const desk_theme = window.frappe.boot.desk_theme || "Light";
-			if (desk_theme.toLowerCase() === "material") {
-				if (document.documentElement) {
-					document.documentElement.setAttribute("data-theme", "material");
-					document.documentElement.setAttribute("data-theme-mode", "material");
+
+	// Apply early if template already indicates material
+	applyMaterialAttrs();
+
+	// Best practice: apply after DOM + Frappe ready
+	if (window.frappe && typeof window.frappe.ready === "function") {
+		window.frappe.ready(() => applyMaterialAttrs());
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", applyMaterialAttrs);
+	} else {
+		applyMaterialAttrs();
+	}
+
+	// Minimal override: after Frappe theme switching, restore material attrs if desk_theme is Material
+	function patchThemeSwitcher() {
+		if (!window.frappe || !window.frappe.ui) return false;
+
+		if (window.frappe.ui.set_theme && !window.frappe.ui.set_theme.__techcloud_patched) {
+			const original = window.frappe.ui.set_theme;
+			const wrapped = function () {
+				const result = original.apply(this, arguments);
+				setTimeout(applyMaterialAttrs, 0);
+				return result;
+			};
+			wrapped.__techcloud_patched = true;
+			window.frappe.ui.set_theme = wrapped;
+		}
+
+		return true;
+	}
+
+	const patchInterval = setInterval(() => {
+		if (patchThemeSwitcher()) clearInterval(patchInterval);
+	}, 50);
+	setTimeout(() => clearInterval(patchInterval), 5000);
+
+	// Watch ONLY for someone changing it away from material; debounce to avoid loops.
+	if (document.documentElement) {
+		const observer = new MutationObserver((mutations) => {
+			if (isApplying) return;
+			for (const m of mutations) {
+				if (
+					m.type === "attributes" &&
+					(m.attributeName === "data-theme" || m.attributeName === "data-theme-mode")
+				) {
+					const v = document.documentElement.getAttribute(m.attributeName);
+					if (v !== "material") {
+						if (observerTimer) clearTimeout(observerTimer);
+						observerTimer = setTimeout(applyMaterialAttrs, 50);
+						break;
+					}
 				}
 			}
-		}
-	});
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["data-theme", "data-theme-mode"],
+		});
+	}
 })();
   //Code for Material Color Generation from google
   //refer https://www.npmjs.com/package/@material/material-color-utilities for details.
