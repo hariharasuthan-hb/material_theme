@@ -4,35 +4,35 @@
 (function() {
     "use strict";
 
-    // Icon mapping - maps text content to icon IDs
+    // Icon mapping - maps text content to icon IDs and colors
     const iconMap = {
-        'home': 'icon-home',
-        'addresses': 'icon-addresses',
-        'address': 'icon-addresses',
-        'newsletter': 'icon-newsletter',
-        'my account': 'icon-account',
-        'account': 'icon-account',
-        'dashboard': 'icon-dashboard',
-        'inventory': 'icon-inventory',
-        'customers': 'icon-customers',
-        'customer': 'icon-customers',
-        'sales': 'icon-sales',
-        'reports': 'icon-reports',
-        'report': 'icon-reports',
-        'settings': 'icon-settings',
-        'setting': 'icon-settings',
-        'logout': 'icon-logout',
-        'log out': 'icon-logout',
-        'sign out': 'icon-logout'
+        'home': { id: 'icon-home', color: 'icon-blue' },
+        'addresses': { id: 'icon-addresses', color: 'icon-brown' },
+        'address': { id: 'icon-addresses', color: 'icon-brown' },
+        'newsletter': { id: 'icon-newsletter', color: 'icon-gray' },
+        'my account': { id: 'icon-account', color: 'icon-blue' },
+        'account': { id: 'icon-account', color: 'icon-blue' },
+        'dashboard': { id: 'icon-dashboard', color: 'icon-blue' },
+        'inventory': { id: 'icon-inventory', color: 'icon-brown' },
+        'customers': { id: 'icon-customers', color: 'icon-blue' },
+        'customer': { id: 'icon-customers', color: 'icon-blue' },
+        'sales': { id: 'icon-sales', color: 'icon-gold' },
+        'reports': { id: 'icon-reports', color: 'icon-gray' },
+        'report': { id: 'icon-reports', color: 'icon-gray' },
+        'settings': { id: 'icon-settings', color: 'icon-gray' },
+        'setting': { id: 'icon-settings', color: 'icon-gray' },
+        'logout': { id: 'icon-logout', color: 'icon-brown' },
+        'log out': { id: 'icon-logout', color: 'icon-brown' },
+        'sign out': { id: 'icon-logout', color: 'icon-brown' }
     };
 
-    function getIconId(text) {
+    function getIconInfo(text) {
         if (!text) return null;
         // Remove extra whitespace and normalize
         const normalized = text.toLowerCase().trim().replace(/\s+/g, ' ');
-        for (const [key, iconId] of Object.entries(iconMap)) {
+        for (const [key, iconInfo] of Object.entries(iconMap)) {
             if (normalized.includes(key)) {
-                return iconId;
+                return iconInfo;
             }
         }
         return null;
@@ -53,26 +53,33 @@
             // Get text content, removing icon if it exists
             let text = link.textContent || link.innerText || '';
             // Remove any existing SVG icons from text
-            text = text.replace(/[\uE000-\uF8FF]/g, '').trim();
-            // Remove whitespace
-            text = text.replace(/\s+/g, ' ').trim();
+            const cleanText = text.replace(/[\uE000-\uF8FF]/g, '').trim().replace(/\s+/g, ' ');
             
-            const iconId = getIconId(text);
+            const iconInfo = getIconInfo(cleanText);
 
-            if (iconId) {
+            if (iconInfo) {
+                // Check if icon symbol exists in DOM (icons must be loaded first)
+                const iconSymbol = document.querySelector(`#${iconInfo.id}, symbol#${iconInfo.id}`);
+                if (!iconSymbol) {
+                    // Icon not loaded yet, will retry later
+                    return;
+                }
+
                 // Create icon SVG
                 const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                svg.setAttribute('class', 'techcloud-icon icon-sm');
+                svg.setAttribute('class', `techcloud-icon icon-sm ${iconInfo.color}`);
                 svg.setAttribute('width', '18');
                 svg.setAttribute('height', '18');
                 svg.setAttribute('viewBox', '0 0 24 24');
                 svg.style.flexShrink = '0';
                 svg.style.display = 'inline-block';
                 svg.style.verticalAlign = 'middle';
+                svg.style.color = 'inherit';
+                svg.style.overflow = 'visible';
 
                 const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-                use.setAttribute('href', `#${iconId}`);
-                use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${iconId}`); // xlink:href for older browsers
+                use.setAttribute('href', `#${iconInfo.id}`);
+                use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${iconInfo.id}`); // xlink:href for older browsers
 
                 svg.appendChild(use);
 
@@ -100,8 +107,8 @@
 
     // Load icons.svg if not already in DOM (for website pages)
     function ensureIconsLoaded() {
-        // Check if icons are already loaded
-        const existingIcons = document.querySelector('svg[style*="display: none"] symbol#icon-account');
+        // Check if icons are already loaded (check for any icon symbol)
+        const existingIcons = document.querySelector('svg[style*="display: none"] symbol#icon-account, symbol#icon-account, #icon-account');
         if (existingIcons) {
             return; // Icons already loaded
         }
@@ -122,11 +129,13 @@
                     iconsContainer = document.createElement('div');
                     iconsContainer.id = 'techcloud-icons-container';
                     iconsContainer.style.display = 'none';
+                    iconsContainer.setAttribute('aria-hidden', 'true');
                     document.body.appendChild(iconsContainer);
                 }
                 // Insert SVG content
                 iconsContainer.innerHTML = svgContent;
-                console.log('[Techcloud Icons] Icons loaded via fetch');
+                // Trigger icon addition after icons are loaded
+                setTimeout(addIconsToSidebar, 100);
             })
             .catch(error => {
                 console.warn('[Techcloud Icons] Could not load icons.svg:', error);

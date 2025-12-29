@@ -1422,12 +1422,29 @@ html[data-theme-mode="material"] .techcloud-icon use,
   stroke-width: inherit !important;
 }
 
-/* Ensure SVG symbols are accessible */
+/* Ensure SVG symbols are accessible but hidden container stays hidden */
 svg[style*="display: none"] {
   display: none !important;
 }
 
 svg[style*="display: none"] symbol {
+  display: block;
+}
+
+/* Hidden icons container */
+#techcloud-icons-container {
+  display: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+#techcloud-icons-container svg {
+  display: none !important;
+}
+
+#techcloud-icons-container svg symbol {
   display: block;
 }
 
@@ -1462,23 +1479,107 @@ html[data-theme-mode="material"] .techcloud-icon.icon-xl {
   height: 32px;
 }
 
-/* Icon colors */
+/* Icon colors - Based on Figma design */
 html[data-theme="material"] .techcloud-icon.icon-primary,
-html[data-theme-mode="material"] .techcloud-icon.icon-primary {
-  fill: var(--techcloud-primary-blue);
-  stroke: var(--techcloud-primary-blue);
+html[data-theme-mode="material"] .techcloud-icon.icon-primary,
+.techcloud-icon.icon-primary {
+  fill: var(--techcloud-primary-blue) !important;
+  stroke: var(--techcloud-primary-blue) !important;
+  color: var(--techcloud-primary-blue) !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-secondary,
-html[data-theme-mode="material"] .techcloud-icon.icon-secondary {
-  fill: var(--techcloud-text-secondary);
-  stroke: var(--techcloud-text-secondary);
+html[data-theme-mode="material"] .techcloud-icon.icon-secondary,
+.techcloud-icon.icon-secondary {
+  fill: var(--techcloud-text-secondary) !important;
+  stroke: var(--techcloud-text-secondary) !important;
+  color: var(--techcloud-text-secondary) !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-white,
-html[data-theme-mode="material"] .techcloud-icon.icon-white {
-  fill: var(--techcloud-white);
-  stroke: var(--techcloud-white);
+html[data-theme-mode="material"] .techcloud-icon.icon-white,
+.techcloud-icon.icon-white {
+  fill: var(--techcloud-white) !important;
+  stroke: var(--techcloud-white) !important;
+  color: var(--techcloud-white) !important;
+}
+
+/* Specific icon colors from Figma design */
+html[data-theme="material"] .techcloud-icon.icon-blue,
+html[data-theme-mode="material"] .techcloud-icon.icon-blue,
+.techcloud-icon.icon-blue {
+  fill: #0089FF !important;
+  stroke: #0089FF !important;
+  color: #0089FF !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-brown,
+html[data-theme-mode="material"] .techcloud-icon.icon-brown,
+.techcloud-icon.icon-brown {
+  fill: #8B4513 !important;
+  stroke: #8B4513 !important;
+  color: #8B4513 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-gold,
+html[data-theme-mode="material"] .techcloud-icon.icon-gold,
+.techcloud-icon.icon-gold {
+  fill: #FFA500 !important;
+  stroke: #FFA500 !important;
+  color: #FFA500 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-gray,
+html[data-theme-mode="material"] .techcloud-icon.icon-gray,
+.techcloud-icon.icon-gray {
+  fill: #757575 !important;
+  stroke: #757575 !important;
+  color: #757575 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-green,
+html[data-theme-mode="material"] .techcloud-icon.icon-green,
+.techcloud-icon.icon-green {
+  fill: #4CAF50 !important;
+  stroke: #4CAF50 !important;
+  color: #4CAF50 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-purple,
+html[data-theme-mode="material"] .techcloud-icon.icon-purple,
+.techcloud-icon.icon-purple {
+  fill: #9C27B0 !important;
+  stroke: #9C27B0 !important;
+  color: #9C27B0 !important;
+}
+
+/* Ensure use elements inherit the color */
+html[data-theme="material"] .techcloud-icon.icon-blue use,
+html[data-theme-mode="material"] .techcloud-icon.icon-blue use,
+.techcloud-icon.icon-blue use {
+  fill: #0089FF !important;
+  stroke: #0089FF !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-brown use,
+html[data-theme-mode="material"] .techcloud-icon.icon-brown use,
+.techcloud-icon.icon-brown use {
+  fill: #8B4513 !important;
+  stroke: #8B4513 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-gold use,
+html[data-theme-mode="material"] .techcloud-icon.icon-gold use,
+.techcloud-icon.icon-gold use {
+  fill: #FFA500 !important;
+  stroke: #FFA500 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-gray use,
+html[data-theme-mode="material"] .techcloud-icon.icon-gray use,
+.techcloud-icon.icon-gray use {
+  fill: #757575 !important;
+  stroke: #757575 !important;
 }
 
 /* ============================================
