@@ -1,46 +1,13 @@
 // Techcloud Header Fix
-// Fixes navbar brand to show logo and hide "LOGIN" text
-// Ensures proper left/right alignment
+// Ensures proper left/right alignment for navbar
+// Keeps Frappe's default navbar brand text/logo
 
 (function() {
     "use strict";
 
     function fixNavbarHeader() {
-        // Find navbar brand
-        const navbarBrand = document.querySelector('.navbar-brand');
-        if (!navbarBrand) return;
-
-        // Get text content
-        const brandText = navbarBrand.textContent || navbarBrand.innerText || '';
-        const cleanText = brandText.trim().toUpperCase();
-
-        // Hide if text is "LOGIN" or "HOME" (placeholder text)
-        if (cleanText === 'LOGIN' || cleanText === 'HOME') {
-            // Check if there's an image or logo
-            const hasImage = navbarBrand.querySelector('img') || navbarBrand.querySelector('.app-logo');
-            
-            if (!hasImage) {
-                // If no logo image, replace text with "techcloud"
-                navbarBrand.textContent = 'techcloud';
-                navbarBrand.style.fontSize = '24px';
-                navbarBrand.style.fontWeight = '700';
-                navbarBrand.style.color = '#0089FF';
-                navbarBrand.style.letterSpacing = '-0.5px';
-            } else {
-                // If there's a logo, hide the text
-                const textNodes = Array.from(navbarBrand.childNodes).filter(node => 
-                    node.nodeType === Node.TEXT_NODE && node.textContent.trim()
-                );
-                textNodes.forEach(node => {
-                    if (node.textContent.trim().toUpperCase() === 'LOGIN' || 
-                        node.textContent.trim().toUpperCase() === 'HOME') {
-                        node.remove();
-                    }
-                });
-            }
-        }
-
         // Ensure navbar container has proper flex layout
+        // Only fix layout, don't modify navbar brand text (keep Frappe's default)
         const navbar = document.querySelector('.navbar');
         const container = navbar?.querySelector('.container');
         
