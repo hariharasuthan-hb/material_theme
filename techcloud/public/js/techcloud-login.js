@@ -72,7 +72,7 @@
             width: 100% !important;
             background: #FFFFFF !important;
             border-radius: 16px !important;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16) !important;
             overflow: hidden !important;
         `;
 
@@ -91,11 +91,12 @@
         logo.className = "logo";
         logo.textContent = "techcloud";
         logo.style.cssText = `
-            font-size: 28px !important;
+            font-size: 32px !important;
             font-weight: 700 !important;
             color: #0089FF !important;
-            margin-bottom: 40px !important;
-            letter-spacing: -0.5px !important;
+            margin-bottom: 48px !important;
+            letter-spacing: -0.8px !important;
+            line-height: 1.2 !important;
         `;
         loginFormSection.appendChild(logo);
 
@@ -104,10 +105,12 @@
         title.className = "login-title";
         title.textContent = "Login to your account";
         title.style.cssText = `
-            font-size: 32px !important;
+            font-size: 36px !important;
             font-weight: 700 !important;
-            margin-bottom: 10px !important;
+            margin-bottom: 8px !important;
             color: #212121 !important;
+            line-height: 1.3 !important;
+            letter-spacing: -0.5px !important;
         `;
         loginFormSection.appendChild(title);
 
@@ -118,7 +121,8 @@
         subtitle.style.cssText = `
             font-size: 16px !important;
             color: #757575 !important;
-            margin-bottom: 40px !important;
+            margin-bottom: 48px !important;
+            line-height: 1.6 !important;
         `;
         loginFormSection.appendChild(subtitle);
 

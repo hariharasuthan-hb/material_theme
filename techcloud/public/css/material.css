@@ -750,6 +750,46 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   --techcloud-text-primary: #212121;
   --techcloud-text-secondary: #757575;
   --techcloud-success-green: #4CAF50;
+  
+  /* Professional Shadow System */
+  --techcloud-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --techcloud-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --techcloud-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --techcloud-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --techcloud-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+  --techcloud-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --techcloud-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  --techcloud-shadow-button: 0 2px 8px rgba(0, 137, 255, 0.2);
+  --techcloud-shadow-button-hover: 0 4px 16px rgba(0, 137, 255, 0.3);
+  --techcloud-shadow-input-focus: 0 0 0 4px rgba(0, 137, 255, 0.1);
+  
+  /* Professional Typography */
+  --techcloud-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --techcloud-font-weight-light: 300;
+  --techcloud-font-weight-regular: 400;
+  --techcloud-font-weight-medium: 500;
+  --techcloud-font-weight-semibold: 600;
+  --techcloud-font-weight-bold: 700;
+  
+  /* Professional Spacing */
+  --techcloud-spacing-xs: 4px;
+  --techcloud-spacing-sm: 8px;
+  --techcloud-spacing-md: 16px;
+  --techcloud-spacing-lg: 24px;
+  --techcloud-spacing-xl: 32px;
+  --techcloud-spacing-2xl: 48px;
+  
+  /* Professional Border Radius */
+  --techcloud-radius-sm: 6px;
+  --techcloud-radius-md: 8px;
+  --techcloud-radius-lg: 12px;
+  --techcloud-radius-xl: 16px;
+  --techcloud-radius-full: 9999px;
+  
+  /* Professional Transitions */
+  --techcloud-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --techcloud-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --techcloud-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Login Page Styles - Scoped to Material Theme */
@@ -772,9 +812,10 @@ body[data-theme-mode="material"] .login-wrapper {
   max-width: 1200px;
   width: 100%;
   background: var(--techcloud-white);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border-radius: var(--techcloud-radius-xl);
+  box-shadow: var(--techcloud-shadow-xl);
   overflow: hidden;
+  transition: box-shadow var(--techcloud-transition-base);
 }
 
 html[data-theme="material"] .login-form-section,
@@ -809,28 +850,36 @@ body[data-theme-mode="material"] .login-illustration-section.orange {
 html[data-theme="material"] .logo,
 html[data-theme-mode="material"] .logo,
 body[data-theme-mode="material"] .logo {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: var(--techcloud-font-weight-bold);
   color: var(--techcloud-primary-blue);
-  margin-bottom: 40px;
-  letter-spacing: -0.5px;
+  margin-bottom: var(--techcloud-spacing-2xl);
+  letter-spacing: -0.8px;
+  font-family: var(--techcloud-font-family);
+  line-height: 1.2;
 }
 
 html[data-theme="material"] .login-title,
 html[data-theme-mode="material"] .login-title,
 body[data-theme-mode="material"] .login-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 36px;
+  font-weight: var(--techcloud-font-weight-bold);
+  margin-bottom: var(--techcloud-spacing-sm);
   color: var(--techcloud-text-primary);
+  font-family: var(--techcloud-font-family);
+  line-height: 1.3;
+  letter-spacing: -0.5px;
 }
 
 html[data-theme="material"] .login-subtitle,
 html[data-theme-mode="material"] .login-subtitle,
 body[data-theme-mode="material"] .login-subtitle {
   font-size: 16px;
+  font-weight: var(--techcloud-font-weight-regular);
   color: var(--techcloud-text-secondary);
-  margin-bottom: 40px;
+  margin-bottom: var(--techcloud-spacing-2xl);
+  line-height: 1.6;
+  font-family: var(--techcloud-font-family);
 }
 
 html[data-theme="material"] .form-group,
@@ -844,21 +893,35 @@ html[data-theme-mode="material"] .form-label,
 body[data-theme-mode="material"] .form-label {
   display: block;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: var(--techcloud-font-weight-semibold);
   color: var(--techcloud-text-primary);
-  margin-bottom: 8px;
+  margin-bottom: var(--techcloud-spacing-sm);
+  font-family: var(--techcloud-font-family);
+  letter-spacing: 0.2px;
 }
 
 html[data-theme="material"] .form-input,
 html[data-theme-mode="material"] .form-input,
 body[data-theme-mode="material"] .form-input {
   width: 100%;
-  padding: 14px 16px;
-  font-size: 16px;
-  border: 2px solid var(--techcloud-border-color);
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: var(--techcloud-font-weight-regular);
+  border: 1.5px solid var(--techcloud-border-color);
+  border-radius: var(--techcloud-radius-md);
+  transition: all var(--techcloud-transition-base);
   background: var(--techcloud-white);
+  color: var(--techcloud-text-primary);
+  font-family: var(--techcloud-font-family);
+  line-height: 1.5;
+  box-shadow: var(--techcloud-shadow-xs);
+}
+
+html[data-theme="material"] .form-input::placeholder,
+html[data-theme-mode="material"] .form-input::placeholder,
+body[data-theme-mode="material"] .form-input::placeholder {
+  color: var(--techcloud-text-secondary);
+  opacity: 0.7;
 }
 
 html[data-theme="material"] .form-input:focus,
@@ -866,7 +929,9 @@ html[data-theme-mode="material"] .form-input:focus,
 body[data-theme-mode="material"] .form-input:focus {
   outline: none;
   border-color: var(--techcloud-primary-blue);
-  box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1);
+  box-shadow: var(--techcloud-shadow-input-focus);
+  background: var(--techcloud-white);
+  transform: translateY(-1px);
 }
 
 html[data-theme="material"] .forgot-password,
@@ -891,16 +956,20 @@ html[data-theme="material"] .btn,
 html[data-theme-mode="material"] .btn,
 body[data-theme-mode="material"] .btn {
   width: 100%;
-  padding: 14px 24px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 16px 24px;
+  font-size: 15px;
+  font-weight: var(--techcloud-font-weight-semibold);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--techcloud-radius-md);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--techcloud-transition-base);
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-family: var(--techcloud-font-family);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
 }
 
 html[data-theme="material"] .btn-primary,
@@ -908,6 +977,7 @@ html[data-theme-mode="material"] .btn-primary,
 body[data-theme-mode="material"] .btn-primary {
   background: var(--techcloud-primary-blue);
   color: var(--techcloud-white);
+  box-shadow: var(--techcloud-shadow-button);
 }
 
 html[data-theme="material"] .btn-primary:hover,
@@ -915,7 +985,14 @@ html[data-theme-mode="material"] .btn-primary:hover,
 body[data-theme-mode="material"] .btn-primary:hover {
   background: #0066CC;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3);
+  box-shadow: var(--techcloud-shadow-button-hover);
+}
+
+html[data-theme="material"] .btn-primary:active,
+html[data-theme-mode="material"] .btn-primary:active,
+body[data-theme-mode="material"] .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--techcloud-shadow-sm);
 }
 
 html[data-theme="material"] .social-login,
@@ -2078,16 +2155,48 @@ html[data-theme-mode="material"] .web-sidebar,
 html[data-theme="material"] .sidebar-column,
 html[data-theme-mode="material"] .sidebar-column {
   background: var(--techcloud-white) !important;
-  padding: 32px 24px !important;
-  border-right: 1px solid var(--techcloud-border-color) !important;
-  min-height: calc(100vh - 200px) !important;
+  padding: var(--techcloud-spacing-xl) var(--techcloud-spacing-lg) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  min-height: 100vh !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+  position: relative !important;
+  width: 280px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Sidebar subtle background pattern */
+html[data-theme="material"] .web-sidebar::before,
+html[data-theme-mode="material"] .web-sidebar::before,
+html[data-theme="material"] .sidebar-column::before,
+html[data-theme-mode="material"] .sidebar-column::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(to bottom, 
+    rgba(0, 137, 255, 0.02) 0%, 
+    transparent 100%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Ensure sidebar content is above the background pattern */
+html[data-theme="material"] .web-sidebar > *,
+html[data-theme-mode="material"] .web-sidebar > *,
+html[data-theme="material"] .sidebar-column > *,
+html[data-theme-mode="material"] .sidebar-column > * {
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 html[data-theme="material"] .web-sidebar .sidebar-item,
 html[data-theme-mode="material"] .web-sidebar .sidebar-item,
 html[data-theme="material"] .sidebar-column .sidebar-item,
 html[data-theme-mode="material"] .sidebar-column .sidebar-item {
-  margin-bottom: 8px !important;
+  margin-bottom: var(--techcloud-spacing-xs) !important;
+  list-style: none !important;
 }
 
 html[data-theme="material"] .web-sidebar .sidebar-item a,
@@ -2096,16 +2205,20 @@ html[data-theme="material"] .sidebar-column .sidebar-item a,
 html[data-theme-mode="material"] .sidebar-column .sidebar-item a {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  padding: 12px 16px !important;
+  gap: var(--techcloud-spacing-md) !important;
+  padding: var(--techcloud-spacing-md) var(--techcloud-spacing-lg) !important;
   color: var(--techcloud-text-secondary) !important;
   text-decoration: none !important;
-  border-radius: 8px !important;
-  transition: all 0.3s ease !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  transition: all var(--techcloud-transition-base) !important;
+  font-size: 13px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 0.8px !important;
+  font-family: var(--techcloud-font-family) !important;
+  position: relative !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
 }
 
 /* Sidebar Icons */
@@ -2115,13 +2228,28 @@ html[data-theme="material"] .sidebar-column .sidebar-item a svg,
 html[data-theme-mode="material"] .sidebar-column .sidebar-item a svg,
 html[data-theme="material"] .sidebar-items a svg,
 html[data-theme-mode="material"] .sidebar-items a svg {
-  width: 18px !important;
-  height: 18px !important;
+  width: 20px !important;
+  height: 20px !important;
   flex-shrink: 0 !important;
   stroke: currentColor !important;
+  stroke-width: 2 !important;
   fill: none !important;
   display: inline-block !important;
   vertical-align: middle !important;
+  transition: all var(--techcloud-transition-base) !important;
+}
+
+/* Icon color transitions on hover/active */
+html[data-theme="material"] .web-sidebar .sidebar-item a:hover svg,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a:hover svg,
+html[data-theme="material"] .web-sidebar .sidebar-item a.active svg,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a.active svg,
+html[data-theme="material"] .sidebar-column .sidebar-item a:hover svg,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a:hover svg,
+html[data-theme="material"] .sidebar-column .sidebar-item a.active svg,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a.active svg {
+  stroke: var(--techcloud-primary-blue) !important;
+  transform: scale(1.05) !important;
 }
 
 /* Ensure existing Frappe icons in account page use techcloud styling */
@@ -2146,6 +2274,26 @@ html[data-theme="material"] .sidebar-column .sidebar-item a.active,
 html[data-theme-mode="material"] .sidebar-column .sidebar-item a.active {
   background: var(--techcloud-light-blue) !important;
   color: var(--techcloud-primary-blue) !important;
+  transform: translateX(4px) !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+  font-weight: var(--techcloud-font-weight-semibold) !important;
+  border-color: rgba(0, 137, 255, 0.1) !important;
+}
+
+/* Active state indicator bar */
+html[data-theme="material"] .web-sidebar .sidebar-item a.active::before,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a.active::before,
+html[data-theme="material"] .sidebar-column .sidebar-item a.active::before,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a.active::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 3px !important;
+  height: 60% !important;
+  background: var(--techcloud-primary-blue) !important;
+  border-radius: 0 2px 2px 0 !important;
 }
 
 /* Main Column for Website Pages */
@@ -2195,23 +2343,30 @@ html[data-theme-mode="material"] .my-account-container {
 html[data-theme="material"] .my-account-header,
 html[data-theme-mode="material"] .my-account-header {
   color: var(--techcloud-text-primary) !important;
-  margin-bottom: 32px !important;
+  margin-bottom: var(--techcloud-spacing-xl) !important;
   margin-top: 0 !important;
-  font-weight: 700 !important;
-  font-size: 28px !important;
+  font-weight: var(--techcloud-font-weight-bold) !important;
+  font-size: 32px !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
+  letter-spacing: 1.2px !important;
   line-height: 1.2 !important;
+  font-family: var(--techcloud-font-family) !important;
 }
 
 html[data-theme="material"] .account-info,
 html[data-theme-mode="material"] .account-info {
   background-color: var(--techcloud-white) !important;
   border: 1px solid var(--techcloud-border-color) !important;
-  border-radius: 16px !important;
+  border-radius: var(--techcloud-radius-xl) !important;
   padding: 0 !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: var(--techcloud-shadow-card) !important;
   overflow: hidden !important;
+  transition: box-shadow var(--techcloud-transition-base) !important;
+}
+
+html[data-theme="material"] .account-info:hover,
+html[data-theme-mode="material"] .account-info:hover {
+  box-shadow: var(--techcloud-shadow-card-hover) !important;
 }
 
 html[data-theme="material"] .account-info .col,
@@ -2377,13 +2532,16 @@ html[data-theme="material"] .layout-side-section .standard-sidebar-item,
 html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
   display: flex !important;
   align-items: center !important;
-  padding: 12px 16px !important;
+  padding: var(--techcloud-spacing-md) var(--techcloud-spacing-lg) !important;
   color: var(--techcloud-text-secondary) !important;
   text-decoration: none !important;
-  border-radius: 8px !important;
-  transition: all 0.3s ease !important;
+  border-radius: var(--techcloud-radius-md) !important;
+  transition: all var(--techcloud-transition-base) !important;
   font-size: 15px !important;
-  margin-bottom: 8px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
+  font-family: var(--techcloud-font-family) !important;
+  margin-bottom: var(--techcloud-spacing-sm) !important;
+  position: relative !important;
 }
 
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover,
@@ -2396,6 +2554,9 @@ html[data-theme="material"] .layout-side-section .standard-sidebar-item.active,
 html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active {
   background: var(--techcloud-light-blue) !important;
   color: var(--techcloud-primary-blue) !important;
+  transform: translateX(4px) !important;
+  box-shadow: var(--techcloud-shadow-sm) !important;
+  font-weight: var(--techcloud-font-weight-semibold) !important;
 }
 
 /* Main Content Area - Match dashboard.html main-content */
@@ -2422,10 +2583,13 @@ html[data-theme="material"] .page-title,
 html[data-theme-mode="material"] .page-title,
 html[data-theme="material"] .dashboard-title,
 html[data-theme-mode="material"] .dashboard-title {
-  font-size: 28px !important;
-  font-weight: 700 !important;
+  font-size: 32px !important;
+  font-weight: var(--techcloud-font-weight-bold) !important;
   color: var(--techcloud-text-primary) !important;
-  margin-bottom: 8px !important;
+  margin-bottom: var(--techcloud-spacing-sm) !important;
+  font-family: var(--techcloud-font-family) !important;
+  letter-spacing: -0.5px !important;
+  line-height: 1.3 !important;
 }
 
 html[data-theme="material"] .page-title .title-text,
@@ -2440,7 +2604,10 @@ html[data-theme-mode="material"] .page-title .sub-heading,
 html[data-theme="material"] .dashboard-subtitle,
 html[data-theme-mode="material"] .dashboard-subtitle {
   font-size: 16px !important;
+  font-weight: var(--techcloud-font-weight-regular) !important;
   color: var(--techcloud-text-secondary) !important;
+  font-family: var(--techcloud-font-family) !important;
+  line-height: 1.6 !important;
 }
 
 /* Stats Grid - Match dashboard.html stats-grid */
@@ -2469,11 +2636,13 @@ html[data-theme-mode="material"] .stat-card,
 html[data-theme="material"] .frappe-card,
 html[data-theme-mode="material"] .frappe-card {
   background: var(--techcloud-white) !important;
-  padding: 24px !important;
-  border-radius: 12px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-  border: none !important;
+  padding: var(--techcloud-spacing-xl) !important;
+  border-radius: var(--techcloud-radius-lg) !important;
+  box-shadow: var(--techcloud-shadow-card) !important;
+  transition: transform var(--techcloud-transition-base), box-shadow var(--techcloud-transition-base) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
 html[data-theme="material"] .widget:hover,
@@ -2483,7 +2652,8 @@ html[data-theme-mode="material"] .card:hover,
 html[data-theme="material"] .stat-card:hover,
 html[data-theme-mode="material"] .stat-card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: var(--techcloud-shadow-card-hover) !important;
+  border-color: rgba(0, 137, 255, 0.1) !important;
 }
 
 /* Stat Labels - Match dashboard.html stat-label */
@@ -2491,9 +2661,13 @@ html[data-theme="material"] .stat-label,
 html[data-theme-mode="material"] .stat-label,
 html[data-theme="material"] .widget .widget-label,
 html[data-theme-mode="material"] .widget .widget-label {
-  font-size: 14px !important;
+  font-size: 13px !important;
+  font-weight: var(--techcloud-font-weight-medium) !important;
   color: var(--techcloud-text-secondary) !important;
-  margin-bottom: 8px !important;
+  margin-bottom: var(--techcloud-spacing-sm) !important;
+  font-family: var(--techcloud-font-family) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* Stat Values - Match dashboard.html stat-value */
