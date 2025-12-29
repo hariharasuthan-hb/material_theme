@@ -113,6 +113,24 @@ def update_techcloud_theme_context(context):
 			# `frappe/templates/includes/head.html` by removing `theme` from context.
 			if is_techcloud_theme or is_login_page:
 				context["theme"] = None
+			
+			# Inject icons.svg for website pages (app_include_icons only works for desk pages)
+			# Website pages need icons injected into body_include
+			if not is_desk_page:
+				try:
+					import os
+					icons_path = frappe.get_app_path(app_name, "public", "icons", "icons.svg")
+					if os.path.exists(icons_path):
+						with open(icons_path, 'r', encoding='utf-8') as f:
+							icons_svg = f.read()
+						# Add icons to body_include so they're available in the DOM
+						# Check if icons already included (by checking for a unique icon ID)
+						current_body_include = context.get("body_include", "") or ""
+						if "#icon-account" not in current_body_include and "id=\"icon-account\"" not in current_body_include:
+							context["body_include"] = current_body_include + icons_svg
+				except Exception as icons_error:
+					# Silent fail - icons are optional
+					pass
 
 			# For website pages only - add CSS to head_html
 			# Desk pages use app_include_css hook (no core file modifications)

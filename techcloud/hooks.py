@@ -32,14 +32,19 @@ app_include_js = [
     "/assets/techcloud/js/fix-highlight.js",
     "/assets/techcloud/js/material.js",
     "/assets/techcloud/js/material-theme-customizer.js",
-    "/assets/techcloud/js/theme.js"
+    "/assets/techcloud/js/theme.js",
+    "/assets/techcloud/js/techcloud-icons.js",
+    "/assets/techcloud/js/icon-debug.js"
 ]
 
 # include js, css files in header of web template
 # NOTE: Frappe templates iterate `web_include_css` / `web_include_js`.
 # They must be LISTS (strings would be iterated character-by-character).
 web_include_css = ["/assets/techcloud/css/material.css"]
-web_include_js = ["/assets/techcloud/js/techcloud-login.js"]
+web_include_js = [
+    "/assets/techcloud/js/techcloud-login.js",
+    "/assets/techcloud/js/techcloud-icons.js"
+]
 # web_include_js = "/assets/material_theme/js/material-theme-website.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -61,7 +66,7 @@ web_include_js = ["/assets/techcloud/js/techcloud-login.js"]
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "material_theme/public/icons.svg"
+app_include_icons = "techcloud/public/icons/icons.svg"
 
 # Home Pages
 # ----------

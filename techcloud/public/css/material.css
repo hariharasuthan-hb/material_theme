@@ -1395,6 +1395,93 @@ body[data-theme-mode="material"] {
 }
 
 /* ============================================
+   Techcloud Custom Icons
+   ============================================ */
+
+/* Icon base styles */
+html[data-theme="material"] .techcloud-icon,
+html[data-theme-mode="material"] .techcloud-icon,
+.techcloud-icon {
+  display: inline-block !important;
+  width: 20px;
+  height: 20px;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  vertical-align: middle;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+/* Ensure use elements inherit stroke and are visible */
+html[data-theme="material"] .techcloud-icon use,
+html[data-theme-mode="material"] .techcloud-icon use,
+.techcloud-icon use {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: inherit !important;
+}
+
+/* Ensure SVG symbols are accessible */
+svg[style*="display: none"] {
+  display: none !important;
+}
+
+svg[style*="display: none"] symbol {
+  display: block;
+}
+
+/* Icon sizes */
+html[data-theme="material"] .techcloud-icon.icon-xs,
+html[data-theme-mode="material"] .techcloud-icon.icon-xs {
+  width: 12px;
+  height: 12px;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-sm,
+html[data-theme-mode="material"] .techcloud-icon.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-md,
+html[data-theme-mode="material"] .techcloud-icon.icon-md {
+  width: 20px;
+  height: 20px;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-lg,
+html[data-theme-mode="material"] .techcloud-icon.icon-lg {
+  width: 24px;
+  height: 24px;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-xl,
+html[data-theme-mode="material"] .techcloud-icon.icon-xl {
+  width: 32px;
+  height: 32px;
+}
+
+/* Icon colors */
+html[data-theme="material"] .techcloud-icon.icon-primary,
+html[data-theme-mode="material"] .techcloud-icon.icon-primary {
+  fill: var(--techcloud-primary-blue);
+  stroke: var(--techcloud-primary-blue);
+}
+
+html[data-theme="material"] .techcloud-icon.icon-secondary,
+html[data-theme-mode="material"] .techcloud-icon.icon-secondary {
+  fill: var(--techcloud-text-secondary);
+  stroke: var(--techcloud-text-secondary);
+}
+
+html[data-theme="material"] .techcloud-icon.icon-white,
+html[data-theme-mode="material"] .techcloud-icon.icon-white {
+  fill: var(--techcloud-white);
+  stroke: var(--techcloud-white);
+}
+
+/* ============================================
    Login Page Styles (Website Theme)
    Two-Column Layout: Form Left, Illustration Right
    ============================================ */
@@ -1890,8 +1977,9 @@ html[data-theme-mode="material"] .web-sidebar,
 html[data-theme="material"] .sidebar-column,
 html[data-theme-mode="material"] .sidebar-column {
   background: var(--techcloud-white) !important;
-  padding: 24px !important;
+  padding: 32px 24px !important;
   border-right: 1px solid var(--techcloud-border-color) !important;
+  min-height: calc(100vh - 200px) !important;
 }
 
 html[data-theme="material"] .web-sidebar .sidebar-item,
@@ -1905,16 +1993,46 @@ html[data-theme="material"] .web-sidebar .sidebar-item a,
 html[data-theme-mode="material"] .web-sidebar .sidebar-item a,
 html[data-theme="material"] .sidebar-column .sidebar-item a,
 html[data-theme-mode="material"] .sidebar-column .sidebar-item a {
-  display: block !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
   padding: 12px 16px !important;
   color: var(--techcloud-text-secondary) !important;
   text-decoration: none !important;
   border-radius: 8px !important;
   transition: all 0.3s ease !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
+}
+
+/* Sidebar Icons */
+html[data-theme="material"] .web-sidebar .sidebar-item a svg,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a svg,
+html[data-theme="material"] .sidebar-column .sidebar-item a svg,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a svg,
+html[data-theme="material"] .sidebar-items a svg,
+html[data-theme-mode="material"] .sidebar-items a svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+/* Ensure existing Frappe icons in account page use techcloud styling */
+html[data-theme="material"] .edit-profile-icon,
+html[data-theme-mode="material"] .edit-profile-icon,
+html[data-theme="material"] .right-icon,
+html[data-theme-mode="material"] .right-icon {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  vertical-align: middle !important;
 }
 
 html[data-theme="material"] .web-sidebar .sidebar-item a:hover,
@@ -1932,9 +2050,16 @@ html[data-theme-mode="material"] .sidebar-column .sidebar-item a.active {
 /* Main Column for Website Pages */
 html[data-theme="material"] .main-column,
 html[data-theme-mode="material"] .main-column {
-  padding: 32px !important;
+  padding: 40px 48px !important;
   background: var(--techcloud-white) !important;
   min-height: calc(100vh - 200px) !important;
+}
+
+@media (max-width: 768px) {
+  html[data-theme="material"] .main-column,
+  html[data-theme-mode="material"] .main-column {
+    padding: 24px !important;
+  }
 }
 
 /* Page Content Wrapper */
@@ -1960,8 +2085,9 @@ html[data-theme-mode="material"] body[data-path="me"] main {
 /* My Account Page Styles */
 html[data-theme="material"] .my-account-container,
 html[data-theme-mode="material"] .my-account-container {
-  max-width: 800px !important;
-  margin: auto !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
   margin-bottom: 4rem !important;
 }
 
@@ -1969,49 +2095,84 @@ html[data-theme="material"] .my-account-header,
 html[data-theme-mode="material"] .my-account-header {
   color: var(--techcloud-text-primary) !important;
   margin-bottom: 32px !important;
+  margin-top: 0 !important;
   font-weight: 700 !important;
-  font-size: 24px !important;
+  font-size: 28px !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 1px !important;
+  line-height: 1.2 !important;
 }
 
 html[data-theme="material"] .account-info,
 html[data-theme-mode="material"] .account-info {
   background-color: var(--techcloud-white) !important;
   border: 1px solid var(--techcloud-border-color) !important;
-  border-radius: 12px !important;
-  padding: 24px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 16px !important;
+  padding: 0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden !important;
 }
 
 html[data-theme="material"] .account-info .col,
 html[data-theme-mode="material"] .account-info .col {
-  padding: 24px 0 !important;
+  padding: 24px 32px !important;
   border-bottom: 1px solid var(--techcloud-border-color) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: background-color 0.2s ease !important;
+}
+
+html[data-theme="material"] .account-info .col:hover,
+html[data-theme-mode="material"] .account-info .col:hover {
+  background-color: rgba(0, 137, 255, 0.02) !important;
+}
+
+html[data-theme="material"] .account-info .col:first-child,
+html[data-theme-mode="material"] .account-info .col:first-child {
+  padding-top: 32px !important;
 }
 
 html[data-theme="material"] .account-info .col:last-child,
 html[data-theme-mode="material"] .account-info .col:last-child {
   border-bottom: none !important;
+  padding-bottom: 32px !important;
 }
 
 html[data-theme="material"] .my-account-name,
-html[data-theme-mode="material"] .my-account-name,
+html[data-theme-mode="material"] .my-account-name {
+  color: var(--techcloud-text-primary) !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  letter-spacing: 0.3px !important;
+  margin-left: 16px !important;
+}
+
 html[data-theme="material"] .my-account-item,
 html[data-theme-mode="material"] .my-account-item {
   color: var(--techcloud-text-primary) !important;
   font-weight: 600 !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
+  margin-bottom: 6px !important;
+  line-height: 1.4 !important;
 }
 
 html[data-theme="material"] .my-account-item-desc,
 html[data-theme-mode="material"] .my-account-item-desc {
   color: var(--techcloud-text-secondary) !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   margin-top: 4px !important;
   text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  line-height: 1.5 !important;
+}
+
+html[data-theme="material"] .my-account-item-link,
+html[data-theme-mode="material"] .my-account-item-link {
+  display: flex !important;
+  align-items: center !important;
 }
 
 html[data-theme="material"] .my-account-item-link a,
@@ -2019,26 +2180,52 @@ html[data-theme-mode="material"] .my-account-item-link a {
   color: var(--techcloud-text-primary) !important;
   text-decoration: none !important;
   font-weight: 600 !important;
-  font-size: 14px !important;
+  font-size: 13px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
 }
 
 html[data-theme="material"] .my-account-item-link a:hover,
 html[data-theme-mode="material"] .my-account-item-link a:hover {
   color: var(--techcloud-primary-blue) !important;
+  background-color: rgba(0, 137, 255, 0.08) !important;
+}
+
+html[data-theme="material"] .my-account-item-link a svg,
+html[data-theme-mode="material"] .my-account-item-link a svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-theme="material"] .my-account-avatar,
+html[data-theme-mode="material"] .my-account-avatar {
+  display: flex !important;
+  align-items: center !important;
 }
 
 html[data-theme="material"] .my-account-avatar .avatar,
 html[data-theme-mode="material"] .my-account-avatar .avatar {
-  height: 60px !important;
-  width: 60px !important;
+  height: 64px !important;
+  width: 64px !important;
   border-radius: 50% !important;
   background: var(--techcloud-light-gray) !important;
   border: 2px solid var(--techcloud-border-color) !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  color: var(--techcloud-text-primary) !important;
 }
 
 /* Desk Sidebar - Match dashboard.html sidebar */
