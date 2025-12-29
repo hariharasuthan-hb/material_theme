@@ -2857,27 +2857,13 @@ html[data-theme-mode="material"] .navbar-brand:not(:has(img)):not(:has(.app-logo
   content: "techcloud" !important;
 }
 
-/* Hide "Home" or "LOGIN" text - use JavaScript to hide if text is "LOGIN" or "Home" */
-html[data-theme="material"] .navbar-brand span[data-hide-if-login],
-html[data-theme-mode="material"] .navbar-brand span[data-hide-if-login] {
-  display: none !important;
-}
-
-/* Style navbar brand to show logo prominently - fallback for browsers without :has() */
+/* Style navbar brand - keep Frappe's default text/logo */
 html[data-theme="material"] .navbar-brand,
 html[data-theme-mode="material"] .navbar-brand {
   font-size: 24px !important;
   font-weight: var(--techcloud-font-weight-bold) !important;
   color: var(--techcloud-primary-blue) !important;
   letter-spacing: -0.5px !important;
-}
-
-/* If navbar brand has image, hide text that says "LOGIN" or "Home" */
-html[data-theme="material"] .navbar-brand img + span,
-html[data-theme-mode="material"] .navbar-brand img + span,
-html[data-theme="material"] .navbar-brand .app-logo + span,
-html[data-theme-mode="material"] .navbar-brand .app-logo + span {
-  display: none !important;
 }
 
 /* If navbar brand only contains text "Home" or "LOGIN", hide it and show logo text instead */
