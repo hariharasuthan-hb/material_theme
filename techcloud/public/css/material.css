@@ -1434,9 +1434,20 @@ html[data-theme-mode="material"] body.login-page > div,
   box-sizing: border-box !important;
 }
 
-/* Techcloud Login Wrapper - Two Column Layout */
-html[data-theme="material"] .techcloud-login-wrapper,
-html[data-theme-mode="material"] .techcloud-login-wrapper {
+/* Login Container - Outer wrapper with gradient background */
+html[data-theme="material"] .login-container,
+html[data-theme-mode="material"] .login-container {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, var(--techcloud-white) 100%) !important;
+  padding: 20px !important;
+}
+
+/* Login Wrapper - Inner white card with grid */
+html[data-theme="material"] .login-wrapper,
+html[data-theme-mode="material"] .login-wrapper {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   max-width: 1200px !important;
@@ -1445,26 +1456,47 @@ html[data-theme-mode="material"] .techcloud-login-wrapper {
   border-radius: 16px !important;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
   overflow: hidden !important;
-  min-height: auto !important;
-  max-height: calc(100vh - 40px) !important;
 }
 
-/* Techcloud Login Form Section */
-html[data-theme="material"] .techcloud-login-form-section,
-html[data-theme-mode="material"] .techcloud-login-form-section {
+/* Login Form Section - Left column */
+html[data-theme="material"] .login-form-section,
+html[data-theme-mode="material"] .login-form-section {
   padding: 60px 50px !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important;
-  background: #FFFFFF !important;
-  max-height: calc(100vh - 40px) !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+  justify-content: center !important;
 }
 
-/* Techcloud Login Illustration Section */
-html[data-theme="material"] .techcloud-login-illustration-section,
-html[data-theme-mode="material"] .techcloud-login-illustration-section {
+/* Logo */
+html[data-theme="material"] .login-form-section .logo,
+html[data-theme-mode="material"] .login-form-section .logo {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-primary-blue) !important;
+  margin-bottom: 40px !important;
+  letter-spacing: -0.5px !important;
+}
+
+/* Login Title */
+html[data-theme="material"] .login-form-section .login-title,
+html[data-theme-mode="material"] .login-form-section .login-title {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+/* Login Subtitle */
+html[data-theme="material"] .login-form-section .login-subtitle,
+html[data-theme-mode="material"] .login-form-section .login-subtitle {
+  font-size: 16px !important;
+  color: var(--techcloud-text-secondary) !important;
+  margin-bottom: 40px !important;
+}
+
+/* Login Illustration Section - Right column */
+html[data-theme="material"] .login-illustration-section,
+html[data-theme-mode="material"] .login-illustration-section {
   background: linear-gradient(135deg, var(--techcloud-primary-blue) 0%, #0066CC 100%) !important;
   padding: 60px 50px !important;
   display: flex !important;
@@ -1474,8 +1506,89 @@ html[data-theme-mode="material"] .techcloud-login-illustration-section {
   color: #FFFFFF !important;
   position: relative !important;
   overflow: hidden !important;
-  max-height: calc(100vh - 40px) !important;
-  overflow-y: auto !important;
+}
+
+/* Illustration Content */
+html[data-theme="material"] .illustration-content,
+html[data-theme-mode="material"] .illustration-content {
+  text-align: center !important;
+  z-index: 1 !important;
+}
+
+/* Illustration Title */
+html[data-theme="material"] .illustration-title,
+html[data-theme-mode="material"] .illustration-title {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin-bottom: 20px !important;
+  color: #FFFFFF !important;
+}
+
+/* Illustration Subtitle */
+html[data-theme="material"] .illustration-subtitle,
+html[data-theme-mode="material"] .illustration-subtitle {
+  font-size: 18px !important;
+  opacity: 0.9 !important;
+  line-height: 1.6 !important;
+  color: #FFFFFF !important;
+  margin-bottom: 40px !important;
+}
+
+/* Illustration Graphic */
+html[data-theme="material"] .illustration-graphic,
+html[data-theme-mode="material"] .illustration-graphic {
+  width: 100% !important;
+  max-width: 400px !important;
+  height: 300px !important;
+  margin: 40px 0 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+/* Signup Link */
+html[data-theme="material"] .signup-link,
+html[data-theme-mode="material"] .signup-link {
+  text-align: center !important;
+  margin-top: 30px !important;
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+html[data-theme="material"] .signup-link a,
+html[data-theme-mode="material"] .signup-link a {
+  color: var(--techcloud-primary-blue) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="material"] .signup-link a:hover,
+html[data-theme-mode="material"] .signup-link a:hover {
+  text-decoration: underline !important;
+}
+
+/* Back to Login Link */
+html[data-theme="material"] .back-to-login,
+html[data-theme-mode="material"] .back-to-login {
+  text-align: center !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+html[data-theme="material"] .back-to-login a,
+html[data-theme-mode="material"] .back-to-login a {
+  color: var(--techcloud-primary-blue) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="material"] .back-to-login a:hover,
+html[data-theme-mode="material"] .back-to-login a:hover {
+  text-decoration: underline !important;
 }
 
 /* Social Login Styles */
@@ -1655,7 +1768,25 @@ html[data-theme-mode="material"] body.login-page > div::before {
 /* Better approach: Use actual HTML injection via JavaScript or create a wrapper */
 /* For now, let's use a different approach with the section */
 
+/* Form Groups */
+html[data-theme="material"] .form-group,
+html[data-theme-mode="material"] .form-group {
+  margin-bottom: 24px !important;
+}
+
+/* Form Labels */
+html[data-theme="material"] .form-label,
+html[data-theme-mode="material"] .form-label {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 8px !important;
+}
+
 /* Form Inputs */
+html[data-theme="material"] .form-input,
+html[data-theme-mode="material"] .form-input,
 html[data-theme="material"] .page-card input[type="text"],
 html[data-theme="material"] .page-card input[type="email"],
 html[data-theme="material"] .page-card input[type="password"],
@@ -1670,8 +1801,11 @@ html[data-theme-mode="material"] .page-card input[type="password"] {
   transition: all 0.3s ease !important;
   background: var(--techcloud-white) !important;
   color: var(--techcloud-text-primary) !important;
+  box-sizing: border-box !important;
 }
 
+html[data-theme="material"] .form-input:focus,
+html[data-theme-mode="material"] .form-input:focus,
 html[data-theme="material"] .page-card input:focus,
 html[data-theme-mode="material"] .page-card input:focus {
   outline: none !important;
@@ -1679,44 +1813,55 @@ html[data-theme-mode="material"] .page-card input:focus {
   box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1) !important;
 }
 
-/* Form Labels */
-html[data-theme="material"] .form-label,
-html[data-theme-mode="material"] .form-label {
-  display: block !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--techcloud-text-primary) !important;
-  margin-bottom: 8px !important;
-}
-
 /* Forgot Password Link */
+html[data-theme="material"] .forgot-password,
+html[data-theme-mode="material"] .forgot-password,
 html[data-theme="material"] .forgot-password-message a,
 html[data-theme-mode="material"] .forgot-password-message a {
+  display: block !important;
+  text-align: right !important;
   font-size: 14px !important;
   color: var(--techcloud-primary-blue) !important;
   text-decoration: none !important;
+  margin-bottom: 30px !important;
   transition: color 0.3s ease !important;
 }
 
+html[data-theme="material"] .forgot-password:hover,
+html[data-theme-mode="material"] .forgot-password:hover,
 html[data-theme="material"] .forgot-password-message a:hover,
 html[data-theme-mode="material"] .forgot-password-message a:hover {
   color: #0066CC !important;
 }
 
-/* Login Button */
-html[data-theme="material"] .page-card .btn-primary,
-html[data-theme-mode="material"] .page-card .btn-primary {
+/* Buttons */
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn {
   width: 100% !important;
   padding: 14px 24px !important;
   font-size: 16px !important;
   font-weight: 600 !important;
   border: none !important;
   border-radius: 8px !important;
-  background: var(--techcloud-primary-blue) !important;
-  color: var(--techcloud-white) !important;
+  cursor: pointer !important;
   transition: all 0.3s ease !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
 }
 
+/* Primary Button */
+html[data-theme="material"] .btn-primary,
+html[data-theme-mode="material"] .btn-primary,
+html[data-theme="material"] .page-card .btn-primary,
+html[data-theme-mode="material"] .page-card .btn-primary {
+  background: var(--techcloud-primary-blue) !important;
+  color: var(--techcloud-white) !important;
+}
+
+html[data-theme="material"] .btn-primary:hover,
+html[data-theme-mode="material"] .btn-primary:hover,
 html[data-theme="material"] .page-card .btn-primary:hover,
 html[data-theme-mode="material"] .page-card .btn-primary:hover {
   background: #0066CC !important;
@@ -1893,21 +2038,19 @@ html[data-theme-mode="material"] .table thead {
   }
 
   /* Mobile Login Layout */
-  html[data-theme="material"] .techcloud-login-wrapper,
-  html[data-theme-mode="material"] .techcloud-login-wrapper {
+  html[data-theme="material"] .login-wrapper,
+  html[data-theme-mode="material"] .login-wrapper {
     grid-template-columns: 1fr !important;
-    max-height: none !important;
   }
 
-  html[data-theme="material"] .techcloud-login-illustration-section,
-  html[data-theme-mode="material"] .techcloud-login-illustration-section {
+  html[data-theme="material"] .login-illustration-section,
+  html[data-theme-mode="material"] .login-illustration-section {
     display: none !important;
   }
 
-  html[data-theme="material"] .techcloud-login-form-section,
-  html[data-theme-mode="material"] .techcloud-login-form-section {
+  html[data-theme="material"] .login-form-section,
+  html[data-theme-mode="material"] .login-form-section {
     padding: 40px 30px !important;
-    max-height: none !important;
   }
 
   html[data-theme="material"] body.login-page,
