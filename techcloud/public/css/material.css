@@ -1871,70 +1871,315 @@ html[data-theme-mode="material"] .page-card .btn-primary:hover {
 
 /* ============================================
    Desk/Dashboard Styles (App Interface)
+   Based on dashboard.html reference
    ============================================ */
 
-/* Desk Sidebar */
-html[data-theme="material"] .desk-sidebar,
-html[data-theme-mode="material"] .desk-sidebar {
+/* Dashboard Container - Overall Layout */
+html[data-theme="material"] body[frappe-session-status="logged-in"],
+html[data-theme-mode="material"] body[frappe-session-status="logged-in"] {
+  background: var(--techcloud-light-gray) !important;
+}
+
+/* ============================================
+   Website Pages (My Account, etc.)
+   ============================================ */
+
+/* Website Sidebar - For pages like /me */
+html[data-theme="material"] .web-sidebar,
+html[data-theme-mode="material"] .web-sidebar,
+html[data-theme="material"] .sidebar-column,
+html[data-theme-mode="material"] .sidebar-column {
   background: var(--techcloud-white) !important;
+  padding: 24px !important;
   border-right: 1px solid var(--techcloud-border-color) !important;
 }
 
-/* Sidebar Logo */
-html[data-theme="material"] .desk-sidebar .sidebar-brand,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-brand {
-  font-size: 24px !important;
-  font-weight: 700 !important;
-  color: var(--techcloud-primary-blue) !important;
-  padding: 24px !important;
-  border-bottom: 1px solid var(--techcloud-border-color) !important;
+html[data-theme="material"] .web-sidebar .sidebar-item,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item,
+html[data-theme="material"] .sidebar-column .sidebar-item,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item {
+  margin-bottom: 8px !important;
 }
 
-/* Sidebar Navigation Links */
-html[data-theme="material"] .desk-sidebar .nav-link,
-html[data-theme-mode="material"] .desk-sidebar .nav-link {
+html[data-theme="material"] .web-sidebar .sidebar-item a,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a,
+html[data-theme="material"] .sidebar-column .sidebar-item a,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a {
+  display: block !important;
   padding: 12px 16px !important;
   color: var(--techcloud-text-secondary) !important;
+  text-decoration: none !important;
   border-radius: 8px !important;
   transition: all 0.3s ease !important;
-  margin: 4px 8px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
 }
 
-html[data-theme="material"] .desk-sidebar .nav-link:hover,
-html[data-theme-mode="material"] .desk-sidebar .nav-link:hover,
-html[data-theme="material"] .desk-sidebar .nav-link.active,
-html[data-theme-mode="material"] .desk-sidebar .nav-link.active {
+html[data-theme="material"] .web-sidebar .sidebar-item a:hover,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a:hover,
+html[data-theme="material"] .web-sidebar .sidebar-item a.active,
+html[data-theme-mode="material"] .web-sidebar .sidebar-item a.active,
+html[data-theme="material"] .sidebar-column .sidebar-item a:hover,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a:hover,
+html[data-theme="material"] .sidebar-column .sidebar-item a.active,
+html[data-theme-mode="material"] .sidebar-column .sidebar-item a.active {
   background: var(--techcloud-light-blue) !important;
   color: var(--techcloud-primary-blue) !important;
 }
 
-/* Main Content Area */
-html[data-theme="material"] .layout-main-section,
-html[data-theme-mode="material"] .layout-main-section {
-  background: var(--techcloud-light-gray) !important;
+/* Main Column for Website Pages */
+html[data-theme="material"] .main-column,
+html[data-theme-mode="material"] .main-column {
   padding: 32px !important;
+  background: var(--techcloud-white) !important;
+  min-height: calc(100vh - 200px) !important;
 }
 
-/* Dashboard Header */
+/* Page Content Wrapper */
+html[data-theme="material"] .page-content-wrapper,
+html[data-theme-mode="material"] .page-content-wrapper {
+  background: var(--techcloud-white) !important;
+}
+
+html[data-theme="material"] .page_content,
+html[data-theme-mode="material"] .page_content {
+  background: var(--techcloud-white) !important;
+}
+
+/* Container for Website Pages */
+html[data-theme="material"] body[data-path="me"] .container,
+html[data-theme-mode="material"] body[data-path="me"] .container,
+html[data-theme="material"] body[data-path="me"] main,
+html[data-theme-mode="material"] body[data-path="me"] main {
+  background: var(--techcloud-white) !important;
+  padding: 0 !important;
+}
+
+/* My Account Page Styles */
+html[data-theme="material"] .my-account-container,
+html[data-theme-mode="material"] .my-account-container {
+  max-width: 800px !important;
+  margin: auto !important;
+  margin-bottom: 4rem !important;
+}
+
+html[data-theme="material"] .my-account-header,
+html[data-theme-mode="material"] .my-account-header {
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 32px !important;
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+html[data-theme="material"] .account-info,
+html[data-theme-mode="material"] .account-info {
+  background-color: var(--techcloud-white) !important;
+  border: 1px solid var(--techcloud-border-color) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="material"] .account-info .col,
+html[data-theme-mode="material"] .account-info .col {
+  padding: 24px 0 !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+}
+
+html[data-theme="material"] .account-info .col:last-child,
+html[data-theme-mode="material"] .account-info .col:last-child {
+  border-bottom: none !important;
+}
+
+html[data-theme="material"] .my-account-name,
+html[data-theme-mode="material"] .my-account-name,
+html[data-theme="material"] .my-account-item,
+html[data-theme-mode="material"] .my-account-item {
+  color: var(--techcloud-text-primary) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+html[data-theme="material"] .my-account-item-desc,
+html[data-theme-mode="material"] .my-account-item-desc {
+  color: var(--techcloud-text-secondary) !important;
+  font-size: 14px !important;
+  margin-top: 4px !important;
+  text-transform: uppercase !important;
+}
+
+html[data-theme="material"] .my-account-item-link a,
+html[data-theme-mode="material"] .my-account-item-link a {
+  color: var(--techcloud-text-primary) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html[data-theme="material"] .my-account-item-link a:hover,
+html[data-theme-mode="material"] .my-account-item-link a:hover {
+  color: var(--techcloud-primary-blue) !important;
+}
+
+html[data-theme="material"] .my-account-avatar .avatar,
+html[data-theme-mode="material"] .my-account-avatar .avatar {
+  height: 60px !important;
+  width: 60px !important;
+  border-radius: 50% !important;
+  background: var(--techcloud-light-gray) !important;
+  border: 2px solid var(--techcloud-border-color) !important;
+}
+
+/* Desk Sidebar - Match dashboard.html sidebar */
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar,
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section {
+  width: 260px !important;
+  background: var(--techcloud-white) !important;
+  border-right: 1px solid var(--techcloud-border-color) !important;
+  padding: 24px !important;
+  position: fixed !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Sidebar Logo/Brand */
+html[data-theme="material"] .desk-sidebar .sidebar-brand,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-brand,
+html[data-theme="material"] .desk-sidebar .app-logo,
+html[data-theme-mode="material"] .desk-sidebar .app-logo,
+html[data-theme="material"] .layout-side-section .sidebar-brand,
+html[data-theme-mode="material"] .layout-side-section .sidebar-brand {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-primary-blue) !important;
+  margin-bottom: 40px !important;
+  padding-bottom: 24px !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+  letter-spacing: -0.5px !important;
+}
+
+/* Sidebar Navigation Menu */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-section,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section,
+html[data-theme="material"] .layout-side-section .standard-sidebar-section,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section {
+  margin-bottom: 8px !important;
+}
+
+/* Sidebar Navigation Links */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme="material"] .desk-sidebar a.standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar a.standard-sidebar-item,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  color: var(--techcloud-text-secondary) !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  font-size: 15px !important;
+  margin-bottom: 8px !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:hover,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active {
+  background: var(--techcloud-light-blue) !important;
+  color: var(--techcloud-primary-blue) !important;
+}
+
+/* Main Content Area - Match dashboard.html main-content */
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section {
+  margin-left: 260px !important;
+  flex: 1 !important;
+  padding: 32px !important;
+  background: var(--techcloud-light-gray) !important;
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
+}
+
+/* Dashboard Header - Match dashboard.html dashboard-header */
+html[data-theme="material"] .page-head,
+html[data-theme-mode="material"] .page-head,
+html[data-theme="material"] .dashboard-header,
+html[data-theme-mode="material"] .dashboard-header {
+  margin-bottom: 32px !important;
+  background: transparent !important;
+}
+
 html[data-theme="material"] .page-title,
-html[data-theme-mode="material"] .page-title {
+html[data-theme-mode="material"] .page-title,
+html[data-theme="material"] .dashboard-title,
+html[data-theme-mode="material"] .dashboard-title {
   font-size: 28px !important;
   font-weight: 700 !important;
   color: var(--techcloud-text-primary) !important;
   margin-bottom: 8px !important;
 }
 
-html[data-theme="material"] .page-subtitle,
-html[data-theme-mode="material"] .page-subtitle {
+html[data-theme="material"] .page-title .title-text,
+html[data-theme-mode="material"] .page-title .title-text {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .page-title .sub-heading,
+html[data-theme-mode="material"] .page-title .sub-heading,
+html[data-theme="material"] .dashboard-subtitle,
+html[data-theme-mode="material"] .dashboard-subtitle {
   font-size: 16px !important;
   color: var(--techcloud-text-secondary) !important;
 }
 
-/* Cards/Widgets */
+/* Stats Grid - Match dashboard.html stats-grid */
+html[data-theme="material"] .widget-group,
+html[data-theme-mode="material"] .widget-group {
+  margin-bottom: 32px !important;
+}
+
+html[data-theme="material"] .widget-group .grid-col-3,
+html[data-theme-mode="material"] .widget-group .grid-col-3,
+html[data-theme="material"] .stats-grid,
+html[data-theme-mode="material"] .stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 24px !important;
+  margin-bottom: 32px !important;
+}
+
+/* Stat Cards / Widgets - Match dashboard.html stat-card */
 html[data-theme="material"] .widget,
 html[data-theme-mode="material"] .widget,
 html[data-theme="material"] .card,
-html[data-theme-mode="material"] .card {
+html[data-theme-mode="material"] .card,
+html[data-theme="material"] .stat-card,
+html[data-theme-mode="material"] .stat-card,
+html[data-theme="material"] .frappe-card,
+html[data-theme-mode="material"] .frappe-card {
   background: var(--techcloud-white) !important;
   padding: 24px !important;
   border-radius: 12px !important;
@@ -1946,31 +2191,137 @@ html[data-theme-mode="material"] .card {
 html[data-theme="material"] .widget:hover,
 html[data-theme-mode="material"] .widget:hover,
 html[data-theme="material"] .card:hover,
-html[data-theme-mode="material"] .card:hover {
+html[data-theme-mode="material"] .card:hover,
+html[data-theme="material"] .stat-card:hover,
+html[data-theme-mode="material"] .stat-card:hover {
   transform: translateY(-4px) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Stats/Value Cards */
+/* Stat Labels - Match dashboard.html stat-label */
+html[data-theme="material"] .stat-label,
+html[data-theme-mode="material"] .stat-label,
+html[data-theme="material"] .widget .widget-label,
+html[data-theme-mode="material"] .widget .widget-label {
+  font-size: 14px !important;
+  color: var(--techcloud-text-secondary) !important;
+  margin-bottom: 8px !important;
+}
+
+/* Stat Values - Match dashboard.html stat-value */
 html[data-theme="material"] .stat-value,
-html[data-theme-mode="material"] .stat-value {
+html[data-theme-mode="material"] .stat-value,
+html[data-theme="material"] .widget .widget-value,
+html[data-theme-mode="material"] .widget .widget-value {
   font-size: 32px !important;
   font-weight: 700 !important;
   color: var(--techcloud-text-primary) !important;
+  margin-bottom: 8px !important;
 }
 
-html[data-theme="material"] .stat-label,
-html[data-theme-mode="material"] .stat-label {
+/* Stat Change - Match dashboard.html stat-change */
+html[data-theme="material"] .stat-change,
+html[data-theme-mode="material"] .stat-change {
   font-size: 14px !important;
+  color: var(--techcloud-success-green) !important;
+}
+
+/* Charts Section - Match dashboard.html charts-section */
+html[data-theme="material"] .widget-group.widget-charts,
+html[data-theme-mode="material"] .widget-group.widget-charts,
+html[data-theme="material"] .charts-section,
+html[data-theme-mode="material"] .charts-section {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr !important;
+  gap: 24px !important;
+  margin-bottom: 32px !important;
+}
+
+/* Chart Cards - Match dashboard.html chart-card */
+html[data-theme="material"] .chart-card,
+html[data-theme-mode="material"] .chart-card,
+html[data-theme="material"] .widget.chart-widget,
+html[data-theme-mode="material"] .widget.chart-widget {
+  background: var(--techcloud-white) !important;
+  padding: 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="material"] .chart-title,
+html[data-theme-mode="material"] .chart-title,
+html[data-theme="material"] .widget-group-title,
+html[data-theme-mode="material"] .widget-group-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 24px !important;
+}
+
+html[data-theme="material"] .chart-placeholder,
+html[data-theme-mode="material"] .chart-placeholder {
+  width: 100% !important;
+  height: 300px !important;
+  background: var(--techcloud-light-gray) !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   color: var(--techcloud-text-secondary) !important;
 }
 
-/* Navbar/Toolbar */
+/* Navbar/Toolbar - Match dashboard.html header actions */
 html[data-theme="material"] .navbar,
-html[data-theme-mode="material"] .navbar {
+html[data-theme-mode="material"] .navbar,
+html[data-theme="material"] .navbar-nav,
+html[data-theme-mode="material"] .navbar-nav {
   background: var(--techcloud-white) !important;
   border-bottom: 1px solid var(--techcloud-border-color) !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  padding: 12px 32px !important;
+}
+
+/* Header Actions - Match dashboard.html header icons */
+html[data-theme="material"] .header-actions,
+html[data-theme-mode="material"] .header-actions,
+html[data-theme="material"] .page-actions,
+html[data-theme-mode="material"] .page-actions {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+html[data-theme="material"] .header-icon,
+html[data-theme-mode="material"] .header-icon {
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.3s ease !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+html[data-theme="material"] .header-icon:hover,
+html[data-theme-mode="material"] .header-icon:hover {
+  background: var(--techcloud-light-gray) !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .user-avatar,
+html[data-theme-mode="material"] .user-avatar {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: var(--techcloud-primary-blue) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
 }
 
 /* Buttons */
@@ -2032,9 +2383,34 @@ html[data-theme-mode="material"] .table thead {
     padding: 40px 30px !important;
   }
 
+  /* Mobile Dashboard Layout */
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+  }
+
   html[data-theme="material"] .layout-main-section,
   html[data-theme-mode="material"] .layout-main-section {
+    margin-left: 0 !important;
     padding: 20px !important;
+  }
+
+  html[data-theme="material"] .charts-section,
+  html[data-theme-mode="material"] .charts-section,
+  html[data-theme="material"] .widget-group.widget-charts,
+  html[data-theme-mode="material"] .widget-group.widget-charts {
+    grid-template-columns: 1fr !important;
+  }
+
+  html[data-theme="material"] .stats-grid,
+  html[data-theme-mode="material"] .stats-grid,
+  html[data-theme="material"] .widget-group .grid-col-3,
+  html[data-theme-mode="material"] .widget-group .grid-col-3 {
+    grid-template-columns: 1fr !important;
   }
 
   /* Mobile Login Layout */

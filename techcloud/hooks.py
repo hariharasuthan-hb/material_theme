@@ -29,6 +29,7 @@ app_license = "mit"
 # JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
 app_include_css = ["/assets/techcloud/css/material.css"]
 app_include_js = [
+    "/assets/techcloud/js/fix-highlight.js",
     "/assets/techcloud/js/material.js",
     "/assets/techcloud/js/material-theme-customizer.js",
     "/assets/techcloud/js/theme.js"

@@ -119,36 +119,31 @@ def update_techcloud_theme_context(context):
 			techcloud_css_path = f"/assets/{app_name}/css/material.css"
 			
 			# Add Techcloud CSS link to head_html (for website pages)
-			# include_style() already calls bundled_asset() internally
+			# Use direct link tag to avoid preload warnings
 			# Wrap in try-except to handle asset bundling errors gracefully
 			try:
 				# Try to get bundled asset path first
 				from frappe.utils import bundled_asset
 				bundled_css_path = bundled_asset(techcloud_css_path)
+				# Use direct link without preload to avoid warnings
 				techcloud_css = f'<link type="text/css" rel="stylesheet" href="{bundled_css_path}">'
 				current_head_html = context.get("head_html", "") or ""
 				import re
+				# Remove any existing material.css links (including preload links)
 				current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+				current_head_html = re.sub(r'<link[^>]*rel=["\']preload["\'][^>]*material\.css[^>]*>', '', current_head_html)
 				if techcloud_css not in current_head_html:
 					context["head_html"] = current_head_html + techcloud_css
 			except Exception as css_error:
-				# If bundled_asset fails, try include_style
-				try:
-					techcloud_css = include_style(techcloud_css_path, preload=False)
-					current_head_html = context.get("head_html", "") or ""
-					import re
-					current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
-					if techcloud_css not in current_head_html:
-						context["head_html"] = current_head_html + techcloud_css
-				except Exception as css_error2:
-					# If both fail, use direct path (silent fallback - don't log as error)
-					# This allows the page to load even if assets aren't built yet
-					techcloud_css_fallback = f'<link type="text/css" rel="stylesheet" href="{techcloud_css_path}">'
-					current_head_html = context.get("head_html", "") or ""
-					import re
-					current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
-					if techcloud_css_fallback not in current_head_html:
-						context["head_html"] = current_head_html + techcloud_css_fallback
+				# If bundled_asset fails, use direct path (no preload)
+				techcloud_css_fallback = f'<link type="text/css" rel="stylesheet" href="{techcloud_css_path}">'
+				current_head_html = context.get("head_html", "") or ""
+				import re
+				# Remove any existing material.css links (including preload links)
+				current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+				current_head_html = re.sub(r'<link[^>]*rel=["\']preload["\'][^>]*material\.css[^>]*>', '', current_head_html)
+				if techcloud_css_fallback not in current_head_html:
+					context["head_html"] = current_head_html + techcloud_css_fallback
 			
 			# Add login page restructure script for login pages
 			if is_login_page:
@@ -240,7 +235,9 @@ def update_techcloud_theme_context(context):
 			# Desk pages: CSS is loaded via hook but scoped, so it won't apply if data-theme is not set
 			current_head_html = context.get("head_html", "") or ""
 			import re
+			# Remove both regular and preload links
 			current_head_html = re.sub(r'<link[^>]*material\.css[^>]*>', '', current_head_html)
+			current_head_html = re.sub(r'<link[^>]*rel=["\']preload["\'][^>]*material\.css[^>]*>', '', current_head_html)
 			current_head_html = re.sub(r'<script[^>]*setAttribute[^>]*data-theme[^>]*</script>', '', current_head_html)
 			context["head_html"] = current_head_html
 			
