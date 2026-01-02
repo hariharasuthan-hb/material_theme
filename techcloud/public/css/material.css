@@ -143,8 +143,6 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme="material"] .layout-main-section,
   html[data-theme-mode="material"] .layout-main-section {
     background-color: var(--md-sys-color-background) !important;
-    width: 100% !important;
-    max-width: 100% !important;
   }
 
   /* Main section background */
@@ -233,15 +231,23 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     background-color: var(--md-sys-color-background) !important;
   }
   
-  /* Navigation Bar */
-  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar {
-    /* background-color: var(--md-primary) !important; */
-    background: linear-gradient(to right, var(--md-sys-color-primary), var(--md-sys-color-primary)) !important;
-    border: none !important;
-    box-shadow: var(--md-shadow-2);
-    height: 56px;
-    display: flex;
-    align-items: center;
+  /* Navigation Bar - Desk Pages Only (for website pages, use navbar-light rules below) */
+  html[data-theme="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg),
+  html[data-theme-mode="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg),
+  body[data-theme-mode="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg) {
+    background: linear-gradient(
+      to right,
+      var(--md-sys-color-primary),
+      var(--md-sys-color-primary)
+    ) !important;
+  
+    height: 44px !important;
+    min-height: 44px !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100 !important;
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-nav > li > a {
@@ -292,11 +298,15 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     fill: var(--md-sys-color-primary);
   }
   
-  /* Cards/Widgets */
+  /* Cards/Widgets - Professional colorful styling like dashboard */
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget {
-    /* background-color: var(--md-surface); */
-    background-color: var(--md-sys-color-surface-bright);
-    border: none;
+    background-color: var(--techcloud-white) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
     border-radius: 4px;
     box-shadow: var(--md-shadow-1);
     transition: box-shadow 0.3s ease-in-out;
@@ -315,9 +325,23 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   } */
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget .widget-head .widget-title {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--md-sys-color-on-primary-container);
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: var(--techcloud-text-primary) !important;
+    margin-bottom: 0 !important;
+    letter-spacing: -0.3px !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Widget Head Styling */
+  html[data-theme="material"] .widget .widget-head,
+  html[data-theme-mode="material"] .widget .widget-head {
+    border-bottom: 1px solid var(--techcloud-border-color) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 16px !important;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title i {
@@ -329,17 +353,43 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   } */
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body .link-item {
-    /* padding: 8px 16px; */
-    border-radius: 4px;
-    /* transition: background-color 0.2s, color 0.2s; */
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    margin-bottom: 4px !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-weight: 500 !important;
+    color: var(--techcloud-text-primary) !important;
+    font-size: 15px !important;
+  }
+  
+  html[data-theme="material"] .widget-body .link-item:last-child,
+  html[data-theme-mode="material"] .widget-body .link-item:last-child {
+    margin-bottom: 0 !important;
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body .link-item:hover {
-    color: var(--md-sys-color-on-primary);
-    background-color: var(--md-sys-color-primary);
+    background-color: var(--techcloud-light-blue) !important;
+    border-color: var(--techcloud-primary-blue) !important;
+    color: var(--techcloud-primary-blue) !important;
+    transform: translateX(4px) !important;
+    box-shadow: 0 2px 8px rgba(0, 137, 255, 0.15) !important;
   }
-  .widget.links-widget-box .link-item .link-content:hover {
-    color: white;
+  
+  html[data-theme="material"] .widget.links-widget-box .link-item .link-content:hover,
+  html[data-theme-mode="material"] .widget.links-widget-box .link-item .link-content:hover {
+    color: var(--techcloud-primary-blue) !important;
+  }
+  
+  /* Link Content Styling */
+  html[data-theme="material"] .widget-body .link-item .link-content,
+  html[data-theme-mode="material"] .widget-body .link-item .link-content {
+    font-size: 15px !important;
+    font-weight: 500 !important;
   }
   
   /* Dropdowns */
@@ -1630,6 +1680,71 @@ html[data-theme-mode="material"] .techcloud-icon.icon-purple,
   color: #9C27B0 !important;
 }
 
+/* Additional icon colors for more menu items */
+html[data-theme="material"] .techcloud-icon.icon-red,
+html[data-theme-mode="material"] .techcloud-icon.icon-red,
+.techcloud-icon.icon-red {
+  fill: #F44336 !important;
+  stroke: #F44336 !important;
+  color: #F44336 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-orange,
+html[data-theme-mode="material"] .techcloud-icon.icon-orange,
+.techcloud-icon.icon-orange {
+  fill: #FF9800 !important;
+  stroke: #FF9800 !important;
+  color: #FF9800 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-teal,
+html[data-theme-mode="material"] .techcloud-icon.icon-teal,
+.techcloud-icon.icon-teal {
+  fill: #009688 !important;
+  stroke: #009688 !important;
+  color: #009688 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-cyan,
+html[data-theme-mode="material"] .techcloud-icon.icon-cyan,
+.techcloud-icon.icon-cyan {
+  fill: #00BCD4 !important;
+  stroke: #00BCD4 !important;
+  color: #00BCD4 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-pink,
+html[data-theme-mode="material"] .techcloud-icon.icon-pink,
+.techcloud-icon.icon-pink {
+  fill: #E91E63 !important;
+  stroke: #E91E63 !important;
+  color: #E91E63 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-indigo,
+html[data-theme-mode="material"] .techcloud-icon.icon-indigo,
+.techcloud-icon.icon-indigo {
+  fill: #3F51B5 !important;
+  stroke: #3F51B5 !important;
+  color: #3F51B5 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-lime,
+html[data-theme-mode="material"] .techcloud-icon.icon-lime,
+.techcloud-icon.icon-lime {
+  fill: #CDDC39 !important;
+  stroke: #CDDC39 !important;
+  color: #CDDC39 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-amber,
+html[data-theme-mode="material"] .techcloud-icon.icon-amber,
+.techcloud-icon.icon-amber {
+  fill: #FFC107 !important;
+  stroke: #FFC107 !important;
+  color: #FFC107 !important;
+}
+
 /* Ensure use elements inherit the color */
 html[data-theme="material"] .techcloud-icon.icon-blue use,
 html[data-theme-mode="material"] .techcloud-icon.icon-blue use,
@@ -1659,6 +1774,69 @@ html[data-theme-mode="material"] .techcloud-icon.icon-gray use,
   stroke: #757575 !important;
 }
 
+html[data-theme="material"] .techcloud-icon.icon-purple use,
+html[data-theme-mode="material"] .techcloud-icon.icon-purple use,
+.techcloud-icon.icon-purple use {
+  fill: #9C27B0 !important;
+  stroke: #9C27B0 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-red use,
+html[data-theme-mode="material"] .techcloud-icon.icon-red use,
+.techcloud-icon.icon-red use {
+  fill: #F44336 !important;
+  stroke: #F44336 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-orange use,
+html[data-theme-mode="material"] .techcloud-icon.icon-orange use,
+.techcloud-icon.icon-orange use {
+  fill: #FF9800 !important;
+  stroke: #FF9800 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-teal use,
+html[data-theme-mode="material"] .techcloud-icon.icon-teal use,
+.techcloud-icon.icon-teal use {
+  fill: #009688 !important;
+  stroke: #009688 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-cyan use,
+html[data-theme-mode="material"] .techcloud-icon.icon-cyan use,
+.techcloud-icon.icon-cyan use {
+  fill: #00BCD4 !important;
+  stroke: #00BCD4 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-pink use,
+html[data-theme-mode="material"] .techcloud-icon.icon-pink use,
+.techcloud-icon.icon-pink use {
+  fill: #E91E63 !important;
+  stroke: #E91E63 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-indigo use,
+html[data-theme-mode="material"] .techcloud-icon.icon-indigo use,
+.techcloud-icon.icon-indigo use {
+  fill: #3F51B5 !important;
+  stroke: #3F51B5 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-lime use,
+html[data-theme-mode="material"] .techcloud-icon.icon-lime use,
+.techcloud-icon.icon-lime use {
+  fill: #CDDC39 !important;
+  stroke: #CDDC39 !important;
+}
+
+html[data-theme="material"] .techcloud-icon.icon-amber use,
+html[data-theme-mode="material"] .techcloud-icon.icon-amber use,
+.techcloud-icon.icon-amber use {
+  fill: #FFC107 !important;
+  stroke: #FFC107 !important;
+}
+
 /* ============================================
    Login Page Styles (Website Theme)
    Two-Column Layout: Form Left, Illustration Right
@@ -1666,8 +1844,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-gray use,
 
 /* Login Page Container - Frappe login page */
 html[data-theme="material"] body.login-page,
-html[data-theme-mode="material"] body.login-page,
-{
+html[data-theme-mode="material"] body.login-page {
   background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, var(--techcloud-white) 100%) !important;
   min-height: 100vh !important;
   max-height: 100vh !important;
@@ -1686,8 +1863,7 @@ html[data-theme-mode="material"] body.login-page,
 html[data-theme="material"] body.login-page .page-content,
 html[data-theme-mode="material"] body.login-page .page-content,
 html[data-theme="material"] body.login-page > div,
-html[data-theme-mode="material"] body.login-page > div,
-{
+html[data-theme-mode="material"] body.login-page > div {
   width: 100% !important;
   max-width: 100% !important;
   min-height: calc(100vh - 40px) !important;
@@ -2501,14 +2677,72 @@ html[data-theme-mode="material"] body.desk-body {
   padding: 0 !important;
 }
 
-/* Ensure body has proper layout for desk */
+/* Body reset - Fix margin/padding and ensure content visibility */
+html[data-theme="material"] body,
+html[data-theme-mode="material"] body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove scroll from html and body - Only content section scrolls */
+html[data-theme="material"] html,
+html[data-theme-mode="material"] html {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+html[data-theme="material"] body,
+html[data-theme-mode="material"] body {
+  height: 100% !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure body has proper layout for desk - Responsive min-height */
 html[data-theme="material"] body[data-route],
 html[data-theme-mode="material"] body[data-route] {
   background: var(--techcloud-light-gray) !important;
-  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
 }
 
-/* Desk Sidebar - Match dashboard.html sidebar */
+/* Responsive min-height - dynamically adjusts based on viewport size */
+/* Mobile devices - use dynamic viewport height to account for browser UI */
+@media (max-width: 575px) {
+  html[data-theme="material"] body[data-route],
+  html[data-theme-mode="material"] body[data-route] {
+    min-height: 100vh !important;
+    min-height: 100dvh !important; /* Dynamic viewport height for mobile browsers */
+  }
+}
+
+/* Small tablets and mobile landscape */
+@media (min-width: 576px) and (max-width: 767px) {
+  html[data-theme="material"] body[data-route],
+  html[data-theme-mode="material"] body[data-route] {
+    min-height: 100vh !important;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  html[data-theme="material"] body[data-route],
+  html[data-theme-mode="material"] body[data-route] {
+    min-height: 100vh !important;
+  }
+}
+
+/* Desktop and larger - standard viewport height 
+@media (min-width: 992px) {
+  html[data-theme="material"] body[data-route],
+  html[data-theme-mode="material"] body[data-route] {
+   
+  }*/
+
+/* Desk Sidebar - Match dashboard.html sidebar - Position below header */
 html[data-theme="material"] .desk-sidebar,
 html[data-theme-mode="material"] .desk-sidebar,
 html[data-theme="material"] .layout-side-section,
@@ -2517,13 +2751,13 @@ html[data-theme-mode="material"] .layout-side-section {
   min-width: 260px !important;
   background: var(--techcloud-white) !important;
   border-right: 1px solid var(--techcloud-border-color) !important;
-  padding: 32px 24px !important;
+  padding: 16px !important;
   position: fixed !important;
   left: 0 !important;
-  top: 0 !important;
-  height: 100vh !important;
+  top: 44px !important;
+  height: calc(100vh - 44px) !important;
   overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: visible !important;
   box-sizing: border-box !important;
   z-index: 100 !important;
   display: flex !important;
@@ -2554,7 +2788,7 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section 
   margin-bottom: 8px !important;
 }
 
-/* Sidebar Navigation Links */
+/* Sidebar Navigation Links - Professional styling with proper spacing */
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
 html[data-theme="material"] .desk-sidebar a.standard-sidebar-item,
@@ -2563,70 +2797,660 @@ html[data-theme="material"] .layout-side-section .standard-sidebar-item,
 html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
   display: flex !important;
   align-items: center !important;
-  padding: var(--techcloud-spacing-md) var(--techcloud-spacing-lg) !important;
-  color: var(--techcloud-text-secondary) !important;
-  text-decoration: none !important;
-  border-radius: var(--techcloud-radius-md) !important;
-  transition: all var(--techcloud-transition-base) !important;
-  font-size: 15px !important;
-  font-weight: var(--techcloud-font-weight-medium) !important;
-  font-family: var(--techcloud-font-family) !important;
-  margin-bottom: var(--techcloud-spacing-sm) !important;
+  justify-content: space-between !important;
+  padding: 10px 8px 10px 12px !important;
+  margin-bottom: 2px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  overflow: visible !important;
   position: relative !important;
+  background: transparent !important;
+  pointer-events: auto !important;
+  transition: all 0.2s ease !important;
+  min-height: 40px !important;
+  width: 100% !important;
+}
+
+/* Sidebar Item Anchor - Proper spacing and alignment - Maximize text space */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor {
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: calc(100% - 50px) !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* Icons in item-anchor - Figma Design Style */
+html[data-theme="material"] .desk-sidebar .item-anchor > svg:first-child,
+html[data-theme-mode="material"] .desk-sidebar .item-anchor > svg:first-child,
+html[data-theme="material"] .layout-side-section .item-anchor > svg:first-child,
+html[data-theme-mode="material"] .layout-side-section .item-anchor > svg:first-child,
+html[data-theme="material"] .desk-sidebar .item-anchor .techcloud-icon:first-child,
+html[data-theme-mode="material"] .desk-sidebar .item-anchor .techcloud-icon:first-child,
+html[data-theme="material"] .layout-side-section .item-anchor .techcloud-icon:first-child,
+html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-icon:first-child {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  flex-shrink: 0 !important;
+  margin-right: 0 !important;
+  order: -1 !important;
+}
+
+/* Sidebar Item Label - Maximum text visibility - Show more text */
+html[data-theme="material"] .desk-sidebar .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-label {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: inherit !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
 }
 
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:hover,
-html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active,
-html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active,
 html[data-theme="material"] .layout-side-section .standard-sidebar-item:hover,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover,
-html[data-theme="material"] .layout-side-section .standard-sidebar-item.active,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active {
-  background: var(--techcloud-light-blue) !important;
-  color: var(--techcloud-primary-blue) !important;
-  transform: translateX(4px) !important;
-  box-shadow: var(--techcloud-shadow-sm) !important;
-  font-weight: var(--techcloud-font-weight-semibold) !important;
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover {
+  background-color: rgba(0, 137, 255, 0.08) !important;
+  text-decoration: none !important;
+  outline: 0 !important;
 }
 
-/* Main Content Area - Match dashboard.html main-content */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.selected,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.selected {
+  background-color: var(--techcloud-light-blue) !important;
+  color: var(--techcloud-primary-blue) !important;
+  text-decoration: none !important;
+  outline: 0 !important;
+  font-weight: 500 !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active::before,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active::before,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.selected::before,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.selected::before,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active::before,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active::before,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.selected::before,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.selected::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 3px !important;
+  height: 60% !important;
+  background: var(--techcloud-primary-blue) !important;
+  border-radius: 0 2px 2px 0 !important;
+}
+
+/* Sidebar Item Control - Compact to maximize text space */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-shrink: 0 !important;
+  margin-left: 4px !important;
+  gap: 2px !important;
+  width: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-width: 32px !important;
+  max-width: 50px !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control > *,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control > * {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  flex-shrink: 0 !important;
+  padding: 2px !important;
+  cursor: pointer !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s ease !important;
+  color: var(--techcloud-text-secondary) !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *:hover,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *:hover,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control > *:hover,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control > *:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control svg,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control svg,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control svg,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+/* Sidebar Item Icon - Figma Design Style */
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  margin-right: 12px !important;
+}
+
+/* Sidebar Item Icon SVG - Figma Design Size */
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item svg.techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item svg.techcloud-icon,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item svg.techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item svg.techcloud-icon {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+/* Techcloud Icons in Sidebar Items - Figma Design Style */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .desk-sidebar .item-anchor .techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .item-anchor .techcloud-icon,
+html[data-theme="material"] .layout-side-section .item-anchor .techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-icon {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-right: 12px !important;
+}
+
+/* Dropdown List Menu - Responsive styling */
+html[data-theme="material"] .desk-sidebar .dropdown-list,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
+html[data-theme="material"] .layout-side-section .dropdown-list,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list,
+html[data-theme="material"] .standard-sidebar-item .dropdown-list,
+html[data-theme-mode="material"] .standard-sidebar-item .dropdown-list {
+  position: fixed !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08) !important;
+  min-width: 200px !important;
+  max-width: 280px !important;
+  z-index: 1060 !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  clip: auto !important;
+  clip-path: none !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Mobile: Smaller dropdown */
+@media (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
+  html[data-theme="material"] .layout-side-section .dropdown-list,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list {
+    min-width: 180px !important;
+    max-width: 240px !important;
+    padding: 6px 0 !important;
+  }
+}
+
+/* Tablet: Medium dropdown */
+@media (min-width: 768px) and (max-width: 991px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
+  html[data-theme="material"] .layout-side-section .dropdown-list,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list {
+    min-width: 200px !important;
+    max-width: 260px !important;
+  }
+}
+
+/* Desktop: Full dropdown */
+@media (min-width: 992px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
+  html[data-theme="material"] .layout-side-section .dropdown-list,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list {
+    min-width: 220px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Dropdown visibility - hide when hidden class is present */
+html[data-theme="material"] .desk-sidebar .dropdown-list.hidden,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list.hidden,
+html[data-theme="material"] .layout-side-section .dropdown-list.hidden,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Dropdown Item - Responsive styling */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 16px !important;
+  color: var(--text-color, #1a1a1a) !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  cursor: pointer !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  background: transparent !important;
+  width: calc(100% - 12px) !important;
+  margin: 2px 6px !important;
+  border-radius: 8px !important;
+  gap: 12px !important;
+}
+
+/* Mobile: Smaller padding */
+@media (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item,
+  html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item {
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    gap: 10px !important;
+  }
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:hover,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hover,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover {
+  background-color: rgba(0, 137, 255, 0.08) !important;
+  transform: translateX(2px) !important;
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:active,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:active,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:active,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:active {
+  background-color: rgba(0, 137, 255, 0.12) !important;
+  transform: translateX(0) !important;
+}
+
+/* Dropdown Item Icons - Responsive */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+  margin-right: 0 !important;
+  flex: 0 0 18px !important;
+  min-width: 18px !important;
+  max-width: 18px !important;
+  position: relative !important;
+}
+
+@media (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
+  html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon {
+    width: 16px !important;
+    height: 16px !important;
+    flex: 0 0 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+  }
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+  html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* Dropdown Item Label */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-label,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-label {
+  flex: 1 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: inherit !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
+  html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
+  html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-label,
+  html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-label {
+    font-size: 13px !important;
+  }
+}
+
+/* Dropdown Divider */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-divider,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-divider,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-divider,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-divider {
+  height: 1px !important;
+  margin: 8px 0 !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  border: none !important;
+}
+
+/* Special styling for Delete item (red color) */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item[title*="Delete"],
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item[title*="Delete"],
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item[title*="Delete"],
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item[title*="Delete"] {
+  color: #e03636 !important;
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item[title*="Delete"]:hover,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item[title*="Delete"]:hover,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item[title*="Delete"]:hover,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item[title*="Delete"]:hover {
+  background-color: rgba(224, 54, 54, 0.1) !important;
+  color: #e03636 !important;
+}
+
+/* Ensure sidebar containers allow dropdown overflow */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
+  overflow: visible !important;
+}
+
+html[data-theme="material"] .desk-sidebar .sidebar-item-container,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-container,
+html[data-theme="material"] .layout-side-section .sidebar-item-container,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-container {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* Main Content Area - Same height as sidebar, positioned below header with proper spacing */
+/* Base: Mobile-first, no margin-left */
 html[data-theme="material"] .layout-main-section,
 html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
-  margin-left: 260px !important;
   flex: 1 !important;
   padding: 32px !important;
+  padding-top: 32px !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
   background: var(--techcloud-light-gray) !important;
-  min-height: 100vh !important;
+  height: calc(100vh - 44px) !important;
   box-sizing: border-box !important;
-  width: calc(100% - 260px) !important;
-  max-width: calc(100% - 260px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    top: 44px !important;
+    height: calc(100vh - 44px) !important;
+  }
+  
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100vh - 44px) !important;
+    overflow-y: auto !important;
+  }
 }
 
 /* Ensure layout-main doesn't have conflicting styles */
 html[data-theme="material"] .layout-main,
 html[data-theme-mode="material"] .layout-main {
   background: var(--techcloud-light-gray) !important;
-  min-height: 100vh !important;
+  margin: 0 !important;
+  margin-top: 44px !important;
+  padding: 0 !important;
+  height: calc(100vh - 44px) !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  position: relative !important;
 }
 
-/* Dashboard Header - Match dashboard.html dashboard-header */
-html[data-theme="material"] .page-head,
-html[data-theme-mode="material"] .page-head,
+/* Remove extra spacing from page-head removal */
+html[data-theme="material"] body[data-route] .layout-main-section,
+html[data-theme-mode="material"] body[data-route] .layout-main-section {
+  padding-top: var(--spacing-md) !important;
+  margin-top: 0 !important;
+}
+
+/* ============================================
+   UNIFIED HEADER - Remove Sticky Desk Header
+   Merge page title into theme header
+   ============================================ */
+
+/* Remove sticky behavior from Desk page-head */
+html[data-theme="material"] body[data-route] .page-head,
+html[data-theme-mode="material"] body[data-route] .page-head {
+  position: relative !important;
+  top: auto !important;
+  z-index: 1 !important;
+  background: transparent !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+/* Keep page-head-content accessible for JS to extract title, but hidden */
+html[data-theme="material"] body[data-route] .page-head .page-head-content,
+html[data-theme-mode="material"] body[data-route] .page-head .page-head-content {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Ensure page title is still readable by JS (keep text but hide visually) */
+html[data-theme="material"] body[data-route] .page-head .title-text,
+html[data-theme-mode="material"] body[data-route] .page-head .title-text,
+html[data-theme="material"] body[data-route] .page-head .sub-heading,
+html[data-theme-mode="material"] body[data-route] .page-head .sub-heading {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Unified Header - Page Title in Navbar */
+html[data-theme="material"] .navbar .techcloud-page-title-container,
+html[data-theme-mode="material"] .navbar .techcloud-page-title-container {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 !important;
+  margin: 0 16px !important;
+  min-width: 0 !important;
+  gap: 8px !important;
+}
+
+html[data-theme="material"] .navbar .techcloud-page-title,
+html[data-theme-mode="material"] .navbar .techcloud-page-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+
+html[data-theme="material"] .navbar .techcloud-title-text,
+html[data-theme-mode="material"] .navbar .techcloud-title-text {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #212121 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 300px !important;
+}
+
+html[data-theme="material"] .navbar .techcloud-sub-heading,
+html[data-theme-mode="material"] .navbar .techcloud-sub-heading {
+  font-size: 12px !important;
+  color: #757575 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 200px !important;
+}
+
+/* Dashboard Header - Keep for non-desk pages */
 html[data-theme="material"] .dashboard-header,
 html[data-theme-mode="material"] .dashboard-header {
+  margin: 0 !important;
   margin-bottom: 32px !important;
-  background: transparent !important;
   padding: 0 !important;
+  padding-top: 0 !important;
+  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
-/* Page Head Content - Match dashboard.html header structure */
+html[data-theme="material"] .dashboard-header,
+html[data-theme-mode="material"] .dashboard-header {
+  margin: 0 !important;
+  margin-bottom: 32px !important;
+  padding: 0 !important;
+  padding-top: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Page Head Content - Apply default Frappe sticky header structure */
+html[data-theme="material"] .page-head .page-head-content,
+html[data-theme-mode="material"] .page-head .page-head-content {
+  height: var(--page-head-height, 48px) !important;
+  padding: 8px 0px !important;
+}
+
+/* Page Head Content Row - Maintain flex layout for row flex align-center page-head-content justify-between */
 html[data-theme="material"] .page-head .page-title-row,
 html[data-theme-mode="material"] .page-head .page-title-row,
+html[data-theme="material"] .page-head .row.flex.align-center.page-head-content.justify-between,
+html[data-theme-mode="material"] .page-head .row.flex.align-center.page-head-content.justify-between,
 html[data-theme="material"] .page-head .row,
 html[data-theme-mode="material"] .page-head .row {
   display: flex !important;
@@ -3370,4 +4194,711 @@ html[data-theme-mode="material"] .table thead {
   html[data-theme-mode="material"] body.login-page {
     padding: 10px !important;
   }
+}
+
+/* Professional Colorful UI Enhancements - Match dashboard.html */
+/* Section Headers with Colorful Accents */
+html[data-theme="material"] .section-head,
+html[data-theme-mode="material"] .section-head,
+html[data-theme="material"] h2.section-title,
+html[data-theme-mode="material"] h2.section-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 24px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 3px solid var(--techcloud-primary-blue) !important;
+  display: inline-block !important;
+}
+
+/* Reports & Masters Section - Colorful styling */
+html[data-theme="material"] .widget-group-title,
+html[data-theme-mode="material"] .widget-group-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: 24px !important;
+  margin-top: 0 !important;
+  padding: 0 0 12px 0 !important;
+  border-bottom: 3px solid var(--techcloud-primary-blue) !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Form Sections - Professional card styling */
+html[data-theme="material"] .form-section,
+html[data-theme-mode="material"] .form-section {
+  background: var(--techcloud-white) !important;
+  padding: 24px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 24px !important;
+  border: 1px solid var(--techcloud-border-color) !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+html[data-theme="material"] .form-section:hover,
+html[data-theme-mode="material"] .form-section:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Grid Layouts - Professional spacing */
+html[data-theme="material"] .grid-container,
+html[data-theme-mode="material"] .grid-container,
+html[data-theme="material"] .row[data-section],
+html[data-theme-mode="material"] .row[data-section] {
+  gap: 24px !important;
+  margin-bottom: 32px !important;
+}
+
+/* Widget Groups - Proper spacing */
+html[data-theme="material"] .widget-group,
+html[data-theme-mode="material"] .widget-group {
+  margin-bottom: 32px !important;
+}
+
+html[data-theme="material"] .widget-group:last-child,
+html[data-theme-mode="material"] .widget-group:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Widget spacing within groups */
+html[data-theme="material"] .widget-group .widget,
+html[data-theme-mode="material"] .widget-group .widget {
+  margin-bottom: 24px !important;
+}
+
+html[data-theme="material"] .widget-group .widget:last-child,
+html[data-theme-mode="material"] .widget-group .widget:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Links Widget Box - Enhanced styling */
+html[data-theme="material"] .widget.links-widget-box,
+html[data-theme-mode="material"] .widget.links-widget-box {
+  background: var(--techcloud-white) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="material"] .widget.links-widget-box .widget-head,
+html[data-theme-mode="material"] .widget.links-widget-box .widget-head {
+  background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, transparent 100%) !important;
+  padding: 16px 24px !important;
+  border-radius: 12px 12px 0 0 !important;
+  border-bottom: 2px solid var(--techcloud-primary-blue) !important;
+}
+
+/* Colorful accent for different widget types */
+html[data-theme="material"] .widget:nth-child(odd) .widget-head,
+html[data-theme-mode="material"] .widget:nth-child(odd) .widget-head {
+  border-left: 4px solid var(--techcloud-primary-blue) !important;
+}
+
+html[data-theme="material"] .widget:nth-child(even) .widget-head,
+html[data-theme-mode="material"] .widget:nth-child(even) .widget-head {
+  border-left: 4px solid var(--techcloud-primary-orange) !important;
+}
+
+/* ============================================
+   PRODUCTION-GRADE UI IMPROVEMENTS
+   Enterprise Modern Theme Enhancements
+   ============================================ */
+
+/* Enhanced CSS Variables for Spacing & Layout */
+html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] {
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 60px;
+  --content-max-width: 1400px;
+  --topbar-height: 44px;
+  --navbar-height: 44px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* ============================================
+   1. SIDEBAR IMPROVEMENTS
+   ============================================ */
+
+/* Sidebar Width - Fixed at 260px */
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar,
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+}
+
+/* Sidebar Logo - Compact */
+html[data-theme="material"] .desk-sidebar .sidebar-brand,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-brand,
+html[data-theme="material"] .desk-sidebar .app-logo,
+html[data-theme-mode="material"] .desk-sidebar .app-logo,
+html[data-theme="material"] .layout-side-section .sidebar-brand,
+html[data-theme-mode="material"] .layout-side-section .sidebar-brand {
+  font-size: 20px !important;
+  margin-bottom: var(--spacing-xl) !important;
+  padding-bottom: var(--spacing-md) !important;
+}
+
+/* Sidebar Items - Improved Spacing & Hover States */
+/* Note: Main styling is in the earlier section, this ensures consistency */
+
+/* ============================================
+   2. TOP BAR IMPROVEMENTS
+   ============================================ */
+
+/* Minimal Top Bar Height - Fixed Position - Clean Theme Style */
+/* Override earlier navbar rules with higher specificity */
+html[data-theme="material"] .navbar.navbar-light,
+html[data-theme-mode="material"] .navbar.navbar-light,
+html[data-theme="material"] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme-mode="material"] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme="material"] body[data-route] .navbar.navbar-light,
+html[data-theme-mode="material"] body[data-route] .navbar.navbar-light,
+html[data-theme="material"] body[data-route] .navbar.navbar-light.navbar-expand-lg,
+html[data-theme-mode="material"] body[data-route] .navbar.navbar-light.navbar-expand-lg {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 var(--spacing-md) !important;
+  box-shadow: none !important;
+  background: var(--techcloud-white) !important;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Search Bar - Clean Minimal Style (like second image) */
+/* Higher specificity to override Frappe defaults */
+html[data-theme="material"] .navbar .form-control,
+html[data-theme-mode="material"] .navbar .form-control,
+html[data-theme="material"] .navbar input[type="search"],
+html[data-theme-mode="material"] .navbar input[type="search"],
+html[data-theme="material"] .navbar .awesomplete input,
+html[data-theme-mode="material"] .navbar .awesomplete input,
+html[data-theme="material"] body[data-route] .navbar .form-control,
+html[data-theme-mode="material"] body[data-route] .navbar .form-control,
+html[data-theme="material"] body[data-route] .navbar input[type="search"],
+html[data-theme-mode="material"] body[data-route] .navbar input[type="search"],
+html[data-theme="material"] body[data-route] .navbar .awesomplete input,
+html[data-theme-mode="material"] body[data-route] .navbar .awesomplete input {
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding: 8px 12px 8px 36px !important;
+  font-size: 14px !important;
+  transition: all var(--transition-base) !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  color: #212121 !important;
+  width: 100% !important;
+  max-width: 600px !important;
+}
+
+html[data-theme="material"] .navbar .form-control::placeholder,
+html[data-theme-mode="material"] .navbar .form-control::placeholder,
+html[data-theme="material"] .navbar input[type="search"]::placeholder,
+html[data-theme-mode="material"] .navbar input[type="search"]::placeholder {
+  color: var(--techcloud-text-secondary) !important;
+  opacity: 0.7 !important;
+}
+
+html[data-theme="material"] .navbar .form-control:focus,
+html[data-theme-mode="material"] .navbar .form-control:focus,
+html[data-theme="material"] .navbar input[type="search"]:focus,
+html[data-theme-mode="material"] .navbar input[type="search"]:focus {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  outline: none !important;
+}
+
+/* Search Icon in Search Bar */
+html[data-theme="material"] .navbar .awesomplete::before,
+html[data-theme-mode="material"] .navbar .awesomplete::before,
+html[data-theme="material"] .navbar .form-control + svg,
+html[data-theme-mode="material"] .navbar .form-control + svg {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: var(--techcloud-text-secondary) !important;
+  pointer-events: none !important;
+}
+
+/* Navbar Icons - Clean Minimal Style (Bell, Help, Avatar) */
+html[data-theme="material"] .navbar .navbar-nav > li > a,
+html[data-theme-mode="material"] .navbar .navbar-nav > li > a,
+html[data-theme="material"] .navbar .dropdown-toggle,
+html[data-theme-mode="material"] .navbar .dropdown-toggle {
+  color: var(--techcloud-text-secondary) !important;
+  font-size: 14px !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  transition: all var(--transition-base) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+html[data-theme="material"] .navbar .navbar-nav > li > a:hover,
+html[data-theme-mode="material"] .navbar .navbar-nav > li > a:hover,
+html[data-theme="material"] .navbar .dropdown-toggle:hover,
+html[data-theme-mode="material"] .navbar .dropdown-toggle:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: var(--techcloud-text-primary) !important;
+}
+
+/* Notification Bell Icon */
+html[data-theme="material"] .navbar .navbar-nav .notification-icon,
+html[data-theme-mode="material"] .navbar .navbar-nav .notification-icon,
+html[data-theme="material"] .navbar .navbar-nav svg[class*="bell"],
+html[data-theme-mode="material"] .navbar .navbar-nav svg[class*="bell"] {
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--techcloud-text-secondary) !important;
+}
+
+/* Help Dropdown */
+html[data-theme="material"] .navbar .navbar-nav .dropdown-menu,
+html[data-theme-mode="material"] .navbar .navbar-nav .dropdown-menu {
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  margin-top: 4px !important;
+  padding: 4px !important;
+}
+
+/* User Avatar - Clean Circular Style */
+html[data-theme="material"] .navbar .user-avatar,
+html[data-theme-mode="material"] .navbar .user-avatar,
+html[data-theme="material"] .navbar .avatar,
+html[data-theme-mode="material"] .navbar .avatar,
+html[data-theme="material"] .navbar [class*="avatar"],
+html[data-theme-mode="material"] .navbar [class*="avatar"] {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: var(--techcloud-white) !important;
+  background: var(--techcloud-primary-blue) !important;
+  border: 2px solid var(--techcloud-white) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  transition: all var(--transition-base) !important;
+}
+
+html[data-theme="material"] .navbar .user-avatar:hover,
+html[data-theme-mode="material"] .navbar .user-avatar:hover,
+html[data-theme="material"] .navbar .avatar:hover,
+html[data-theme-mode="material"] .navbar .avatar:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ============================================
+   3. MAIN CONTENT AREA IMPROVEMENTS
+   ============================================ */
+
+/* Centered Content with Max-Width - Content starts right after navbar */
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section,
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .layout-main-section-wrapper {
+  margin-left: 260px !important;
+  width: calc(100% - 260px) !important;
+  max-width: calc(100% - 260px) !important;
+  padding: var(--spacing-xl) !important;
+  padding-top: var(--spacing-xl) !important;
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Content Container - Centered with Max-Width */
+html[data-theme="material"] .layout-main-section > .container,
+html[data-theme-mode="material"] .layout-main-section > .container,
+html[data-theme="material"] .layout-main-section-wrapper > .container,
+html[data-theme-mode="material"] .layout-main-section-wrapper > .container {
+  max-width: var(--content-max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Page Body - Remove Excessive White Space */
+html[data-theme="material"] .page-body,
+html[data-theme-mode="material"] .page-body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ============================================
+   4. WORKSPACE CARDS IMPROVEMENTS
+   ============================================ */
+
+/* Widget Groups - CSS Grid Layout */
+html[data-theme="material"] .widget-group,
+html[data-theme-mode="material"] .widget-group {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: var(--spacing-lg) !important;
+  margin-bottom: var(--spacing-2xl) !important;
+}
+
+html[data-theme="material"] .widget-group:last-child,
+html[data-theme-mode="material"] .widget-group:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Widget Cards - Equal Height, Modern Styling */
+html[data-theme="material"] .widget,
+html[data-theme-mode="material"] .widget {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  min-height: 200px !important;
+  background: var(--techcloud-white) !important;
+  border-radius: var(--border-radius-lg) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: var(--spacing-lg) !important;
+  margin-bottom: 0 !important;
+  transition: all var(--transition-slow) !important;
+  border: 1px solid var(--techcloud-border-color) !important;
+}
+
+/* Widget Hover - Subtle Elevation */
+html[data-theme="material"] .widget:hover,
+html[data-theme-mode="material"] .widget:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--techcloud-primary-blue) !important;
+}
+
+/* Widget Head - Clear Hierarchy */
+html[data-theme="material"] .widget .widget-head,
+html[data-theme-mode="material"] .widget .widget-head {
+  padding: 0 0 var(--spacing-md) 0 !important;
+  margin-bottom: var(--spacing-md) !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+}
+
+html[data-theme="material"] .widget .widget-head .widget-title,
+html[data-theme-mode="material"] .widget .widget-head .widget-title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Widget Body - Proper Spacing */
+html[data-theme="material"] .widget .widget-body,
+html[data-theme-mode="material"] .widget .widget-body {
+  flex: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Link Items - Improved Spacing & Hierarchy */
+html[data-theme="material"] .widget-body .link-item,
+html[data-theme-mode="material"] .widget-body .link-item {
+  padding: 10px 12px !important;
+  margin-bottom: var(--spacing-xs) !important;
+  border-radius: var(--border-radius-sm) !important;
+  transition: all var(--transition-base) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--techcloud-text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+html[data-theme="material"] .widget-body .link-item:hover,
+html[data-theme-mode="material"] .widget-body .link-item:hover {
+  background-color: var(--techcloud-light-blue) !important;
+  color: var(--techcloud-primary-blue) !important;
+  transform: translateX(4px) !important;
+  padding-left: 16px !important;
+}
+
+html[data-theme="material"] .widget-body .link-item:last-child,
+html[data-theme-mode="material"] .widget-body .link-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Section Titles - Clear Visual Hierarchy */
+html[data-theme="material"] .widget-group-title,
+html[data-theme-mode="material"] .widget-group-title {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: var(--spacing-lg) !important;
+  margin-top: 0 !important;
+  padding-bottom: var(--spacing-sm) !important;
+  border-bottom: 2px solid var(--techcloud-primary-blue) !important;
+  grid-column: 1 / -1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ============================================
+   5. TYPOGRAPHY & SPACING IMPROVEMENTS
+   ============================================ */
+
+/* Base Typography */
+html[data-theme="material"] body,
+html[data-theme-mode="material"] body {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--techcloud-text-primary) !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Headings Hierarchy */
+html[data-theme="material"] h1,
+html[data-theme-mode="material"] h1 {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: var(--spacing-md) !important;
+}
+
+html[data-theme="material"] h2,
+html[data-theme-mode="material"] h2 {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: var(--spacing-md) !important;
+}
+
+html[data-theme="material"] h3,
+html[data-theme-mode="material"] h3 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: var(--spacing-sm) !important;
+}
+
+/* Page Title */
+html[data-theme="material"] .page-title,
+html[data-theme-mode="material"] .page-title {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin-bottom: var(--spacing-lg) !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ============================================
+   6. UX POLISH - SMOOTH TRANSITIONS
+   ============================================ */
+
+/* Smooth Transitions for Interactive Elements */
+html[data-theme="material"] a,
+html[data-theme-mode="material"] a,
+html[data-theme="material"] button,
+html[data-theme-mode="material"] button,
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn {
+  transition: all var(--transition-base) !important;
+}
+
+/* Clickable Areas - Better Feedback */
+html[data-theme="material"] .standard-sidebar-item,
+html[data-theme-mode="material"] .standard-sidebar-item,
+html[data-theme="material"] .link-item,
+html[data-theme-mode="material"] .link-item {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Enterprise-Friendly Color Contrast */
+html[data-theme="material"] .widget-body .link-item,
+html[data-theme-mode="material"] .widget-body .link-item {
+  color: var(--techcloud-text-primary) !important;
+}
+
+html[data-theme="material"] .widget-body .link-item:hover,
+html[data-theme-mode="material"] .widget-body .link-item:hover {
+  color: var(--techcloud-primary-blue) !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+/* Responsive Top Position - Adjusts based on screen size */
+/* Mobile devices */
+@media (max-width: 575px) {
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    top: 44px !important;
+    height: calc(100vh - 44px) !important;
+  }
+  
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 44px !important;
+    min-height: calc(100vh - 44px) !important;
+  }
+}
+
+/* Small tablets */
+@media (min-width: 576px) and (max-width: 767px) {
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    top: 44px !important;
+    height: calc(100vh - 44px) !important;
+  }
+  
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 44px !important;
+    min-height: calc(100vh - 44px) !important;
+  }
+}
+
+/* Tablets and larger - Sidebar visible */
+@media (min-width: 768px) {
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    top: 44px !important;
+    height: calc(100vh - 44px) !important;
+  }
+  
+  /* Layout main container - accounts for sidebar */
+  html[data-theme="material"] .layout-main,
+  html[data-theme-mode="material"] .layout-main {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+  }
+  
+  /* Layout main section - full width within container, no margin-top (container handles it) */
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100vh - 44px) !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* Desktop - Workspaces page specific styling */
+@media (min-width: 992px) {
+  html[data-theme="material"] [data-page-route="Workspaces"] .layout-main .layout-main-section,
+  html[data-theme-mode="material"] [data-page-route="Workspaces"] .layout-main .layout-main-section {
+    /*border: 1px solid var(--techcloud-border-color) !important;*/
+    padding: var(--spacing-md) !important;
+    margin-top: 44px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 20% !important;
+    width: 100% !important;
+  }
+}
+
+/* Tablet and mobile - Sidebar adjustments */
+@media (max-width: 991px) {
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar,
+  html[data-theme="material"] .layout-side-section,
+  html[data-theme-mode="material"] .layout-side-section {
+    width: 260px !important;
+    min-width: 260px !important;
+  }
+  
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  html[data-theme="material"] .widget-group,
+  html[data-theme-mode="material"] .widget-group {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 44px !important;
+    padding: var(--spacing-md) !important;
+    min-height: calc(100vh - 44px) !important;
+  }
+  
+  html[data-theme="material"] .widget,
+  html[data-theme-mode="material"] .widget {
+    padding: var(--spacing-md) !important;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Content Centering */
+html[data-theme="material"] .content-centered,
+html[data-theme-mode="material"] .content-centered {
+  max-width: var(--content-max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 var(--spacing-xl) !important;
 }
