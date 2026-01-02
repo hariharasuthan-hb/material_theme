@@ -8,103 +8,155 @@
     // Each menu item gets a DIFFERENT color matching Figma design
     // Main menu items from Figma: Home, Accounting, Buying, Selling, Stock, Assets, Manufacturing, Quality, Projects, Support, Users, Website, CRM, Tools, ERPNext Settings, Integrations
     const iconMap = {
-        // 1. Home - Blue
+        // 1. Home / Dashboard - Blue (Home icon for home, Dashboard icon for dashboard)
         'home': { id: 'icon-home', color: 'icon-blue' },
         'dashboard': { id: 'icon-dashboard', color: 'icon-blue' },
+        'workspace': { id: 'icon-dashboard', color: 'icon-blue' },
+        'workspaces': { id: 'icon-dashboard', color: 'icon-blue' },
         
-        // 2. Accounting - Brown
-        'accounting': { id: 'icon-reports', color: 'icon-brown' },
-        'account': { id: 'icon-account', color: 'icon-brown' },
-        'payment': { id: 'icon-reports', color: 'icon-brown' },
-        'journal': { id: 'icon-reports', color: 'icon-brown' },
+        // 2. Accounting - Blue (Calculator/Financial icon - matching image)
+        'accounting': { id: 'icon-reports', color: 'icon-blue' },
+        'account': { id: 'icon-reports', color: 'icon-blue' },
+        'accounts': { id: 'icon-reports', color: 'icon-blue' },
+        'payment': { id: 'icon-reports', color: 'icon-blue' },
+        'payments': { id: 'icon-reports', color: 'icon-blue' },
+        'journal': { id: 'icon-reports', color: 'icon-blue' },
+        'journal entry': { id: 'icon-reports', color: 'icon-blue' },
+        'financial': { id: 'icon-reports', color: 'icon-blue' },
+        'finance': { id: 'icon-reports', color: 'icon-blue' },
         
-        // 3. Buying - Purple
+        // 3. Buying / Purchase - Purple (Inventory icon for buying/purchasing)
         'buying': { id: 'icon-inventory', color: 'icon-purple' },
         'purchase': { id: 'icon-inventory', color: 'icon-purple' },
+        'purchasing': { id: 'icon-inventory', color: 'icon-purple' },
         'supplier': { id: 'icon-customers', color: 'icon-purple' },
+        'suppliers': { id: 'icon-customers', color: 'icon-purple' },
+        'purchase order': { id: 'icon-inventory', color: 'icon-purple' },
+        'purchase receipt': { id: 'icon-inventory', color: 'icon-purple' },
         
-        // 4. Selling - Gold
+        // 4. Selling / Sales - Gold/Amber (Sales icon for selling - matching image)
         'selling': { id: 'icon-sales', color: 'icon-gold' },
         'sales': { id: 'icon-sales', color: 'icon-gold' },
         'quotation': { id: 'icon-sales', color: 'icon-gold' },
+        'quotations': { id: 'icon-sales', color: 'icon-gold' },
         'order': { id: 'icon-sales', color: 'icon-gold' },
+        'sales order': { id: 'icon-sales', color: 'icon-gold' },
         'invoice': { id: 'icon-sales', color: 'icon-gold' },
+        'invoices': { id: 'icon-sales', color: 'icon-gold' },
+        'delivery note': { id: 'icon-sales', color: 'icon-gold' },
         
-        // 5. Stock - Indigo
-        'stock': { id: 'icon-inventory', color: 'icon-indigo' },
-        'warehouse': { id: 'icon-inventory', color: 'icon-indigo' },
-        'item': { id: 'icon-inventory', color: 'icon-indigo' },
+        // 5. Stock / Inventory - Cyan (Light blue - matching image)
+        'stock': { id: 'icon-inventory', color: 'icon-cyan' },
+        'warehouse': { id: 'icon-inventory', color: 'icon-cyan' },
+        'warehouses': { id: 'icon-inventory', color: 'icon-cyan' },
+        'item': { id: 'icon-inventory', color: 'icon-cyan' },
+        'items': { id: 'icon-inventory', color: 'icon-cyan' },
+        'stock entry': { id: 'icon-inventory', color: 'icon-cyan' },
+        'material request': { id: 'icon-inventory', color: 'icon-cyan' },
+        'inventory': { id: 'icon-inventory', color: 'icon-cyan' },
         
-        // 6. Assets - Amber
+        // 6. Assets - Amber/Yellow (Apps icon for assets - matching image)
         'assets': { id: 'icon-apps', color: 'icon-amber' },
         'asset': { id: 'icon-apps', color: 'icon-amber' },
+        'asset maintenance': { id: 'icon-apps', color: 'icon-amber' },
         
-        // 7. Manufacturing - Orange
-        'manufacturing': { id: 'icon-apps', color: 'icon-orange' },
-        'production': { id: 'icon-apps', color: 'icon-orange' },
-        'work order': { id: 'icon-apps', color: 'icon-orange' },
+        // 7. Manufacturing - Green (Matching image - green for manufacturing)
+        'manufacturing': { id: 'icon-apps', color: 'icon-green' },
+        'production': { id: 'icon-apps', color: 'icon-green' },
+        'work order': { id: 'icon-apps', color: 'icon-green' },
+        'work orders': { id: 'icon-apps', color: 'icon-green' },
+        'bom': { id: 'icon-apps', color: 'icon-green' },
+        'bill of materials': { id: 'icon-apps', color: 'icon-green' },
         
-        // 8. Quality - Green
+        // 8. Quality - Green (Settings icon for quality)
         'quality': { id: 'icon-settings', color: 'icon-green' },
+        'quality inspection': { id: 'icon-settings', color: 'icon-green' },
         
-        // 9. Projects - Cyan
+        // 9. Projects - Cyan (Dashboard icon for projects)
         'projects': { id: 'icon-dashboard', color: 'icon-cyan' },
         'project': { id: 'icon-dashboard', color: 'icon-cyan' },
         'task': { id: 'icon-dashboard', color: 'icon-cyan' },
+        'tasks': { id: 'icon-dashboard', color: 'icon-cyan' },
+        'timesheet': { id: 'icon-dashboard', color: 'icon-cyan' },
         
-        // 10. Support - Pink
-        'support': { id: 'icon-account', color: 'icon-pink' },
+        // 10. Support - Orange (Matching image - orange for community/support)
+        'support': { id: 'icon-account', color: 'icon-orange' },
+        'help': { id: 'icon-account', color: 'icon-orange' },
+        'ticket': { id: 'icon-account', color: 'icon-orange' },
+        'tickets': { id: 'icon-account', color: 'icon-orange' },
+        'community': { id: 'icon-account', color: 'icon-orange' },
         
-        // 11. Users - Lime
-        'users': { id: 'icon-account', color: 'icon-lime' },
-        'user': { id: 'icon-account', color: 'icon-lime' },
+        // 11. Users / HR - Teal (Matching image - teal for HR)
+        'users': { id: 'icon-account', color: 'icon-teal' },
+        'user': { id: 'icon-account', color: 'icon-teal' },
+        'hr': { id: 'icon-account', color: 'icon-teal' },
+        'human resources': { id: 'icon-account', color: 'icon-teal' },
+        'employee': { id: 'icon-account', color: 'icon-teal' },
+        'employees': { id: 'icon-account', color: 'icon-teal' },
+        'attendance': { id: 'icon-account', color: 'icon-teal' },
+        'payroll': { id: 'icon-account', color: 'icon-teal' },
+        'leave': { id: 'icon-account', color: 'icon-teal' },
+        'leave application': { id: 'icon-account', color: 'icon-teal' },
         
-        // 12. Website - Red
+        // 12. Website - Red (Apps icon for website)
         'website': { id: 'icon-apps', color: 'icon-red' },
+        'web': { id: 'icon-apps', color: 'icon-red' },
+        'blog': { id: 'icon-apps', color: 'icon-red' },
+        'page': { id: 'icon-apps', color: 'icon-red' },
+        'pages': { id: 'icon-apps', color: 'icon-red' },
         
-        // 13. CRM - Teal
-        'crm': { id: 'icon-customers', color: 'icon-teal' },
+        // 13. CRM - Blue (Matching image - blue for CRM)
+        'crm': { id: 'icon-customers', color: 'icon-blue' },
+        'lead': { id: 'icon-customers', color: 'icon-blue' },
+        'leads': { id: 'icon-customers', color: 'icon-blue' },
+        'opportunity': { id: 'icon-customers', color: 'icon-blue' },
+        'opportunities': { id: 'icon-customers', color: 'icon-blue' },
         
-        // 14. Tools - Gray
+        // 14. Tools - Gray (Settings icon for tools)
         'tools': { id: 'icon-settings', color: 'icon-gray' },
         'tool': { id: 'icon-settings', color: 'icon-gray' },
+        'utilities': { id: 'icon-settings', color: 'icon-gray' },
         
-        // 15. ERPNext Settings - Brown (different from Accounting brown, but acceptable)
+        // 15. ERPNext Settings - Brown (Settings icon)
         'erpnext settings': { id: 'icon-settings', color: 'icon-brown' },
         'erpnext setting': { id: 'icon-settings', color: 'icon-brown' },
+        'system settings': { id: 'icon-settings', color: 'icon-brown' },
         
-        // 16. Integrations - Orange (different from Manufacturing orange, but acceptable)
+        // 16. Integrations - Orange (Apps icon for integrations)
         'integrations': { id: 'icon-apps', color: 'icon-orange' },
         'integration': { id: 'icon-apps', color: 'icon-orange' },
         'erpnext integrations': { id: 'icon-apps', color: 'icon-orange' },
+        'api': { id: 'icon-apps', color: 'icon-orange' },
         
-        // HR - Unique color (Green - same as Quality, but different from others)
-        'hr': { id: 'icon-account', color: 'icon-green' },
-        'human resources': { id: 'icon-account', color: 'icon-green' },
-        'employee': { id: 'icon-account', color: 'icon-green' },
-        'attendance': { id: 'icon-account', color: 'icon-green' },
-        'payroll': { id: 'icon-account', color: 'icon-green' },
+        // Customers & Contacts - Purple (Matching image - purple for user/profile)
+        'customers': { id: 'icon-customers', color: 'icon-purple' },
+        'customer': { id: 'icon-customers', color: 'icon-purple' },
+        'contact': { id: 'icon-account', color: 'icon-purple' },
+        'contacts': { id: 'icon-account', color: 'icon-purple' },
+        'addresses': { id: 'icon-addresses', color: 'icon-purple' },
+        'address': { id: 'icon-addresses', color: 'icon-purple' },
         
-        // Customers & Contacts - Unique color (Blue - same as Home)
-        'customers': { id: 'icon-customers', color: 'icon-blue' },
-        'customer': { id: 'icon-customers', color: 'icon-blue' },
-        'contact': { id: 'icon-account', color: 'icon-blue' },
-        'addresses': { id: 'icon-addresses', color: 'icon-brown' },
-        'address': { id: 'icon-addresses', color: 'icon-brown' },
+        // Reports - Amber/Yellow (Matching image - yellow for documents/notes)
+        'reports': { id: 'icon-reports', color: 'icon-amber' },
+        'report': { id: 'icon-reports', color: 'icon-amber' },
+        'analytics': { id: 'icon-reports', color: 'icon-amber' },
+        'document': { id: 'icon-reports', color: 'icon-amber' },
+        'documents': { id: 'icon-reports', color: 'icon-amber' },
+        'notes': { id: 'icon-reports', color: 'icon-amber' },
         
-        // Reports - Unique color (Gray - same as Tools)
-        'reports': { id: 'icon-reports', color: 'icon-gray' },
-        'report': { id: 'icon-reports', color: 'icon-gray' },
+        // Settings / Tools - Blue (Matching image - blue for tools)
+        'settings': { id: 'icon-settings', color: 'icon-blue' },
+        'setting': { id: 'icon-settings', color: 'icon-blue' },
+        'configuration': { id: 'icon-settings', color: 'icon-blue' },
+        'tools': { id: 'icon-settings', color: 'icon-blue' },
+        'tool': { id: 'icon-settings', color: 'icon-blue' },
+        'utilities': { id: 'icon-settings', color: 'icon-blue' },
         
-        // Settings - Unique color (Gray - same as Tools and Reports)
-        'settings': { id: 'icon-settings', color: 'icon-gray' },
-        'setting': { id: 'icon-settings', color: 'icon-gray' },
+        // Build - Blue (Settings icon)
+        'build': { id: 'icon-settings', color: 'icon-blue' },
         
-        // Build - Unique color (Gray - same as Tools, Reports, Settings)
-        'build': { id: 'icon-settings', color: 'icon-gray' },
-        
-        // Other
-        'inventory': { id: 'icon-inventory', color: 'icon-brown' },
+        // Other common items
+        'inventory': { id: 'icon-inventory', color: 'icon-cyan' },
         'newsletter': { id: 'icon-newsletter', color: 'icon-gray' },
         'my account': { id: 'icon-account', color: 'icon-blue' },
         'logout': { id: 'icon-logout', color: 'icon-brown' },
@@ -291,6 +343,82 @@
         });
     }
 
+    // Map Frappe es-line icons to Figma icons for dropdown items
+    const dropdownIconMap = {
+        'es-line-edit': 'icon-edit',
+        'es-line-copy': 'icon-copy',
+        'es-line-duplicate': 'icon-duplicate',
+        'es-line-delete': 'icon-delete',
+        'es-line-trash': 'icon-delete',
+        'es-line-mute': 'icon-mute',
+        'es-line-volume-off': 'icon-mute',
+        'es-line-more': 'icon-more',
+        'es-line-options': 'icon-more',
+        'es-line-settings': 'icon-settings',
+        'es-line-right': 'icon-right',
+        'es-line-arrow-right': 'icon-arrow-right'
+    };
+
+    // Replace dropdown item icons with Figma icons
+    function replaceDropdownIcons() {
+        // Find all dropdown items with Frappe icons
+        const dropdownItems = document.querySelectorAll('.dropdown-item, .dropdown-list .dropdown-item, .sidebar-item-control .dropdown-item');
+        
+        dropdownItems.forEach(item => {
+            // Find the icon container
+            const iconContainer = item.querySelector('.dropdown-item-icon');
+            if (!iconContainer) return;
+
+            // Find the SVG with es-line icon
+            const svg = iconContainer.querySelector('svg.es-icon, svg.es-line');
+            if (!svg) return;
+
+            // Find the use element with es-line-* href
+            const useElement = svg.querySelector('use[href^="#es-line-"]');
+            if (!useElement) return;
+
+            // Get the icon ID from href (e.g., "#es-line-edit" -> "es-line-edit")
+            const frappeIconId = useElement.getAttribute('href').replace('#', '');
+            
+            // Map to Figma icon
+            const figmaIconId = dropdownIconMap[frappeIconId];
+            if (!figmaIconId) return;
+
+            // Check if Figma icon exists
+            const figmaIcon = document.querySelector(`#${figmaIconId}, symbol#${figmaIconId}`);
+            if (!figmaIcon) return;
+
+            // Get the label text to determine color
+            const labelElement = item.querySelector('.dropdown-item-label');
+            const labelText = labelElement ? (labelElement.textContent || labelElement.innerText || '').toLowerCase().trim() : '';
+            
+            // Determine color based on action type
+            let iconColor = 'icon-gray'; // Default
+            if (labelText.includes('edit') || labelText.includes('update')) {
+                iconColor = 'icon-blue';
+            } else if (labelText.includes('delete') || labelText.includes('remove') || labelText.includes('trash')) {
+                iconColor = 'icon-red';
+            } else if (labelText.includes('copy') || labelText.includes('duplicate')) {
+                iconColor = 'icon-purple';
+            } else if (labelText.includes('mute') || labelText.includes('unmute')) {
+                iconColor = 'icon-orange';
+            }
+
+            // Replace the use element href
+            useElement.setAttribute('href', `#${figmaIconId}`);
+            useElement.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${figmaIconId}`);
+
+            // Update SVG classes
+            svg.classList.remove('es-icon', 'es-line');
+            svg.classList.add('techcloud-icon', 'icon-sm', iconColor);
+            
+            // Ensure SVG has proper attributes
+            if (!svg.hasAttribute('width')) svg.setAttribute('width', '20');
+            if (!svg.hasAttribute('height')) svg.setAttribute('height', '20');
+            if (!svg.hasAttribute('viewBox')) svg.setAttribute('viewBox', '0 0 24 24');
+        });
+    }
+
     // Load icons.svg if not already in DOM (for website pages)
     function ensureIconsLoaded() {
         // Check if icons are already loaded (check for any icon symbol)
@@ -321,7 +449,10 @@
                 // Insert SVG content
                 iconsContainer.innerHTML = svgContent;
                 // Trigger icon addition after icons are loaded
-                setTimeout(addIconsToSidebar, 100);
+                setTimeout(function() {
+                    addIconsToSidebar();
+                    replaceDropdownIcons();
+                }, 100);
             })
             .catch(error => {
                 console.warn('[Techcloud Icons] Could not load icons.svg:', error);
@@ -332,17 +463,26 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
             ensureIconsLoaded();
-            setTimeout(addIconsToSidebar, 200);
+            setTimeout(function() {
+                addIconsToSidebar();
+                replaceDropdownIcons();
+            }, 200);
         });
     } else {
         ensureIconsLoaded();
-        setTimeout(addIconsToSidebar, 200);
+        setTimeout(function() {
+            addIconsToSidebar();
+            replaceDropdownIcons();
+        }, 200);
     }
 
     // Also run when Frappe is ready (for dynamic content)
     function runWhenFrappeReady() {
         ensureIconsLoaded();
-        setTimeout(addIconsToSidebar, 300);
+        setTimeout(function() {
+            addIconsToSidebar();
+            replaceDropdownIcons();
+        }, 300);
     }
     
     if (typeof frappe !== 'undefined' && typeof frappe.ready === 'function') {
@@ -359,6 +499,43 @@
     }
 
     // Watch for dynamic content changes
+    // Watch for dynamically added dropdown items
+    const dropdownObserver = new MutationObserver(function(mutations) {
+        let shouldReplace = false;
+        mutations.forEach(function(mutation) {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === 1) {
+                    // Check if dropdown items were added
+                    if (node.classList && (node.classList.contains('dropdown-item') || node.classList.contains('dropdown-list'))) {
+                        shouldReplace = true;
+                    } else if (node.querySelector && node.querySelector('.dropdown-item, .dropdown-list')) {
+                        shouldReplace = true;
+                    }
+                }
+            });
+        });
+        if (shouldReplace) {
+            setTimeout(replaceDropdownIcons, 50);
+        }
+    });
+
+    // Observe document body for dropdown changes
+    if (document.body) {
+        dropdownObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    } else {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.body) {
+                dropdownObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
+    }
+
     const observer = new MutationObserver(function(mutations) {
         let shouldUpdate = false;
         mutations.forEach(function(mutation) {

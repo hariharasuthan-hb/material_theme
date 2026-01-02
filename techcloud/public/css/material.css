@@ -324,13 +324,15 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     padding: 16px;
   } */
   
+  /* Widget Title - Overridden by main rule below for consistency */
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget .widget-head .widget-title {
-    font-size: 18px !important;
-    font-weight: 700 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
     color: var(--techcloud-text-primary) !important;
-    margin-bottom: 0 !important;
-    letter-spacing: -0.3px !important;
+    margin: 0 !important;
     line-height: 1.4 !important;
+    letter-spacing: -0.02em !important;
+    padding-left: 1% !important;
   }
   
   /* Widget Head Styling */
@@ -344,8 +346,72 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     padding-right: 0 !important;
   }
   
+  /* Shortcut Widget Cards - Professional Header Style (Like Second Image) */
+  html[data-theme="material"] .widget.shortcut-widget-box,
+  html[data-theme-mode="material"] .widget.shortcut-widget-box {
+    background: var(--techcloud-white) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  html[data-theme="material"] .widget.shortcut-widget-box:hover,
+  html[data-theme-mode="material"] .widget.shortcut-widget-box:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 137, 255, 0.2) !important;
+  }
+
+  /* Shortcut Widget Head - FULL Light Blue Header Section (Like Second Image) */
+  html[data-theme="material"] .widget.shortcut-widget-box .widget-head,
+  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head {
+    background: #E3F2FD !important;
+    background: #F0F8FF !important;
+    padding: 16px 20px !important;
+    margin: 0 !important;
+    border-bottom: 3px solid #0089FF !important;
+    border-bottom-width: 3px !important;
+    border-bottom-style: solid !important;
+    border-bottom-color: #0089FF !important;
+    position: relative !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+
+  /* Shortcut Widget Title - Uppercase, Dark Gray */
+  html[data-theme="material"] .widget.shortcut-widget-box .widget-head .widget-title,
+  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #333333 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title i {
-    color: var(--md-sys-color-primary);
+    color: #0089FF !important;
+    margin-right: 8px !important;
+  }
+
+  /* Shortcut Widget Body - White Section */
+  html[data-theme="material"] .widget.shortcut-widget-box .widget-body,
+  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-body {
+    background: var(--techcloud-white) !important;
+    padding: 20px !important;
+    margin: 0 !important;
   }
   
   /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body {
@@ -522,14 +588,16 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-primary.active,
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .open > .dropdown-toggle.btn-primary {
     background-color: var(--md-sys-color-primary) !important;
-    color: var(--md-sys-color-on-primary) !important;
+    color: #FFFFFF !important; /* Ensure white text stays visible on hover */
     box-shadow: var(--md-shadow-1);
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default {
-    background-color: transparent;
-    color: var(--md-sys-color-primary);
-    box-shadow: var(--md-shadow-1);
+    background-color: #FFFFFF !important;
+    color: #333333 !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+    font-weight: 600 !important;
   }
 
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .nav-link.active {
@@ -545,10 +613,11 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default:active,
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-default.active,
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .open > .dropdown-toggle.btn-default {
-    background-color: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-primary) !important;
-    box-shadow: var(--md-shadow-1);
-    border-bottom: 1px solid var(--md-sys-color-primary);
+    background-color: #F5F5F5 !important;
+    color: #0089FF !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+    border-color: rgba(0, 137, 255, 0.3) !important;
+    transform: translateY(-1px) !important;
   }
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .btn-secondary {
@@ -1033,7 +1102,8 @@ body[data-theme-mode="material"] .btn-primary {
 html[data-theme="material"] .btn-primary:hover,
 html[data-theme-mode="material"] .btn-primary:hover,
 body[data-theme-mode="material"] .btn-primary:hover {
-  background: #0066CC;
+  background: #0066CC !important;
+  color: #FFFFFF !important; /* Ensure white text stays visible */
   transform: translateY(-2px);
   box-shadow: var(--techcloud-shadow-button-hover);
 }
@@ -1341,10 +1411,35 @@ html[data-theme="material"] .stat-card,
 html[data-theme-mode="material"] .stat-card,
 body[data-theme-mode="material"] .stat-card {
   background: var(--techcloud-white);
-  padding: 24px;
+  padding: 0 !important; /* Remove padding to allow header to control spacing */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Stat Card Header/Title Section - Match Image 1 header spacing */
+html[data-theme="material"] .stat-card > .stat-label:first-child,
+html[data-theme-mode="material"] .stat-card > .stat-label:first-child,
+body[data-theme-mode="material"] .stat-card > .stat-label:first-child,
+html[data-theme="material"] .stat-card .stat-header,
+html[data-theme-mode="material"] .stat-card .stat-header,
+body[data-theme-mode="material"] .stat-card .stat-header,
+html[data-theme="material"] .stat-card > div:first-child,
+html[data-theme-mode="material"] .stat-card > div:first-child,
+body[data-theme-mode="material"] .stat-card > div:first-child {
+  padding: 16px 20px !important; /* Same spacing as card headers (Image 1) */
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 48px !important; /* Same min-height as headers */
+  position: relative !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 html[data-theme="material"] .stat-card:hover,
@@ -1357,9 +1452,26 @@ body[data-theme-mode="material"] .stat-card:hover {
 html[data-theme="material"] .stat-label,
 html[data-theme-mode="material"] .stat-label,
 body[data-theme-mode="material"] .stat-label {
-  font-size: 14px;
-  color: var(--techcloud-text-secondary);
-  margin-bottom: 8px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #212121 !important; /* Darker for better visibility */
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.5 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 !important;
+}
+
+/* Stat Card Content Area - Proper spacing for values */
+html[data-theme="material"] .stat-card .stat-value,
+html[data-theme-mode="material"] .stat-card .stat-value,
+body[data-theme-mode="material"] .stat-card .stat-value,
+html[data-theme="material"] .stat-card .stat-change,
+html[data-theme-mode="material"] .stat-card .stat-change,
+body[data-theme-mode="material"] .stat-card .stat-change {
+  padding: 0 20px 16px 20px !important; /* Match header horizontal padding */
 }
 
 html[data-theme="material"] .stat-value,
@@ -1635,39 +1747,39 @@ html[data-theme-mode="material"] .techcloud-icon.icon-white,
 html[data-theme="material"] .techcloud-icon.icon-blue,
 html[data-theme-mode="material"] .techcloud-icon.icon-blue,
 .techcloud-icon.icon-blue {
-  fill: #0089FF !important;
-  stroke: #0089FF !important;
-  color: #0089FF !important;
+  fill: #2196F3 !important; /* Vibrant Blue */
+  stroke: #2196F3 !important;
+  color: #2196F3 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-brown,
 html[data-theme-mode="material"] .techcloud-icon.icon-brown,
 .techcloud-icon.icon-brown {
-  fill: #8B4513 !important;
-  stroke: #8B4513 !important;
-  color: #8B4513 !important;
+  fill: #795548 !important; /* Rich Brown */
+  stroke: #795548 !important;
+  color: #795548 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-gold,
 html[data-theme-mode="material"] .techcloud-icon.icon-gold,
 .techcloud-icon.icon-gold {
-  fill: #FFA500 !important;
-  stroke: #FFA500 !important;
-  color: #FFA500 !important;
+  fill: #FFB300 !important; /* Bright Gold */
+  stroke: #FFB300 !important;
+  color: #FFB300 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-gray,
 html[data-theme-mode="material"] .techcloud-icon.icon-gray,
 .techcloud-icon.icon-gray {
-  fill: #757575 !important;
-  stroke: #757575 !important;
-  color: #757575 !important;
+  fill: #607D8B !important; /* Blue Gray */
+  stroke: #607D8B !important;
+  color: #607D8B !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-green,
 html[data-theme-mode="material"] .techcloud-icon.icon-green,
 .techcloud-icon.icon-green {
-  fill: #4CAF50 !important;
+  fill: #4CAF50 !important; /* Vibrant Green */
   stroke: #4CAF50 !important;
   color: #4CAF50 !important;
 }
@@ -1675,7 +1787,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-green,
 html[data-theme="material"] .techcloud-icon.icon-purple,
 html[data-theme-mode="material"] .techcloud-icon.icon-purple,
 .techcloud-icon.icon-purple {
-  fill: #9C27B0 !important;
+  fill: #9C27B0 !important; /* Vibrant Purple */
   stroke: #9C27B0 !important;
   color: #9C27B0 !important;
 }
@@ -1684,7 +1796,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-purple,
 html[data-theme="material"] .techcloud-icon.icon-red,
 html[data-theme-mode="material"] .techcloud-icon.icon-red,
 .techcloud-icon.icon-red {
-  fill: #F44336 !important;
+  fill: #F44336 !important; /* Vibrant Red */
   stroke: #F44336 !important;
   color: #F44336 !important;
 }
@@ -1692,23 +1804,23 @@ html[data-theme-mode="material"] .techcloud-icon.icon-red,
 html[data-theme="material"] .techcloud-icon.icon-orange,
 html[data-theme-mode="material"] .techcloud-icon.icon-orange,
 .techcloud-icon.icon-orange {
-  fill: #FF9800 !important;
-  stroke: #FF9800 !important;
-  color: #FF9800 !important;
+  fill: #FF6B35 !important; /* Bright Orange */
+  stroke: #FF6B35 !important;
+  color: #FF6B35 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-teal,
 html[data-theme-mode="material"] .techcloud-icon.icon-teal,
 .techcloud-icon.icon-teal {
-  fill: #009688 !important;
-  stroke: #009688 !important;
-  color: #009688 !important;
+  fill: #00ACC1 !important; /* Vibrant Teal */
+  stroke: #00ACC1 !important;
+  color: #00ACC1 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-cyan,
 html[data-theme-mode="material"] .techcloud-icon.icon-cyan,
 .techcloud-icon.icon-cyan {
-  fill: #00BCD4 !important;
+  fill: #00BCD4 !important; /* Bright Cyan */
   stroke: #00BCD4 !important;
   color: #00BCD4 !important;
 }
@@ -1716,7 +1828,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-cyan,
 html[data-theme="material"] .techcloud-icon.icon-pink,
 html[data-theme-mode="material"] .techcloud-icon.icon-pink,
 .techcloud-icon.icon-pink {
-  fill: #E91E63 !important;
+  fill: #E91E63 !important; /* Vibrant Pink */
   stroke: #E91E63 !important;
   color: #E91E63 !important;
 }
@@ -1724,7 +1836,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-pink,
 html[data-theme="material"] .techcloud-icon.icon-indigo,
 html[data-theme-mode="material"] .techcloud-icon.icon-indigo,
 .techcloud-icon.icon-indigo {
-  fill: #3F51B5 !important;
+  fill: #3F51B5 !important; /* Deep Indigo */
   stroke: #3F51B5 !important;
   color: #3F51B5 !important;
 }
@@ -1732,7 +1844,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-indigo,
 html[data-theme="material"] .techcloud-icon.icon-lime,
 html[data-theme-mode="material"] .techcloud-icon.icon-lime,
 .techcloud-icon.icon-lime {
-  fill: #CDDC39 !important;
+  fill: #CDDC39 !important; /* Bright Lime */
   stroke: #CDDC39 !important;
   color: #CDDC39 !important;
 }
@@ -1740,7 +1852,7 @@ html[data-theme-mode="material"] .techcloud-icon.icon-lime,
 html[data-theme="material"] .techcloud-icon.icon-amber,
 html[data-theme-mode="material"] .techcloud-icon.icon-amber,
 .techcloud-icon.icon-amber {
-  fill: #FFC107 !important;
+  fill: #FFC107 !important; /* Bright Amber/Yellow */
   stroke: #FFC107 !important;
   color: #FFC107 !important;
 }
@@ -1749,8 +1861,8 @@ html[data-theme-mode="material"] .techcloud-icon.icon-amber,
 html[data-theme="material"] .techcloud-icon.icon-blue use,
 html[data-theme-mode="material"] .techcloud-icon.icon-blue use,
 .techcloud-icon.icon-blue use {
-  fill: #0089FF !important;
-  stroke: #0089FF !important;
+  fill: #2196F3 !important; /* Vibrant Blue */
+  stroke: #2196F3 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-brown use,
@@ -1763,8 +1875,8 @@ html[data-theme-mode="material"] .techcloud-icon.icon-brown use,
 html[data-theme="material"] .techcloud-icon.icon-gold use,
 html[data-theme-mode="material"] .techcloud-icon.icon-gold use,
 .techcloud-icon.icon-gold use {
-  fill: #FFA500 !important;
-  stroke: #FFA500 !important;
+  fill: #FFB300 !important; /* Bright Gold */
+  stroke: #FFB300 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-gray use,
@@ -1791,15 +1903,15 @@ html[data-theme-mode="material"] .techcloud-icon.icon-red use,
 html[data-theme="material"] .techcloud-icon.icon-orange use,
 html[data-theme-mode="material"] .techcloud-icon.icon-orange use,
 .techcloud-icon.icon-orange use {
-  fill: #FF9800 !important;
-  stroke: #FF9800 !important;
+  fill: #FF6B35 !important; /* Bright Orange */
+  stroke: #FF6B35 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-teal use,
 html[data-theme-mode="material"] .techcloud-icon.icon-teal use,
 .techcloud-icon.icon-teal use {
-  fill: #009688 !important;
-  stroke: #009688 !important;
+  fill: #00ACC1 !important; /* Vibrant Teal */
+  stroke: #00ACC1 !important;
 }
 
 html[data-theme="material"] .techcloud-icon.icon-cyan use,
@@ -2306,6 +2418,7 @@ html[data-theme-mode="material"] .btn-primary:hover,
 html[data-theme="material"] .page-card .btn-primary:hover,
 html[data-theme-mode="material"] .page-card .btn-primary:hover {
   background: #0066CC !important;
+  color: #FFFFFF !important; /* Ensure white text stays visible */
   transform: translateY(-2px) !important;
   box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
 }
@@ -2745,13 +2858,15 @@ html[data-theme-mode="material"] body[data-route] {
 /* Desk Sidebar - Match dashboard.html sidebar - Position below header */
 html[data-theme="material"] .desk-sidebar,
 html[data-theme-mode="material"] .desk-sidebar,
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar,
 html[data-theme="material"] .layout-side-section,
 html[data-theme-mode="material"] .layout-side-section {
-  width: 260px !important;
-  min-width: 260px !important;
+  /* width: 260px !important; */
+  /* min-width: 260px !important; */
   background: var(--techcloud-white) !important;
   border-right: 1px solid var(--techcloud-border-color) !important;
-  padding: 16px !important;
+  padding: 8px 16px 16px 16px !important;
   position: fixed !important;
   left: 0 !important;
   top: 44px !important;
@@ -2774,21 +2889,84 @@ html[data-theme-mode="material"] .layout-side-section .sidebar-brand {
   font-size: 24px !important;
   font-weight: 700 !important;
   color: var(--techcloud-primary-blue) !important;
-  margin-bottom: 40px !important;
-  padding-bottom: 24px !important;
+  margin-bottom: 16px !important; /* Reduced from 40px */
+  margin-top: 0 !important;
+  padding-bottom: 12px !important; /* Reduced from 24px */
   border-bottom: 1px solid var(--techcloud-border-color) !important;
   letter-spacing: -0.5px !important;
 }
 
-/* Sidebar Navigation Menu */
+/* Sidebar Navigation Menu - Section Headers (like "PUBLIC") */
+/* Sidebar Navigation Menu - Section Headers (ONLY for Main Menu, NOT Submenu) */
 html[data-theme="material"] .desk-sidebar .standard-sidebar-section,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section,
 html[data-theme="material"] .layout-side-section .standard-sidebar-section,
 html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section {
-  margin-bottom: 8px !important;
+  margin-bottom: 12px !important;
+  margin-top: 8px !important; /* Reduced from 16px */
 }
 
-/* Sidebar Navigation Links - Professional styling with proper spacing */
+/* First section header - no top margin */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-section:first-child,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section:first-child,
+html[data-theme="material"] .layout-side-section .standard-sidebar-section:first-child,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section:first-child {
+  margin-top: 0 !important;
+}
+
+/* Exclude Section Styling from Submenu Containers */
+html[data-theme="material"] .desk-sidebar .dropdown-list .standard-sidebar-section,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .standard-sidebar-section,
+html[data-theme="material"] .layout-side-section .dropdown-list .standard-sidebar-section,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .standard-sidebar-section,
+html[data-theme="material"] .desk-sidebar .sidebar-child-item .standard-sidebar-section,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item .standard-sidebar-section,
+html[data-theme="material"] .layout-side-section .sidebar-child-item .standard-sidebar-section,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item .standard-sidebar-section {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Section Header Title - Professional Styling - ONLY for Main Menu, NOT Submenu */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-section .section-label,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section .section-label,
+html[data-theme="material"] .layout-side-section .standard-sidebar-section .section-label,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section .section-label {
+  font-size: 11px !important;
+  font-weight: 600 !important; /* Reduced from 700 for more professional look */
+  color: #666666 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 4px 16px 4px 16px !important; /* Reduced vertical padding */
+  margin-bottom: 4px !important;
+  margin-top: 0 !important; /* No top margin */
+  display: block !important;
+}
+
+/* Exclude Section Header Styling from Submenu Items */
+html[data-theme="material"] .desk-sidebar .dropdown-list .section-label,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .section-label,
+html[data-theme="material"] .layout-side-section .dropdown-list .section-label,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .section-label,
+html[data-theme="material"] .desk-sidebar .sidebar-child-item .section-label,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item .section-label,
+html[data-theme="material"] .layout-side-section .sidebar-child-item .section-label,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item .section-label,
+html[data-theme="material"] .desk-sidebar .dropdown-item .section-label,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-item .section-label,
+html[data-theme="material"] .layout-side-section .dropdown-item .section-label,
+html[data-theme-mode="material"] .layout-side-section .dropdown-item .section-label {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline !important;
+}
+
+/* Sidebar Navigation Links - Clear and Visible Styling */
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
 html[data-theme="material"] .desk-sidebar a.standard-sidebar-item,
@@ -2798,37 +2976,119 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  padding: 10px 8px 10px 12px !important;
+  padding: 12px 16px !important; /* Increased padding for better visibility */
   margin-bottom: 2px !important;
-  border-radius: 8px !important;
+  border-radius: 6px !important;
   cursor: pointer !important;
-  overflow: visible !important;
+  overflow: visible !important; /* Show full text */
+  white-space: normal !important; /* Allow text wrapping */
   position: relative !important;
   background: transparent !important;
   pointer-events: auto !important;
   transition: all 0.2s ease !important;
-  min-height: 40px !important;
+  min-height: 44px !important; /* Increased height for better visibility */
   width: 100% !important;
+  border: none !important;
+  border-left: 3px solid transparent !important; /* Space for active indicator */
+  z-index: 1 !important;
+  isolation: isolate !important;
+}
+
+/* When dropdown is open, increase z-index of parent item */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item:has(.dropdown-list:not(.hidden)),
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:has(.dropdown-list:not(.hidden)),
+html[data-theme="material"] .layout-side-section .standard-sidebar-item:has(.dropdown-list:not(.hidden)),
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:has(.dropdown-list:not(.hidden)) {
+  z-index: 1001 !important; /* Higher than dropdown for proper stacking */
+}
+
+/* Ensure Home/Workspace menu item is always visible - Override any hidden rules */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="Home"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="Home"],
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="home"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="home"],
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="Workspace"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="Workspace"],
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="workspace"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="workspace"],
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="Dashboard"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="Dashboard"],
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item[data-label*="dashboard"],
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item[data-label*="dashboard"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="Home"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="Home"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="home"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="home"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="Workspace"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="Workspace"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="workspace"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="workspace"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="Dashboard"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="Dashboard"],
+html[data-theme="material"] .layout-side-section .standard-sidebar-item[data-label*="dashboard"],
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item[data-label*="dashboard"],
+/* Also target by first child in case it's the first menu item */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-section .standard-sidebar-item:first-child,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section .standard-sidebar-item:first-child,
+html[data-theme="material"] .layout-side-section .standard-sidebar-section .standard-sidebar-item:first-child,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section .standard-sidebar-item:first-child {
+  display: flex !important; /* Ensure it's visible */
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Hover effect for sidebar items - Clear visibility */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:hover,
+html[data-theme="material"] .desk-sidebar a.standard-sidebar-item:hover,
+html[data-theme-mode="material"] .desk-sidebar a.standard-sidebar-item:hover,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover {
+  background: rgba(0, 137, 255, 0.08) !important; /* More visible hover */
+  border-left-color: rgba(0, 137, 255, 0.3) !important;
+}
+
+/* Active/Selected sidebar item - Clear highlight like image */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.selected,
+html[data-theme="material"] .desk-sidebar a.standard-sidebar-item.active,
+html[data-theme-mode="material"] .desk-sidebar a.standard-sidebar-item.active,
+html[data-theme="material"] .desk-sidebar a.standard-sidebar-item.selected,
+html[data-theme-mode="material"] .desk-sidebar a.standard-sidebar-item.selected,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.selected {
+  background: rgba(0, 137, 255, 0.12) !important; /* Light blue background like image */
+  border-left: 3px solid #0089FF !important; /* Blue vertical bar on left */
+  color: #0089FF !important;
+  font-weight: 600 !important;
 }
 
 /* Sidebar Item Anchor - Proper spacing and alignment - Maximize text space */
+/* Item anchor - allow full text display */
+/* Item anchor - allow full text display */
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
 html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
 html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor {
   display: flex !important;
   align-items: center !important;
-  overflow: hidden !important;
+  overflow: visible !important; /* Show full text */
+  white-space: normal !important; /* Allow text wrapping */
   padding: 0 !important;
   flex: 1 1 0% !important;
   min-width: 0 !important;
-  max-width: calc(100% - 50px) !important;
+  max-width: 100% !important; /* Allow full width for text */
   gap: 12px !important;
   text-decoration: none !important;
   color: inherit !important;
 }
 
-/* Icons in item-anchor - Figma Design Style */
+/* Icons in item-anchor - Clear and Visible */
 html[data-theme="material"] .desk-sidebar .item-anchor > svg:first-child,
 html[data-theme-mode="material"] .desk-sidebar .item-anchor > svg:first-child,
 html[data-theme="material"] .layout-side-section .item-anchor > svg:first-child,
@@ -2836,7 +3096,11 @@ html[data-theme-mode="material"] .layout-side-section .item-anchor > svg:first-c
 html[data-theme="material"] .desk-sidebar .item-anchor .techcloud-icon:first-child,
 html[data-theme-mode="material"] .desk-sidebar .item-anchor .techcloud-icon:first-child,
 html[data-theme="material"] .layout-side-section .item-anchor .techcloud-icon:first-child,
-html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-icon:first-child {
+html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-icon:first-child,
+html[data-theme="material"] .desk-sidebar .item-anchor img:first-child,
+html[data-theme-mode="material"] .desk-sidebar .item-anchor img:first-child,
+html[data-theme="material"] .layout-side-section .item-anchor img:first-child,
+html[data-theme-mode="material"] .layout-side-section .item-anchor img:first-child {
   width: 20px !important;
   height: 20px !important;
   min-width: 20px !important;
@@ -2844,27 +3108,67 @@ html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-ic
   flex-shrink: 0 !important;
   margin-right: 0 !important;
   order: -1 !important;
+  opacity: 1 !important; /* Ensure icons are fully visible */
+  filter: none !important; /* Remove any filters that might dim icons */
 }
 
-/* Sidebar Item Label - Maximum text visibility - Show more text */
+/* Sidebar Item Label - Professional Typography */
 html[data-theme="material"] .desk-sidebar .sidebar-item-label,
 html[data-theme-mode="material"] .desk-sidebar .sidebar-item-label,
 html[data-theme="material"] .layout-side-section .sidebar-item-label,
 html[data-theme-mode="material"] .layout-side-section .sidebar-item-label {
   flex: 1 1 0% !important;
   min-width: 0 !important;
-  overflow: hidden !important;
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
+  overflow: visible !important; /* Show full text */
+  white-space: normal !important; /* Allow text wrapping */
+  text-overflow: clip !important; /* Remove ellipsis */
   font-size: 14px !important;
-  font-weight: 400 !important;
+  font-weight: 400 !important; /* Normal weight for professional look */
+  color: #212121 !important; /* Darker for better visibility */
+  letter-spacing: 0.01em !important; /* Slightly more spacing for clarity */
   line-height: 1.5 !important;
-  color: inherit !important;
-  text-transform: none !important;
-  letter-spacing: normal !important;
+  transition: color 0.2s ease !important;
+  text-transform: capitalize !important; /* Capitalize instead of uppercase */
+  word-wrap: break-word !important; /* Allow long words to wrap */
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover .sidebar-item-label {
+  color: #0089FF !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active .sidebar-item-label {
+  color: #0089FF !important;
+  font-weight: 500 !important; /* Slightly bolder for active state, but still professional */
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-transform: capitalize !important; /* Keep capitalize */
+  letter-spacing: 0.01em !important;
   margin: 0 !important;
   padding: 0 !important;
   max-width: 100% !important;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Professional hover and active states for sidebar labels */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item:hover .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item:hover .sidebar-item-label {
+  color: #0089FF !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item.active .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item.active .sidebar-item-label {
+  color: #0089FF !important;
+  font-weight: 600 !important;
 }
 
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item:hover,
@@ -2926,6 +3230,9 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .si
   visibility: visible !important;
   min-width: 32px !important;
   max-width: 50px !important;
+  pointer-events: auto !important; /* Ensure control container is interactive */
+  position: relative !important;
+  z-index: 5 !important; /* Ensure controls are above menu items */
 }
 
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *,
@@ -2946,6 +3253,45 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .si
   height: 20px !important;
   min-width: 20px !important;
   max-width: 20px !important;
+  pointer-events: auto !important; /* Ensure buttons are clickable */
+  user-select: none !important; /* Prevent text selection during drag */
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Drag Handle Button - Specific styling for drag functionality */
+html[data-theme="material"] .desk-sidebar .sidebar-item-control .drag-handle,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-control .drag-handle,
+html[data-theme="material"] .layout-side-section .sidebar-item-control .drag-handle,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-control .drag-handle,
+html[data-theme="material"] .desk-sidebar .sidebar-item-control .btn.drag-handle,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-control .btn.drag-handle,
+html[data-theme="material"] .layout-side-section .sidebar-item-control .btn.drag-handle,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-control .btn.drag-handle {
+  cursor: move !important; /* Change cursor to move/grab for drag */
+  cursor: grab !important; /* Modern browsers support grab cursor */
+  pointer-events: auto !important; /* Ensure drag handle is interactive */
+  user-select: none !important; /* Prevent text selection */
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  touch-action: none !important; /* Prevent touch scrolling on drag */
+  position: relative !important;
+  z-index: 10 !important; /* Ensure drag handle is above other elements */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html[data-theme="material"] .desk-sidebar .sidebar-item-control .drag-handle:active,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-control .drag-handle:active,
+html[data-theme="material"] .layout-side-section .sidebar-item-control .drag-handle:active,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-control .drag-handle:active,
+html[data-theme="material"] .desk-sidebar .sidebar-item-control .btn.drag-handle:active,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-control .btn.drag-handle:active,
+html[data-theme="material"] .layout-side-section .sidebar-item-control .btn.drag-handle:active,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-control .btn.drag-handle:active {
+  cursor: grabbing !important; /* Change cursor when actively dragging */
 }
 
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control > *:hover,
@@ -3016,23 +3362,70 @@ html[data-theme-mode="material"] .layout-side-section .item-anchor .techcloud-ic
   margin-right: 12px !important;
 }
 
-/* Dropdown List Menu - Responsive styling */
+/* Ensure parent containers have relative positioning for submenu dropdown */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
+  position: relative !important;
+}
+
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control {
+  position: relative !important;
+}
+
+/* Hide sidebar-item-control in Submenu Items - Only show in Main Menu */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item .sidebar-item-control,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item .sidebar-item-control,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item .sidebar-item-control,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item .sidebar-item-control,
+html[data-theme="material"] .desk-sidebar .sidebar-child-item .sidebar-item-control,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item .sidebar-item-control,
+html[data-theme="material"] .layout-side-section .sidebar-child-item .sidebar-item-control,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item .sidebar-item-control,
+html[data-theme="material"] .desk-sidebar .dropdown-item .sidebar-item-control,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-item .sidebar-item-control,
+html[data-theme="material"] .layout-side-section .dropdown-item .sidebar-item-control,
+html[data-theme-mode="material"] .layout-side-section .dropdown-item .sidebar-item-control {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Dropdown List Menu - Submenu Style (Expands inline below parent) */
 html[data-theme="material"] .desk-sidebar .dropdown-list,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
 html[data-theme="material"] .layout-side-section .dropdown-list,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list,
 html[data-theme="material"] .standard-sidebar-item .dropdown-list,
-html[data-theme-mode="material"] .standard-sidebar-item .dropdown-list {
-  position: fixed !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08) !important;
-  min-width: 200px !important;
-  max-width: 280px !important;
-  z-index: 1060 !important;
-  padding: 8px 0 !important;
-  margin: 0 !important;
+html[data-theme-mode="material"] .standard-sidebar-item .dropdown-list,
+html[data-theme="material"] .sidebar-item-control .dropdown-list,
+html[data-theme-mode="material"] .sidebar-item-control .dropdown-list {
+  position: relative !important; /* Changed to relative for z-index stacking */
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  margin-top: 4px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  background: #FFFFFF !important; /* White background */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Subtle border */
+  border-radius: 8px !important; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important; /* Subtle shadow */
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  z-index: 1000 !important; /* High z-index for clickability */
+  padding: 8px 0 !important; /* Padding for white background */
+  padding-left: 24px !important; /* Indent submenu items */
   list-style: none !important;
   overflow: visible !important;
   white-space: normal !important;
@@ -3041,74 +3434,84 @@ html[data-theme-mode="material"] .standard-sidebar-item .dropdown-list {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  pointer-events: auto !important; /* Ensure clickable */
+  isolation: isolate !important; /* Create new stacking context */
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform-origin: top center !important;
+  max-height: 1000px !important; /* Allow expansion */
 }
 
-/* Mobile: Smaller dropdown */
+/* Submenu responsive adjustments */
 @media (max-width: 767px) {
   html[data-theme="material"] .desk-sidebar .dropdown-list,
   html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
   html[data-theme="material"] .layout-side-section .dropdown-list,
   html[data-theme-mode="material"] .layout-side-section .dropdown-list {
-    min-width: 180px !important;
-    max-width: 240px !important;
-    padding: 6px 0 !important;
+    padding-left: 16px !important; /* Less indent on mobile */
   }
 }
 
-/* Tablet: Medium dropdown */
-@media (min-width: 768px) and (max-width: 991px) {
-  html[data-theme="material"] .desk-sidebar .dropdown-list,
-  html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
-  html[data-theme="material"] .layout-side-section .dropdown-list,
-  html[data-theme-mode="material"] .layout-side-section .dropdown-list {
-    min-width: 200px !important;
-    max-width: 260px !important;
-  }
-}
-
-/* Desktop: Full dropdown */
-@media (min-width: 992px) {
-  html[data-theme="material"] .desk-sidebar .dropdown-list,
-  html[data-theme-mode="material"] .desk-sidebar .dropdown-list,
-  html[data-theme="material"] .layout-side-section .dropdown-list,
-  html[data-theme-mode="material"] .layout-side-section .dropdown-list {
-    min-width: 220px !important;
-    max-width: 280px !important;
-  }
-}
-
-/* Dropdown visibility - hide when hidden class is present */
+/* Dropdown visibility - hide when hidden class is present (submenu collapse) */
 html[data-theme="material"] .desk-sidebar .dropdown-list.hidden,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list.hidden,
 html[data-theme="material"] .layout-side-section .dropdown-list.hidden,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list.hidden {
-  display: none !important;
+  display: block !important; /* Keep block for smooth animation */
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-/* Dropdown Item - Responsive styling */
+/* Ensure dropdown is visible when NOT hidden (submenu expand) */
+html[data-theme="material"] .desk-sidebar .dropdown-list:not(.hidden),
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list:not(.hidden),
+html[data-theme="material"] .layout-side-section .dropdown-list:not(.hidden),
+html[data-theme-mode="material"] .layout-side-section .dropdown-list:not(.hidden) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important; /* Ensure clickable */
+  max-height: 1000px !important; /* Allow full expansion */
+  overflow: visible !important;
+  z-index: 1000 !important; /* High z-index when visible */
+  background: #FFFFFF !important; /* White background when visible */
+}
+
+/* Dropdown Item - Submenu Style (Nested sidebar item appearance) */
 html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item {
   display: flex !important;
   align-items: center !important;
-  padding: 10px 16px !important;
-  color: var(--text-color, #1a1a1a) !important;
+  padding: 8px 12px 8px 16px !important; /* Reduced padding for submenu */
+  color: #1a1a1a !important;
   text-decoration: none !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
+  font-size: 13px !important; /* Slightly smaller for submenu */
+  font-weight: 400 !important; /* Lighter weight for submenu */
   cursor: pointer !important;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border: none !important;
   background: transparent !important;
-  width: calc(100% - 12px) !important;
-  margin: 2px 6px !important;
-  border-radius: 8px !important;
-  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  margin-bottom: 2px !important;
+  border-radius: 6px !important;
+  gap: 10px !important;
+  position: relative !important;
+  line-height: 1.4 !important;
+  border-left: 2px solid transparent !important; /* Left border for submenu indicator */
 }
 
 /* Mobile: Smaller padding */
@@ -3128,18 +3531,21 @@ html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hov
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover {
   background-color: rgba(0, 137, 255, 0.08) !important;
-  transform: translateX(2px) !important;
+  color: #0089FF !important;
+  border-left-color: #0089FF !important; /* Blue left border on hover */
+  transform: translateX(2px) !important; /* Slight right shift for submenu */
 }
 
 html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:active,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:active,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:active,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:active {
-  background-color: rgba(0, 137, 255, 0.12) !important;
-  transform: translateX(0) !important;
+  background-color: rgba(0, 137, 255, 0.1) !important;
+  color: #0066CC !important;
+  transform: scale(0.98) !important;
 }
 
-/* Dropdown Item Icons - Responsive */
+/* Dropdown Item Icons - Professional Alignment */
 html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon,
@@ -3147,14 +3553,23 @@ html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-i
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 18px !important;
-  height: 18px !important;
+  width: 20px !important;
+  height: 20px !important;
   flex-shrink: 0 !important;
   margin-right: 0 !important;
-  flex: 0 0 18px !important;
-  min-width: 18px !important;
-  max-width: 18px !important;
+  flex: 0 0 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
   position: relative !important;
+  color: #666666 !important;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:hover .dropdown-item-icon,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hover .dropdown-item-icon,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover .dropdown-item-icon,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover .dropdown-item-icon {
+  color: #0089FF !important;
 }
 
 @media (max-width: 767px) {
@@ -3174,11 +3589,19 @@ html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg {
-  width: 18px !important;
-  height: 18px !important;
+  width: 20px !important;
+  height: 20px !important;
   stroke: currentColor !important;
   stroke-width: 2 !important;
   flex-shrink: 0 !important;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:hover .dropdown-item-icon svg,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hover .dropdown-item-icon svg,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover .dropdown-item-icon svg,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover .dropdown-item-icon svg {
+  transform: scale(1.05) !important;
 }
 
 @media (max-width: 767px) {
@@ -3191,19 +3614,21 @@ html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-i
   }
 }
 
-/* Dropdown Item Label */
+/* Dropdown Item Label - Professional Typography */
 html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-label,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-label,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-label {
   flex: 1 !important;
   font-size: 14px !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   line-height: 1.5 !important;
   color: inherit !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  letter-spacing: -0.01em !important;
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 @media (max-width: 767px) {
@@ -3215,15 +3640,116 @@ html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-i
   }
 }
 
-/* Dropdown Divider */
+/* Dropdown Divider - Professional Separator */
 html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-divider,
 html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-divider,
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-divider,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-divider {
   height: 1px !important;
-  margin: 8px 0 !important;
-  background-color: rgba(0, 0, 0, 0.08) !important;
+  margin: 6px 12px !important;
+  background-color: rgba(0, 0, 0, 0.06) !important;
   border: none !important;
+  opacity: 0.8 !important;
+}
+
+/* Nested Workspace Submenu Items - sidebar-child-item styling */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item,
+html[data-theme="material"] .layout-side-section .sidebar-child-item,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item {
+  margin-left: 24px !important;
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+  padding-left: 0 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+}
+
+/* Ensure nested submenu items are visible when NOT hidden (expanded state) */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden),
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden),
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden),
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-height: 1000px !important;
+  overflow: visible !important;
+}
+
+/* Hide nested submenu items when hidden class is present (collapsed state) */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item.hidden,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item.hidden,
+html[data-theme="material"] .layout-side-section .sidebar-child-item.hidden,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Nested workspace items - Child menu items styling (only when parent is visible) */
+/* Submenu class only applies to submenu items, not parent items */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container,
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Submenu items only - not parent items */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item,
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item {
+  padding: 8px 10px 8px 12px !important;
+  margin-bottom: 2px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-left: 2px solid transparent !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Submenu labels - capitalize and show full text */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .sidebar-item-label,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .sidebar-item-label,
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .sidebar-item-label,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .sidebar-item-label {
+  text-transform: capitalize !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  word-wrap: break-word !important;
+}
+
+/* Nested workspace items hover (only when parent is visible) */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item:hover,
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item:hover {
+  background: rgba(0, 137, 255, 0.08) !important;
+  border-left-color: #0089FF !important;
+  transform: translateX(2px) !important;
+}
+
+/* Nested workspace items active/selected (only when parent is visible) */
+html[data-theme="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item.selected,
+html[data-theme="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .layout-side-section .sidebar-child-item:not(.hidden) .sidebar-item-container .standard-sidebar-item.selected {
+  background: rgba(0, 137, 255, 0.12) !important;
+  border-left-color: #0089FF !important;
+  color: #0089FF !important;
+  font-weight: 500 !important;
 }
 
 /* Special styling for Delete item (red color) */
@@ -3264,20 +3790,12 @@ html[data-theme="material"] .layout-main-section,
 html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
-  flex: 1 !important;
-  padding: 32px !important;
-  padding-top: 32px !important;
-  margin-top: 0 !important;
-  margin-left: 0 !important;
-  background: var(--techcloud-light-gray) !important;
-  height: calc(100vh - 44px) !important;
-  box-sizing: border-box !important;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
   width: 100% !important;
   max-width: 100% !important;
-  overflow-x: hidden !important;
+  height: calc(-44px + 100vh) !important;
   overflow-y: auto !important;
-  position: relative !important;
-  z-index: 1 !important;
 }
 
 /* Responsive adjustments */
@@ -3294,8 +3812,8 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-left: 0 !important;
-    margin-top: 0 !important;
+    margin-left: 1% !important;
+    margin-top: -5% !important;
     width: 100% !important;
     max-width: 100% !important;
     height: calc(100vh - 44px) !important;
@@ -3581,6 +4099,7 @@ html[data-theme-mode="material"] .btn-primary {
 html[data-theme="material"] .btn-primary:hover,
 html[data-theme-mode="material"] .btn-primary:hover {
   background: #0073D9 !important;
+  color: #FFFFFF !important; /* Ensure white text stays visible */
   box-shadow: var(--techcloud-shadow-button-hover) !important;
   transform: translateY(-1px) !important;
 }
@@ -3663,11 +4182,11 @@ html[data-theme-mode="material"] .stat-card,
 html[data-theme="material"] .frappe-card,
 html[data-theme-mode="material"] .frappe-card {
   background: var(--techcloud-white) !important;
-  padding: var(--techcloud-spacing-xl) !important;
-  border-radius: var(--techcloud-radius-lg) !important;
+  padding: 0 !important; /* Remove padding to allow header to control spacing */
+  border-radius: 8px !important;
   box-shadow: var(--techcloud-shadow-card) !important;
   transition: transform var(--techcloud-transition-base), box-shadow var(--techcloud-transition-base) !important;
-  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #0089FF !important; /* Blue border matching header */
   position: relative !important;
   overflow: hidden !important;
 }
@@ -3680,8 +4199,122 @@ html[data-theme="material"] .stat-card:hover,
 html[data-theme-mode="material"] .stat-card:hover {
   transform: translateY(-4px) !important;
   box-shadow: var(--techcloud-shadow-card-hover) !important;
-  border-color: rgba(0, 137, 255, 0.1) !important;
+  border-color: #0089FF !important; /* Keep blue border on hover */
 }
+
+/* Card Header Base Styling - Apply to ALL card headers across all pages */
+html[data-theme="material"] .widget .widget-head,
+html[data-theme-mode="material"] .widget .widget-head,
+html[data-theme="material"] .card .card-header,
+html[data-theme-mode="material"] .card .card-header,
+html[data-theme="material"] .frappe-card .card-header,
+html[data-theme-mode="material"] .frappe-card .card-header,
+html[data-theme="material"] .form-section .section-head,
+html[data-theme-mode="material"] .form-section .section-head,
+html[data-theme="material"] .widget-head,
+html[data-theme-mode="material"] .widget-head,
+html[data-theme="material"] .section-head,
+html[data-theme-mode="material"] .section-head,
+html[data-theme="material"] .page-card .page-card-head,
+html[data-theme-mode="material"] .page-card .page-card-head,
+html[data-theme="material"] .card-header,
+html[data-theme-mode="material"] .card-header {
+  background: #F0F8FF !important; /* Light blue background */
+  background-color: #F0F8FF !important; /* Explicit background-color for chart compatibility */
+  border: 1px solid #0089FF !important; /* Blue border all around */
+  border-color: #0089FF !important; /* Explicit border-color for chart compatibility */
+  border-bottom: 2px solid #0089FF !important; /* Thicker blue bottom border */
+  border-radius: 8px 8px 0 0 !important; /* Rounded top corners only */
+  padding: 16px 20px !important; /* Increased padding for better spacing */
+  margin: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  color: #333333 !important; /* Explicit text color */
+  min-height: 48px !important; /* Minimum height for consistent appearance */
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Card Header Title Styling */
+html[data-theme="material"] .widget .widget-head .widget-title,
+html[data-theme-mode="material"] .widget .widget-head .widget-title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--techcloud-text-primary) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.02em !important;
+  padding-left: 1% !important;
+}
+
+/* Widget Subtitle Styling */
+html[data-theme="material"] .widget.onboarding-widget-box .widget-head .widget-subtitle,
+html[data-theme-mode="material"] .widget.onboarding-widget-box .widget-head .widget-subtitle,
+html[data-theme="material"] .widget .widget-head .widget-subtitle,
+html[data-theme-mode="material"] .widget .widget-head .widget-subtitle {
+  margin-top: 5px !important;
+  color: var(--text-muted) !important;
+  font-size: var(--text-base) !important;
+  font-weight: var(--weight-regular) !important;
+  letter-spacing: 0.02em !important;
+  padding-left: 1% !important;
+}
+
+/* Widget Control Styling */
+html[data-theme="material"] .widget.onboarding-widget-box .widget-head .widget-control,
+html[data-theme-mode="material"] .widget.onboarding-widget-box .widget-head .widget-control,
+html[data-theme="material"] .widget .widget-head .widget-control,
+html[data-theme-mode="material"] .widget .widget-head .widget-control {
+  align-self: flex-start !important;
+  color: var(--text-muted) !important;
+  padding: 1% !important;
+}
+
+/* Other Card Titles */
+html[data-theme="material"] .card .card-header .card-title,
+html[data-theme-mode="material"] .card .card-header .card-title,
+html[data-theme="material"] .frappe-card .card-header .card-title,
+html[data-theme-mode="material"] .frappe-card .card-header .card-title,
+html[data-theme="material"] .form-section .section-head .section-title,
+html[data-theme-mode="material"] .form-section .section-head .section-title,
+html[data-theme="material"] .widget-title,
+html[data-theme-mode="material"] .widget-title,
+html[data-theme="material"] .section-title,
+html[data-theme-mode="material"] .section-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #333333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 !important;
+}
+
+/* Card/Widget Body - White Content Area */
+html[data-theme="material"] .widget .widget-body,
+html[data-theme-mode="material"] .widget .widget-body,
+html[data-theme="material"] .card .card-body,
+html[data-theme-mode="material"] .card .card-body,
+html[data-theme="material"] .frappe-card .card-body,
+html[data-theme-mode="material"] .frappe-card .card-body,
+html[data-theme="material"] .form-section .section-body,
+html[data-theme-mode="material"] .form-section .section-body {
+  background: #FFFFFF !important;
+  padding: 20px 24px !important;
+  margin: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  border-radius: 0 0 8px 8px !important; /* Rounded bottom corners */
+}
+
+
+/* Thin Gray Horizontal Line Below Title - REMOVED - Restore to default */
+/* Removed custom line styling to keep original appearance */
 
 /* Stat Labels - Match dashboard.html stat-label */
 html[data-theme="material"] .stat-label,
@@ -4025,6 +4658,112 @@ html[data-theme-mode="material"] .page-actions {
   margin-left: auto !important;
 }
 
+/* Page Actions Buttons - Professional styling for Edit, New, etc. */
+html[data-theme="material"] .page-actions .btn,
+html[data-theme-mode="material"] .page-actions .btn,
+html[data-theme="material"] .page-actions .btn-default,
+html[data-theme-mode="material"] .page-actions .btn-default,
+html[data-theme="material"] .page-actions .btn-secondary,
+html[data-theme-mode="material"] .page-actions .btn-secondary {
+  background: #FFFFFF !important;
+  color: #333333 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 40px !important;
+  cursor: pointer !important;
+}
+
+html[data-theme="material"] .page-actions .btn:hover,
+html[data-theme-mode="material"] .page-actions .btn:hover,
+html[data-theme="material"] .page-actions .btn-default:hover,
+html[data-theme-mode="material"] .page-actions .btn-default:hover,
+html[data-theme="material"] .page-actions .btn-secondary:hover,
+html[data-theme-mode="material"] .page-actions .btn-secondary:hover {
+  background: #F5F5F5 !important;
+  border-color: rgba(0, 137, 255, 0.3) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-1px) !important;
+  color: #0089FF !important;
+}
+
+html[data-theme="material"] .page-actions .btn:active,
+html[data-theme-mode="material"] .page-actions .btn:active,
+html[data-theme="material"] .page-actions .btn-default:active,
+html[data-theme-mode="material"] .page-actions .btn-default:active,
+html[data-theme="material"] .page-actions .btn-secondary:active,
+html[data-theme-mode="material"] .page-actions .btn-secondary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Page Actions Button Icons */
+html[data-theme="material"] .page-actions .btn svg,
+html[data-theme-mode="material"] .page-actions .btn svg,
+html[data-theme="material"] .page-actions .btn-default svg,
+html[data-theme-mode="material"] .page-actions .btn-default svg,
+html[data-theme="material"] .page-actions .btn-secondary svg,
+html[data-theme-mode="material"] .page-actions .btn-secondary svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  color: inherit !important;
+}
+
+/* Primary action button in page-actions */
+html[data-theme="material"] .page-actions .btn-primary,
+html[data-theme-mode="material"] .page-actions .btn-primary {
+  background: #0089FF !important;
+  color: #FFFFFF !important;
+  border: 1px solid #0089FF !important;
+}
+
+html[data-theme="material"] .page-actions .btn-primary:hover,
+html[data-theme-mode="material"] .page-actions .btn-primary:hover {
+  background: #0073D9 !important;
+  border-color: #0073D9 !important;
+  color: #FFFFFF !important;
+}
+
+/* Icon buttons in page-actions */
+html[data-theme="material"] .page-actions .icon-btn,
+html[data-theme-mode="material"] .page-actions .icon-btn,
+html[data-theme="material"] .page-actions .btn.icon-btn,
+html[data-theme-mode="material"] .page-actions .btn.icon-btn {
+  background: #FFFFFF !important;
+  color: #333333 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="material"] .page-actions .icon-btn:hover,
+html[data-theme-mode="material"] .page-actions .icon-btn:hover,
+html[data-theme="material"] .page-actions .btn.icon-btn:hover,
+html[data-theme-mode="material"] .page-actions .btn.icon-btn:hover {
+  background: #F5F5F5 !important;
+  border-color: rgba(0, 137, 255, 0.3) !important;
+  color: #0089FF !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
 html[data-theme="material"] .header-icon,
 html[data-theme-mode="material"] .header-icon {
   width: 40px !important;
@@ -4097,6 +4836,7 @@ html[data-theme-mode="material"] .btn-primary {
 html[data-theme="material"] .btn-primary:hover,
 html[data-theme-mode="material"] .btn-primary:hover {
   background: #0066CC !important;
+  color: #FFFFFF !important; /* Ensure white text stays visible */
   transform: translateY(-2px) !important;
   box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
 }
@@ -4154,10 +4894,12 @@ html[data-theme-mode="material"] .table thead {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-left: 0 !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 20px !important;
+    height: calc(-44px + 100vh) !important;
+    overflow-y: auto !important;
   }
 
   html[data-theme="material"] .charts-section,
@@ -4335,15 +5077,8 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
    1. SIDEBAR IMPROVEMENTS
    ============================================ */
 
-/* Sidebar Width - Fixed at 260px */
-html[data-theme="material"] .desk-sidebar,
-html[data-theme-mode="material"] .desk-sidebar,
-html[data-theme="material"] .layout-side-section,
-html[data-theme-mode="material"] .layout-side-section {
-  width: 260px !important;
-  min-width: 260px !important;
-  max-width: 260px !important;
-}
+/* Sidebar Width - Removed fixed width, using default/other CSS */
+/* Width properties commented out to allow flexible sizing */
 
 /* Sidebar Logo - Compact */
 html[data-theme="material"] .desk-sidebar .sidebar-brand,
@@ -4529,14 +5264,12 @@ html[data-theme="material"] .layout-main-section,
 html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
-  margin-left: 260px !important;
-  width: calc(100% - 260px) !important;
-  max-width: calc(100% - 260px) !important;
-  padding: var(--spacing-xl) !important;
-  padding-top: var(--spacing-xl) !important;
-  margin-top: 0 !important;
-  position: relative !important;
-  z-index: 1 !important;
+  margin-left: 1% !important;
+  margin-top: -5% !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: calc(100vh - 44px) !important;
+  overflow-y: auto !important;
 }
 
 /* Content Container - Centered with Max-Width */
@@ -4606,15 +5339,7 @@ html[data-theme-mode="material"] .widget .widget-head {
   border-bottom: 1px solid var(--techcloud-border-color) !important;
 }
 
-html[data-theme="material"] .widget .widget-head .widget-title,
-html[data-theme-mode="material"] .widget .widget-head .widget-title {
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  color: var(--techcloud-text-primary) !important;
-  margin: 0 !important;
-  line-height: 1.4 !important;
-  letter-spacing: -0.02em !important;
-}
+/* Widget Title - Duplicate rule removed, using main rule above */
 
 /* Widget Body - Proper Spacing */
 html[data-theme="material"] .widget .widget-body,
@@ -4824,11 +5549,11 @@ html[data-theme-mode="material"] .widget-body .link-item:hover {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-left: 0 !important;
-    margin-top: 0 !important;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
     width: 100% !important;
     max-width: 100% !important;
-    height: calc(100vh - 44px) !important;
+    height: calc(-44px + 100vh) !important;
     overflow-y: auto !important;
   }
 }
@@ -4837,25 +5562,19 @@ html[data-theme-mode="material"] .widget-body .link-item:hover {
 @media (min-width: 992px) {
   html[data-theme="material"] [data-page-route="Workspaces"] .layout-main .layout-main-section,
   html[data-theme-mode="material"] [data-page-route="Workspaces"] .layout-main .layout-main-section {
-    /*border: 1px solid var(--techcloud-border-color) !important;*/
+    /* border: 1px solid var(--techcloud-border-color) !important; */
     padding: var(--spacing-md) !important;
-    margin-top: 44px !important;
-    margin-left: auto !important;
+    margin-top: -2% !important;
+    margin-left: 1.5% !important;
     margin-right: auto !important;
-    margin-bottom: 20% !important;
-    width: 100% !important;
+    margin-bottom: 1% !important;
+    /* width: 100% !important; */
   }
 }
 
 /* Tablet and mobile - Sidebar adjustments */
 @media (max-width: 991px) {
-  html[data-theme="material"] .desk-sidebar,
-  html[data-theme-mode="material"] .desk-sidebar,
-  html[data-theme="material"] .layout-side-section,
-  html[data-theme-mode="material"] .layout-side-section {
-    width: 260px !important;
-    min-width: 260px !important;
-  }
+  /* Sidebar width removed - using default/other CSS */
   
   html[data-theme="material"] .layout-main-section,
   html[data-theme-mode="material"] .layout-main-section,
@@ -4901,4 +5620,90 @@ html[data-theme-mode="material"] .content-centered {
   max-width: var(--content-max-width) !important;
   margin: 0 auto !important;
   padding: 0 var(--spacing-xl) !important;
+}
+
+/* ============================================
+   Fix: White text visibility on white backgrounds
+   ============================================ */
+
+/* Ensure dropdown items on white backgrounds have dark text */
+html[data-theme="material"] .dropdown-list .dropdown-item,
+html[data-theme-mode="material"] .dropdown-list .dropdown-item,
+html[data-theme="material"] .dropdown-list .dropdown-item-label,
+html[data-theme-mode="material"] .dropdown-list .dropdown-item-label,
+html[data-theme="material"] .dropdown-list .dropdown-item-icon,
+html[data-theme-mode="material"] .dropdown-list .dropdown-item-icon {
+  color: #1a1a1a !important; /* Dark text on white background */
+}
+
+/* Ensure white background elements have dark text by default */
+html[data-theme="material"] [style*="background: white"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background: white"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background: #fff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background: #fff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background: #FFF"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background: #FFF"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background: #ffffff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background: #ffffff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background: #FFFFFF"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background: #FFFFFF"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background-color: white"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background-color: white"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background-color: #fff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background-color: #fff"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] [style*="background-color: #FFFFFF"]:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] [style*="background-color: #FFFFFF"]:not(.btn-primary):not(.btn-primary *) {
+  color: #1a1a1a !important; /* Dark text on white background */
+}
+
+/* Fix white text on white backgrounds - change to dark text */
+html[data-theme="material"] [style*="color: white"][style*="background: white"],
+html[data-theme-mode="material"] [style*="color: white"][style*="background: white"],
+html[data-theme="material"] [style*="color: #fff"][style*="background: #fff"],
+html[data-theme-mode="material"] [style*="color: #fff"][style*="background: #fff"],
+html[data-theme="material"] [style*="color: white"][style*="background-color: white"],
+html[data-theme-mode="material"] [style*="color: white"][style*="background-color: white"],
+html[data-theme="material"] [style*="color: #fff"][style*="background-color: #fff"],
+html[data-theme-mode="material"] [style*="color: #fff"][style*="background-color: #fff"] {
+  color: #1a1a1a !important; /* Change white text to dark on white background */
+}
+
+/* Ensure elements with white background class have dark text */
+html[data-theme="material"] .bg-white:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] .bg-white:not(.btn-primary):not(.btn-primary *),
+html[data-theme="material"] .white-bg:not(.btn-primary):not(.btn-primary *),
+html[data-theme-mode="material"] .white-bg:not(.btn-primary):not(.btn-primary *) {
+  color: #1a1a1a !important; /* Dark text on white background */
+}
+
+/* Fix for any element with white text that should be visible */
+/* Note: Elements with white text on transparent backgrounds are handled by parent background checks above */
+
+/* Ensure dropdown lists with white background have dark text */
+html[data-theme="material"] .dropdown-list[style*="background: white"] *,
+html[data-theme-mode="material"] .dropdown-list[style*="background: white"] *,
+html[data-theme="material"] .dropdown-list[style*="background: #fff"] *,
+html[data-theme-mode="material"] .dropdown-list[style*="background: #fff"] *,
+html[data-theme="material"] .dropdown-list[style*="background: #FFFFFF"] *,
+html[data-theme-mode="material"] .dropdown-list[style*="background: #FFFFFF"] * {
+  color: #1a1a1a !important; /* Dark text on white background */
+}
+
+/* Override: Ensure dropdown items always have visible text */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item,
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item *,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item *,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item *,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item * {
+  color: #1a1a1a !important; /* Force dark text for visibility */
+}
+
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item:hover *,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hover *,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover *,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover * {
+  color: #0089FF !important; /* Blue text on hover */
 }
