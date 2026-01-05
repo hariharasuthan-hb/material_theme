@@ -779,47 +779,32 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     background: linear-gradient(90deg, #22c55e, #16a34a, #22c55e) !important;
   }
 
-  /* Beautiful shortcut containers as enhanced list items */
+  /* Structured Cards for Shortcuts */
+  /* Card container for each shortcut */
   html[data-theme="material"] div[shortcut_name],
   html[data-theme-mode="material"] div[shortcut_name] {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    cursor: pointer !important;
+    background: var(--techcloud-card-bg) !important;
+    border: 1px solid var(--techcloud-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+    margin-bottom: 16px !important;
+    overflow: hidden !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    display: list-item !important;
-    list-style-type: "🔹 " !important; /* Beautiful diamond bullet */
-    list-style-position: inside !important;
-    margin-bottom: 12px !important;
-    padding-left: 0 !important;
-    border-left: 3px solid transparent !important;
-    position: relative !important;
+    cursor: pointer !important;
   }
 
-  /* Remove margin from the last shortcut */
+  /* Card hover effect */
+  html[data-theme="material"] div[shortcut_name]:hover,
+  html[data-theme-mode="material"] div[shortcut_name]:hover {
+    box-shadow: 0 6px 20px rgba(0, 137, 255, 0.15) !important;
+    border-color: rgba(0, 137, 255, 0.25) !important;
+    transform: translateY(-3px) !important;
+  }
+
+  /* Remove margin from the last shortcut card */
   html[data-theme="material"] div[shortcut_name]:last-child,
   html[data-theme-mode="material"] div[shortcut_name]:last-child {
     margin-bottom: 0 !important;
-  }
-
-  /* Beautiful hover effect with multiple animations */
-  html[data-theme="material"] div[shortcut_name]:hover,
-  html[data-theme-mode="material"] div[shortcut_name]:hover {
-    background: linear-gradient(135deg, rgba(0, 137, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%) !important;
-    list-style-type: "🚀 " !important; /* Rocket emoji on hover */
-    border-left-color: #0089FF !important;
-    transform: translateX(4px) !important;
-    box-shadow: 0 4px 12px rgba(0, 137, 255, 0.15) !important;
-  }
-
-  /* Subtle active/pressed state */
-  html[data-theme="material"] div[shortcut_name]:active,
-  html[data-theme-mode="material"] div[shortcut_name]:active {
-    transform: translateX(2px) scale(0.98) !important;
-    transition: all 0.1s ease !important;
   }
 
   /* Hide the widget wrapper inside shortcuts */
@@ -839,18 +824,19 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   /* Beautiful shortcut content styling */
   html[data-theme="material"] div[shortcut_name] .widget-head,
   html[data-theme-mode="material"] div[shortcut_name] .widget-head {
-    background: transparent !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
     border: none !important;
-    padding: 12px 20px 12px 0 !important; /* Generous padding */
+    padding: 16px 20px !important;
     margin: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
-    border-radius: 8px !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    min-height: 48px !important; /* Comfortable touch target */
+    border-radius: 0 !important;
+    border-bottom: 1px solid var(--techcloud-border) !important;
+    min-height: 60px !important; /* Fixed height header */
     position: relative !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 
   /* Enhanced shortcut title styling */
@@ -930,12 +916,22 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     box-shadow: 0 4px 8px rgba(160, 174, 192, 0.3) !important;
   }
 
-  /* Hide empty widget body and footer for cleaner list appearance */
+  /* Hide widget-body in shortcuts - not needed */
   html[data-theme="material"] div[shortcut_name] .widget-body,
-  html[data-theme-mode="material"] div[shortcut_name] .widget-body,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-body {
+    display: none !important;
+  }
+
+  /* Hide widget footer in shortcut cards */
   html[data-theme="material"] div[shortcut_name] .widget-footer,
   html[data-theme-mode="material"] div[shortcut_name] .widget-footer {
     display: none !important;
+  }
+
+  /* Adjust widget-head to complete the card with rounded bottom corners */
+  html[data-theme="material"] div[shortcut_name] .widget-head,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-head {
+    border-radius: 0 0 12px 12px !important; /* Add bottom rounded corners */
   }
 
   /* Beautiful card styling for onboarding widgets */
@@ -1019,6 +1015,487 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme-mode="material"] div[onboarding_name] .widget-body {
     padding: 24px !important;
     background: rgba(255, 251, 235, 0.5) !important; /* Very light yellow background */
+  }
+
+  /* Blog Post Page Beautification */
+  /* Main form container beautification */
+  html[data-theme="material"] .form-layout,
+  html[data-theme-mode="material"] .form-layout {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.98) 100%) !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(0, 137, 255, 0.1) !important;
+    box-shadow: 0 8px 32px rgba(0, 137, 255, 0.08) !important;
+    padding: 32px !important;
+    margin: 20px 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Subtle background pattern for form */
+  html[data-theme="material"] .form-layout::before,
+  html[data-theme-mode="material"] .form-layout::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(0, 137, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(147, 197, 253, 0.02) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+
+  /* Form section headers */
+  html[data-theme="material"] .form-section .section-head,
+  html[data-theme-mode="material"] .form-section .section-head {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+    border: 1px solid rgba(0, 137, 255, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    margin-bottom: 24px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Section header accent line */
+  html[data-theme="material"] .form-section .section-head::after,
+  html[data-theme-mode="material"] .form-section .section-head::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #0089ff, #00d4ff, #0089ff) !important;
+    opacity: 0.7 !important;
+  }
+
+  /* Section titles */
+  html[data-theme="material"] .form-section .section-head h6,
+  html[data-theme-mode="material"] .form-section .section-head h6 {
+    color: #0f172a !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Form fields beautification */
+  html[data-theme="material"] .form-group .control-input,
+  html[data-theme-mode="material"] .form-group .control-input {
+    border: 1px solid rgba(0, 137, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease !important;
+    font-size: 14px !important;
+  }
+
+  /* Form field focus states */
+  html[data-theme="material"] .form-group .control-input:focus,
+  html[data-theme-mode="material"] .form-group .control-input:focus {
+    border-color: #0089ff !important;
+    box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1) !important;
+    background: white !important;
+    outline: none !important;
+  }
+
+  /* Textarea specific styling */
+  html[data-theme="material"] .form-group textarea.control-input,
+  html[data-theme-mode="material"] .form-group textarea.control-input {
+    min-height: 120px !important;
+    resize: vertical !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Form labels */
+  html[data-theme="material"] .form-group .control-label,
+  html[data-theme-mode="material"] .form-group .control-label {
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Primary action buttons */
+  html[data-theme="material"] .btn-primary,
+  html[data-theme-mode="material"] .btn-primary {
+    background: linear-gradient(135deg, #0089ff 0%, #00d4ff 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Button hover effects */
+  html[data-theme="material"] .btn-primary:hover,
+  html[data-theme-mode="material"] .btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 137, 255, 0.4) !important;
+  }
+
+  /* Secondary buttons */
+  html[data-theme="material"] .btn-secondary,
+  html[data-theme-mode="material"] .btn-secondary {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border: 1px solid rgba(0, 137, 255, 0.2) !important;
+    border-radius: 8px !important;
+    color: #374151 !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  /* Secondary button hover */
+  html[data-theme="material"] .btn-secondary:hover,
+  html[data-theme-mode="material"] .btn-secondary:hover {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+    border-color: rgba(0, 137, 255, 0.3) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Page header beautification */
+  html[data-theme="material"] .page-head,
+  html[data-theme-mode="material"] .page-head {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1d4ed8 100%) !important;
+    border-radius: 0 0 16px 16px !important;
+    padding: 24px !important;
+    margin: -20px -20px 32px -20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Page title */
+  html[data-theme="material"] .page-head .page-title,
+  html[data-theme-mode="material"] .page-head .page-title {
+    color: white !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    margin: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Page subtitle */
+  html[data-theme="material"] .page-head .page-subtitle,
+  html[data-theme-mode="material"] .page-head .page-subtitle {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    margin-top: 8px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Page header background pattern */
+  html[data-theme="material"] .page-head::before,
+  html[data-theme-mode="material"] .page-head::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 200px !important;
+    height: 200px !important;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+    transform: translate(50px, -50px) !important;
+  }
+
+  /* Card-like containers for content sections */
+  html[data-theme="material"] .card,
+  html[data-theme-mode="material"] .card,
+  html[data-theme="material"] .frappe-card,
+  html[data-theme-mode="material"] .frappe-card {
+    background: white !important;
+    border: 1px solid rgba(0, 137, 255, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px rgba(0, 137, 255, 0.08) !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  /* Card hover effect */
+  html[data-theme="material"] .card:hover,
+  html[data-theme-mode="material"] .card:hover,
+  html[data-theme="material"] .frappe-card:hover,
+  html[data-theme-mode="material"] .frappe-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 137, 255, 0.12) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Workspace Action Buttons Beautification */
+  /* Workspace footer container - Sticky positioning, visible on scroll */
+  html[data-theme="material"] .workspace-footer,
+  html[data-theme-mode="material"] .workspace-footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    padding: 26px 24px !important;
+    /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%) !important; */
+    border-top: 1px solid rgba(0, 137, 255, 0.1) !important;
+    margin-top: 24px !important;
+    border-radius: 0 0 16px 16px !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 100 !important;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+
+  /* Subtle background pattern for footer */
+  html[data-theme="material"] .workspace-footer::before,
+  html[data-theme-mode="material"] .workspace-footer::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image:
+      radial-gradient(circle at 25% 75%, rgba(0, 137, 255, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.02) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+    border-radius: 0 0 16px 16px !important;
+  }
+
+  /* Ensure proper sticky behavior */
+  html[data-theme="material"] body .workspace-footer,
+  html[data-theme-mode="material"] body .workspace-footer {
+    justify-content: flex-end !important;
+    position: sticky !important;
+    bottom: 0 !important;
+  }
+
+  /* Base button styling for workspace buttons - compact size */
+  html[data-theme="material"] .workspace-footer .btn,
+  html[data-theme-mode="material"] .workspace-footer .btn {
+    border: none !important;
+    border-radius: 6px !important; /* Subtle border radius */
+    padding: 6px 12px !important; /* Compact padding */
+    font-size: 12px !important; /* Small font size */
+    font-weight: 500 !important; /* Medium weight */
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    display: inline-flex !important; /* Content-sized width */
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important; /* Icon gap */
+    min-height: 32px !important; /* Compact height */
+    width: auto !important; /* Content-sized width */
+    flex: none !important; /* No stretching */
+    cursor: pointer !important;
+  }
+
+  /* + NEW Button (Primary Action) */
+  html[data-theme="material"] .btn-new-workspace,
+  html[data-theme-mode="material"] .btn-new-workspace {
+    background: linear-gradient(135deg, #0089ff 0%, #00d4ff 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  /* + NEW Button hover state */
+  html[data-theme="material"] .btn-new-workspace:hover,
+  html[data-theme-mode="material"] .btn-new-workspace:hover {
+    background: linear-gradient(135deg, #0077e6 0%, #00c4e6 100%) !important;
+    box-shadow: 0 6px 20px rgba(0, 137, 255, 0.4) !important;
+    transform: translateY(-2px) !important;
+    color: white !important;
+  }
+
+  /* + NEW Button active state */
+  html[data-theme="material"] .btn-new-workspace:active,
+  html[data-theme-mode="material"] .btn-new-workspace:active {
+    transform: translateY(0) scale(0.98) !important;
+    box-shadow: 0 2px 8px rgba(0, 137, 255, 0.3) !important;
+    transition: all 0.1s ease !important;
+  }
+
+  /* + NEW Button focus state */
+  html[data-theme="material"] .btn-new-workspace:focus,
+  html[data-theme-mode="material"] .btn-new-workspace:focus {
+    outline: none !important;
+    box-shadow: 0 4px 12px rgba(0, 137, 255, 0.3), 0 0 0 3px rgba(0, 137, 255, 0.2) !important;
+  }
+
+  /* EDIT Button (Secondary Action) - YELLOW/GOLD THEME */
+  html[data-theme="material"] .btn-edit-workspace,
+  html[data-theme-mode="material"] .btn-edit-workspace {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important; /* Light yellow gradient */
+    color: #92400e !important; /* Dark brown text for contrast */
+    border: 1px solid rgba(245, 158, 11, 0.3) !important; /* Gold border */
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2) !important; /* Gold shadow */
+  }
+
+  /* EDIT Button hover state - Brighter yellow */
+  html[data-theme="material"] .btn-edit-workspace:hover,
+  html[data-theme-mode="material"] .btn-edit-workspace:hover {
+    background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%) !important; /* Brighter yellow */
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+    transform: translateY(-1px) !important;
+    color: #78350f !important; /* Darker text on brighter background */
+  }
+
+  /* EDIT Button active state */
+  html[data-theme="material"] .btn-edit-workspace:active,
+  html[data-theme-mode="material"] .btn-edit-workspace:active {
+    transform: translateY(0) scale(0.98) !important;
+    box-shadow: 0 1px 4px rgba(245, 158, 11, 0.2) !important;
+    transition: all 0.1s ease !important;
+  }
+
+  /* EDIT Button focus state */
+  html[data-theme="material"] .btn-edit-workspace:focus,
+  html[data-theme-mode="material"] .btn-edit-workspace:focus {
+    outline: none !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2), 0 0 0 3px rgba(245, 158, 11, 0.3) !important;
+  }
+
+  /* Icon styling for compact buttons */
+  html[data-theme="material"] .workspace-footer .btn .es-icon,
+  html[data-theme-mode="material"] .workspace-footer .btn .es-icon {
+    flex-shrink: 0 !important;
+    width: 12px !important; /* Compact icons */
+    height: 12px !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Text styling for button labels */
+  html[data-theme="material"] .workspace-footer .btn span:not(.es-icon),
+  html[data-theme-mode="material"] .workspace-footer .btn span:not(.es-icon) {
+    font-weight: 600 !important;
+    line-height: 1 !important;
+  }
+
+  /* Responsive adjustments for smaller buttons */
+  @media (max-width: 768px) {
+    html[data-theme="material"] .workspace-footer,
+    html[data-theme-mode="material"] .workspace-footer {
+      padding: 12px 20px !important;
+      gap: 6px !important;
+      margin-top: 20px !important;
+    }
+
+    html[data-theme="material"] .workspace-footer .btn,
+    html[data-theme-mode="material"] .workspace-footer .btn {
+      padding: 6px 12px !important;
+      font-size: 11px !important;
+      min-height: 32px !important;
+    }
+
+    /* Keep buttons compact on very small screens */
+    @media (max-width: 480px) {
+      html[data-theme="material"] .workspace-footer,
+      html[data-theme-mode="material"] .workspace-footer {
+        justify-content: center !important; /* Center on very small screens for better UX */
+        flex-direction: row !important; /* Keep horizontal but centered */
+        gap: 6px !important; /* Smaller gap on mobile */
+        padding: 12px 16px !important; /* Reduced padding */
+      }
+
+      html[data-theme="material"] .workspace-footer .btn,
+      html[data-theme-mode="material"] .workspace-footer .btn {
+        flex: none !important; /* No stretching */
+        width: auto !important; /* Content-sized width */
+        padding: 5px 10px !important; /* Even more compact on mobile */
+        font-size: 11px !important; /* Smaller font on mobile */
+        min-height: 28px !important; /* Compact height */
+      }
+    }
+  }
+
+  /* Fix blue loading background - Prevent blue colors during page loading */
+  /* Neutral skeleton cards during loading */
+  html[data-theme="material"] .skeleton-card,
+  html[data-theme-mode="material"] .skeleton-card {
+    background-color: #f5f5f5 !important; /* Neutral gray instead of any blue */
+    border: 1px solid #e5e5e5 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+
+  /* Override workspace skeleton backgrounds */
+  html[data-theme="material"] .workspace-skeleton,
+  html[data-theme-mode="material"] .workspace-skeleton {
+    background: transparent !important;
+  }
+
+  /* Neutral skeleton headers */
+  html[data-theme="material"] .skeleton-header,
+  html[data-theme-mode="material"] .skeleton-header {
+    background: #f8f8f8 !important;
+    border: none !important;
+    border-radius: 6px !important;
+  }
+
+  /* Prevent blue backgrounds on skeleton widget groups */
+  html[data-theme="material"] .workspace-skeleton .widget-group,
+  html[data-theme-mode="material"] .workspace-skeleton .widget-group {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Override any loading overlays that might have blue backgrounds */
+  html[data-theme="material"] .message-overlay,
+  html[data-theme-mode="material"] .message-overlay,
+  html[data-theme="material"] #build-events-overlay,
+  html[data-theme-mode="material"] #build-events-overlay {
+    background: rgba(255, 255, 255, 0.95) !important; /* White overlay instead of blue */
+  }
+
+  /* Prevent blue page backgrounds during loading */
+  html[data-theme="material"].loading,
+  html[data-theme-mode="material"].loading,
+  html[data-theme="material"] body.loading,
+  html[data-theme-mode="material"] body.loading {
+    background: #ffffff !important; /* White background during loading */
+  }
+
+  /* Override any blue gradients that might appear during loading */
+  html[data-theme="material"] .page-loading,
+  html[data-theme-mode="material"] .page-loading,
+  html[data-theme="material"] .loading-state,
+  html[data-theme-mode="material"] .loading-state {
+    background: #f8f9fa !important; /* Neutral background */
+    background-image: none !important; /* Remove any gradients */
+  }
+
+  /* Enhanced stat labels and widget labels */
+  html[data-theme="material"] .stat-label,
+  html[data-theme-mode="material"] .stat-label,
+  html[data-theme="material"] .widget .widget-label,
+  html[data-theme-mode="material"] .widget .widget-label {
+    font-size: 13px !important;
+    font-weight: var(--techcloud-font-weight-medium) !important;
+    color: var(--techcloud-text-secondary) !important;
+    margin-bottom: var(--techcloud-spacing-sm) !important;
+    font-family: var(--techcloud-font-family) !important;
+    text-transform: uppercase !important;
+    width: inherit !important;
   }
 
   /* Remove empty space from spacer widgets */
@@ -4220,7 +4697,7 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 1% !important;
-    margin-top: 2px !important;
+    margin-top: 2% !important;
     margin-right: 5% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
