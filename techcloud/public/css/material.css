@@ -346,74 +346,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     padding-right: 0 !important;
   }
   
-  /* Shortcut Widget Cards - Professional Header Style (Like Second Image) */
-  html[data-theme="material"] .widget.shortcut-widget-box,
-  html[data-theme-mode="material"] .widget.shortcut-widget-box {
-    background: var(--techcloud-white) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    border: 1px solid rgba(0, 0, 0, 0.04) !important;
-    transition: all 0.3s ease !important;
-  }
 
-  html[data-theme="material"] .widget.shortcut-widget-box:hover,
-  html[data-theme-mode="material"] .widget.shortcut-widget-box:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 137, 255, 0.2) !important;
-  }
-
-  /* Shortcut Widget Head - FULL Light Blue Header Section (Like Second Image) */
-  html[data-theme="material"] .widget.shortcut-widget-box .widget-head,
-  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head {
-    background: #E3F2FD !important;
-    background: #F0F8FF !important;
-    padding: 16px 20px !important;
-    margin: 0 !important;
-    border-bottom: 3px solid #0089FF !important;
-    border-bottom-width: 3px !important;
-    border-bottom-style: solid !important;
-    border-bottom-color: #0089FF !important;
-    position: relative !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    border-top-left-radius: 12px !important;
-    border-top-right-radius: 12px !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-
-  /* Shortcut Widget Title - Uppercase, Dark Gray */
-  html[data-theme="material"] .widget.shortcut-widget-box .widget-head .widget-title,
-  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title {
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: #333333 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    margin: 0 !important;
-    line-height: 1.4 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-  }
-
-  html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget.shortcut-widget-box .widget-head .widget-title i {
-    color: #0089FF !important;
-    margin-right: 8px !important;
-  }
-
-  /* Shortcut Widget Body - White Section */
-  html[data-theme="material"] .widget.shortcut-widget-box .widget-body,
-  html[data-theme-mode="material"] .widget.shortcut-widget-box .widget-body {
-    background: var(--techcloud-white) !important;
-    padding: 20px !important;
-    margin: 0 !important;
-  }
-  
   /* html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .widget-body {
     padding: 8px 16px 16px 16px;
   } */
@@ -691,11 +624,439 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     border-radius: 4px;
   }
   
-  /* .ellipsis, .awesomplete > [role=listbox] > li, .awesomplete > [role=listbox] > [role=option], .widget.shortcut-widget-box .indicator-pill 
-  {
-    overflow: visible;
-    
-  } */
+  /* Beautiful Card Container for All Applicable Sections */
+  /* Elegant card container for all widget groups (shortcuts, reports, charts, etc.) */
+  html[data-theme="material"] .widget-group,
+  html[data-theme-mode="material"] .widget-group {
+    background: linear-gradient(135deg, var(--techcloud-card-bg) 0%, rgba(255,255,255,0.95) 100%) !important;
+    border: 1px solid rgba(0, 137, 255, 0.15) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 137, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    margin-bottom: 32px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  /* Subtle inner glow effect */
+  html[data-theme="material"] .widget-group::before,
+  html[data-theme-mode="material"] .widget-group::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 2px !important;
+    background: linear-gradient(90deg, #0089FF, #00D4FF, #0089FF) !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Beautiful gradient header for all sections */
+  html[data-theme="material"] .widget-group .widget-group-head,
+  html[data-theme-mode="material"] .widget-group .widget-group-head {
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #1a202c 100%) !important;
+    border-radius: 16px 16px 0 0 !important;
+    padding: 20px 28px !important;
+    margin-bottom: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Animated background pattern in header */
+  html[data-theme="material"] .widget-group .widget-group-head::after,
+  html[data-theme-mode="material"] .widget-group .widget-group-head::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100px !important;
+    height: 100px !important;
+    background: radial-gradient(circle, rgba(0, 137, 255, 0.1) 0%, transparent 70%) !important;
+    border-radius: 50% !important;
+    transform: translate(30px, -30px) !important;
+  }
+
+  /* Elegant title styling */
+  html[data-theme="material"] .widget-group .widget-group-title,
+  html[data-theme-mode="material"] .widget-group .widget-group-title {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Add section-specific icons */
+  html[data-theme="material"] .widget-group .widget-group-title:contains("Your Shortcuts")::before,
+  html[data-theme-mode="material"] .widget-group .widget-group-title:contains("Your Shortcuts")::before {
+    content: "⚡" !important;
+    margin-right: 10px !important;
+    font-size: 20px !important;
+    opacity: 0.9 !important;
+  }
+
+  html[data-theme="material"] .widget-group .widget-group-title:contains("Reports")::before,
+  html[data-theme-mode="material"] .widget-group .widget-group-title:contains("Reports")::before {
+    content: "📊" !important;
+    margin-right: 10px !important;
+    font-size: 20px !important;
+    opacity: 0.9 !important;
+  }
+
+  html[data-theme="material"] .widget-group .widget-group-title:contains("Masters")::before,
+  html[data-theme-mode="material"] .widget-group .widget-group-title:contains("Masters")::before {
+    content: "🏗️" !important;
+    margin-right: 10px !important;
+    font-size: 20px !important;
+    opacity: 0.9 !important;
+  }
+
+  /* Beautiful card body for all sections */
+  html[data-theme="material"] .widget-group-body,
+  html[data-theme-mode="material"] .widget-group-body {
+    display: block !important;
+    padding: 24px 28px !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%) !important;
+    border-radius: 0 !important;
+    border: none !important;
+    position: relative !important;
+  }
+
+  /* Subtle background pattern in card body */
+  html[data-theme="material"] .widget-group-body::before,
+  html[data-theme-mode="material"] .widget-group-body::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(0, 137, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(0, 212, 255, 0.03) 0%, transparent 50%) !important;
+    pointer-events: none !important;
+  }
+
+  /* Section-specific accent colors and effects */
+  /* Shortcuts section - Enhanced Blue theme */
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")),
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) {
+    border-color: rgba(0, 137, 255, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(0, 137, 255, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts"))::before,
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts"))::before {
+    background: linear-gradient(90deg, #0089FF, #00D4FF, #0089FF) !important;
+  }
+
+  /* Reports section - Purple theme */
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Reports")),
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Reports")) {
+    border-color: rgba(147, 51, 234, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(147, 51, 234, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Reports"))::before,
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Reports"))::before {
+    background: linear-gradient(90deg, #9333ea, #a855f7, #9333ea) !important;
+  }
+
+  /* Masters section - Green theme */
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Masters")),
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Masters")) {
+    border-color: rgba(34, 197, 94, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(34, 197, 94, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Masters"))::before,
+  html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Masters"))::before {
+    background: linear-gradient(90deg, #22c55e, #16a34a, #22c55e) !important;
+  }
+
+  /* Beautiful shortcut containers as enhanced list items */
+  html[data-theme="material"] div[shortcut_name],
+  html[data-theme-mode="material"] div[shortcut_name] {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: list-item !important;
+    list-style-type: "🔹 " !important; /* Beautiful diamond bullet */
+    list-style-position: inside !important;
+    margin-bottom: 12px !important;
+    padding-left: 0 !important;
+    border-left: 3px solid transparent !important;
+    position: relative !important;
+  }
+
+  /* Remove margin from the last shortcut */
+  html[data-theme="material"] div[shortcut_name]:last-child,
+  html[data-theme-mode="material"] div[shortcut_name]:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Beautiful hover effect with multiple animations */
+  html[data-theme="material"] div[shortcut_name]:hover,
+  html[data-theme-mode="material"] div[shortcut_name]:hover {
+    background: linear-gradient(135deg, rgba(0, 137, 255, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%) !important;
+    list-style-type: "🚀 " !important; /* Rocket emoji on hover */
+    border-left-color: #0089FF !important;
+    transform: translateX(4px) !important;
+    box-shadow: 0 4px 12px rgba(0, 137, 255, 0.15) !important;
+  }
+
+  /* Subtle active/pressed state */
+  html[data-theme="material"] div[shortcut_name]:active,
+  html[data-theme-mode="material"] div[shortcut_name]:active {
+    transform: translateX(2px) scale(0.98) !important;
+    transition: all 0.1s ease !important;
+  }
+
+  /* Hide the widget wrapper inside shortcuts */
+  html[data-theme="material"] div[shortcut_name] .widget,
+  html[data-theme-mode="material"] div[shortcut_name] .widget {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    display: block !important; /* Remove list-item from inner widget */
+  }
+
+  /* Beautiful shortcut content styling */
+  html[data-theme="material"] div[shortcut_name] .widget-head,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-head {
+    background: transparent !important;
+    border: none !important;
+    padding: 12px 20px 12px 0 !important; /* Generous padding */
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-height: 48px !important; /* Comfortable touch target */
+    position: relative !important;
+  }
+
+  /* Enhanced shortcut title styling */
+  html[data-theme="material"] div[shortcut_name] .widget-head .widget-title,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-head .widget-title {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--techcloud-text-primary) !important;
+    text-transform: none !important;
+    cursor: pointer !important;
+    display: inline !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+    line-height: 1.5 !important;
+    white-space: nowrap !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    transition: color 0.3s ease !important;
+  }
+
+  /* Color change on hover for title */
+  html[data-theme="material"] div[shortcut_name]:hover .widget-head .widget-title,
+  html[data-theme-mode="material"] div[shortcut_name]:hover .widget-head .widget-title {
+    color: #0089FF !important;
+  }
+
+  /* Hide default icons for cleaner list appearance */
+  html[data-theme="material"] div[shortcut_name] .widget-head .widget-title svg,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-head .widget-title svg {
+    display: none !important;
+  }
+
+  /* Style control area (status pills) in list items */
+  html[data-theme="material"] div[shortcut_name] .widget-head .widget-control,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-head .widget-control {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 16px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Beautiful status pills with enhanced styling */
+  html[data-theme="material"] div[shortcut_name] .indicator-pill,
+  html[data-theme-mode="material"] div[shortcut_name] .indicator-pill {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 6px 12px !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+    color: white !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    box-shadow: 0 2px 4px rgba(72, 187, 120, 0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Enhanced pill on hover */
+  html[data-theme="material"] div[shortcut_name]:hover .indicator-pill,
+  html[data-theme-mode="material"] div[shortcut_name]:hover .indicator-pill {
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(72, 187, 120, 0.3) !important;
+  }
+
+  /* Different colors for different statuses */
+  html[data-theme="material"] div[shortcut_name] .indicator-pill.gray,
+  html[data-theme-mode="material"] div[shortcut_name] .indicator-pill.gray {
+    background: linear-gradient(135deg, #a0aec0 0%, #718096 100%) !important;
+    box-shadow: 0 2px 4px rgba(160, 174, 192, 0.2) !important;
+  }
+
+  html[data-theme="material"] div[shortcut_name]:hover .indicator-pill.gray,
+  html[data-theme-mode="material"] div[shortcut_name]:hover .indicator-pill.gray {
+    box-shadow: 0 4px 8px rgba(160, 174, 192, 0.3) !important;
+  }
+
+  /* Hide empty widget body and footer for cleaner list appearance */
+  html[data-theme="material"] div[shortcut_name] .widget-body,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-body,
+  html[data-theme="material"] div[shortcut_name] .widget-footer,
+  html[data-theme-mode="material"] div[shortcut_name] .widget-footer {
+    display: none !important;
+  }
+
+  /* Beautiful card styling for onboarding widgets */
+  html[data-theme="material"] div[onboarding_name],
+  html[data-theme-mode="material"] div[onboarding_name] {
+    background: linear-gradient(135deg, var(--techcloud-card-bg) 0%, rgba(255,255,255,0.95) 100%) !important;
+    border: 1px solid rgba(255, 193, 7, 0.2) !important; /* Yellow/gold accent for onboarding */
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(255, 193, 7, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    margin-bottom: 32px !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  /* Top accent stripe for onboarding */
+  html[data-theme="material"] div[onboarding_name]::before,
+  html[data-theme-mode="material"] div[onboarding_name]::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b) !important; /* Warm yellow gradient */
+    opacity: 0.9 !important;
+  }
+
+  /* Onboarding widget styling */
+  html[data-theme="material"] div[onboarding_name] .widget,
+  html[data-theme-mode="material"] div[onboarding_name] .widget {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  /* Onboarding header styling */
+  html[data-theme="material"] div[onboarding_name] .widget-head,
+  html[data-theme-mode="material"] div[onboarding_name] .widget-head {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important; /* Light yellow gradient */
+    padding: 20px 24px !important;
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2) !important;
+  }
+
+  /* Onboarding title styling */
+  html[data-theme="material"] div[onboarding_name] .widget-title,
+  html[data-theme-mode="material"] div[onboarding_name] .widget-title {
+    color: #92400e !important; /* Dark brown text */
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Onboarding subtitle styling */
+  html[data-theme="material"] div[onboarding_name] .widget-subtitle,
+  html[data-theme-mode="material"] div[onboarding_name] .widget-subtitle {
+    color: #a16207 !important; /* Medium brown */
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Onboarding dismiss button styling */
+  html[data-theme="material"] div[onboarding_name] .btn-secondary,
+  html[data-theme-mode="material"] div[onboarding_name] .btn-secondary {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+    color: #92400e !important;
+    transition: all 0.3s ease !important;
+  }
+
+  html[data-theme="material"] div[onboarding_name] .btn-secondary:hover,
+  html[data-theme-mode="material"] div[onboarding_name] .btn-secondary:hover {
+    background: rgba(245, 158, 11, 0.2) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Onboarding body styling */
+  html[data-theme="material"] div[onboarding_name] .widget-body,
+  html[data-theme-mode="material"] div[onboarding_name] .widget-body {
+    padding: 24px !important;
+    background: rgba(255, 251, 235, 0.5) !important; /* Very light yellow background */
+  }
+
+  /* Remove empty space from spacer widgets */
+  html[data-theme="material"] .widget.spacer,
+  html[data-theme-mode="material"] .widget.spacer {
+    display: none !important; /* Completely hide spacer widgets */
+  }
+
+  /* Responsive adjustments for card layout */
+  @media (max-width: 768px) {
+    html[data-theme="material"] .widget-group,
+    html[data-theme-mode="material"] .widget-group {
+      margin-bottom: 16px !important;
+      border-radius: 8px !important;
+    }
+
+    html[data-theme="material"] .widget-group .widget-group-head,
+    html[data-theme-mode="material"] .widget-group .widget-group-head {
+      padding: 12px 16px !important;
+      border-radius: 8px 8px 0 0 !important;
+    }
+
+    html[data-theme="material"] .widget-group-body,
+    html[data-theme-mode="material"] .widget-group-body {
+      padding: 12px 16px !important;
+    }
+
+    html[data-theme="material"] div[shortcut_name] .widget-head,
+    html[data-theme-mode="material"] div[shortcut_name] .widget-head {
+      padding: 6px 8px 6px 0 !important;
+    }
+
+    html[data-theme="material"] div[shortcut_name] .widget-head .widget-title,
+    html[data-theme-mode="material"] div[shortcut_name] .widget-head .widget-title {
+      font-size: 13px !important;
+    }
+  }
+
   /* Indicators and Badges */
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill,
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .indicator-pill-right,
@@ -3785,16 +4146,16 @@ html[data-theme-mode="material"] .layout-side-section .sidebar-item-container {
 }
 
 /* Main Content Area - Same height as sidebar, positioned below header with proper spacing */
-/* Base: Mobile-first, no margin-left */
+/* Base: Layout main section styling */
 html[data-theme="material"] .layout-main-section,
 html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
-  margin-left: 0px !important;
-  margin-top: 0px !important;
+  margin-left: 1% !important;
+  margin-top: -5% !important;
   width: 100% !important;
   max-width: 100% !important;
-  height: calc(-44px + 100vh) !important;
+  height: calc(100vh - 44px) !important;
   overflow-y: auto !important;
 }
 
@@ -3813,11 +4174,12 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 1% !important;
-    margin-right: 1% !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    margin-right: 0 !important;
+    width: calc(100% - 1%) !important;
+    max-width: calc(100% - 1%) !important;
     height: calc(100vh - 44px) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 }
 
@@ -3827,11 +4189,43 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 1% !important;
-    margin-right: 1% !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    margin-right: 0 !important;
+    width: calc(100% - 1%) !important;
+    max-width: calc(100% - 1%) !important;
     height: calc(100vh - 44px) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Tablet and up - First responsive adjustment */
+@media (min-width: 768px) {
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 1% !important;
+    margin-top: 0px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(-44px + 100vh) !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* Tablet and up - Second responsive adjustment with right margin */
+@media (min-width: 768px) {
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 1% !important;
+    margin-top: 2px !important;
+    margin-right: 5% !important;
+    max-width: 100% !important;
+    height: calc(-44px + 100vh) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
   }
 }
 
@@ -4249,9 +4643,10 @@ html[data-theme-mode="material"] .card-header {
   min-height: 48px !important; /* Minimum height for consistent appearance */
   display: flex !important;
   align-items: center !important;
+  gap: 8px !important; /* Space between title and controls */
 }
 
-/* Card Header Title Styling */
+/* Card Header Title Styling - Use full widget-header width, truncate only when exceeding header width */
 html[data-theme="material"] .widget .widget-head .widget-title,
 html[data-theme-mode="material"] .widget .widget-head .widget-title {
   font-size: 16px !important;
@@ -4261,6 +4656,15 @@ html[data-theme-mode="material"] .widget .widget-head .widget-title {
   line-height: 1.4 !important;
   letter-spacing: -0.02em !important;
   padding-left: 1% !important;
+  padding-right: 8px !important;
+  white-space: nowrap !important; /* Prevent text wrapping */
+  text-overflow: ellipsis !important; /* Show ellipsis when text is truncated */
+  max-width: 100% !important; /* Don't exceed widget-header width */
+  overflow: hidden !important; /* Hide overflow based on widget-header width */
+  vertical-align: middle !important;
+  flex: 1 1 0% !important; /* Grow to fill available space in widget-head, start from 0% */
+  min-width: 0 !important; /* Allow truncation when content exceeds widget-header width */
+  box-sizing: border-box !important; /* Include padding in width calculation */
 }
 
 /* Widget Subtitle Styling */
@@ -4284,6 +4688,12 @@ html[data-theme-mode="material"] .widget .widget-head .widget-control {
   align-self: flex-start !important;
   color: var(--text-muted) !important;
   padding: 1% !important;
+}
+
+/* Number Widget Box - Card Actions Styling */
+html[data-theme="material"] .widget.number-widget-box .widget-head .card-actions,
+html[data-theme-mode="material"] .widget.number-widget-box .widget-head .card-actions {
+  margin-top: 1% !important;
 }
 
 /* Other Card Titles */
@@ -5029,20 +5439,56 @@ html[data-theme-mode="material"] .widget-group .widget:last-child {
   margin-bottom: 0 !important;
 }
 
-/* Links Widget Box - Enhanced styling */
+/* Links Widget Box - Match Shortcut Styling (Reports & Masters) */
 html[data-theme="material"] .widget.links-widget-box,
 html[data-theme-mode="material"] .widget.links-widget-box {
   background: var(--techcloud-white) !important;
   border-radius: 12px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="material"] .widget.links-widget-box:hover,
+html[data-theme-mode="material"] .widget.links-widget-box:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 137, 255, 0.2) !important;
 }
 
 html[data-theme="material"] .widget.links-widget-box .widget-head,
 html[data-theme-mode="material"] .widget.links-widget-box .widget-head {
-  background: linear-gradient(135deg, var(--techcloud-light-blue) 0%, transparent 100%) !important;
-  padding: 16px 24px !important;
-  border-radius: 12px 12px 0 0 !important;
-  border-bottom: 2px solid var(--techcloud-primary-blue) !important;
+  background: #F0F8FF !important;
+  padding: 16px 20px !important;
+  margin: 0 !important;
+  border-bottom: 3px solid #0089FF !important;
+  position: relative !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+html[data-theme="material"] .widget.links-widget-box .widget-head .widget-title,
+html[data-theme-mode="material"] .widget.links-widget-box .widget-head .widget-title {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #333333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+html[data-theme="material"] .widget.links-widget-box .widget-body,
+html[data-theme-mode="material"] .widget.links-widget-box .widget-body {
+  background: var(--techcloud-white) !important;
+  padding: 20px !important;
+  margin: 0 !important;
 }
 
 /* Colorful accent for different widget types */
@@ -5279,7 +5725,6 @@ html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
   margin-left: 1% !important;
-  margin-top: -5% !important;
   width: 100% !important;
   max-width: 100% !important;
   height: calc(100vh - 44px) !important;
@@ -5365,28 +5810,41 @@ html[data-theme-mode="material"] .widget .widget-body {
   flex-direction: column !important;
 }
 
-/* Link Items - Improved Spacing & Hierarchy */
+/* Link Items - Make Shortcuts Behave Like Links (Consolidated) */
 html[data-theme="material"] .widget-body .link-item,
-html[data-theme-mode="material"] .widget-body .link-item {
-  padding: 10px 12px !important;
-  margin-bottom: var(--spacing-xs) !important;
-  border-radius: var(--border-radius-sm) !important;
-  transition: all var(--transition-base) !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
+html[data-theme-mode="material"] .widget-body .link-item,
+html[data-theme="material"] .widget.links-widget-box .widget-body .link-item,
+html[data-theme-mode="material"] .widget.links-widget-box .widget-body .link-item {
+  padding: 12px 16px !important;
+  margin-bottom: 4px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
   color: var(--techcloud-text-primary) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  cursor: pointer !important; /* Make shortcuts behave like links */
+  text-decoration: none !important; /* Remove underline */
+  -webkit-tap-highlight-color: transparent !important; /* Remove tap highlight on mobile */
 }
 
+
 html[data-theme="material"] .widget-body .link-item:hover,
-html[data-theme-mode="material"] .widget-body .link-item:hover {
+html[data-theme-mode="material"] .widget-body .link-item:hover,
+html[data-theme="material"] .widget.links-widget-box .widget-body .link-item:hover,
+html[data-theme-mode="material"] .widget.links-widget-box .widget-body .link-item:hover {
   background-color: var(--techcloud-light-blue) !important;
+  border-color: var(--techcloud-primary-blue) !important;
   color: var(--techcloud-primary-blue) !important;
   transform: translateX(4px) !important;
-  padding-left: 16px !important;
+  box-shadow: 0 2px 8px rgba(0, 137, 255, 0.15) !important;
+  text-decoration: none !important; /* Ensure no underline on hover */
 }
+
 
 html[data-theme="material"] .widget-body .link-item:last-child,
 html[data-theme-mode="material"] .widget-body .link-item:last-child {
@@ -5472,24 +5930,16 @@ html[data-theme-mode="material"] .btn {
   transition: all var(--transition-base) !important;
 }
 
-/* Clickable Areas - Better Feedback */
+/* Clickable Areas - Better Feedback (Shortcuts are Links) */
 html[data-theme="material"] .standard-sidebar-item,
 html[data-theme-mode="material"] .standard-sidebar-item,
 html[data-theme="material"] .link-item,
-html[data-theme-mode="material"] .link-item {
-  cursor: pointer !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-
-/* Enterprise-Friendly Color Contrast */
+html[data-theme-mode="material"] .link-item,
 html[data-theme="material"] .widget-body .link-item,
 html[data-theme-mode="material"] .widget-body .link-item {
-  color: var(--techcloud-text-primary) !important;
-}
-
-html[data-theme="material"] .widget-body .link-item:hover,
-html[data-theme-mode="material"] .widget-body .link-item:hover {
-  color: var(--techcloud-primary-blue) !important;
+  cursor: pointer !important; /* Make shortcuts behave like links */
+  -webkit-tap-highlight-color: transparent !important;
+  text-decoration: none !important; /* Remove underline from links */
 }
 
 /* ============================================
@@ -5558,18 +6008,6 @@ html[data-theme-mode="material"] .widget-body .link-item:hover {
     width: calc(100% - 260px) !important;
   }
   
-  /* Layout main section - full width within container, no margin-top (container handles it) */
-  html[data-theme="material"] .layout-main-section,
-  html[data-theme-mode="material"] .layout-main-section,
-  html[data-theme="material"] .layout-main-section-wrapper,
-  html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-left: 0px !important;
-    margin-top: 0px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: calc(-44px + 100vh) !important;
-    overflow-y: auto !important;
-  }
 }
 
 /* Desktop - Workspaces page specific styling */
@@ -5586,6 +6024,16 @@ html[data-theme-mode="material"] .widget-body .link-item:hover {
   }
 }
 
+/* Workspaces - Codex Editor Redactor Flexbox Layout */
+html[data-theme="material"] [data-page-route="Workspaces"] .codex-editor .codex-editor__redactor,
+html[data-theme-mode="material"] [data-page-route="Workspaces"] .codex-editor .codex-editor__redactor {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: row !important;
+  /* margin: 0px -7px; */
+  /* padding-bottom: 20px !important; */
+}
+
 /* Tablet and mobile - Sidebar adjustments */
 @media (max-width: 991px) {
   /* Sidebar width removed - using default/other CSS */
@@ -5595,8 +6043,10 @@ html[data-theme-mode="material"] .widget-body .link-item:hover {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 0 !important;
+    margin-right: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
+    overflow-x: hidden !important;
   }
   
   html[data-theme="material"] .widget-group,
