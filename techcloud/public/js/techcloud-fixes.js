@@ -174,7 +174,140 @@
 	}
 
 	// ============================================
-	// Fix 3: Handle 404 errors for chart_widget module gracefully
+	// Fix 3: Modal ARIA Accessibility Fix
+	// Prevents aria-hidden focus violations by managing focus and inert attributes when modals are hidden
+	// ============================================
+	function patchModalAriaAccessibility() {
+		// Wait for jQuery and modal events to be available
+		if (!window.jQuery || !window.frappe) {
+			setTimeout(patchModalAriaAccessibility, 100);
+			return;
+		}
+
+		// Check if already patched
+		if (window.__techcloud_modal_aria_patched) return;
+		window.__techcloud_modal_aria_patched = true;
+
+		// Helper function to check if browser supports inert attribute
+		const supportsInert = () => {
+			return 'inert' in document.createElement('div');
+		};
+
+		// Handle modal show events - prepare for proper focus management
+		$(document).on('show.bs.modal', '.modal', function(e) {
+			const activeElement = document.activeElement;
+			if (activeElement && !activeElement.closest('.modal')) {
+				window.__techcloud_last_focused_element = activeElement;
+			}
+		});
+
+		// Handle modal hide events to prevent aria-hidden focus violations
+		$(document).on('hidden.bs.modal', '.modal', function(e) {
+			const modal = $(this);
+
+			// Find any focused elements within this modal
+			const focusedElement = modal.find(':focus').get(0);
+
+			if (focusedElement) {
+				// Remove focus from the element inside the hidden modal
+				focusedElement.blur();
+
+				// Use setTimeout to ensure blur takes effect
+				setTimeout(() => {
+					// Double-check that focus was actually removed
+					if (document.activeElement === focusedElement) {
+						document.activeElement.blur();
+					}
+
+					// If there's a previously focused element stored, restore it
+					if (window.__techcloud_last_focused_element &&
+						document.contains(window.__techcloud_last_focused_element) &&
+						!window.__techcloud_last_focused_element.closest('.modal')) {
+						try {
+							window.__techcloud_last_focused_element.focus();
+						} catch (error) {
+							// Silently handle focus errors
+							console.warn('Techcloud: Could not restore focus to previous element');
+						}
+					} else {
+						// Fallback: focus on body if no previous element
+						try {
+							document.body.focus();
+						} catch (error) {
+							// Last resort: blur any remaining focus
+							if (document.activeElement) {
+								document.activeElement.blur();
+							}
+						}
+					}
+				}, 10);
+			}
+
+			// Additional safety: ensure all focusable elements in hidden modal are inert
+			setTimeout(() => {
+				const hiddenModals = document.querySelectorAll('.modal[aria-hidden="true"], .modal[style*="display: none"]');
+
+				hiddenModals.forEach(hiddenModal => {
+					// Find all focusable elements in the hidden modal
+					const focusableElements = hiddenModal.querySelectorAll(
+						'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [contenteditable]'
+					);
+
+					focusableElements.forEach(element => {
+						// If element still has focus, remove it
+						if (document.activeElement === element) {
+							element.blur();
+						}
+
+						// Add inert attribute if supported (better than aria-hidden for focus management)
+						if (supportsInert() && !element.hasAttribute('inert')) {
+							element.setAttribute('inert', '');
+							element.setAttribute('data-techcloud-inert', 'true');
+						}
+					});
+
+					// Also handle modal backdrop
+					const backdrop = document.querySelector('.modal-backdrop');
+					if (backdrop && document.activeElement === backdrop) {
+						backdrop.blur();
+					}
+				});
+			}, 50);
+		});
+
+		// Handle modal show events - remove inert attributes when modal becomes visible
+		$(document).on('shown.bs.modal', '.modal', function(e) {
+			const modal = $(this);
+
+			// Remove inert attributes from elements within the now-visible modal
+			const inertElements = modal.find('[data-techcloud-inert="true"]');
+			inertElements.each(function() {
+				this.removeAttribute('inert');
+				this.removeAttribute('data-techcloud-inert');
+			});
+		});
+
+		// Additional safety: periodically check for aria-hidden violations
+		setInterval(() => {
+			const hiddenModals = document.querySelectorAll('.modal[aria-hidden="true"]');
+
+			hiddenModals.forEach(modal => {
+				const focusedElements = modal.querySelectorAll(':focus');
+
+				if (focusedElements.length > 0) {
+					console.warn('Techcloud: Found focused elements in aria-hidden modal, removing focus');
+					focusedElements.forEach(element => {
+						element.blur();
+					});
+				}
+			});
+		}, 1000); // Check every second
+
+		console.log("Techcloud: Enhanced modal ARIA accessibility fix applied");
+	}
+
+	// ============================================
+	// Fix 4: Handle 404 errors for chart_widget module gracefully
 	// Prevents TypeError when AssetManager tries to process missing modules
 	// ============================================
 	function patchAssetManager() {
@@ -277,6 +410,9 @@
 
 		// Patch modal dialog
 		patchModalDialog();
+
+		// Patch modal ARIA accessibility
+		patchModalAriaAccessibility();
 	}
 
 	// Run when DOM is ready
