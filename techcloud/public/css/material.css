@@ -3813,7 +3813,21 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-left: 1% !important;
-    margin-top: -5% !important;
+    margin-right: 1% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100vh - 44px) !important;
+    overflow-y: auto !important;
+  }
+}
+
+@media (min-width: 992px) {
+  html[data-theme="material"] .layout-main-section,
+  html[data-theme-mode="material"] .layout-main-section,
+  html[data-theme="material"] .layout-main-section-wrapper,
+  html[data-theme-mode="material"] .layout-main-section-wrapper {
+    margin-left: 1% !important;
+    margin-right: 1% !important;
     width: 100% !important;
     max-width: 100% !important;
     height: calc(100vh - 44px) !important;
@@ -5706,4 +5720,76 @@ html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item:hov
 html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item:hover *,
 html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item:hover * {
   color: #0089FF !important; /* Blue text on hover */
+}
+
+/* ============================================
+   MODAL DIALOG FIXES FOR TECHCLOUD THEME
+   ============================================ */
+
+/* Ensure modals appear above all other elements */
+html[data-theme="material"] .modal,
+html[data-theme-mode="material"] .modal,
+html[data-theme="material"] .modal.show,
+html[data-theme-mode="material"] .modal.show {
+  z-index: 2000 !important;
+  display: block !important;
+  position: fixed !important;
+  overflow: visible !important;
+}
+
+/* Ensure modal backdrop appears correctly */
+html[data-theme="material"] .modal-backdrop,
+html[data-theme-mode="material"] .modal-backdrop,
+html[data-theme="material"] .modal-backdrop.show,
+html[data-theme-mode="material"] .modal-backdrop.show {
+  z-index: 1999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  opacity: 0.8 !important;
+}
+
+/* Ensure msgprint dialogs work correctly */
+html[data-theme="material"] .modal.msgprint-dialog,
+html[data-theme-mode="material"] .modal.msgprint-dialog,
+html[data-theme="material"] .modal[style*="z-index: 2000"],
+html[data-theme-mode="material"] .modal[style*="z-index: 2000"] {
+  z-index: 2000 !important;
+  display: block !important;
+}
+
+/* Ensure modal dialog is visible and positioned correctly */
+html[data-theme="material"] .modal-dialog,
+html[data-theme-mode="material"] .modal-dialog {
+  position: relative !important;
+  z-index: 2001 !important;
+  margin: 30px auto !important;
+  max-width: 500px !important;
+}
+
+/* Ensure modal content is visible */
+html[data-theme="material"] .modal-content,
+html[data-theme-mode="material"] .modal-content {
+  position: relative !important;
+  z-index: 2002 !important;
+  background-color: #fff !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Prevent body overflow from hiding modals */
+html[data-theme="material"] body.modal-open,
+html[data-theme-mode="material"] body.modal-open {
+  overflow: hidden !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure navbar doesn't interfere with modals */
+html[data-theme="material"] .navbar.navbar-light,
+html[data-theme-mode="material"] .navbar.navbar-light {
+  z-index: 1000 !important; /* Keep navbar below modals */
 }

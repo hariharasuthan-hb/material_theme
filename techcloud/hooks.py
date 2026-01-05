@@ -35,7 +35,8 @@ app_include_js = [
     "/assets/techcloud/js/theme.js",
     "/assets/techcloud/js/techcloud-icons.js",
     "/assets/techcloud/js/icon-debug.js",
-    "/assets/techcloud/js/techcloud-unified-header.js"
+    "/assets/techcloud/js/techcloud-unified-header.js",
+    "/assets/techcloud/js/techcloud-fixes.js"
 ]
 
 # include js, css files in header of web template
