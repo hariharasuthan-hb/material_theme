@@ -1394,3 +1394,149 @@ html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard {
     scrollbar-width: thin !important;
     scrollbar-color: #667eea rgba(0, 0, 0, 0.05) !important;
 }
+
+/* ============================================
+   MATERIAL THEME - PROFESSIONAL FILTER BAR STYLING
+   ============================================ */
+
+/* Filter container - Query reports and form sections */
+html[data-theme="material"] .page-form,
+html[data-theme="material"] .form-section,
+html[data-theme="material"] .form-dashboard-section,
+html[data-theme-mode="material"] .page-form,
+html[data-theme-mode="material"] .form-section,
+html[data-theme-mode="material"] .form-dashboard-section {
+    background: linear-gradient(135deg, #f8fbff, #eef4ff) !important;
+    border-radius: 14px !important;
+    padding: 18px 20px !important;
+    margin-bottom: 20px !important;
+    box-shadow: 0 8px 22px rgba(30, 60, 120, 0.08) !important;
+}
+
+/* Grid spacing for form controls */
+html[data-theme="material"] .page-form .frappe-control,
+html[data-theme="material"] .form-dashboard-section .frappe-control,
+html[data-theme-mode="material"] .page-form .frappe-control,
+html[data-theme-mode="material"] .form-dashboard-section .frappe-control {
+    margin-bottom: 12px !important;
+}
+
+/* Input / Select styling */
+html[data-theme="material"] .page-form input,
+html[data-theme="material"] .page-form select,
+html[data-theme="material"] .page-form .input-with-feedback,
+html[data-theme="material"] .page-form .control-input,
+html[data-theme-mode="material"] .page-form input,
+html[data-theme-mode="material"] .page-form select,
+html[data-theme-mode="material"] .page-form .input-with-feedback,
+html[data-theme-mode="material"] .page-form .control-input {
+    background: #ffffff !important;
+    border-radius: 10px !important;
+    border: 1px solid #d6e0f0 !important;
+    padding: 10px 14px !important;
+    height: 42px !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Focus effect for inputs */
+html[data-theme="material"] .page-form input:focus,
+html[data-theme="material"] .page-form select:focus,
+html[data-theme-mode="material"] .page-form input:focus,
+html[data-theme-mode="material"] .page-form select:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18) !important;
+    outline: none !important;
+}
+
+/* Label styling */
+html[data-theme="material"] .page-form label,
+html[data-theme-mode="material"] .page-form label {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+    margin-bottom: 6px !important;
+}
+
+/* Dropdown arrow styling */
+html[data-theme="material"] .page-form select,
+html[data-theme-mode="material"] .page-form select {
+    background-image:
+        linear-gradient(45deg, transparent 50%, #64748b 50%),
+        linear-gradient(135deg, #64748b 50%, transparent 50%) !important;
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px) !important;
+    background-size: 5px 5px !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Checkbox - Material Design style */
+html[data-theme="material"] .page-form input[type="checkbox"],
+html[data-theme-mode="material"] .page-form input[type="checkbox"] {
+    accent-color: #2563eb !important;
+    width: 16px !important;
+    height: 16px !important;
+    cursor: pointer !important;
+}
+
+/* Checkbox label styling */
+html[data-theme="material"] .page-form .checkbox label,
+html[data-theme-mode="material"] .page-form .checkbox label {
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+}
+
+/* Readonly field styling */
+html[data-theme="material"] .page-form .control-input.readonly,
+html[data-theme-mode="material"] .page-form .control-input.readonly {
+    background: #f1f5f9 !important;
+    border-style: dashed !important;
+    color: #475569 !important;
+}
+
+/* ============================================
+   OPTIONAL: COLOR-CODED FIELD BORDERS
+   ============================================ */
+
+/* Company field - Blue accent */
+html[data-theme="material"] .page-form [data-fieldname="company"] input,
+html[data-theme="material"] .page-form [data-fieldname="company"] select,
+html[data-theme-mode="material"] .page-form [data-fieldname="company"] input,
+html[data-theme-mode="material"] .page-form [data-fieldname="company"] select {
+    border-left: 4px solid #3b82f6 !important;
+}
+
+/* Asset Category field - Green accent */
+html[data-theme="material"] .page-form [data-fieldname="asset_category"] input,
+html[data-theme="material"] .page-form [data-fieldname="asset_category"] select,
+html[data-theme-mode="material"] .page-form [data-fieldname="asset_category"] input,
+html[data-theme-mode="material"] .page-form [data-fieldname="asset_category"] select {
+    border-left: 4px solid #10b981 !important;
+}
+
+/* Cost Center field - Amber accent */
+html[data-theme="material"] .page-form [data-fieldname="cost_center"] input,
+html[data-theme="material"] .page-form [data-fieldname="cost_center"] select,
+html[data-theme-mode="material"] .page-form [data-fieldname="cost_center"] input,
+html[data-theme-mode="material"] .page-form [data-fieldname="cost_center"] select {
+    border-left: 4px solid #f59e0b !important;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    html[data-theme="material"] .page-form,
+    html[data-theme-mode="material"] .page-form {
+        padding: 14px !important;
+    }
+
+    html[data-theme="material"] .page-form input,
+    html[data-theme="material"] .page-form select,
+    html[data-theme-mode="material"] .page-form input,
+    html[data-theme-mode="material"] .page-form select {
+        height: 40px !important;
+    }
+}
