@@ -27,7 +27,10 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # CSS is always loaded but scoped with html[data-theme="material"] selectors
 # JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
-app_include_css = ["/assets/techcloud/css/material.css"]
+app_include_css = [
+    "/assets/techcloud/css/material.css",
+    "/assets/techcloud/css/dashboard-fixes.css"
+]
 app_include_js = [
     "/assets/techcloud/js/fix-highlight.js",
     "/assets/techcloud/js/material.js",
