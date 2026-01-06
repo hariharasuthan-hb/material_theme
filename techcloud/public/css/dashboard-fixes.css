@@ -1395,148 +1395,700 @@ html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard {
     scrollbar-color: #667eea rgba(0, 0, 0, 0.05) !important;
 }
 
-/* ============================================
-   MATERIAL THEME - PROFESSIONAL FILTER BAR STYLING
-   ============================================ */
+/* =========================================
+   PROFESSIONAL FILTER BAR – MATERIAL STYLE
+   ========================================= */
 
-/* Filter container - Query reports and form sections */
-html[data-theme="material"] .page-form,
-html[data-theme="material"] .form-section,
-html[data-theme="material"] .form-dashboard-section,
-html[data-theme-mode="material"] .page-form,
-html[data-theme-mode="material"] .form-section,
-html[data-theme-mode="material"] .form-dashboard-section {
-    background: linear-gradient(135deg, #f8fbff, #eef4ff) !important;
-    border-radius: 14px !important;
-    padding: 18px 20px !important;
-    margin-bottom: 20px !important;
-    box-shadow: 0 8px 22px rgba(30, 60, 120, 0.08) !important;
+/* Filter container */
+.page-form,
+.form-section,
+.form-dashboard-section {
+    background: linear-gradient(135deg, #f8fbff, #eef4ff);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 22px rgba(30, 60, 120, 0.08);
 }
 
-/* Grid spacing for form controls */
-html[data-theme="material"] .page-form .frappe-control,
-html[data-theme="material"] .form-dashboard-section .frappe-control,
-html[data-theme-mode="material"] .page-form .frappe-control,
-html[data-theme-mode="material"] .form-dashboard-section .frappe-control {
-    margin-bottom: 12px !important;
+/* Grid spacing */
+.page-form .frappe-control,
+.form-dashboard-section .frappe-control {
+    margin-bottom: 12px;
 }
 
-/* Input / Select styling */
-html[data-theme="material"] .page-form input,
-html[data-theme="material"] .page-form select,
-html[data-theme="material"] .page-form .input-with-feedback,
-html[data-theme="material"] .page-form .control-input,
-html[data-theme-mode="material"] .page-form input,
-html[data-theme-mode="material"] .page-form select,
-html[data-theme-mode="material"] .page-form .input-with-feedback,
-html[data-theme-mode="material"] .page-form .control-input {
+/* Input / Select */
+.page-form input,
+.page-form select,
+.page-form .input-with-feedback,
+.page-form .control-input {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #d6e0f0;
+    padding: 10px 14px;
+    height: 42px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Focus effect */
+.page-form input:focus,
+.page-form select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+    outline: none;
+}
+
+/* Labels */
+.page-form label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+/* Dropdown arrow */
+.page-form select {
+    background-image:
+        linear-gradient(45deg, transparent 50%, #64748b 50%),
+        linear-gradient(135deg, #64748b 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+}
+
+/* Checkbox – material style */
+.page-form input[type="checkbox"] {
+    accent-color: #2563eb;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Checkbox label */
+.page-form .checkbox label {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Readonly fields */
+.page-form .control-input.readonly {
+    background: #f1f5f9;
+    border-style: dashed;
+    color: #475569;
+}
+
+/* =========================================
+   OPTIONAL: COLOR TAGS (PROFESSIONAL)
+   ========================================= */
+
+/* Company */
+[data-fieldname="company"] input {
+    border-left: 4px solid #3b82f6;
+}
+
+/* Asset Category */
+[data-fieldname="asset_category"] input {
+    border-left: 4px solid #10b981;
+}
+
+/* Cost Center */
+[data-fieldname="cost_center"] input {
+    border-left: 4px solid #f59e0b;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .page-form {
+        padding: 14px;
+    }
+
+    .page-form input,
+    .page-form select {
+        height: 40px;
+    }
+}
+
+/* =========================================
+   PROFESSIONAL CHECKBOX STYLING - ERPNext SAFE
+   ========================================= */
+
+/* Force checkbox visibility - override default appearance */
+.page-form input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 4px !important;
+    border: 1.6px solid #94a3b8 !important;   /* visible border */
     background: #ffffff !important;
-    border-radius: 10px !important;
-    border: 1px solid #d6e0f0 !important;
-    padding: 10px 14px !important;
-    height: 42px !important;
-    transition: all 0.25s ease !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03) !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: all 0.15s ease !important;
 }
 
-/* Focus effect for inputs */
-html[data-theme="material"] .page-form input:focus,
-html[data-theme="material"] .page-form select:focus,
-html[data-theme-mode="material"] .page-form input:focus,
-html[data-theme-mode="material"] .page-form select:focus {
-    border-color: #3b82f6 !important;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18) !important;
-    outline: none !important;
+/* Checked state - professional blue */
+.page-form input[type="checkbox"]:checked {
+    background: #2563eb !important;           /* professional blue */
+    border-color: #2563eb !important;
 }
 
-/* Label styling */
-html[data-theme="material"] .page-form label,
-html[data-theme-mode="material"] .page-form label {
+/* Check mark icon - clearly visible */
+.page-form input[type="checkbox"]:checked::after {
+    content: "✓" !important;
+    position: absolute !important;
+    color: #ffffff !important;
     font-size: 12px !important;
-    font-weight: 600 !important;
-    color: #475569 !important;
+    font-weight: 700 !important;
+    left: 3px !important;
+    top: -1px !important;
+}
+
+/* Label alignment & spacing - professional layout */
+.page-form .checkbox,
+.page-form .form-check {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-top: 6px !important;
     margin-bottom: 6px !important;
 }
 
-/* Dropdown arrow styling */
-html[data-theme="material"] .page-form select,
-html[data-theme-mode="material"] .page-form select {
-    background-image:
-        linear-gradient(45deg, transparent 50%, #64748b 50%),
-        linear-gradient(135deg, #64748b 50%, transparent 50%) !important;
-    background-position:
-        calc(100% - 20px) calc(1em + 2px),
-        calc(100% - 15px) calc(1em + 2px) !important;
-    background-size: 5px 5px !important;
-    background-repeat: no-repeat !important;
+/* Label text readability */
+.page-form .checkbox label {
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    color: #1f2937 !important;
+    cursor: pointer !important;
+    margin-bottom: 0 !important;
 }
 
-/* Checkbox - Material Design style */
-html[data-theme="material"] .page-form input[type="checkbox"],
-html[data-theme-mode="material"] .page-form input[type="checkbox"] {
-    accent-color: #2563eb !important;
-    width: 16px !important;
-    height: 16px !important;
+/* =========================================
+   DARK / MATERIAL THEME SAFE CHECKBOXES
+   ========================================= */
+
+[data-theme="material"] .page-form input[type="checkbox"],
+[data-theme-mode="material"] .page-form input[type="checkbox"] {
+    background: #020617 !important;
+    border-color: #475569 !important;
+}
+
+[data-theme="material"] .page-form input[type="checkbox"]:checked,
+[data-theme-mode="material"] .page-form input[type="checkbox"]:checked {
+    background: #38bdf8 !important;
+    border-color: #38bdf8 !important;
+}
+
+/* =========================================
+   OPTIONAL: HOVER FEEDBACK
+   ========================================= */
+
+.page-form input[type="checkbox"]:hover {
+    border-color: #2563eb !important;
+}
+
+[data-theme="material"] .page-form input[type="checkbox"]:hover,
+[data-theme-mode="material"] .page-form input[type="checkbox"]:hover {
+    border-color: #38bdf8 !important;
+}
+
+/* =========================================
+   PROFESSIONAL MODAL ACTION BUTTONS
+   ========================================= */
+
+/* Modal action container */
+.modal-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+/* Base button reset */
+.modal-actions .btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    color: #64748b !important;
+    transition: all 0.15s ease !important;
     cursor: pointer !important;
 }
 
-/* Checkbox label styling */
-html[data-theme="material"] .page-form .checkbox label,
-html[data-theme-mode="material"] .page-form .checkbox label {
-    font-weight: 600 !important;
-    color: #1f2937 !important;
+/* SVG icon sizing */
+.modal-actions .btn svg {
+    width: 16px !important;
+    height: 16px !important;
 }
 
-/* Readonly field styling */
-html[data-theme="material"] .page-form .control-input.readonly,
-html[data-theme-mode="material"] .page-form .control-input.readonly {
+/* Hover effect */
+.modal-actions .btn:hover {
     background: #f1f5f9 !important;
-    border-style: dashed !important;
+    color: #0f172a !important;
+}
+
+/* Active click */
+.modal-actions .btn:active {
+    transform: scale(0.96) !important;
+}
+
+/* Focus ring (accessibility) */
+.modal-actions .btn:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* Close button emphasis */
+.modal-actions .btn-modal-close:hover,
+.modal-actions .btn[data-action="close"]:hover {
+    background: #fee2e2 !important;
+    color: #dc2626 !important;
+}
+
+/* Minimize button subtle */
+.modal-actions .btn-modal-minimize:hover,
+.modal-actions .btn[data-action="minimize"]:hover {
+    background: #e0f2fe !important;
+    color: #0284c7 !important;
+}
+
+/* =========================================
+   DARK / MATERIAL THEME SUPPORT
+   ========================================= */
+
+[data-theme="material"] .modal-actions .btn,
+[data-theme-mode="material"] .modal-actions .btn {
+    color: #94a3b8 !important;
+}
+
+[data-theme="material"] .modal-actions .btn:hover,
+[data-theme-mode="material"] .modal-actions .btn:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #e5e7eb !important;
+}
+
+[data-theme="material"] .modal-actions .btn-modal-close:hover,
+[data-theme="material"] .modal-actions .btn[data-action="close"]:hover,
+[data-theme-mode="material"] .modal-actions .btn-modal-close:hover,
+[data-theme-mode="material"] .modal-actions .btn[data-action="close"]:hover {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+}
+
+[data-theme="material"] .modal-actions .btn-modal-minimize:hover,
+[data-theme="material"] .modal-actions .btn[data-action="minimize"]:hover,
+[data-theme-mode="material"] .modal-actions .btn-modal-minimize:hover,
+[data-theme-mode="material"] .modal-actions .btn[data-action="minimize"]:hover {
+    background: rgba(14, 165, 233, 0.15) !important;
+    color: #38bdf8 !important;
+}
+
+
+/* ============================================
+   MATERIAL THEME - PROFESSIONAL THEME SWITCHER MODAL
+   ============================================ */
+
+/* Modal backdrop - Frosted glass effect */
+html[data-theme="material"] .modal-backdrop,
+html[data-theme-mode="material"] .modal-backdrop {
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(6px) !important;
+}
+
+/* Modal container positioning */
+html[data-theme="material"] .modal-dialog,
+html[data-theme-mode="material"] .modal-dialog {
+    margin-top: 8vh !important;
+}
+
+/* Modal content - Elevated design */
+html[data-theme="material"] .modal-content,
+html[data-theme-mode="material"] .modal-content {
+    border-radius: 18px !important;
+    border: none !important;
+    background: linear-gradient(145deg, #ffffff, #f3f7ff) !important;
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35) !important;
+    overflow: hidden !important;
+}
+
+/* Modal header - Professional styling */
+html[data-theme="material"] .modal-header,
+html[data-theme-mode="material"] .modal-header {
+    padding: 18px 22px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    background: linear-gradient(135deg, #f8fbff, #eef4ff) !important;
+}
+
+/* Modal title */
+html[data-theme="material"] .modal-title,
+html[data-theme-mode="material"] .modal-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.4px !important;
+    color: #0f172a !important;
+}
+
+/* Close button - Material design */
+html[data-theme="material"] .modal-header .close,
+html[data-theme="material"] .modal-header .btn-close,
+html[data-theme-mode="material"] .modal-header .close,
+html[data-theme-mode="material"] .modal-header .btn-close {
+    background: #f1f5f9 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    color: #64748b !important;
+}
+
+html[data-theme="material"] .modal-header .close:hover,
+html[data-theme="material"] .modal-header .btn-close:hover,
+html[data-theme-mode="material"] .modal-header .close:hover,
+html[data-theme-mode="material"] .modal-header .btn-close:hover {
+    background: #e2e8f0 !important;
     color: #475569 !important;
+    transform: scale(1.05) !important;
+}
+
+/* Close button icon/symbol */
+html[data-theme="material"] .modal-header .close::before,
+html[data-theme="material"] .modal-header .btn-close::before,
+html[data-theme-mode="material"] .modal-header .close::before,
+html[data-theme-mode="material"] .modal-header .btn-close::before {
+    content: "✕" !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+}
+
+/* Override default close button styling */
+html[data-theme="material"] .modal-header .close,
+html[data-theme-mode="material"] .modal-header .close {
+    float: none !important;
+    font-size: 1rem !important;
+    font-weight: normal !important;
+    line-height: 1 !important;
+    color: inherit !important;
+    text-shadow: none !important;
+}
+
+/* Modal body */
+html[data-theme="material"] .modal-body,
+html[data-theme-mode="material"] .modal-body {
+    padding: 22px !important;
 }
 
 /* ============================================
-   OPTIONAL: COLOR-CODED FIELD BORDERS
+   THEME CARDS STYLING
    ============================================ */
 
-/* Company field - Blue accent */
-html[data-theme="material"] .page-form [data-fieldname="company"] input,
-html[data-theme="material"] .page-form [data-fieldname="company"] select,
-html[data-theme-mode="material"] .page-form [data-fieldname="company"] input,
-html[data-theme-mode="material"] .page-form [data-fieldname="company"] select {
-    border-left: 4px solid #3b82f6 !important;
+/* Theme card base styling */
+html[data-theme="material"] .theme-card,
+html[data-theme="material"] [data-theme],
+html[data-theme-mode="material"] .theme-card,
+html[data-theme-mode="material"] [data-theme] {
+    border-radius: 14px !important;
+    border: 2px solid transparent !important;
+    background: #ffffff !important;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+    padding: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    position: relative !important;
 }
 
-/* Asset Category field - Green accent */
-html[data-theme="material"] .page-form [data-fieldname="asset_category"] input,
-html[data-theme="material"] .page-form [data-fieldname="asset_category"] select,
-html[data-theme-mode="material"] .page-form [data-fieldname="asset_category"] input,
-html[data-theme-mode="material"] .page-form [data-fieldname="asset_category"] select {
-    border-left: 4px solid #10b981 !important;
+/* Hover effects */
+html[data-theme="material"] .theme-card:hover,
+html[data-theme="material"] [data-theme]:hover,
+html[data-theme-mode="material"] .theme-card:hover,
+html[data-theme-mode="material"] [data-theme]:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.15) !important;
 }
 
-/* Cost Center field - Amber accent */
-html[data-theme="material"] .page-form [data-fieldname="cost_center"] input,
-html[data-theme="material"] .page-form [data-fieldname="cost_center"] select,
-html[data-theme-mode="material"] .page-form [data-fieldname="cost_center"] input,
-html[data-theme-mode="material"] .page-form [data-fieldname="cost_center"] select {
-    border-left: 4px solid #f59e0b !important;
+/* Active theme indicator */
+html[data-theme="material"] .theme-card.active,
+html[data-theme="material"] [data-theme].active,
+html[data-theme="material"] [data-theme][aria-checked="true"],
+html[data-theme-mode="material"] .theme-card.active,
+html[data-theme-mode="material"] [data-theme].active,
+html[data-theme-mode="material"] [data-theme][aria-checked="true"] {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Checkmark indicator - Enhanced for clarity */
+html[data-theme="material"] .theme-card .check-icon,
+html[data-theme="material"] [data-theme] .check,
+html[data-theme-mode="material"] .theme-card .check-icon,
+html[data-theme-mode="material"] [data-theme] .check {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    background: #2563eb !important;
+    color: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45) !important;
+    z-index: 10 !important;
+}
+
+/* Checkmark indicator */
+html[data-theme="material"] .theme-card .check-icon,
+html[data-theme="material"] [data-theme] .check,
+html[data-theme-mode="material"] .theme-card .check-icon,
+html[data-theme-mode="material"] [data-theme] .check {
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 12px !important;
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 50% !important;
+    background: #2563eb !important;
+    color: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Theme name styling */
+html[data-theme="material"] .theme-name,
+html[data-theme-mode="material"] .theme-name {
+    text-align: center !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-top: 10px !important;
+    color: #1f2937 !important;
+    letter-spacing: 0.3px !important;
 }
 
 /* ============================================
-   MOBILE RESPONSIVE ADJUSTMENTS
+   DARK MODE SUPPORT FOR THEME SWITCHER
    ============================================ */
 
-@media (max-width: 768px) {
-    html[data-theme="material"] .page-form,
-    html[data-theme-mode="material"] .page-form {
-        padding: 14px !important;
-    }
+/* ============================================
+   DARK MODE SUPPORT FOR THEME SWITCHER
+   ============================================ */
 
-    html[data-theme="material"] .page-form input,
-    html[data-theme="material"] .page-form select,
-    html[data-theme-mode="material"] .page-form input,
-    html[data-theme-mode="material"] .page-form select {
-        height: 40px !important;
-    }
+/* Dark theme modal styling */
+html[data-theme="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-content {
+    background: linear-gradient(145deg, #0f172a, #020617) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-header {
+    background: linear-gradient(135deg, #020617, #0f172a) !important;
+    border-bottom-color: #1e293b !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-title {
+    color: #e5e7eb !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .theme-card,
+html[data-theme="material"][data-theme-mode="timeless-night"] .theme-card,
+html[data-theme-mode="material"][data-theme-mode="dark"] .theme-card,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .theme-card {
+    background: #020617 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .theme-name,
+html[data-theme="material"][data-theme-mode="timeless-night"] .theme-name,
+html[data-theme-mode="material"][data-theme-mode="dark"] .theme-name,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .theme-name {
+    color: #e5e7eb !important;
+}
+
+/* Dark theme modal styling */
+html[data-theme="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-content {
+    background: linear-gradient(145deg, #0f172a, #020617) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-header {
+    background: linear-gradient(135deg, #020617, #0f172a) !important;
+    border-bottom-color: #1e293b !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-title {
+    color: #e5e7eb !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .theme-card,
+html[data-theme="material"][data-theme-mode="timeless-night"] .theme-card,
+html[data-theme-mode="material"][data-theme-mode="dark"] .theme-card,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .theme-card {
+    background: #020617 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .theme-name,
+html[data-theme="material"][data-theme-mode="timeless-night"] .theme-name,
+html[data-theme-mode="material"][data-theme-mode="dark"] .theme-name,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .theme-name {
+    color: #e5e7eb !important;
+}
+/* ============================================
+   MATERIAL THEME - PROFESSIONAL SIDEBAR ICON SYSTEM
+   ============================================ */
+
+/* CSS Variables for sidebar icon colors - survives navigation */
+:root {
+    --sidebar-icon-color: #64748b;
+    --sidebar-icon-active: #2563eb;
+}
+
+/* Accounting module - Green */
+[data-module="accounting"],
+[data-route*="accounting"] {
+    --sidebar-icon-color: #4caf50 !important;
+}
+
+/* Selling module - Orange */
+[data-module="selling"],
+[data-route*="selling"] {
+    --sidebar-icon-color: #ff9800 !important;
+}
+
+/* Stock module - Blue */
+[data-module="stock"],
+[data-route*="stock"] {
+    --sidebar-icon-color: #2196f3 !important;
+}
+
+/* HR/Users module - Purple */
+[data-module="users"],
+[data-route*="users"],
+[data-route*="hr"] {
+    --sidebar-icon-color: #9c27b0 !important;
+}
+
+/* CRM module - Teal */
+[data-module="crm"],
+[data-route*="crm"] {
+    --sidebar-icon-color: #009688 !important;
+}
+
+/* Manufacturing module - Brown */
+[data-module="manufacturing"],
+[data-route*="manufacturing"] {
+    --sidebar-icon-color: #795548 !important;
+}
+
+/* Projects module - Indigo */
+[data-module="projects"],
+[data-route*="projects"] {
+    --sidebar-icon-color: #3f51b5 !important;
+}
+
+/* Buying/Purchase module - Cyan */
+[data-module="buying"],
+[data-route*="buying"] {
+    --sidebar-icon-color: #00bcd4 !important;
+}
+
+/* Quality module - Lime */
+[data-module="quality"],
+[data-route*="quality"] {
+    --sidebar-icon-color: #8bc34a !important;
+}
+
+/* Assets module - Deep Orange */
+[data-module="assets"],
+[data-route*="assets"] {
+    --sidebar-icon-color: #ff5722 !important;
+}
+
+/* ============================================
+   DESK SIDEBAR ICON STYLING - SURVIVES NAVIGATION
+   ============================================ */
+
+/* Base sidebar item layout - prevents shifting */
+html[data-theme="material"] .desk-sidebar .sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    position: relative !important;
+}
+
+/* Sidebar SVG icons - force color application */
+html[data-theme="material"] .desk-sidebar .sidebar-item svg,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+    fill: var(--sidebar-icon-color) !important;
+    stroke: none !important;
+    opacity: 1 !important;
+    transition: fill 0.2s ease !important;
+}
+
+/* Active sidebar item - enhanced color */
+html[data-theme="material"] .desk-sidebar .sidebar-item.selected svg,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item.selected svg {
+    fill: var(--sidebar-icon-active) !important;
+    opacity: 1 !important;
+}
+
+/* Hover effects for sidebar items */
+html[data-theme="material"] .desk-sidebar .sidebar-item:hover svg,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item:hover svg {
+    fill: var(--sidebar-icon-active) !important;
+    opacity: 0.9 !important;
+}
+
+/* ============================================
+   PREVENT FRAPPE OVERRIDE - HIGH SPECIFICITY
+   ============================================ */
+
+/* Force sidebar icon colors with maximum specificity */
+body[data-theme="material"] .desk-sidebar .sidebar-item svg,
+body[data-theme-mode="material"] .desk-sidebar .sidebar-item svg {
+    fill: var(--sidebar-icon-color) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Active state override */
+body[data-theme="material"] .desk-sidebar .sidebar-item.selected svg,
+body[data-theme-mode="material"] .desk-sidebar .sidebar-item.selected svg {
+    fill: var(--sidebar-icon-active) !important;
 }

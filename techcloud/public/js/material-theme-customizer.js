@@ -614,3 +614,71 @@ window.addEventListener("resize", function() {
 		el.style.height = "300px";
 	});
 });
+
+// ============================================
+// SIDEBAR ICON STYLING - SURVIVES NAVIGATION
+// ============================================
+
+// Function to apply sidebar icon styles
+function applySidebarIconStyles() {
+    // Only run if Material theme is active
+    const theme = document.documentElement.getAttribute('data-theme');
+    const themeMode = document.documentElement.getAttribute('data-theme-mode');
+    const isMaterial = theme === 'material' || themeMode === 'material';
+
+    if (!isMaterial) return;
+
+    // Apply styles to all desk sidebar icons
+    document.querySelectorAll('.desk-sidebar .sidebar-item svg').forEach(svg => {
+        const item = svg.closest('.sidebar-item');
+        const route = item.getAttribute('data-route') || '';
+        const module = item.getAttribute('data-module') || '';
+
+        // Determine color based on module/route
+        let color = '#64748b'; // default
+
+        if (route.includes('accounting') || module === 'accounting') color = '#4caf50'; // Green
+        else if (route.includes('selling') || module === 'selling') color = '#ff9800'; // Orange
+        else if (route.includes('stock') || module === 'stock') color = '#2196f3'; // Blue
+        else if (route.includes('users') || route.includes('hr') || module === 'users') color = '#9c27b0'; // Purple
+        else if (route.includes('crm') || module === 'crm') color = '#009688'; // Teal
+        else if (route.includes('manufacturing') || module === 'manufacturing') color = '#795548'; // Brown
+        else if (route.includes('projects') || module === 'projects') color = '#3f51b5'; // Indigo
+        else if (route.includes('buying') || module === 'buying') color = '#00bcd4'; // Cyan
+        else if (route.includes('quality') || module === 'quality') color = '#8bc34a'; // Lime
+        else if (route.includes('assets') || module === 'assets') color = '#ff5722'; // Deep Orange
+
+        // Apply the color
+        svg.style.fill = color;
+        svg.style.stroke = 'none';
+        svg.style.opacity = '1';
+        svg.style.filter = 'none';
+    });
+}
+
+// Apply styles on page change
+$(document).on('page_change', function() {
+    setTimeout(applySidebarIconStyles, 50);
+});
+
+// Apply styles after AJAX calls (when Frappe dynamically loads content)
+$(document).ajaxComplete(function() {
+    setTimeout(applySidebarIconStyles, 50);
+});
+
+// Apply styles on frappe ready
+$(document).on('frappe-ready', function() {
+    setTimeout(applySidebarIconStyles, 100);
+});
+
+// Initial application
+$(document).ready(function() {
+    setTimeout(applySidebarIconStyles, 150);
+});
+
+// Re-apply on route changes (backup)
+if (window.frappe && frappe.router) {
+    frappe.router.on('change', function() {
+        setTimeout(applySidebarIconStyles, 100);
+    });
+}
