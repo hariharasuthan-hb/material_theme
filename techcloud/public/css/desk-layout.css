@@ -5288,6 +5288,381 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   overflow-y: auto !important;
 }
 
+/* ============================================
+   MATERIAL THEME FORM FIELDS - CLEAN & MODERN
+   ============================================ */
+
+/* ============================================
+   FORM CONTROL BASE STYLING
+   ============================================ */
+
+/* All form controls - consistent Material Design */
+html[data-theme="material"] .form-control,
+html[data-theme-mode="material"] .form-control,
+html[data-theme="material"] .form-select,
+html[data-theme-mode="material"] .form-select,
+html[data-theme="material"] input[type="text"],
+html[data-theme-mode="material"] input[type="text"],
+html[data-theme="material"] input[type="email"],
+html[data-theme-mode="material"] input[type="email"],
+html[data-theme="material"] input[type="password"],
+html[data-theme-mode="material"] input[type="password"],
+html[data-theme="material"] input[type="number"],
+html[data-theme-mode="material"] input[type="number"],
+html[data-theme="material"] input[type="tel"],
+html[data-theme-mode="material"] input[type="tel"],
+html[data-theme="material"] input[type="url"],
+html[data-theme-mode="material"] input[type="url"],
+html[data-theme="material"] textarea,
+html[data-theme-mode="material"] textarea {
+  /* Material Design 3 dimensions */
+  height: 44px !important;
+  line-height: 44px !important;
+
+  /* Clean styling */
+  padding: 0 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  background-color: #ffffff !important;
+
+  /* Typography */
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+
+  /* Layout stability - NO transitions that cause jerking */
+  box-sizing: border-box !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+
+  /* Remove browser defaults */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+/* ============================================
+   SELECT DROPDOWN STYLING
+   ============================================ */
+
+/* Select wrapper - prevents layout shifts */
+html[data-theme="material"] .control-input,
+html[data-theme-mode="material"] .control-input {
+  position: relative !important;
+  width: 100% !important;
+}
+
+/* Select field - custom arrow positioning */
+html[data-theme="material"] .control-input select.form-control,
+html[data-theme-mode="material"] .control-input select.form-control {
+  padding-right: 40px !important; /* Space for custom arrow */
+  cursor: pointer !important;
+}
+
+/* Custom select arrow container */
+html[data-theme="material"] .control-input .select-icon,
+html[data-theme-mode="material"] .control-input .select-icon {
+  position: absolute !important;
+  top: 50% !important;
+  right: 12px !important;
+  transform: translateY(-50%) !important;
+  pointer-events: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Select arrow SVG */
+html[data-theme="material"] .control-input .select-icon svg,
+html[data-theme-mode="material"] .control-input .select-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: #6b7280 !important;
+  transition: fill 0.15s ease !important;
+}
+
+/* ============================================
+   TEXTAREA STYLING
+   ============================================ */
+
+/* Textarea - multi-line support */
+html[data-theme="material"] textarea.form-control,
+html[data-theme-mode="material"] textarea.form-control {
+  height: auto !important;
+  min-height: 88px !important; /* 2x line height */
+  line-height: 1.5 !important;
+  padding: 12px 14px !important;
+  resize: vertical !important;
+}
+
+/* ============================================
+   FORM CONTROL STATES
+   ============================================ */
+
+/* Hover state - subtle enhancement */
+html[data-theme="material"] .form-control:hover,
+html[data-theme-mode="material"] .form-control:hover,
+html[data-theme="material"] .form-select:hover,
+html[data-theme-mode="material"] .form-select:hover {
+  border-color: rgba(0, 137, 255, 0.5) !important;
+  background-color: #fafafa !important;
+}
+
+/* Focus state - Material Design blue */
+html[data-theme="material"] .form-control:focus,
+html[data-theme-mode="material"] .form-control:focus,
+html[data-theme="material"] .form-select:focus,
+html[data-theme-mode="material"] .form-select:focus {
+  outline: none !important;
+  border-color: #0089ff !important;
+  box-shadow: 0 0 0 2px rgba(0, 137, 255, 0.15) !important;
+  background-color: #ffffff !important;
+}
+
+/* Invalid/error state */
+html[data-theme="material"] .form-control.is-invalid,
+html[data-theme-mode="material"] .form-control.is-invalid,
+html[data-theme="material"] .form-select.is-invalid,
+html[data-theme-mode="material"] .form-select.is-invalid {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.15) !important;
+}
+
+/* Valid/success state */
+html[data-theme="material"] .form-control.is-valid,
+html[data-theme-mode="material"] .form-control.is-valid,
+html[data-theme="material"] .form-select.is-valid,
+html[data-theme-mode="material"] .form-select.is-valid {
+  border-color: #28a745 !important;
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.15) !important;
+}
+
+/* Disabled state */
+html[data-theme="material"] .form-control:disabled,
+html[data-theme-mode="material"] .form-control:disabled,
+html[data-theme="material"] .form-select:disabled,
+html[data-theme-mode="material"] .form-select:disabled,
+html[data-theme="material"] .form-control[readonly],
+html[data-theme-mode="material"] .form-control[readonly] {
+  background-color: #f5f5f5 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: rgba(0, 0, 0, 0.38) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+/* ============================================
+   PLACEHOLDER STYLING
+   ============================================ */
+
+/* Placeholder text */
+html[data-theme="material"] .form-control::placeholder,
+html[data-theme-mode="material"] .form-control::placeholder,
+html[data-theme="material"] .form-select::placeholder,
+html[data-theme-mode="material"] .form-select::placeholder {
+  color: rgba(0, 0, 0, 0.38) !important;
+  font-weight: 400 !important;
+  opacity: 1 !important; /* Override browser defaults */
+}
+
+/* ============================================
+   CHECKBOX & RADIO STYLING
+   ============================================ */
+
+/* Checkbox and radio wrapper */
+html[data-theme="material"] .checkbox,
+html[data-theme-mode="material"] .checkbox,
+html[data-theme="material"] .radio,
+html[data-theme-mode="material"] .radio {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 8px 0 !important;
+}
+
+/* Custom checkbox styling */
+html[data-theme="material"] input[type="checkbox"],
+html[data-theme-mode="material"] input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 4px !important;
+  border: 2px solid rgba(0, 0, 0, 0.12) !important;
+  background: #ffffff !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  transition: all 0.15s ease !important;
+}
+
+html[data-theme="material"] input[type="checkbox"]:checked,
+html[data-theme-mode="material"] input[type="checkbox"]:checked {
+  background: #0089ff !important;
+  border-color: #0089ff !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
+  background-size: 14px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Radio button styling */
+html[data-theme="material"] input[type="radio"],
+html[data-theme-mode="material"] input[type="radio"] {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(0, 0, 0, 0.12) !important;
+  background: #ffffff !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  transition: all 0.15s ease !important;
+}
+
+html[data-theme="material"] input[type="radio"]:checked,
+html[data-theme-mode="material"] input[type="radio"]:checked {
+  background: #0089ff !important;
+  border-color: #0089ff !important;
+  box-shadow: inset 0 0 0 3px #ffffff !important;
+}
+
+/* ============================================
+   DARK THEME FORM FIELDS
+   ============================================ */
+
+/* Dark theme form controls */
+html[data-theme="material"][data-theme-mode="dark"] .form-control,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-control,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-control,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-control,
+html[data-theme="material"][data-theme-mode="dark"] .form-select,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-select,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-select,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-select {
+  background-color: #1e293b !important;
+  border-color: rgba(51, 65, 85, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .form-control:hover,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-control:hover,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-control:hover,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-control:hover {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+  background-color: #334155 !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .form-control:focus,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-control:focus,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-control:focus,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* Dark theme placeholders */
+html[data-theme="material"][data-theme-mode="dark"] .form-control::placeholder,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-control::placeholder,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-control::placeholder,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-control::placeholder {
+  color: rgba(226, 232, 240, 0.5) !important;
+}
+
+/* Dark theme select icons */
+html[data-theme="material"][data-theme-mode="dark"] .control-input .select-icon svg,
+html[data-theme="material"][data-theme-mode="timeless-night"] .control-input .select-icon svg,
+html[data-theme-mode="material"][data-theme-mode="dark"] .control-input .select-icon svg,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .control-input .select-icon svg {
+  fill: #94a3b8 !important;
+}
+
+/* ============================================
+   MATERIAL THEME FORM POLISH IMPROVEMENTS
+   ============================================ */
+
+/* Form control height standardization for perfect alignment */
+html[data-theme="material"] .form-control,
+html[data-theme-mode="material"] .form-control,
+html[data-theme="material"] .form-select,
+html[data-theme-mode="material"] .form-select {
+  height: 44px !important; /* Consistent height for perfect alignment */
+  line-height: 44px !important;
+  padding: 0 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  background: #FFFFFF !important;
+  font-size: 14px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Enhanced section title hierarchy */
+html[data-theme="material"] .section-title,
+html[data-theme-mode="material"] .section-title {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important; /* Slightly tighter for premium feel */
+  margin-bottom: 12px !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  text-transform: uppercase !important;
+}
+
+/* Color picker refinement - less visual weight */
+html[data-theme="material"] input[type="color"],
+html[data-theme-mode="material"] input[type="color"] {
+  height: 36px !important;
+  width: 36px !important;
+  padding: 2px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html[data-theme="material"] input[type="color"]:hover,
+html[data-theme-mode="material"] input[type="color"]:hover {
+  border-color: #0089ff !important;
+  box-shadow: 0 0 0 2px rgba(0, 137, 255, 0.1) !important;
+}
+
+/* Refined card shadows for stacked appearance */
+html[data-theme="material"] .card,
+html[data-theme-mode="material"] .card,
+html[data-theme="material"] .frappe-card,
+html[data-theme-mode="material"] .frappe-card {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important; /* Softer shadow */
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: #FFFFFF !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html[data-theme="material"] .card:hover,
+html[data-theme-mode="material"] .card:hover,
+html[data-theme="material"] .frappe-card:hover,
+html[data-theme-mode="material"] .frappe-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Form group spacing improvements */
+html[data-theme="material"] .form-group,
+html[data-theme-mode="material"] .form-group {
+  margin-bottom: 20px !important;
+}
+
+/* Label styling refinement */
+html[data-theme="material"] .control-label,
+html[data-theme-mode="material"] .control-label,
+html[data-theme="material"] label,
+html[data-theme-mode="material"] label {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  margin-bottom: 6px !important;
+  letter-spacing: 0.1px !important;
+}
+
 /* Hide empty indicator-pill spans with no inner text */
 .indicator-pill.whitespace-nowrap:empty,
 .indicator-pill.whitespace-nowrap:not(:has(*)) {
@@ -5314,6 +5689,233 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
+}
+
+/* ============================================
+   ACCESSIBILITY FIXES - ARIA-HIDDEN FOCUS ISSUES
+   ============================================ */
+
+/* Fix aria-hidden focus issues in modals */
+html[data-theme="material"] .modal[aria-hidden="true"],
+html[data-theme-mode="material"] .modal[aria-hidden="true"] {
+  /* Use inert attribute for better accessibility (modern browsers) */
+  inert: true !important;
+}
+
+/* Fallback for browsers that don't support inert */
+html[data-theme="material"] .modal[aria-hidden="true"] *,
+html[data-theme-mode="material"] .modal[aria-hidden="true"] * {
+  pointer-events: none !important;
+}
+
+/* Specific fix for modal buttons that retain focus */
+html[data-theme="material"] .modal[aria-hidden="true"] .btn,
+html[data-theme-mode="material"] .modal[aria-hidden="true"] .btn,
+html[data-theme="material"] .modal[aria-hidden="true"] button,
+html[data-theme-mode="material"] .modal[aria-hidden="true"] button {
+  /* Remove focus from buttons in hidden modals */
+  pointer-events: none !important;
+  /* Prevent tab navigation to hidden modal elements */
+  tab-index: -1 !important;
+}
+
+/* Ensure modal backdrop properly hides content */
+html[data-theme="material"] .modal-backdrop.show,
+html[data-theme-mode="material"] .modal-backdrop.show {
+  /* Ensure backdrop is above hidden modals */
+  z-index: 1050 !important;
+}
+
+/* Fix for fade modals that become aria-hidden */
+html[data-theme="material"] .modal.fade[aria-hidden="true"],
+html[data-theme-mode="material"] .modal.fade[aria-hidden="true"] {
+  /* Completely hide the modal instead of just aria-hidden */
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* ============================================
+   DARK THEME MODAL STYLING - PREMIUM LOOK
+   ============================================ */
+
+/* Dark theme modal content - elegant gradient background */
+html[data-theme="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-content,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-content {
+  background: linear-gradient(145deg, #0f172a 0%, #020617 100%) !important;
+  border: 1px solid rgba(30, 41, 59, 0.5) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Dark theme modal header - refined gradient */
+html[data-theme="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-header,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-header {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%) !important;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
+  border-radius: 16px 16px 0 0 !important;
+  padding: 20px 24px !important;
+}
+
+/* Dark theme modal title */
+html[data-theme="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-title,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-title {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  letter-spacing: -0.025em !important;
+}
+
+/* Dark theme modal body */
+html[data-theme="material"][data-theme-mode="dark"] .modal-body,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-body,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-body,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-body {
+  background: transparent !important;
+  color: #cbd5e1 !important;
+  padding: 24px !important;
+  line-height: 1.6 !important;
+}
+
+/* Dark theme modal footer */
+html[data-theme="material"][data-theme-mode="dark"] .modal-footer,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-footer,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-footer,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-footer {
+  background: linear-gradient(135deg, #0f172a 0%, #020617 100%) !important;
+  border-top: 1px solid rgba(30, 41, 59, 0.8) !important;
+  border-radius: 0 0 16px 16px !important;
+  padding: 16px 24px !important;
+}
+
+/* Dark theme modal buttons */
+html[data-theme="material"][data-theme-mode="dark"] .modal .btn,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .btn,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .btn,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal .btn:hover,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .btn:hover,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .btn:hover,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal .btn-secondary,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .btn-secondary,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .btn-secondary,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .btn-secondary {
+  background: linear-gradient(135deg, #475569 0%, #334155 100%) !important;
+  border: 1px solid rgba(71, 85, 105, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal .btn-secondary:hover,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .btn-secondary:hover,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .btn-secondary:hover,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .btn-secondary:hover {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Dark theme modal form elements */
+html[data-theme="material"][data-theme-mode="dark"] .modal .form-control,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .form-control,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .form-control,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .form-control {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+  border: 1px solid rgba(51, 65, 85, 0.5) !important;
+  color: #e2e8f0 !important;
+  border-radius: 8px !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal .form-control:focus,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .form-control:focus,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .form-control:focus,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .form-control:focus {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  color: #f8fafc !important;
+}
+
+/* Dark theme modal labels */
+html[data-theme="material"][data-theme-mode="dark"] .modal .control-label,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .control-label,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .control-label,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .control-label {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+/* Dark theme modal close button */
+html[data-theme="material"][data-theme-mode="dark"] .modal .close,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .close,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .close,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .close {
+  color: #94a3b8 !important;
+  opacity: 0.8 !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .modal .close:hover,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal .close:hover,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal .close:hover,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal .close:hover {
+  color: #f1f5f9 !important;
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Dark theme modal backdrop enhancement */
+html[data-theme="material"][data-theme-mode="dark"] .modal-backdrop,
+html[data-theme="material"][data-theme-mode="timeless-night"] .modal-backdrop,
+html[data-theme-mode="material"][data-theme-mode="dark"] .modal-backdrop,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-backdrop {
+  background: linear-gradient(135deg,
+    rgba(15, 23, 42, 0.8) 0%,
+    rgba(2, 6, 23, 0.9) 50%,
+    rgba(0, 0, 0, 0.95) 100%) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* Responsive dark theme modals */
+@media (max-width: 576px) {
+  html[data-theme="material"][data-theme-mode="dark"] .modal-dialog,
+  html[data-theme="material"][data-theme-mode="timeless-night"] .modal-dialog,
+  html[data-theme-mode="material"][data-theme-mode="dark"] .modal-dialog,
+  html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-dialog {
+    margin: 10px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+
+  html[data-theme="material"][data-theme-mode="dark"] .modal-content,
+  html[data-theme="material"][data-theme-mode="timeless-night"] .modal-content,
+  html[data-theme-mode="material"][data-theme-mode="dark"] .modal-content,
+  html[data-theme-mode="material"][data-theme-mode="timeless-night"] .modal-content {
+    border-radius: 12px !important;
+  }
 }
 
 /* ============================================
