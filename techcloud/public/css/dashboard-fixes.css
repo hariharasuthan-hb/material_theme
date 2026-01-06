@@ -1541,8 +1541,8 @@ html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard {
     color: #ffffff !important;
     font-size: 12px !important;
     font-weight: 700 !important;
-    left: 3px !important;
-    top: -1px !important;
+    left: 8px !important;
+    top: 1px !important;
 }
 
 /* Label alignment & spacing - professional layout */
@@ -2091,4 +2091,252 @@ body[data-theme-mode="material"] .desk-sidebar .sidebar-item svg {
 body[data-theme="material"] .desk-sidebar .sidebar-item.selected svg,
 body[data-theme-mode="material"] .desk-sidebar .sidebar-item.selected svg {
     fill: var(--sidebar-icon-active) !important;
+}
+
+/* ============================================
+   MATERIAL THEME - CONSERVATIVE WEB FORM ENHANCEMENTS
+   ============================================ */
+
+/* Web form container - subtle enhancement */
+html[data-theme="material"] .web-form,
+html[data-theme-mode="material"] .web-form {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    overflow: hidden !important;
+}
+
+/* Form columns - subtle background */
+html[data-theme="material"] .form-column,
+html[data-theme-mode="material"] .form-column {
+    background: #f9fafb !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    margin-bottom: 16px !important;
+}
+
+/* Form controls - clean styling */
+html[data-theme="material"] .frappe-control,
+html[data-theme-mode="material"] .frappe-control {
+    margin-bottom: 18px !important;
+}
+
+/* Labels - improved readability */
+html[data-theme="material"] .control-label,
+html[data-theme-mode="material"] .control-label {
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin-bottom: 8px !important;
+    font-size: 13px !important;
+}
+
+/* Required field indicator */
+html[data-theme="material"] .control-label.reqd::after,
+html[data-theme-mode="material"] .control-label.reqd::after {
+    content: " *" !important;
+    color: #ef4444 !important;
+}
+
+/* Control values - subtle enhancement */
+html[data-theme="material"] .control-value.like-disabled-input,
+html[data-theme-mode="material"] .control-value.like-disabled-input {
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+    padding: 10px 12px !important;
+    background: #ffffff !important;
+    font-size: 14px !important;
+    transition: border-color 0.2s ease !important;
+}
+
+/* Focus states - subtle */
+html[data-theme="material"] .control-value.like-disabled-input:focus,
+html[data-theme-mode="material"] .control-value.like-disabled-input:focus {
+    border-color: #3b82f6 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Help text - better styling */
+html[data-theme="material"] .help-box,
+html[data-theme-mode="material"] .help-box {
+    color: #6b7280 !important;
+    font-size: 12px !important;
+    margin-top: 4px !important;
+}
+
+/* ============================================
+   CHECKBOX ENHANCEMENTS - CONSERVATIVE
+   ============================================ */
+
+/* Checkbox layout */
+html[data-theme="material"] .checkbox label,
+html[data-theme-mode="material"] .checkbox label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+}
+
+/* Checkbox styling */
+html[data-theme="material"] .checkbox input[type="checkbox"],
+html[data-theme-mode="material"] .checkbox input[type="checkbox"] {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 3px !important;
+    border: 1.5px solid #9ca3af !important;
+    background: #ffffff !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    position: relative !important;
+    cursor: pointer !important;
+}
+
+/* Checked state */
+html[data-theme="material"] .checkbox input[type="checkbox"]:checked,
+html[data-theme-mode="material"] .checkbox input[type="checkbox"]:checked {
+    background: #2563eb !important;
+    border-color: #2563eb !important;
+}
+
+/* Checkmark */
+html[data-theme="material"] .checkbox input[type="checkbox"]:checked::after,
+html[data-theme-mode="material"] .checkbox input[type="checkbox"]:checked::after {
+    content: "✓" !important;
+    position: absolute !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    left: 7px !important;
+    top: 1px !important;
+}
+
+/* ============================================
+   ACTION BUTTONS - CLEAN STYLING
+   ============================================ */
+
+/* Web form footer */
+html[data-theme="material"] .web-form-footer,
+html[data-theme-mode="material"] .web-form-footer {
+    background: #f8fafc !important;
+    border-top: 1px solid #e5e7eb !important;
+    padding: 16px 24px !important;
+}
+
+/* Action buttons */
+html[data-theme="material"] .web-form-actions .btn,
+html[data-theme-mode="material"] .web-form-actions .btn {
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Submit button */
+html[data-theme="material"] .submit-btn,
+html[data-theme-mode="material"] .submit-btn {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+html[data-theme="material"] .submit-btn:hover,
+html[data-theme-mode="material"] .submit-btn:hover {
+    background: #1d4ed8 !important;
+}
+
+/* Discard button */
+html[data-theme="material"] .discard-btn,
+html[data-theme-mode="material"] .discard-btn {
+    background: #ffffff !important;
+    color: #6b7280 !important;
+    border: 1px solid #d1d5db !important;
+}
+
+html[data-theme="material"] .discard-btn:hover,
+html[data-theme-mode="material"] .discard-btn:hover {
+    background: #f9fafb !important;
+    color: #374151 !important;
+}
+
+/* ============================================
+   ERROR STATES - SUBTLE INDICATION
+   ============================================ */
+
+html[data-theme="material"] .frappe-control.has-error .control-value,
+html[data-theme-mode="material"] .frappe-control.has-error .control-value {
+    border-color: #ef4444 !important;
+}
+
+html[data-theme="material"] .frappe-control.has-error .help-box,
+html[data-theme-mode="material"] .frappe-control.has-error .help-box {
+    color: #ef4444 !important;
+}
+
+/* ============================================
+   DARK MODE - CONSERVATIVE ADAPTATION
+   ============================================ */
+
+html[data-theme="material"][data-theme-mode="dark"] .web-form,
+html[data-theme="material"][data-theme-mode="timeless-night"] .web-form,
+html[data-theme-mode="material"][data-theme-mode="dark"] .web-form,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .web-form {
+    background: #1e293b !important;
+    border-color: #374151 !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .form-column,
+html[data-theme="material"][data-theme-mode="timeless-night"] .form-column,
+html[data-theme-mode="material"][data-theme-mode="dark"] .form-column,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .form-column {
+    background: #0f172a !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .control-label,
+html[data-theme="material"][data-theme-mode="timeless-night"] .control-label,
+html[data-theme-mode="material"][data-theme-mode="dark"] .control-label,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .control-label {
+    color: #e5e7eb !important;
+}
+
+html[data-theme="material"][data-theme-mode="dark"] .control-value.like-disabled-input,
+html[data-theme="material"][data-theme-mode="timeless-night"] .control-value.like-disabled-input,
+html[data-theme-mode="material"][data-theme-mode="dark"] .control-value.like-disabled-input,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .control-value.like-disabled-input {
+    background: #0f172a !important;
+    border-color: #374151 !important;
+    color: #e5e7eb !important;
+}
+
+/* ============================================
+   MOBILE - RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    html[data-theme="material"] .web-form-body,
+    html[data-theme-mode="material"] .web-form-body {
+        padding: 16px !important;
+    }
+
+    html[data-theme="material"] .form-column,
+    html[data-theme-mode="material"] .form-column {
+        padding: 16px !important;
+    }
+
+    html[data-theme="material"] .web-form-actions,
+    html[data-theme-mode="material"] .web-form-actions {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    html[data-theme="material"] .web-form-actions .right-area,
+    html[data-theme-mode="material"] .web-form-actions .right-area {
+        width: 100% !important;
+        justify-content: stretch !important;
+    }
+
+    html[data-theme="material"] .web-form-actions .btn,
+    html[data-theme-mode="material"] .web-form-actions .btn {
+        width: 100% !important;
+    }
 }
