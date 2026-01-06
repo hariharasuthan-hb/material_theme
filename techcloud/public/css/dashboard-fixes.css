@@ -2340,3 +2340,137 @@ html[data-theme-mode="material"][data-theme-mode="timeless-night"] .control-valu
         width: 100% !important;
     }
 }
+
+/* ============================================
+   MATERIAL THEME - FRAPPE CHART LEGEND VISIBILITY FIX
+   ============================================ */
+
+/* Legend text - force high contrast */
+html[data-theme="material"] .frappe-chart .legend text,
+html[data-theme="material"] .frappe-chart .legend-label,
+html[data-theme-mode="material"] .frappe-chart .legend text,
+html[data-theme-mode="material"] .frappe-chart .legend-label {
+    fill: #111827 !important;        /* SVG text - high contrast */
+    color: #111827 !important;       /* HTML fallback */
+    font-weight: 500 !important;
+}
+
+/* Specific chart legend text styling */
+html[data-theme="material"] .frappe-chart .chart-legend text,
+html[data-theme="material"] .frappe-chart .legend text,
+html[data-theme-mode="material"] .frappe-chart .chart-legend text,
+html[data-theme-mode="material"] .frappe-chart .legend text {
+    fill: #010812 !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    /* color: #000; */
+}
+
+/* Legend color indicators - ensure visibility */
+html[data-theme="material"] .frappe-chart .legend-dataset,
+html[data-theme-mode="material"] .frappe-chart .legend-dataset {
+    opacity: 1 !important;
+}
+
+/* Legend markers - force visibility */
+html[data-theme="material"] .frappe-chart .legend-dataset rect,
+html[data-theme="material"] .frappe-chart .legend-dataset line,
+html[data-theme="material"] .frappe-chart .legend-dataset circle,
+html[data-theme-mode="material"] .frappe-chart .legend-dataset rect,
+html[data-theme-mode="material"] .frappe-chart .legend-dataset line,
+html[data-theme-mode="material"] .frappe-chart .legend-dataset circle {
+    stroke-width: 2px !important;
+    opacity: 1 !important;
+    fill-opacity: 1 !important;
+}
+
+/* ============================================
+   DARK MODE CHART LEGEND SUPPORT
+   ============================================ */
+
+html[data-theme="material"][data-theme-mode="dark"] .frappe-chart .legend text,
+html[data-theme="material"][data-theme-mode="dark"] .frappe-chart .legend-label,
+html[data-theme="material"][data-theme-mode="timeless-night"] .frappe-chart .legend text,
+html[data-theme="material"][data-theme-mode="timeless-night"] .frappe-chart .legend-label,
+html[data-theme-mode="material"][data-theme-mode="dark"] .frappe-chart .legend text,
+html[data-theme-mode="material"][data-theme-mode="dark"] .frappe-chart .legend-label,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .frappe-chart .legend text,
+html[data-theme-mode="material"][data-theme-mode="timeless-night"] .frappe-chart .legend-label {
+    fill: #f5f5f5 !important;         /* Light text for dark backgrounds */
+    color: #f5f5f5 !important;
+}
+
+/* ============================================
+   WORKSPACE/DASHBOARD SPECIFIC FIXES
+   ============================================ */
+
+/* Workspace overrides - extra specificity needed */
+html[data-theme="material"] .workspace .frappe-chart .legend text,
+html[data-theme="material"] .workspace .frappe-chart .legend-label,
+html[data-theme-mode="material"] .workspace .frappe-chart .legend text,
+html[data-theme-mode="material"] .workspace .frappe-chart .legend-label {
+    fill: #1f2937 !important;          /* Slightly darker for workspace */
+    color: #1f2937 !important;
+}
+
+/* Dashboard chart legends */
+html[data-theme="material"] [data-route^="dashboard"] .frappe-chart .legend text,
+html[data-theme="material"] [data-route^="dashboard"] .frappe-chart .legend-label,
+html[data-theme-mode="material"] [data-route^="dashboard"] .frappe-chart .legend text,
+html[data-theme-mode="material"] [data-route^="dashboard"] .frappe-chart .legend-label {
+    fill: #111827 !important;
+    color: #111827 !important;
+}
+
+/* ============================================
+   LEGEND BACKGROUND FOR CLARITY (OPTIONAL)
+   ============================================ */
+
+/* Subtle background for legend area */
+html[data-theme="material"] .frappe-chart .legend,
+html[data-theme-mode="material"] .frappe-chart .legend {
+    background: transparent !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+}
+
+/* ============================================
+   CHART AXIS AND GRID IMPROVEMENTS
+   ============================================ */
+
+/* Axis labels - ensure readability */
+html[data-theme="material"] .frappe-chart .axis text,
+html[data-theme-mode="material"] .frappe-chart .axis text {
+    fill: #6b7280 !important;
+    font-size: 12px !important;
+}
+
+/* Grid lines - subtle but visible */
+html[data-theme="material"] .frappe-chart .grid line,
+html[data-theme-mode="material"] .frappe-chart .grid line {
+    stroke: #e5e7eb !important;
+    stroke-width: 1px !important;
+}
+
+/* ============================================
+   TOOLTIP IMPROVEMENTS
+   ============================================ */
+
+/* Tooltip text - high contrast */
+html[data-theme="material"] .frappe-chart .graph-svg-tip,
+html[data-theme-mode="material"] .frappe-chart .graph-svg-tip {
+    background: rgba(0, 0, 0, 0.9) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+}
+
+/* Tooltip text color override */
+html[data-theme="material"] .frappe-chart .graph-svg-tip text,
+html[data-theme-mode="material"] .frappe-chart .graph-svg-tip text {
+    fill: #ffffff !important;
+}
