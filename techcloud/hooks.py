@@ -35,6 +35,7 @@ app_include_js = [
     "/assets/techcloud/js/fix-highlight.js",
     "/assets/techcloud/js/material.js",
     "/assets/techcloud/js/material-theme-customizer.js",
+    "/assets/techcloud/js/dashboard-widget-head-remover.js",
     "/assets/techcloud/js/theme.js",
     "/assets/techcloud/js/techcloud-icons.js",
     "/assets/techcloud/js/icon-debug.js",

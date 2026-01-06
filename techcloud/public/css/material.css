@@ -1,7 +1,9 @@
 /* Material3 Design Theme for ERPNext 15 Developed by Itrostack LLP */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900);
 
-:root {
+/* Only apply Material Design variables when Material theme is active */
+html[data-theme="material"],
+html[data-theme-mode="material"] {
   --md-sys-color-primary: rgb(254, 254, 254);
     --md-sys-color-surface-tint: rgb(245, 246, 248);
     --md-sys-color-on-primary: rgb(255 255 255);
@@ -1748,6 +1750,8 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   --techcloud-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --techcloud-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* End of Material theme variables - only applied when Material theme is active */
 
 /* Login Page Styles - Scoped to Material Theme */
 html[data-theme="material"] .login-container,

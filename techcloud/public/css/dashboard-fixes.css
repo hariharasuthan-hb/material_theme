@@ -4,54 +4,40 @@
    ============================================ */
 
 /* ============================================
-   CSS VARIABLES FOR DASHBOARD
+   DARK THEME PROTECTION - PREVENT MATERIAL CSS INTERFERENCE
    ============================================ */
 
-:root {
-    --scrollbar-thumb-color: rgba(0, 0, 0, 0.3);
-    --scrollbar-track-color: rgba(0, 0, 0, 0.1);
+/* IMPORTANT: These protection rules are DESIGNED TO LOAD on ALL non-Material themes */
+/* including Dark Theme, Light Theme, and any future themes. */
+/* They prevent Material theme CSS from interfering with other themes. */
+
+/* Ensure Dark Theme and other themes are NOT affected by Material theme rules */
+/* Explicitly reset any Material theme interference for non-Material themes */
+html:not([data-theme="material"]):not([data-theme-mode="material"]) .page-title .title-area .title-text,
+html:not([data-theme="material"]):not([data-theme-mode="material"]) .ellipsis,
+html:not([data-theme="material"]):not([data-theme-mode="material"]) h1,
+html:not([data-theme="material"]):not([data-theme-mode="material"]) h2,
+html:not([data-theme="material"]):not([data-theme-mode="material"]) h3,
+html:not([data-theme="material"]):not([data-theme-mode="material"]) .widget {
+    /* Allow other themes to control their own styling */
+    all: revert !important;
+}
+
+/* Protect dark theme scrollbars from Material theme interference */
+/* This rule intentionally loads on ALL non-Material themes (including dark theme) */
+/* to ensure they use their own scrollbar styling, not Material theme scrollbars */
+html:not([data-theme="material"]):not([data-theme-mode="material"]) * {
+    scrollbar-width: revert !important;
+    scrollbar-color: revert !important;
 }
 
 /* ============================================
    MATERIAL THEME DASHBOARD TYPOGRAPHY & LAYOUT
    ============================================ */
 
-/* Page Title Styling - Material Theme */
-[data-theme="material"] .page-title .title-area .title-text,
-[data-theme-mode="material"] .page-title .title-area .title-text {
-    font-size: 1.5rem !important; /* --text-2xl equivalent */
-    font-weight: 700 !important; /* --weight-bold equivalent */
-    letter-spacing: 0.01em !important;
-    cursor: pointer !important;
-    margin-bottom: 0px !important;
-    margin-right: 0.5rem !important; /* --margin-sm equivalent */
-    max-width: 25vw !important;
-    color: #1f2937 !important; /* Material theme heading color */
-}
-
-/* Ellipsis Text Handling - Material Theme */
-[data-theme="material"] .ellipsis,
-[data-theme="material"] .awesomplete > [role=listbox] > li,
-[data-theme="material"] .awesomplete > [role=listbox] > [role=option],
-[data-theme="material"] .widget.shortcut-widget-box .indicator-pill,
-[data-theme-mode="material"] .ellipsis,
-[data-theme-mode="material"] .awesomplete > [role=listbox] > li,
-[data-theme-mode="material"] .awesomplete > [role=listbox] > [role=option],
-[data-theme-mode="material"] .widget.shortcut-widget-box .indicator-pill {
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    max-width: 100% !important;
-    vertical-align: middle !important;
-}
-
-/* Heading Styles - Material Theme */
-[data-theme="material"] h1, [data-theme="material"] h2, [data-theme="material"] h3,
-[data-theme-mode="material"] h1, [data-theme-mode="material"] h2, [data-theme-mode="material"] h3 {
-    font-weight: 700 !important; /* bold */
-    color: #1f2937 !important; /* --heading-color equivalent */
-    margin-bottom: 1rem !important; /* --margin-md equivalent */
-}
+/* ============================================
+   🔥 1️⃣ RESTORE ERPNext GRID LOGIC (CRITICAL)
+   ============================================ */
 
 [data-theme="material"] h1, [data-theme="material"] h2, [data-theme="material"] h3,
 [data-theme="material"] h4, [data-theme="material"] h5, [data-theme="material"] h6,
@@ -108,29 +94,21 @@
 }
 
 /* ============================================
-   SCROLLBAR & BOX-SIZING STYLING FOR DASHBOARD
-   ============================================ */
-
-/* Custom Scrollbar Styling */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-}
-
-/* Box-sizing reset for all elements */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-
-/* ============================================
    🔥 1️⃣ RESTORE ERPNext GRID LOGIC (CRITICAL)
    ============================================ */
 
-.dashboard,
-.dashboard-graph,
-.widget-group,
-.widget-group-body {
+/* ============================================
+   MATERIAL THEME DASHBOARD LAYOUT - THEME-SPECIFIC ONLY
+   ============================================ */
+
+html[data-theme="material"] .dashboard,
+html[data-theme="material"] .dashboard-graph,
+html[data-theme="material"] .widget-group,
+html[data-theme="material"] .widget-group-body,
+html[data-theme-mode="material"] .dashboard,
+html[data-theme-mode="material"] .dashboard-graph,
+html[data-theme-mode="material"] .widget-group,
+html[data-theme-mode="material"] .widget-group-body {
     display: block !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -138,80 +116,95 @@
     padding-right: 1% !important;
 }
 
-.widget-group-body {
+html[data-theme="material"] .widget-group-body,
+html[data-theme-mode="material"] .widget-group-body {
     display: grid !important;
     gap: 16px;
 }
 
 /* ============================================
-   🔥 2️⃣ RESPECT ERPNext GRID COLUMNS
+   🔥 2️⃣ RESPECT ERPNext GRID COLUMNS - MATERIAL THEME ONLY
    ============================================ */
 
 /* ERPNext grid-col mapping */
-.widget-group-body.grid-col-3 {
+html[data-theme="material"] .widget-group-body.grid-col-3,
+html[data-theme-mode="material"] .widget-group-body.grid-col-3 {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
-.widget-group-body.grid-col-2 {
+html[data-theme="material"] .widget-group-body.grid-col-2,
+html[data-theme-mode="material"] .widget-group-body.grid-col-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
 
-.widget-group-body .full-width {
+html[data-theme="material"] .widget-group-body .full-width,
+html[data-theme-mode="material"] .widget-group-body .full-width {
     grid-column: 1 / -1 !important;
 }
 
 /* ============================================
-   🔥 3️⃣ FIX KPI CARDS (NUMBER WIDGETS)
+   🔥 3️⃣ FIX KPI CARDS (NUMBER WIDGETS) - MATERIAL THEME ONLY
    ============================================ */
 
-.widget.number-widget-box {
+html[data-theme="material"] .widget.number-widget-box,
+html[data-theme-mode="material"] .widget.number-widget-box {
     min-height: 120px !important;
     padding: 16px 18px;
     border-radius: 12px;
 }
 
-.widget.number-widget-box .number {
+html[data-theme="material"] .widget.number-widget-box .number,
+html[data-theme-mode="material"] .widget.number-widget-box .number {
     font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
 }
 
-.widget.number-widget-box .widget-title {
+html[data-theme="material"] .widget.number-widget-box .widget-title,
+html[data-theme-mode="material"] .widget.number-widget-box .widget-title {
     font-size: 13px;
     font-weight: 600;
     opacity: 0.85;
 }
 
-.card-stats {
+html[data-theme="material"] .card-stats,
+html[data-theme-mode="material"] .card-stats {
     margin-top: 6px;
     font-size: 12px;
 }
 
 /* ============================================
-   🔥 4️⃣ FIX CHART WIDGETS (NO "LOADING" LAYOUT BUG)
+   🔥 4️⃣ FIX CHART WIDGETS (NO "LOADING" LAYOUT BUG) - MATERIAL THEME ONLY
    ============================================ */
 
-.widget.dashboard-widget-box {
+html[data-theme="material"] .widget.dashboard-widget-box,
+html[data-theme-mode="material"] .widget.dashboard-widget-box {
     min-height: 360px;
 }
 
-.widget.dashboard-widget-box .widget-body {
+html[data-theme="material"] .widget.dashboard-widget-box .widget-body,
+html[data-theme-mode="material"] .widget.dashboard-widget-box .widget-body {
     padding: 8px 12px 12px;
 }
 
-/* Chart Container - Ensure Legends Work */
-.frappe-chart {
+/* Chart Container - Ensure Legends Work - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart,
+html[data-theme-mode="material"] .frappe-chart {
     width: 100% !important;
     height: 280px !important;
     position: relative !important;
     pointer-events: auto !important;
 }
 
-/* Chart Legend - Ensure Clickability */
-.frappe-chart .chart-legend,
-.frappe-chart .legend,
-.frappe-chart .chart-legend-item,
-.frappe-chart .legend-item {
+/* Chart Legend - Ensure Clickability - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend,
+html[data-theme="material"] .frappe-chart .legend,
+html[data-theme="material"] .frappe-chart .chart-legend-item,
+html[data-theme="material"] .frappe-chart .legend-item,
+html[data-theme-mode="material"] .frappe-chart .chart-legend,
+html[data-theme-mode="material"] .frappe-chart .legend,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item,
+html[data-theme-mode="material"] .frappe-chart .legend-item {
     pointer-events: auto !important;
     cursor: pointer !important;
     user-select: none !important;
@@ -219,61 +212,81 @@
     z-index: 10 !important;
 }
 
-/* Chart Legend Items */
-.frappe-chart .chart-legend-item:hover,
-.frappe-chart .legend-item:hover {
+/* Chart Legend Items - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend-item:hover,
+html[data-theme="material"] .frappe-chart .legend-item:hover,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item:hover,
+html[data-theme-mode="material"] .frappe-chart .legend-item:hover {
     opacity: 0.7 !important;
     cursor: pointer !important;
 }
 
-/* Chart Tooltip */
-.frappe-chart .graph-svg-tip,
-.frappe-chart .chart-tooltip {
+/* Chart Tooltip - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .graph-svg-tip,
+html[data-theme="material"] .frappe-chart .chart-tooltip,
+html[data-theme-mode="material"] .frappe-chart .graph-svg-tip,
+html[data-theme-mode="material"] .frappe-chart .chart-tooltip {
     pointer-events: none !important;
     z-index: 1000 !important;
 }
 
-/* Chart SVG Elements */
-.frappe-chart svg {
+/* Chart SVG Elements - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart svg,
+html[data-theme-mode="material"] .frappe-chart svg {
     pointer-events: auto !important;
     position: relative !important;
     z-index: 1 !important;
 }
 
-/* Chart Canvas Elements */
-.frappe-chart canvas {
+/* Chart Canvas Elements - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart canvas,
+html[data-theme-mode="material"] .frappe-chart canvas {
     pointer-events: auto !important;
     position: relative !important;
     z-index: 1 !important;
 }
 
-/* Ensure Chart Container Allows Interactions */
-.chart-container,
-.frappe-chart .chart-container {
+/* Ensure Chart Container Allows Interactions - MATERIAL THEME ONLY */
+html[data-theme="material"] .chart-container,
+html[data-theme="material"] .frappe-chart .chart-container,
+html[data-theme-mode="material"] .chart-container,
+html[data-theme-mode="material"] .frappe-chart .chart-container {
     pointer-events: auto !important;
     position: relative !important;
     overflow: visible !important;
 }
 
-/* Chart Legend Text */
-.frappe-chart .chart-legend text,
-.frappe-chart .legend text,
-.frappe-chart .chart-legend-item text,
-.frappe-chart .legend-item text {
+/* Chart Legend Text - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend text,
+html[data-theme="material"] .frappe-chart .legend text,
+html[data-theme="material"] .frappe-chart .chart-legend-item text,
+html[data-theme="material"] .frappe-chart .legend-item text,
+html[data-theme-mode="material"] .frappe-chart .chart-legend text,
+html[data-theme-mode="material"] .frappe-chart .legend text,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item text,
+html[data-theme-mode="material"] .frappe-chart .legend-item text {
     pointer-events: auto !important;
     cursor: pointer !important;
     user-select: none !important;
 }
 
-/* Chart Legend Circles/Shapes */
-.frappe-chart .chart-legend circle,
-.frappe-chart .legend circle,
-.frappe-chart .chart-legend-item circle,
-.frappe-chart .legend-item circle,
-.frappe-chart .chart-legend rect,
-.frappe-chart .legend rect,
-.frappe-chart .chart-legend-item rect,
-.frappe-chart .legend-item rect {
+/* Chart Legend Circles/Shapes - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend circle,
+html[data-theme="material"] .frappe-chart .legend circle,
+html[data-theme="material"] .frappe-chart .chart-legend-item circle,
+html[data-theme="material"] .frappe-chart .legend-item circle,
+html[data-theme="material"] .frappe-chart .chart-legend rect,
+html[data-theme="material"] .frappe-chart .legend rect,
+html[data-theme="material"] .frappe-chart .chart-legend-item rect,
+html[data-theme="material"] .frappe-chart .legend-item rect,
+html[data-theme-mode="material"] .frappe-chart .chart-legend circle,
+html[data-theme-mode="material"] .frappe-chart .legend circle,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item circle,
+html[data-theme-mode="material"] .frappe-chart .legend-item circle,
+html[data-theme-mode="material"] .frappe-chart .chart-legend rect,
+html[data-theme-mode="material"] .frappe-chart .legend rect,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item rect,
+html[data-theme-mode="material"] .frappe-chart .legend-item rect {
     pointer-events: auto !important;
     cursor: pointer !important;
 }
@@ -283,18 +296,22 @@
    Ensure legends are clearly visible
    ============================================ */
 
-/* Chart Legend Container */
-.frappe-chart .chart-legend,
-.frappe-chart .legend {
+/* Chart Legend Container - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend,
+html[data-theme="material"] .frappe-chart .legend,
+html[data-theme-mode="material"] .frappe-chart .chart-legend,
+html[data-theme-mode="material"] .frappe-chart .legend {
     fill: #1f2937 !important; /* Dark text for visibility */
     font-weight: 500 !important;
     font-size: 12px !important;
     pointer-events: auto !important;
 }
 
-/* Chart Legend Text Elements */
-.frappe-chart .chart-legend text,
-.frappe-chart .legend text {
+/* Chart Legend Text Elements - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend text,
+html[data-theme="material"] .frappe-chart .legend text,
+html[data-theme-mode="material"] .frappe-chart .chart-legend text,
+html[data-theme-mode="material"] .frappe-chart .legend text {
     fill: #1f2937 !important; /* Dark gray text */
     font-weight: 500 !important;
     font-size: 12px !important;
@@ -303,9 +320,11 @@
     user-select: none !important;
 }
 
-/* Chart Legend Items */
-.frappe-chart .chart-legend-item text,
-.frappe-chart .legend-item text {
+/* Chart Legend Items - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .chart-legend-item text,
+html[data-theme="material"] .frappe-chart .legend-item text,
+html[data-theme-mode="material"] .frappe-chart .chart-legend-item text,
+html[data-theme-mode="material"] .frappe-chart .legend-item text {
     fill: #374151 !important; /* Slightly lighter dark gray */
     font-weight: 500 !important;
     font-size: 12px !important;
@@ -314,16 +333,20 @@
     user-select: none !important;
 }
 
-/* Chart Axis Labels */
-.frappe-chart .x.axis text,
-.frappe-chart .y.axis text {
+/* Chart Axis Labels - MATERIAL THEME ONLY */
+html[data-theme="material"] .frappe-chart .x.axis text,
+html[data-theme="material"] .frappe-chart .y.axis text,
+html[data-theme-mode="material"] .frappe-chart .x.axis text,
+html[data-theme-mode="material"] .frappe-chart .y.axis text {
     fill: #6b7280 !important; /* Medium gray for axis labels */
     font-size: 11px !important;
     font-weight: 400 !important;
 }
 
 /* Chart Tooltip Text */
-.frappe-chart .graph-svg-tip .title,
+html[data-theme="material"] .frappe-chart .graph-svg-tip .title,
+.frappe-chart .graph-svg-tip .tooltip-value,
+.frappe-chart .graph-svg-tip .tooltip-label ,html[data-theme-mode="material"] .frappe-chart .graph-svg-tip .title,
 .frappe-chart .graph-svg-tip .tooltip-value,
 .frappe-chart .graph-svg-tip .tooltip-label {
     color: #1f2937 !important;
@@ -331,33 +354,40 @@
 }
 
 /* Chart Grid Lines */
-.frappe-chart .grid line,
+html[data-theme="material"] .frappe-chart .grid line,
+.frappe-chart .grid path ,html[data-theme-mode="material"] .frappe-chart .grid line,
 .frappe-chart .grid path {
     stroke: #e5e7eb !important;
     opacity: 0.5 !important;
 }
 
 /* Chart Axis Lines */
-.frappe-chart .axis line,
+html[data-theme="material"] .frappe-chart .axis line,
+.frappe-chart .axis path ,html[data-theme-mode="material"] .frappe-chart .axis line,
 .frappe-chart .axis path {
     stroke: #d1d5db !important;
 }
 
 /* Ensure legend background doesn't interfere */
-.frappe-chart .chart-legend,
+html[data-theme="material"] .frappe-chart .chart-legend,
+.frappe-chart .legend ,html[data-theme-mode="material"] .frappe-chart .chart-legend,
 .frappe-chart .legend {
     background: transparent !important;
 }
 
 /* Legend hover effects */
-.frappe-chart .chart-legend-item:hover text,
+html[data-theme="material"] .frappe-chart .chart-legend-item:hover text,
+.frappe-chart .legend-item:hover text ,html[data-theme-mode="material"] .frappe-chart .chart-legend-item:hover text,
 .frappe-chart .legend-item:hover text {
     fill: #3b82f6 !important; /* Blue on hover */
     font-weight: 600 !important;
 }
 
 /* Disabled/opacity legend items */
-.frappe-chart .chart-legend-item[opacity="0.3"] text,
+html[data-theme="material"] .frappe-chart .chart-legend-item[opacity="0.3"] text,
+.frappe-chart .legend-item[opacity="0.3"] text,
+.frappe-chart .chart-legend-item.opacity-03 text,
+.frappe-chart .legend-item.opacity-03 text ,html[data-theme-mode="material"] .frappe-chart .chart-legend-item[opacity="0.3"] text,
 .frappe-chart .legend-item[opacity="0.3"] text,
 .frappe-chart .chart-legend-item.opacity-03 text,
 .frappe-chart .legend-item.opacity-03 text {
@@ -1285,3 +1315,82 @@ setTimeout(() => {
     frappe.dashboard.dashboard.refresh();
 }, 500);
 */
+
+/* ============================================
+   MATERIAL THEME - DASHBOARD SCROLL FUNCTIONALITY
+   ============================================ */
+
+/* Enable scroll for entire dashboard page - Material Theme Only */
+html[data-theme="material"] [data-route^="dashboard"],
+html[data-theme-mode="material"] [data-route^="dashboard"] {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+}
+
+html[data-theme="material"] [data-route^="dashboard"] .page-content,
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+    max-height: 100vh !important;
+}
+
+html[data-theme="material"] [data-route^="dashboard"] .dashboard,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scroll-behavior: smooth !important;
+    max-height: 100vh !important;
+}
+
+/* Custom Scrollbar Styling - Material Theme Dashboard Only */
+html[data-theme="material"] [data-route^="dashboard"]::-webkit-scrollbar,
+html[data-theme="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar,
+html[data-theme="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar,
+html[data-theme-mode="material"] [data-route^="dashboard"]::-webkit-scrollbar,
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+html[data-theme="material"] [data-route^="dashboard"]::-webkit-scrollbar-track,
+html[data-theme="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-track,
+html[data-theme="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-track,
+html[data-theme-mode="material"] [data-route^="dashboard"]::-webkit-scrollbar-track,
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-track,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border-radius: 4px !important;
+}
+
+html[data-theme="material"] [data-route^="dashboard"]::-webkit-scrollbar-thumb,
+html[data-theme="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-thumb,
+html[data-theme="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] [data-route^="dashboard"]::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border-radius: 4px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+html[data-theme="material"] [data-route^="dashboard"]::-webkit-scrollbar-thumb:hover,
+html[data-theme="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-thumb:hover,
+html[data-theme="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] [data-route^="dashboard"]::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+}
+
+/* Firefox Scrollbar - Material Theme Dashboard Only */
+html[data-theme="material"] [data-route^="dashboard"],
+html[data-theme="material"] [data-route^="dashboard"] .page-content,
+html[data-theme="material"] [data-route^="dashboard"] .dashboard,
+html[data-theme-mode="material"] [data-route^="dashboard"],
+html[data-theme-mode="material"] [data-route^="dashboard"] .page-content,
+html[data-theme-mode="material"] [data-route^="dashboard"] .dashboard {
+    scrollbar-width: thin !important;
+    scrollbar-color: #667eea rgba(0, 0, 0, 0.05) !important;
+}

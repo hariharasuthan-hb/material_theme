@@ -1,262 +1,236 @@
-frappe.provide("material.theme");
+// ============================================
+// TECHCLOUD THEME MANAGER - SAFE & CLEAN
+// ============================================
 
-// Make applySavedTheme globally available immediately
-window.applySavedTheme = null;
+frappe.provide("techcloud.theme");
 
-// Execute immediately to mark script as "used" (reduces preload warnings)
-(function() {
-	"use strict";
+// ============================================
+// SINGLE SOURCE OF TRUTH - THEME DETECTION
+// ============================================
 
-	// Initialize immediately - this marks the script as used
-	if (typeof material === 'undefined') {
-		window.material = {};
-	}
-	if (typeof material.theme === 'undefined') {
-		window.material.theme = {};
-	}
-	
-	// Apply saved theme color immediately if available
-	function applySavedTheme() {
-		// Make function globally accessible
-		window.applySavedTheme = applySavedTheme;
-		if (window.frappe && frappe.material && frappe.material.theme) {
-			frappe.material.theme.applySavedTheme = applySavedTheme;
-		}
-		const root = document.documentElement;
-		let theme_mode = root.getAttribute("data-theme-mode");
-		
-		// Check frappe.boot.desk_theme
-		let desk_theme = null;
-		if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-			desk_theme = window.frappe.boot.desk_theme.toLowerCase();
-		}
-		
-		// Check if Material theme is active (accept both "material" and "techcloud")
-		const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
-		const isMaterialTheme = theme_mode === "material" || 
-		                        root.getAttribute("data-theme") === "material" ||
-		                        deskThemeLower === "material" || deskThemeLower === "techcloud";
-		
-		if (isMaterialTheme) {
-			// Ensure data-theme-mode and data-theme are set correctly
-			if (theme_mode !== "material") {
-				root.setAttribute("data-theme-mode", "material");
-			}
-			// Always set data-theme for material theme to ensure CSS selectors work
-			root.setAttribute("data-theme", "material");
+function isTechcloudTheme() {
+    return (
+        window.frappe?.boot?.desk_theme?.toLowerCase() === "techcloud"
+    );
+}
 
-			console.log("Material theme detected and applied - data-theme-mode:", root.getAttribute("data-theme-mode"), "data-theme:", root.getAttribute("data-theme"));
+// ============================================
+// SAFE THEME APPLICATION - OPT-IN ONLY
+// ============================================
 
-			// Apply saved theme color immediately (only if functions are available)
-			var themeColor = localStorage.getItem("ItrostackThemeColor");
-			if(themeColor && typeof applyMaterialTheme === 'function') {
-				try {
-					applyMaterialTheme(themeColor);
-					console.log("Material theme color applied:", themeColor);
-				} catch (error) {
-					console.warn("Failed to apply material theme color:", error);
-				}
-			} else if (themeColor) {
-				console.warn("Material theme color found but applyMaterialTheme function not available");
-			}
-		} else {
-			// CRITICAL: When NOT using material theme, ensure ALL material theme attributes are removed
-			root.removeAttribute("data-theme");
+function applySavedTheme() {
+    // ONLY apply when user has selected Techcloud theme
+    if (!isTechcloudTheme()) {
+        return; // Do nothing - allow default ERPNext theme to work
+    }
 
-			// Also remove any material theme CSS variables that might interfere
-			const materialVars = [
-				'--md-sys-color-primary',
-				'--md-sys-color-primary-container',
-				'--md-sys-color-secondary',
-				'--md-sys-color-surface',
-				'--md-sys-color-background'
-			];
+    const root = document.documentElement;
 
-			materialVars.forEach(varName => {
-				root.style.removeProperty(varName);
-			});
+    // Apply attributes ONCE (don't force them)
+    if (root.getAttribute("data-theme") !== "material") {
+        root.setAttribute("data-theme", "material");
+    }
 
-			console.log("Non-material theme detected, cleaned up all material theme attributes and CSS variables");
+    if (root.getAttribute("data-theme-mode") !== "material") {
+        root.setAttribute("data-theme-mode", "material");
+    }
 
-			// Force immediate style recalculation
-			setTimeout(() => {
-				document.documentElement.style.display = 'none';
-				document.documentElement.offsetHeight;
-				document.documentElement.style.display = '';
-			}, 10);
-		}
-	}
-	
-	// Run immediately if DOM is ready
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', applySavedTheme);
-	} else {
-		applySavedTheme();
-	}
-	
-	// Also run when frappe.boot is available
-	if (window.frappe && window.frappe.boot) {
-		applySavedTheme();
-	} else {
-		const checkBoot = setInterval(function() {
-			if (window.frappe && window.frappe.boot) {
-				applySavedTheme();
-				clearInterval(checkBoot);
-			}
-		}, 10);
-		setTimeout(function() { clearInterval(checkBoot); }, 5000);
-	}
+    // Apply saved theme color if available
+    const themeColor = localStorage.getItem("ItrostackThemeColor");
+    if (themeColor && typeof applyMaterialTheme === "function") {
+        applyMaterialTheme(themeColor);
+    }
 
-	// Special handling for dashboard pages
-	if (window.location.pathname.includes('/app/dashboard-view/')) {
-		// Force theme application on dashboard pages
-		const forceDashboardTheme = setInterval(function() {
-			const root = document.documentElement;
-			let theme_mode = root.getAttribute("data-theme-mode");
-			let desk_theme = null;
+    console.log("Techcloud theme applied safely");
+}
 
-			if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-				desk_theme = window.frappe.boot.desk_theme.toLowerCase();
-			}
+// Make globally available for other scripts
+window.applySavedTheme = applySavedTheme;
 
-			const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
-			const isMaterialTheme = theme_mode === "material" ||
-			                        root.getAttribute("data-theme") === "material" ||
-			                        deskThemeLower === "material" || deskThemeLower === "techcloud";
+// ============================================
+// INITIALIZATION - RUN ONCE WHEN READY
+// ============================================
 
-			if (isMaterialTheme) {
-				if (theme_mode !== "material") {
-					root.setAttribute("data-theme-mode", "material");
-				}
-				root.setAttribute("data-theme", "material");
-				console.log("Dashboard page: Material theme forced - data-theme-mode:", root.getAttribute("data-theme-mode"), "data-theme:", root.getAttribute("data-theme"));
-				clearInterval(forceDashboardTheme);
-			}
-		}, 100);
-
-		setTimeout(function() { clearInterval(forceDashboardTheme); }, 10000);
-	}
-})();
-
-// Enhanced theme change detection and handling
-$(document).on("theme_change", function() {
-	console.log("Theme change detected, checking material theme status");
-	if (window.applySavedTheme && typeof window.applySavedTheme === 'function') {
-		window.applySavedTheme();
-	} else {
-		console.warn("applySavedTheme function not available");
-	}
+$(document).ready(function() {
+    applySavedTheme();
 });
 
-// Also listen for attribute changes on the document element
-const themeObserver = new MutationObserver(function(mutations) {
-	mutations.forEach(function(mutation) {
-		if (mutation.type === 'attributes' &&
-			(mutation.attributeName === 'data-theme' || mutation.attributeName === 'data-theme-mode')) {
-			console.log("Theme attribute changed:", mutation.attributeName, "to:", mutation.target.getAttribute(mutation.attributeName));
-			setTimeout(function() {
-				if (window.applySavedTheme && typeof window.applySavedTheme === 'function') {
-					window.applySavedTheme();
-				} else {
-					console.warn("applySavedTheme function not available in mutation observer");
-				}
-			}, 50); // Small delay to allow other theme handlers to complete
-		}
-	});
-});
+// ============================================
+// TOOLBAR MENU - ONLY WHEN TECHCLOUD THEME ACTIVE
+// ============================================
 
-themeObserver.observe(document.documentElement, {
-	attributes: true,
-	attributeFilter: ['data-theme', 'data-theme-mode']
-});
-
-// Wait for toolbar_setup to add the menu item
 $(document).on("toolbar_setup", function () {
-	const root = document.documentElement;
-	let theme_mode = root.getAttribute("data-theme-mode");
-	
-	// Also check frappe.boot.desk_theme directly, as Frappe's theme switcher
-	// might set data-theme-mode to "standard" even when desk_theme is "Material"
-	let desk_theme = null;
-	if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-		desk_theme = window.frappe.boot.desk_theme.toLowerCase();
-	}
-	
-	// Check both data-theme-mode and desk_theme to determine if Material theme is active (accept both "material" and "techcloud")
-	const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
-	const isMaterialTheme = theme_mode === "material" || 
-	                        root.getAttribute("data-theme") === "material" ||
-	                        deskThemeLower === "material" || deskThemeLower === "techcloud";
-	
-	console.log("Theme check - data-theme-mode:", theme_mode, "desk_theme:", desk_theme, "isMaterial:", isMaterialTheme);
-	
-	if (!isMaterialTheme) {
+    // Only add menu item when Techcloud theme is active
+    if (!isTechcloudTheme()) {
+        return;
+    }
+
+    console.log("Techcloud theme active - adding theme color menu");
+
+    // Apply saved theme color if available
+    var themeColor = localStorage.getItem("ItrostackThemeColor");
+    if(themeColor && typeof applyMaterialTheme === 'function') {
+        applyMaterialTheme(themeColor);
+    }
+
+    // Add menu item to toolbar
+    render_clear_demo_action();
+});
+
+function render_clear_demo_action() {
+    let demo_action = $(
+        `<a class="dropdown-item" onclick="return techcloud.theme.clear_demo()">
+            ${__("Change Theme Color")}
+        </a>`
+    );
+
+    demo_action.appendTo($("#toolbar-user"));
+}
+
+// ============================================
+// SAFE MATERIAL THEME COLOR APPLICATION
+// ============================================
+
+function applyMaterialTheme(SelectedColor) {
+    // ONLY apply when Techcloud theme is active
+    if (!isTechcloudTheme()) {
+        return; // Exit early if not using Techcloud theme
+    }
+
+    try {
+        // Check if required functions are available
+        if (typeof themeFromSourceColor === 'undefined' ||
+            typeof argbFromHex === 'undefined' ||
+            typeof applyTheme === 'undefined' ||
+            typeof hexFromArgb === 'undefined') {
+            console.warn("Material theme dynamic color functions not available. Using fallback primary color only.");
+
+            // Fallback: just set the primary color CSS variable
+            var r = document.documentElement;
+            if (SelectedColor && SelectedColor.startsWith('#')) {
+                r.style.setProperty('--primary', SelectedColor);
+                localStorage.setItem("ItrostackThemeColor", SelectedColor);
+                console.log("Techcloud theme fallback color applied:", SelectedColor);
+            }
+            return;
+        }
+
+        var r = document.documentElement; // Use :root (html element)
+        const theme = themeFromSourceColor(argbFromHex(SelectedColor), [
+            {
+              name: "custom-1",
+              value: argbFromHex(SelectedColor),
+              blend: true,
+            },
+        ]);
+
+        // Apply the theme to :root (html element) so CSS variables are available globally
+        applyTheme(theme, {target: r});
+
+        const color = hexFromArgb(theme.schemes.light.primary);
+        localStorage.setItem("ItrostackThemeColor", color);
+
+        // Setting the primary color for frappe (on :root)
+        r.style.setProperty('--primary', color);
+
+        console.log("Techcloud theme full color scheme applied:", color);
+    } catch (error) {
+        console.error("Error applying Techcloud theme color:", error);
+
+        // Fallback on error
+        try {
+            var r = document.documentElement;
+            if (SelectedColor && SelectedColor.startsWith('#')) {
+                r.style.setProperty('--primary', SelectedColor);
+                localStorage.setItem("ItrostackThemeColor", SelectedColor);
+                console.log("Techcloud theme fallback color applied after error:", SelectedColor);
+            }
+        } catch (fallbackError) {
+            console.error("Fallback color application also failed:", fallbackError);
+        }
+    }
+}
+
+// ============================================
+// TECHCLOUD DASHBOARD FIXES - SAFE & CLEAN
+// ============================================
+
+$(document).on("page_change", function() {
+    // Only apply dashboard fixes when on dashboard page AND Techcloud theme active
+    if (window.location.pathname.includes('/app/dashboard-view/') && isTechcloudTheme()) {
+        // Safe dashboard layout fixes
+        requestAnimationFrame(() => {
+            document.querySelectorAll(".layout-side-section").forEach(el => {
+                el.style.display = "none";
+            });
+            document.querySelectorAll(".layout-main-section").forEach(el => {
+                el.style.width = "100%";
+                el.style.maxWidth = "100%";
+                el.style.marginRight = "0";
+            });
+        });
+
+        // Remove widget-group-head elements only for Techcloud theme
+        setTimeout(() => {
+            $('.widget-group-head').remove();
+            $('.widget-group .widget-group-head').remove();
+            $('div.widget-group-head').remove();
+            console.log('Techcloud Dashboard: Widget headers removed for clean layout');
+        }, 100);
+    }
+});
+
+// ============================================
+// THEME COLOR MENU
+// ============================================
+
+techcloud.theme.clear_demo = function () {
+    var themeColor = localStorage.getItem("ItrostackThemeColor");
+    if(!themeColor) {
+        themeColor = "#3C6090";
+    }
+
+    // Create dialog
+    var d = new frappe.ui.Dialog({
+        title: "Select Theme Color",
+        fields: [
+            {
+                label: __("Theme color"),
+                fieldname: "Color",
+                fieldtype: "Color",
+                default: themeColor,
+            },
+        ],
+    });
+
+    d.set_primary_action(__("Set Color"), function () {
+        applyMaterialTheme(d.get_value('Color'));
+        d.hide();
+    });
+
+    d.show();
+};
+
+// ============================================
+// TOOLBAR MENU - ONLY WHEN TECHCLOUD THEME ACTIVE
+// ============================================
+
+$(document).on("toolbar_setup", function () {
+	// Only add menu item when Techcloud theme is active
+	if (!isTechcloudTheme()) {
 		return;
 	}
-	
-	// Ensure data-theme-mode and data-theme are set correctly
-	if (theme_mode !== "material") {
-		root.setAttribute("data-theme-mode", "material");
-	}
-	// Always set data-theme for material theme to ensure CSS selectors work
-	root.setAttribute("data-theme", "material");
-	
-	// Apply saved theme color (if not already applied)
+
+	console.log("Techcloud theme active - adding theme color menu");
+
+	// Apply saved theme color if available
 	var themeColor = localStorage.getItem("ItrostackThemeColor");
 	if(themeColor && typeof applyMaterialTheme === 'function') {
 		applyMaterialTheme(themeColor);
 	}
-	
+
 	// Add menu item to toolbar
 	render_clear_demo_action();
-
-});
-
-// Additional check for dashboard-view pages specifically
-$(document).on("page_change", function() {
-	if (window.location.pathname.includes('/app/dashboard-view/')) {
-		// Immediate check when page changes
-		setTimeout(function() {
-			const root = document.documentElement;
-			let theme_mode = root.getAttribute("data-theme-mode");
-			let desk_theme = null;
-
-			if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-				desk_theme = window.frappe.boot.desk_theme.toLowerCase();
-			}
-
-			const deskThemeLower = desk_theme ? String(desk_theme).toLowerCase() : "";
-			const isMaterialTheme = theme_mode === "material" ||
-			                        root.getAttribute("data-theme") === "material" ||
-			                        deskThemeLower === "material" || deskThemeLower === "techcloud";
-
-			if (isMaterialTheme) {
-				if (theme_mode !== "material") {
-					root.setAttribute("data-theme-mode", "material");
-				}
-				root.setAttribute("data-theme", "material");
-				console.log("Dashboard page loaded: Material theme ensured - data-theme-mode:", root.getAttribute("data-theme-mode"), "data-theme:", root.getAttribute("data-theme"));
-			}
-		}, 100); // Quick check
-
-		// Additional check with longer delay
-		setTimeout(function() {
-			if (window.applySavedTheme && typeof window.applySavedTheme === 'function') {
-				window.applySavedTheme();
-			}
-		}, 1000); // Ensure theme color is applied
-	}
-});
-
-// Also check on DOM ready for dashboard pages
-$(document).ready(function() {
-	if (window.location.pathname.includes('/app/dashboard-view/')) {
-		setTimeout(function() {
-			if (window.applySavedTheme && typeof window.applySavedTheme === 'function') {
-				window.applySavedTheme();
-			}
-		}, 200);
-	}
 });
 
 function render_clear_demo_action() {
@@ -272,6 +246,16 @@ function render_clear_demo_action() {
 
 function applyMaterialTheme(SelectedColor)
 {
+	// ONLY apply Material theme colors when Material theme is active
+	const themeMode = document.documentElement.getAttribute("data-theme-mode");
+	const theme = document.documentElement.getAttribute("data-theme");
+	const isMaterialTheme = themeMode === "material" || theme === "material";
+
+	if (!isMaterialTheme) {
+		console.log("Material theme not active, skipping color application");
+		return; // Exit early if not using Material theme
+	}
+
 	try {
 		// Check if required functions are available
 		if (typeof themeFromSourceColor === 'undefined' ||
@@ -404,21 +388,31 @@ applyMaterialTheme = function(SelectedColor) {
 	fixMaterialDashboard();
 };
 
-// Apply dashboard fixes on page load for dashboard pages
+// Apply dashboard fixes on page load for dashboard pages - ONLY FOR MATERIAL THEME
 $(document).ready(function() {
 	if (window.location.pathname.includes('/app/dashboard-view/') ||
 		window.location.pathname.includes('/app/query-report/') ||
 		document.querySelector('.dashboard-section')) {
-		setTimeout(fixMaterialDashboard, 1000);
+		// Only apply dashboard fixes for Material theme
+		const themeMode = document.documentElement.getAttribute("data-theme-mode");
+		const theme = document.documentElement.getAttribute("data-theme");
+		if (themeMode === "material" || theme === "material") {
+			setTimeout(fixMaterialDashboard, 1000);
+		}
 	}
 });
 
-// Apply fixes when dashboard content changes
+// Apply fixes when dashboard content changes - ONLY FOR MATERIAL THEME
 $(document).on("page_change", function() {
 	if (window.location.pathname.includes('/app/dashboard-view/') ||
 		window.location.pathname.includes('/app/query-report/') ||
 		document.querySelector('.dashboard-section')) {
-		setTimeout(fixMaterialDashboard, 800);
+		// Only apply dashboard fixes for Material theme
+		const themeMode = document.documentElement.getAttribute("data-theme-mode");
+		const theme = document.documentElement.getAttribute("data-theme");
+		if (themeMode === "material" || theme === "material") {
+			setTimeout(fixMaterialDashboard, 800);
+		}
 	}
 });
 
@@ -432,8 +426,12 @@ $(document).ready(function() {
 			if (frappe.dashboard && frappe.dashboard.dashboard) {
 				frappe.dashboard.dashboard.refresh();
 			}
-			// Ensure chart legends work after dashboard load
-			fixChartLegends();
+			// Ensure chart legends work after dashboard load - ONLY FOR MATERIAL THEME
+			const themeMode = document.documentElement.getAttribute("data-theme-mode");
+			const theme = document.documentElement.getAttribute("data-theme");
+			if (themeMode === "material" || theme === "material") {
+				fixChartLegends();
+			}
 		}, 500);
 	}
 });
@@ -518,22 +516,38 @@ function fixChartLegends() {
 	}
 }
 
-// Apply legend fixes when charts are created/updated
+// Apply legend fixes when charts are created/updated - ONLY FOR MATERIAL THEME
 $(document).on("chart_rendered", function() {
-	fixChartLegends();
-});
-
-// Also apply on page changes
-$(document).on("page_change", function() {
-	if (window.location.pathname.includes('/app/dashboard-view/')) {
-		setTimeout(fixChartLegends, 1500);
+	// Only apply chart fixes for Material theme
+	const themeMode = document.documentElement.getAttribute("data-theme-mode");
+	const theme = document.documentElement.getAttribute("data-theme");
+	if (themeMode === "material" || theme === "material") {
+		fixChartLegends();
 	}
 });
 
-// Remove widget-group-head elements from dashboard pages
+// Also apply on page changes - ONLY FOR MATERIAL THEME
+$(document).on("page_change", function() {
+	if (window.location.pathname.includes('/app/dashboard-view/')) {
+		// Only apply chart fixes for Material theme
+		const themeMode = document.documentElement.getAttribute("data-theme-mode");
+		const theme = document.documentElement.getAttribute("data-theme");
+		if (themeMode === "material" || theme === "material") {
+			setTimeout(fixChartLegends, 1500);
+		}
+	}
+});
+
+// Remove widget-group-head elements from dashboard pages - ONLY FOR MATERIAL THEME
 $(document).ready(function() {
-    // Check if we're on a dashboard page
+    // Check if we're on a dashboard page AND using Material theme
     if (window.location.pathname.includes('/app/dashboard-view/')) {
+        // Check current theme
+        const themeMode = document.documentElement.getAttribute("data-theme-mode");
+        const theme = document.documentElement.getAttribute("data-theme");
+        const isMaterialTheme = themeMode === "material" || theme === "material";
+
+        if (isMaterialTheme) {
         // Function to remove widget-group-head elements
         function removeWidgetGroupHeads() {
             // Remove all widget-group-head elements
@@ -589,6 +603,7 @@ $(document).ready(function() {
                 childList: true,
                 subtree: true
             });
+        }
         }
     }
 });
