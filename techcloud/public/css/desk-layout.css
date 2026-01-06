@@ -1311,7 +1311,7 @@ html[data-theme-mode="material"] .page-head {
   gap: 12px !important;
   min-height: 61px !important;
   padding: 16px 24px !important;
-  margin: 1% 0 0 0 !important;
+  margin: -1% 5% -1% 2% !important;
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
   border-bottom: 1px solid rgba(0, 137, 255, 0.08) !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
@@ -3106,6 +3106,7 @@ html[data-theme-mode="material"] .page-body {
   margin: 0 !important;
 }
 
+
 /* ============================================
    4. WORKSPACE CARDS IMPROVEMENTS
    ============================================ */
@@ -4552,7 +4553,7 @@ html[data-theme="material"] .card-header,
 html[data-theme-mode="material"] .card-header {
   background: #F0F8FF !important; /* Light blue background */
   background-color: #F0F8FF !important; /* Explicit background-color for chart compatibility */
-  /*border: 1px solid #0089FF !important; *//* Blue border all around */
+  /*13; *//* Blue border all around */
   /*border-color: #0089FF !important; */ /* Explicit border-color for chart compatibility */
   /*border-bottom: 2px solid #0089FF !important; *//* Thicker blue bottom border */
   border-radius: 8px 8px 0 0 !important; /* Rounded top corners only */
@@ -5255,5 +5256,151 @@ html[data-theme-mode="material"] body.modal-open {
 html[data-theme="material"] .navbar.navbar-light,
 html[data-theme-mode="material"] .navbar.navbar-light {
   z-index: 1000 !important; /* Keep navbar below modals */
+}
+
+/* Hide buttons with 'hide' class that have no inner text */
+.btn.btn-primary.btn-sm.hide:empty,
+.btn.btn-primary.btn-sm.hide:not(:has(*)) {
+  display: none !important;
+}
+
+/* Hide primary-action buttons with 'hide' class that have no inner text */
+.primary-action .btn.hide:empty,
+.primary-action .btn.hide:not(:has(*)) {
+  display: none !important;
+}
+
+/* Additional check for buttons with only whitespace */
+.btn.btn-primary.btn-sm.hide:only-child,
+.primary-action .btn.hide:only-child {
+  display: none !important;
+}
+
+/* Layout main section and wrapper - proper sizing and positioning */
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section,
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .layout-main-section-wrapper {
+  margin-left: 1.5% !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: calc(100vh - 44px) !important;
+  overflow-y: auto !important;
+}
+
+/* Hide empty indicator-pill spans with no inner text */
+.indicator-pill.whitespace-nowrap:empty,
+.indicator-pill.whitespace-nowrap:not(:has(*)) {
+  display: none !important;
+}
+
+/* Hide empty buttons with hide class - comprehensive coverage */
+.btn.btn-secondary.btn-default.btn-sm.hide:empty,
+.btn.btn-secondary.btn-default.btn-sm.hide:not(:has(*)),
+.btn.btn-secondary.btn-sm.hide:empty,
+.btn.btn-secondary.btn-sm.hide:not(:has(*)),
+.btn.btn-default.btn-sm.hide:empty,
+.btn.btn-default.btn-sm.hide:not(:has(*)),
+.btn.btn-sm.hide:empty,
+.btn.btn-sm.hide:not(:has(*)),
+.btn.hide:empty,
+.btn.hide:not(:has(*)) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* ============================================
+   FIX PAGE JERKING ON HOVER - GPU ACCELERATION
+   ============================================ */
+
+/* Optimize hover animations to prevent page jerking */
+html[data-theme="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+html[data-theme-mode="material"] .desk-sidebar .dropdown-list .dropdown-item-icon svg,
+html[data-theme="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg,
+html[data-theme-mode="material"] .layout-side-section .dropdown-list .dropdown-item-icon svg {
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  perspective: 1000px !important;
+}
+
+/* Optimize button hover effects */
+html[data-theme="material"] .btn:hover,
+html[data-theme-mode="material"] .btn:hover,
+html[data-theme="material"] button:hover,
+html[data-theme-mode="material"] button:hover {
+  will-change: transform, box-shadow !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important; /* Force hardware acceleration */
+}
+
+/* Optimize sidebar item hover effects */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
+  will-change: background-color, border-color !important;
+  backface-visibility: hidden !important;
+}
+
+/* Optimize card and widget hover effects */
+html[data-theme="material"] .card:hover,
+html[data-theme-mode="material"] .card:hover,
+html[data-theme="material"] .widget:hover,
+html[data-theme-mode="material"] .widget:hover,
+html[data-theme="material"] .dashboard-item:hover,
+html[data-theme-mode="material"] .dashboard-item:hover {
+  will-change: transform, box-shadow !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+/* Optimize dropdown menu hover effects */
+html[data-theme="material"] .dropdown-item:hover,
+html[data-theme-mode="material"] .dropdown-item:hover {
+  will-change: background-color !important;
+  backface-visibility: hidden !important;
+}
+
+/* Optimize navigation and toolbar hover effects */
+html[data-theme="material"] .navbar-nav .nav-item:hover,
+html[data-theme-mode="material"] .navbar-nav .nav-item:hover,
+html[data-theme="material"] .toolbar-item:hover,
+html[data-theme-mode="material"] .toolbar-item:hover {
+  will-change: background-color, transform !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+/* Optimize modal and dialog hover effects */
+html[data-theme="material"] .modal-header:hover,
+html[data-theme-mode="material"] .modal-header:hover,
+html[data-theme="material"] .dialog-header:hover,
+html[data-theme-mode="material"] .dialog-header:hover {
+  will-change: background-color !important;
+  backface-visibility: hidden !important;
+}
+
+/* Ensure smooth transitions for all hover effects */
+html[data-theme="material"] *,
+html[data-theme-mode="material"] * {
+  transition-property: transform, background-color, border-color, box-shadow, opacity !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="material"] *,
+  html[data-theme-mode="material"] * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    will-change: auto !important;
+  }
 }
 

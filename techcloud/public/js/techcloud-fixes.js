@@ -6,6 +6,81 @@
 	"use strict";
 
 	// ============================================
+	// STICKY HEADER IMPLEMENTATION - NO JERKING
+	// ============================================
+
+	function initializeStickyHeader() {
+		// Only apply to Material theme
+		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
+			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			return;
+		}
+
+		// Find the main navbar
+		const navbar = document.querySelector('.navbar:not(.navbar-light):not(.navbar-expand-lg)');
+		if (!navbar) return;
+
+		// Create sticky wrapper if it doesn't exist
+		let stickyContainer = document.querySelector('.sticky-header-container');
+		if (!stickyContainer) {
+			stickyContainer = document.createElement('div');
+			stickyContainer.className = 'sticky-header-container';
+
+			// Wrap navbar in sticky container
+			const headerContent = document.createElement('div');
+			headerContent.className = 'header-content';
+
+			// Move navbar into wrapper
+			navbar.parentNode.insertBefore(stickyContainer, navbar);
+			headerContent.appendChild(navbar);
+			stickyContainer.appendChild(headerContent);
+		}
+
+		// Mark content below as having sticky header
+		const pageContent = document.querySelector('.page-content');
+		if (pageContent && !pageContent.classList.contains('has-sticky-header')) {
+			pageContent.classList.add('has-sticky-header');
+			pageContent.classList.add('content-below-sticky');
+		}
+
+		// Handle sticky behavior on scroll with throttling
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+
+		function updateStickyState() {
+			const scrollY = window.scrollY;
+
+			if (scrollY > 0) {
+				stickyContainer.classList.add('sticky');
+			} else {
+				stickyContainer.classList.remove('sticky');
+			}
+
+			lastScrollY = scrollY;
+			ticking = false;
+		}
+
+		function requestTick() {
+			if (!ticking) {
+				requestAnimationFrame(updateStickyState);
+				ticking = true;
+			}
+		}
+
+		// Throttled scroll handler to prevent excessive updates
+		window.addEventListener('scroll', requestTick, { passive: true });
+
+		console.log('TechCloud sticky header initialized successfully');
+	}
+
+	// Initialize sticky header after DOM is ready
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initializeStickyHeader);
+	} else {
+		initializeStickyHeader();
+	}
+
+	// ============================================
 	// Fix 1: BaseChart Color Warning
 	// Patches frappe.Chart to filter out empty color strings before passing to chart library
 	// ============================================

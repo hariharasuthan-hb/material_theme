@@ -147,11 +147,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     background-color: var(--md-sys-color-background) !important;
   }
 
-  /* Main section background */
-  html[data-theme="material"] .main-section,
-  html[data-theme-mode="material"] .main-section {
-    background-color: var(--md-sys-color-background) !important;
-  }
+  /* Main section - consolidated (removed duplicate) */
 
   /* Layout main container background */
   html[data-theme="material"] .layout-main,
@@ -167,11 +163,14 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     flex: 1 1 100% !important;
   }
 
-  /* Main section - full width layout like Standard theme (no centering) */
+  /* Main section - consolidated full width layout with background and margins */
   html[data-theme="material"] .main-section,
   html[data-theme-mode="material"] .main-section {
     width: 100% !important;
     max-width: 100% !important;
+    background-color: var(--md-sys-color-background) !important;
+    margin-left: -1% !important;
+    margin-top: -0.5% !important;
   }
 
   /* Remove centering constraints - allow full width */
@@ -233,24 +232,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     background-color: var(--md-sys-color-background) !important;
   }
   
-  /* Navigation Bar - Desk Pages Only (for website pages, use navbar-light rules below) */
-  html[data-theme="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg),
-  html[data-theme-mode="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg),
-  body[data-theme-mode="material"] .navbar:not(.navbar-light):not(.navbar-expand-lg) {
-    background: linear-gradient(
-      to right,
-      var(--md-sys-color-primary),
-      var(--md-sys-color-primary)
-    ) !important;
-  
-    height: 44px !important;
-    min-height: 44px !important;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1100 !important;
-  }
+  /* Navigation Bar - REMOVED: Consolidated into desk-layout.css for jerking fix */
   
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-nav > li > a {
     color: var(--md-sys-color-on-primary) !important;
