@@ -7647,6 +7647,11 @@ frappe.provide("itrostack.material");
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// Create global material object for theme customizer compatibility
+window.material = {
+    theme: {}
+};
+
 /**
  * @license
  * Copyright 2022 Google LLC
