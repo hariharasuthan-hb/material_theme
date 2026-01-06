@@ -23,13 +23,8 @@ html:not([data-theme="material"]):not([data-theme-mode="material"]) .widget {
     all: revert !important;
 }
 
-/* Protect dark theme scrollbars from Material theme interference */
-/* This rule intentionally loads on ALL non-Material themes (including dark theme) */
-/* to ensure they use their own scrollbar styling, not Material theme scrollbars */
-html:not([data-theme="material"]):not([data-theme-mode="material"]) * {
-    scrollbar-width: revert !important;
-    scrollbar-color: revert !important;
-}
+/* Removed broad scrollbar protection rule that was interfering with dark theme */
+/* Theme isolation is now handled through more specific CSS rules */
 
 /* ============================================
    MATERIAL THEME DASHBOARD TYPOGRAPHY & LAYOUT
@@ -1184,16 +1179,16 @@ html[data-theme="material"] .frappe-chart .chart-legend-item[opacity="0.3"] text
     position: relative !important;
 }
 
-/* Form footer - stick to bottom */
+/* Form footer - clean styling without sticky positioning to avoid hiding buttons */
 [data-theme="material"] .form-footer,
 [data-theme-mode="material"] .form-footer {
-    position: sticky !important;
-    bottom: 0 !important;
     background: #ffffff !important;
     border-top: 1px solid #e5e7eb !important;
     padding: 20px !important;
-    margin-top: 40px !important;
-    z-index: 10 !important;
+    margin-top: 20px !important;
+    position: relative !important;
+    bottom: auto !important;
+    z-index: auto !important;
 }
 
 /* Comment box styling */
@@ -2093,6 +2088,269 @@ body[data-theme-mode="material"] .desk-sidebar .sidebar-item.selected svg {
     fill: var(--sidebar-icon-active) !important;
 }
 
+/* =========================================
+   NextERP / Frappe SAVE Button FIX
+   App → User → Admin
+========================================= */
+
+/* Ensure page header is visible */
+.page-head {
+    display: flex !important;
+    align-items: center !important;
+    min-height: 56px !important;
+    overflow: visible !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* Ensure action buttons container is visible */
+.page-head .page-actions {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    gap: 8px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+
+/* Force primary action (Save button) */
+.page-head .page-actions .btn-primary,
+.page-head .primary-action {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    background-color: #2490ef !important;
+    color: #ffffff !important;
+    border: 1px solid #2490ef !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    min-height: 32px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hover */
+.page-head .page-actions .btn-primary:hover {
+    background-color: #1c6ed5 !important;
+}
+
+/* Prevent header clipping */
+.layout-main,
+.layout-main-section {
+    overflow: visible !important;
+}
+
+/* Safety net - ensure all buttons are visible */
+.btn {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   PAGE ACTIONS VISIBILITY FIX - ALL THEMES
+   ============================================ */
+
+/* Ensure page actions are visible in ALL themes */
+.page-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 16px !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Standard actions container - all themes */
+.standard-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Primary action button (Save button) - all themes */
+.primary-action {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-block !important;
+}
+
+.primary-action:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Menu button group - all themes */
+.menu-btn-group {
+    position: relative !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Dropdown menus - all themes */
+.dropdown-menu {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+    background: #ffffff !important;
+    display: none !important; /* Hidden by default, shown when triggered */
+}
+
+.dropdown-menu.show {
+    display: block !important;
+}
+
+/* Page icon group buttons - all themes */
+.page-icon-group .btn {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    color: #6b7280 !important;
+    padding: 6px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.page-icon-group .btn:hover {
+    background: #f9fafb !important;
+    color: #374151 !important;
+    border-color: #9ca3af !important;
+}
+
+/* Custom actions buttons - all themes */
+.custom-actions .btn {
+    background: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    color: #374151 !important;
+    padding: 6px 12px !important;
+    border-radius: 6px !important;
+    font-size: 13px !important;
+    transition: all 0.2s ease !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.custom-actions .btn:hover {
+    background: #f9fafb !important;
+    border-color: #9ca3af !important;
+}
+
+/* Form viewers indicator - all themes */
+.form-viewers {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: 16px !important;
+    font-size: 12px !important;
+    color: #6b7280 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Ensure all action buttons are visible - all themes */
+.page-actions .btn {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Fix for hidden buttons - all themes */
+.page-actions .hide {
+    display: none !important;
+}
+
+/* Fix for visible buttons - all themes */
+.page-actions .show {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   DARK THEME SPECIFIC ADJUSTMENTS
+   ============================================ */
+
+/* Dark theme page actions background */
+[data-theme="dark"] .page-actions,
+[data-theme="timeless-night"] .page-actions {
+    border-bottom-color: #374151 !important;
+}
+
+/* Dark theme primary action button */
+[data-theme="dark"] .primary-action,
+[data-theme="timeless-night"] .primary-action {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .primary-action:hover,
+[data-theme="timeless-night"] .primary-action:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Dark theme dropdown menus */
+[data-theme="dark"] .dropdown-menu,
+[data-theme="timeless-night"] .dropdown-menu {
+    background: #1e293b !important;
+    border-color: #374151 !important;
+    color: #e5e7eb !important;
+}
+
+/* Dark theme page icon buttons */
+[data-theme="dark"] .page-icon-group .btn,
+[data-theme="timeless-night"] .page-icon-group .btn {
+    background: #1e293b !important;
+    border-color: #374151 !important;
+    color: #9ca3af !important;
+}
+
+[data-theme="dark"] .page-icon-group .btn:hover,
+[data-theme="timeless-night"] .page-icon-group .btn:hover {
+    background: #374151 !important;
+    color: #e5e7eb !important;
+}
+
+/* Dark theme custom action buttons */
+[data-theme="dark"] .custom-actions .btn,
+[data-theme="timeless-night"] .custom-actions .btn {
+    background: #1e293b !important;
+    border-color: #374151 !important;
+    color: #e5e7eb !important;
+}
+
+[data-theme="dark"] .custom-actions .btn:hover,
+[data-theme="timeless-night"] .custom-actions .btn:hover {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+}
+
 /* ============================================
    MATERIAL THEME - CONSERVATIVE WEB FORM ENHANCEMENTS
    ============================================ */
@@ -2207,8 +2465,8 @@ html[data-theme-mode="material"] .checkbox input[type="checkbox"]:checked::after
     color: #ffffff !important;
     font-size: 11px !important;
     font-weight: 700 !important;
-    left: 7px !important;
-    top: 1px !important;
+    left: 2px !important;
+    top: -1px !important;
 }
 
 /* ============================================
@@ -2474,3 +2732,55 @@ html[data-theme="material"] .frappe-chart .graph-svg-tip text,
 html[data-theme-mode="material"] .frappe-chart .graph-svg-tip text {
     fill: #ffffff !important;
 }
+  /* Responsive adjustments for smaller buttons */
+  @media (max-width: 768px) {
+    html[data-theme="material"] .workspace-footer,
+    html[data-theme-mode="material"] .workspace-footer {
+      padding: 12px 20px !important;
+      gap: 6px !important;
+      margin-top: 20px !important;
+    }
+
+    html[data-theme="material"] .workspace-footer .btn,
+    html[data-theme-mode="material"] .workspace-footer .btn {
+      padding: 6px 12px !important;
+      font-size: 11px !important;
+      min-height: 32px !important;
+    }
+
+    /* Keep buttons compact on very small screens */
+    @media (max-width: 480px) {
+      html[data-theme="material"] .workspace-footer,
+      html[data-theme-mode="material"] .workspace-footer {
+        justify-content: center !important; /* Center on very small screens for better UX */
+        flex-direction: row !important; /* Keep horizontal but centered */
+        gap: 6px !important; /* Smaller gap on mobile */
+        padding: 12px 16px !important; /* Reduced padding */
+      }
+
+      html[data-theme="material"] .workspace-footer .btn,
+      html[data-theme-mode="material"] .workspace-footer .btn {
+        flex: none !important; /* No stretching */
+        width: auto !important; /* Content-sized width */
+        padding: 5px 10px !important; /* Even more compact on mobile */
+        font-size: 11px !important; /* Smaller font on mobile */
+        min-height: 28px !important; /* Compact height */
+      }
+    }
+  }
+
+  /* Fix blue loading background - Prevent blue colors during page loading */
+  /* Neutral skeleton cards during loading */
+  html[data-theme="material"] .skeleton-card,
+  html[data-theme-mode="material"] .skeleton-card {
+    background-color: #f5f5f5 !important; /* Neutral gray instead of any blue */
+    border: 1px solid #e5e5e5 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+
+  /* Override workspace skeleton backgrounds */
+  html[data-theme="material"] .workspace-skeleton,
+  html[data-theme-mode="material"] .workspace-skeleton {
+    background: transparent !important;
+  }

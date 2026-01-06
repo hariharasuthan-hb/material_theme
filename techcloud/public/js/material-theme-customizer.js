@@ -88,68 +88,8 @@ function render_clear_demo_action() {
 }
 
 // ============================================
-// SAFE MATERIAL THEME COLOR APPLICATION
+// MATERIAL THEME COLOR APPLICATION
 // ============================================
-
-function applyMaterialTheme(SelectedColor) {
-    // ONLY apply when Techcloud theme is active
-    if (!isTechcloudTheme()) {
-        return; // Exit early if not using Techcloud theme
-    }
-
-    try {
-        // Check if required functions are available
-        if (typeof themeFromSourceColor === 'undefined' ||
-            typeof argbFromHex === 'undefined' ||
-            typeof applyTheme === 'undefined' ||
-            typeof hexFromArgb === 'undefined') {
-            console.warn("Material theme dynamic color functions not available. Using fallback primary color only.");
-
-            // Fallback: just set the primary color CSS variable
-            var r = document.documentElement;
-            if (SelectedColor && SelectedColor.startsWith('#')) {
-                r.style.setProperty('--primary', SelectedColor);
-                localStorage.setItem("ItrostackThemeColor", SelectedColor);
-                console.log("Techcloud theme fallback color applied:", SelectedColor);
-            }
-            return;
-        }
-
-        var r = document.documentElement; // Use :root (html element)
-        const theme = themeFromSourceColor(argbFromHex(SelectedColor), [
-            {
-              name: "custom-1",
-              value: argbFromHex(SelectedColor),
-              blend: true,
-            },
-        ]);
-
-        // Apply the theme to :root (html element) so CSS variables are available globally
-        applyTheme(theme, {target: r});
-
-        const color = hexFromArgb(theme.schemes.light.primary);
-        localStorage.setItem("ItrostackThemeColor", color);
-
-        // Setting the primary color for frappe (on :root)
-        r.style.setProperty('--primary', color);
-
-        console.log("Techcloud theme full color scheme applied:", color);
-    } catch (error) {
-        console.error("Error applying Techcloud theme color:", error);
-
-        // Fallback on error
-        try {
-            var r = document.documentElement;
-            if (SelectedColor && SelectedColor.startsWith('#')) {
-                r.style.setProperty('--primary', SelectedColor);
-                localStorage.setItem("ItrostackThemeColor", SelectedColor);
-                console.log("Techcloud theme fallback color applied after error:", SelectedColor);
-            }
-        } catch (fallbackError) {
-            console.error("Fallback color application also failed:", fallbackError);
-        }
-    }
-}
 
 // ============================================
 // TECHCLOUD DASHBOARD FIXES - SAFE & CLEAN
@@ -235,7 +175,7 @@ $(document).on("toolbar_setup", function () {
 
 function render_clear_demo_action() {
 	let demo_action = $(
-		`<a class="dropdown-item" onclick="return material.theme.clear_demo()">
+		`<a class="dropdown-item" onclick="return techcloud.theme.clear_demo()">
 			${__("Change Theme Color")}
 		</a>`
 	);
@@ -316,7 +256,7 @@ function applyMaterialTheme(SelectedColor)
 	}
 }
 
-material.theme.clear_demo = function () {
+techcloud.theme.clear_demo = function () {
 	var themeColor = localStorage.getItem("ItrostackThemeColor");
 	if(!themeColor)
 		themeColor = "#3C6090";
@@ -381,12 +321,14 @@ function fixMaterialDashboard() {
 	}
 }
 
-// Apply dashboard fixes when theme is applied
-const originalApplyMaterialTheme = applyMaterialTheme;
-applyMaterialTheme = function(SelectedColor) {
-	originalApplyMaterialTheme.call(this, SelectedColor);
-	fixMaterialDashboard();
-};
+// Apply dashboard fixes when theme is applied - SAFE FROM MULTIPLE LOADS
+if (typeof window.originalApplyMaterialTheme === 'undefined') {
+	window.originalApplyMaterialTheme = applyMaterialTheme;
+	applyMaterialTheme = function(SelectedColor) {
+		window.originalApplyMaterialTheme.call(this, SelectedColor);
+		fixMaterialDashboard();
+	};
+}
 
 // Apply dashboard fixes on page load for dashboard pages - ONLY FOR MATERIAL THEME
 $(document).ready(function() {
