@@ -653,7 +653,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   /* Beautiful gradient header for all sections */
   html[data-theme="material"] .widget-group .widget-group-head,
   html[data-theme-mode="material"] .widget-group .widget-group-head {
-    background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #1a202c 100%) !important;
+    /*background: linear-gradient(135deg, #1a365d 0%, #2d3748 50%, #1a202c 100%) !important;*/
     border-radius: 16px 16px 0 0 !important;
     padding: 20px 28px !important;
     margin-bottom: 0 !important;
