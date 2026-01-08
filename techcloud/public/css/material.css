@@ -3590,6 +3590,119 @@ html[data-theme-mode="material"] .btn.btn-secondary.btn-xs.drag-handle {
 }
 
 /* ===============================================
+   REMOVE MODAL MINIMIZE BUTTON - NOT FUNCTIONAL
+   =============================================== */
+html[data-theme="material"] .btn-modal-minimize,
+html[data-theme-mode="material"] .btn-modal-minimize,
+html[data-theme="material"] .btn.btn-modal-minimize,
+html[data-theme-mode="material"] .btn.btn-modal-minimize {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ===============================================
+   SIDEBAR TOGGLE FUNCTIONALITY - MATERIAL THEME
+   =============================================== */
+
+/* Ensure sidebar toggle button is interactive */
+html[data-theme="material"] .sidebar-toggle-btn,
+html[data-theme-mode="material"] .sidebar-toggle-btn {
+  pointer-events: auto !important;
+  z-index: 10000 !important; /* Higher z-index to ensure it's above everything */
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  display: inline-block !important;
+}
+
+/* Ensure button contents are clickable */
+html[data-theme="material"] .sidebar-toggle-btn *,
+html[data-theme-mode="material"] .sidebar-toggle-btn * {
+  pointer-events: auto !important;
+}
+
+/* Prevent any overlays from blocking the button */
+html[data-theme="material"] .sidebar-toggle-btn::before,
+html[data-theme="material"] .sidebar-toggle-btn::after,
+html[data-theme-mode="material"] .sidebar-toggle-btn::before,
+html[data-theme-mode="material"] .sidebar-toggle-btn::after {
+  pointer-events: none !important;
+}
+
+/* ========== SIDEBAR COLLAPSE LAYOUT FIX ========== */
+
+/* 1. Hide sidebar completely - remove from grid */
+html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme="material"] body.sidebar-collapsed .desk-sidebar,
+html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+}
+
+/* 2. Expand main content to full width */
+html[data-theme="material"] body.sidebar-collapsed .layout-main-section,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-main-section {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  width: 100% !important;
+  flex: 1 !important;
+}
+
+/* 3. Fix parent layout container grid */
+html[data-theme="material"] body.sidebar-collapsed .layout-main,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-main {
+  grid-template-columns: 1fr !important;
+  display: grid !important;
+}
+
+/* 4. Remove double background - single clean background */
+html[data-theme="material"] body.sidebar-collapsed .page-container,
+html[data-theme-mode="material"] body.sidebar-collapsed .page-container,
+html[data-theme="material"] body.sidebar-collapsed .page-content,
+html[data-theme-mode="material"] body.sidebar-collapsed .page-content {
+  margin-left: 0 !important;
+  background: var(--bg-color, #ffffff) !important;
+}
+
+/* 5. Prevent horizontal scroll issues */
+html[data-theme="material"] body.sidebar-collapsed,
+html[data-theme-mode="material"] body.sidebar-collapsed {
+  overflow-x: hidden !important;
+}
+
+/* 6. Smooth transition for professional feel (optional) */
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section,
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section {
+  transition: all 0.25s ease !important;
+}
+
+/* Smooth transition for sidebar collapse/expand */
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section,
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar,
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section,
+html[data-theme="material"] .page-container,
+html[data-theme-mode="material"] .page-container {
+  transition: margin-left 0.3s ease, width 0.3s ease, visibility 0.3s ease !important;
+}
+
+/* ===============================================
    MATERIAL MODAL – ERPNext Professional Styling
    =============================================== */
 

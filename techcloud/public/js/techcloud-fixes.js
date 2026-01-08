@@ -382,7 +382,70 @@
 	}
 
 	// ============================================
-	// Fix 4: Handle 404 errors for chart_widget module gracefully
+	// Fix 4: Fix Moment.js deprecation warnings
+	// Ensures date values are properly formatted for Moment.js
+	// ============================================
+	function patchMomentWarnings() {
+		// Only apply to Material theme
+		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
+			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			return;
+		}
+
+		// Wait for frappe to be available
+		if (!window.frappe) {
+			setTimeout(patchMomentWarnings, 100);
+			return;
+		}
+
+		// Check if already patched
+		if (window.__techcloud_moment_patched) return;
+		window.__techcloud_moment_patched = true;
+
+		// Override frappe's datetime functions to ensure proper formatting
+		if (frappe.datetime && frappe.datetime.convert_to_user_tz) {
+			const originalConvertToUserTz = frappe.datetime.convert_to_user_tz;
+
+			frappe.datetime.convert_to_user_tz = function(value, format) {
+				try {
+					// Ensure value is properly formatted before passing to moment
+					if (value && typeof value === 'string') {
+						// Check if value is already a valid date format without triggering warnings
+						// Use multiple validation approaches to avoid Moment.js warnings
+
+						let isValidFormat = false;
+
+						// Check 1: If it's already an ISO string, it's good
+						if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)) {
+							isValidFormat = true;
+						}
+						// Check 2: If it's a standard date format, convert to ISO
+						else if (!isValidFormat) {
+							const date = new Date(value);
+							if (!isNaN(date.getTime()) && date.getTime() > 0) {
+								// Only convert if it's not already in a good format
+								// Avoid converting timestamps or already valid formats
+								if (!/^\d{4}-\d{2}-\d{2}/.test(value) && !/^\d{13,}$/.test(value)) {
+									value = date.toISOString();
+								}
+							}
+						}
+					}
+
+					return originalConvertToUserTz.call(this, value, format);
+				} catch (e) {
+					// Fallback to original function if our fix fails
+					console.warn('TechCloud: Moment.js fix failed, using original function');
+					return originalConvertToUserTz.call(this, value, format);
+				}
+			};
+		}
+
+		console.log('TechCloud: Moment.js deprecation warning fix applied');
+	}
+
+	// ============================================
+	// Fix 5: Handle 404 errors for chart_widget module gracefully
 	// Prevents TypeError when AssetManager tries to process missing modules
 	// ============================================
 	function patchAssetManager() {
@@ -471,9 +534,96 @@
 	}
 
 	// ============================================
+	// SIDEBAR TOGGLE FUNCTIONALITY
+	// Restores ERPNext sidebar toggle behavior for Material theme
+	// ============================================
+	function initializeSidebarToggle() {
+		// Only apply to Material theme
+		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
+			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			return;
+		}
+
+		// Check if button exists and add click handler
+		const toggleBtn = document.querySelector('.sidebar-toggle-btn');
+		if (toggleBtn) {
+			console.log('TechCloud: Sidebar toggle button found:', toggleBtn);
+
+			// Remove any existing handlers first to avoid conflicts
+			$(document).off('click', '.sidebar-toggle-btn');
+
+			// Add multiple click handlers for redundancy
+			// Method 1: jQuery delegated handler
+			$(document).on('click', '.sidebar-toggle-btn', function(e) {
+				console.log('TechCloud: Sidebar toggle button clicked (jQuery)!');
+				handleSidebarToggle(e);
+			});
+
+			// Method 2: Direct event listener as backup
+			toggleBtn.addEventListener('click', function(e) {
+				console.log('TechCloud: Sidebar toggle button clicked (direct)!');
+				handleSidebarToggle(e);
+			});
+
+			// Method 3: Set onclick attribute as final fallback
+			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
+
+			// Expose global function for onclick fallback
+			window.techcloudToggleSidebar = function() {
+				console.log('TechCloud: Sidebar toggle via global function!');
+				$('body').toggleClass('sidebar-collapsed');
+				const isCollapsed = $('body').hasClass('sidebar-collapsed');
+				try {
+					localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
+				} catch (e) {}
+			};
+
+			console.log('TechCloud: Sidebar toggle handlers attached (3 methods)');
+		} else {
+			console.warn('TechCloud: Sidebar toggle button not found!');
+		}
+
+		// Shared handler function
+		function handleSidebarToggle(e) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			// Toggle the sidebar-collapsed class on body
+			$('body').toggleClass('sidebar-collapsed');
+			console.log('TechCloud: Body classes after toggle:', $('body').attr('class'));
+
+			// Optional: Save state to localStorage for persistence
+			const isCollapsed = $('body').hasClass('sidebar-collapsed');
+			try {
+				localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
+			} catch (e) {
+				// localStorage might not be available
+			}
+		}
+
+		// Restore sidebar state from localStorage on page load
+		try {
+			const savedState = localStorage.getItem('techcloud-sidebar-collapsed');
+			if (savedState === 'true') {
+				$('body').addClass('sidebar-collapsed');
+			}
+		} catch (e) {
+			// localStorage might not be available
+		}
+
+		console.log('TechCloud sidebar toggle functionality initialized');
+	}
+
+	// ============================================
 	// Initialize Patches
 	// ============================================
 	function initPatches() {
+		// Initialize sidebar toggle functionality
+		initializeSidebarToggle();
+
+		// Fix Moment.js deprecation warnings
+		patchMomentWarnings();
+
 		// Patch asset manager to handle 404s gracefully (prevents TypeError)
 		patchAssetManager();
 
