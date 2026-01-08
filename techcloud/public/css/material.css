@@ -180,7 +180,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     width: 100% !important;
     max-width: 100% !important;
-    flex: 1 1 100% !important;
+    /* flex: 1 1 100% !important; */
   }
 
   /* Main section - consolidated full width layout with background and margins */
@@ -224,7 +224,7 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme-mode="material"] .layout-main-section-wrapper.col-md-12 {
     width: 100% !important;
     max-width: 100% !important;
-    flex: 1 1 100% !important;
+    /* flex: 1 1 100% !important; */
   }
 
   /* Page body - full width */
@@ -4038,28 +4038,21 @@ html[data-theme-mode="material"] body[data-route] {
    
   }*/
 
-/* Desk Sidebar - Match dashboard.html sidebar - Position below header */
-html[data-theme="material"] .desk-sidebar,
-html[data-theme-mode="material"] .desk-sidebar,
-html[data-theme="material"] .desk-sidebar,
-html[data-theme-mode="material"] .desk-sidebar,
-html[data-theme="material"] .layout-side-section,
-html[data-theme-mode="material"] .layout-side-section {
-  /* width: 260px !important; */
-  /* min-width: 260px !important; */
-  background: var(--techcloud-white) !important;
-  border-right: 1px solid var(--techcloud-border-color) !important;
-  padding: 8px 16px 16px 16px !important;
-  position: fixed !important;
-  left: 0 !important;
-  top: 44px !important;
-  height: calc(100vh - 44px) !important;
-  overflow-y: auto !important;
-  overflow-x: visible !important;
-  box-sizing: border-box !important;
-  z-index: 100 !important;
-  display: flex !important;
-  flex-direction: column !important;
+html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .layout-side-section, html[data-theme-mode="material"] .layout-side-section {
+    width: 245px !important;
+    /* min-width: 260px !important; */
+    /* background: var(--techcloud-white) !important; */
+    border-right: 1px solid var(--techcloud-border-color) !important;
+    padding: 0px 0px 0px 0px !important;
+    left: 0 !important;
+    top: 44px !important;
+    height: calc(100vh - 44px) !important;
+    overflow-y: auto !important;
+    overflow-x: visible !important;
+    /* box-sizing: border-box !important; */
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 /* Sidebar Logo/Brand */
@@ -5063,12 +5056,6 @@ html[data-theme-mode="material"] .page-head {
     z-index: 100 !important;
 }
 
-/* Container spacing */
-html[data-theme="material"] .page-head .container,
-html[data-theme-mode="material"] .page-head .container {
-    max-width: 100% !important;
-    padding: 0 16px !important;
-}
 
 /* Title area */
 html[data-theme="material"] .page-title,
@@ -5244,12 +5231,11 @@ html[data-theme-mode="material"] .page-head .primary-action {
     max-width: none !important;
 }
 
-/* Container Fix (Stop Pushing Save Down) */
-html[data-theme="material"] .page-head .container,
-html[data-theme-mode="material"] .page-head .container {
+html[data-theme="material"] .page-head .container, html[data-theme-mode="material"] .page-head .container {
     max-width: 100% !important;
     width: 100% !important;
-    padding: 0 20px !important;
+    /* padding: 18px 1px 1px 0px !important; */
+    /* margin-top: 4%; */
 }
 
 /* Page Head Container - Professional Flex Layout */
@@ -5260,6 +5246,8 @@ html[data-theme-mode="material"] .page-head {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  min-height: 56px !important;
   flex-wrap: wrap !important;
   gap: 12px !important;
   min-height: 61px !important;
@@ -11661,14 +11649,84 @@ body[data-theme-mode="material"] .desk-sidebar .sidebar-item.selected svg {
    App → User → Admin
 ========================================= */
 
-/* Ensure page header is visible */
-.page-head {
+/* Ensure page header is visible - High Priority */
+.page-head,
+html[data-theme="material"] .page-head,
+html[data-theme-mode="material"] .page-head,
+body[data-theme-mode="material"] .page-head {
     display: flex !important;
     align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
     min-height: 56px !important;
     overflow: visible !important;
     z-index: 10 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     position: relative !important;
+}
+
+/* --------------------------------------------------
+   NEXTERP – PAGE HEADER FIX (NO HTML CHANGE)
+---------------------------------------------------*/
+
+/* Kill container width restriction ONLY for page head */
+.page-head .container {
+  max-width: 100% !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* Sticky page header */
+.page-head {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--card-bg, #fff);
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+/* Ensure header content stays in one row */
+.page-head-content {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap !important;
+  min-height: 56px;
+}
+
+/* Fix left title section shrinking */
+.page-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+  gap: 12px;
+}
+
+/* Prevent title wrapping */
+.page-title h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right actions always stay aligned */
+.page-actions {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Sidebar toggle spacing */
+.sidebar-toggle-btn {
+  margin-right: 8px;
+}
+
+/* Prevent layout jump when sidebar toggles */
+body.sidebar-collapsed .page-head,
+body[data-sidebar="collapsed"] .page-head {
+  left: 0;
 }
 
 /* Ensure action buttons container is visible */

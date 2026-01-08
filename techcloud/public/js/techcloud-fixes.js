@@ -743,6 +743,111 @@
 		frappe.ready(initPatches);
 	}
 
+	// ============================================
+	// PAGE-HEAD FLEX LAYOUT FIX
+	// ============================================
+
+	function ensurePageHeadFlex() {
+		// Only apply to Material theme
+		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
+			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			return;
+		}
+
+		function applyFlexLayout() {
+			const pageHeads = document.querySelectorAll('.page-head');
+			pageHeads.forEach(pageHead => {
+				if (pageHead) {
+					// Force flex layout immediately
+					pageHead.style.display = 'flex';
+					pageHead.style.alignItems = 'center';
+					pageHead.style.justifyContent = 'space-between';
+					pageHead.style.flexWrap = 'nowrap';
+					pageHead.style.minHeight = '56px';
+					pageHead.style.width = '100%';
+					pageHead.style.boxSizing = 'border-box';
+					pageHead.style.overflow = 'visible';
+					pageHead.style.zIndex = '10';
+				}
+			});
+		}
+
+		// Apply immediately
+		applyFlexLayout();
+
+		// Watch for new page-head elements
+		const observer = new MutationObserver(function(mutations) {
+			let needsUpdate = false;
+			mutations.forEach(function(mutation) {
+				if (mutation.type === 'childList') {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType === Node.ELEMENT_NODE) {
+							if (node.classList?.contains('page-head') ||
+								node.querySelector?.('.page-head')) {
+								needsUpdate = true;
+							}
+						}
+					});
+				}
+			});
+			if (needsUpdate) {
+				setTimeout(applyFlexLayout, 10);
+			}
+		});
+
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	}
+
+	// Initialize page-head flex fix
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', ensurePageHeadFlex);
+	} else {
+		ensurePageHeadFlex();
+	}
+
+	// ============================================
+	// SIDEBAR TOGGLE HEADER FIX
+	// ============================================
+
+	function fixHeaderOnSidebarToggle() {
+		// Only apply to Material theme
+		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
+			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			return;
+		}
+
+		// Fix header misalignment after sidebar toggle
+		$(document).on("sidebar-toggle", () => {
+			$(".page-head").css("transform", "none");
+		});
+
+		// Also listen for custom sidebar events
+		$(document).on("toggleSidebar", () => {
+			setTimeout(() => {
+				$(".page-head").css({
+					"transform": "none",
+					"left": "0"
+				});
+			}, 10);
+		});
+	}
+
+	// Initialize sidebar toggle fix
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', fixHeaderOnSidebarToggle);
+	} else {
+		fixHeaderOnSidebarToggle();
+	}
+
+	// Also run after Frappe is ready
+	if (window.frappe && frappe.ready) {
+		frappe.ready(ensurePageHeadFlex);
+		frappe.ready(fixHeaderOnSidebarToggle);
+	}
+
 	// Retry after delays to catch late-loading modules
 	setTimeout(initPatches, 500);
 	setTimeout(initPatches, 1000);
