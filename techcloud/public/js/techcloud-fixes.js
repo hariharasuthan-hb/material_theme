@@ -410,31 +410,38 @@
 				try {
 					// Ensure value is properly formatted before passing to moment
 					if (value && typeof value === 'string') {
-						// Check if value is already a valid date format without triggering warnings
-						// Use multiple validation approaches to avoid Moment.js warnings
+						// Check and convert problematic date formats to prevent Moment.js warnings
 
-						let isValidFormat = false;
+						// If it's not already an ISO string or standard format, convert it
+						if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value) &&
+							!/^\d{4}-\d{2}-\d{2}/.test(value) &&
+							!/^\d{13,}$/.test(value)) {
 
-						// Check 1: If it's already an ISO string, it's good
-						if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)) {
-							isValidFormat = true;
-						}
-						// Check 2: If it's a standard date format, convert to ISO
-						else if (!isValidFormat) {
 							const date = new Date(value);
 							if (!isNaN(date.getTime()) && date.getTime() > 0) {
-								// Only convert if it's not already in a good format
-								// Avoid converting timestamps or already valid formats
-								if (!/^\d{4}-\d{2}-\d{2}/.test(value) && !/^\d{13,}$/.test(value)) {
-									value = date.toISOString();
-								}
+								// Convert to ISO format to ensure Moment.js compatibility
+								value = date.toISOString();
 							}
 						}
 					}
 
+					// Call the original function with properly formatted value
 					return originalConvertToUserTz.call(this, value, format);
 				} catch (e) {
-					// Fallback to original function if our fix fails
+					// If our fix fails, try to provide a safe fallback
+					try {
+						// Last resort: try to create a valid date
+						if (value && typeof value === 'string') {
+							const date = new Date(value);
+							if (!isNaN(date.getTime())) {
+								value = date.toISOString();
+								return originalConvertToUserTz.call(this, value, format);
+							}
+						}
+					} catch (fallbackError) {
+						// Ultimate fallback
+					}
+
 					console.warn('TechCloud: Moment.js fix failed, using original function');
 					return originalConvertToUserTz.call(this, value, format);
 				}
@@ -538,15 +545,19 @@
 	// Restores ERPNext sidebar toggle behavior for Material theme
 	// ============================================
 	function initializeSidebarToggle() {
+		console.log('TechCloud: Initializing sidebar toggle functionality');
+
 		// Only apply to Material theme
 		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
 			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
+			console.log('TechCloud: Not Material theme, skipping sidebar toggle');
 			return;
 		}
 
-		// Check if button exists and add click handler
-		const toggleBtn = document.querySelector('.sidebar-toggle-btn');
-		if (toggleBtn) {
+		console.log('TechCloud: Material theme detected, setting up sidebar toggle');
+
+		// Function to setup button handlers once button is found
+		function setupSidebarToggle(toggleBtn) {
 			console.log('TechCloud: Sidebar toggle button found:', toggleBtn);
 
 			// Remove any existing handlers first to avoid conflicts
@@ -568,20 +579,100 @@
 			// Method 3: Set onclick attribute as final fallback
 			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
 
-			// Expose global function for onclick fallback
-			window.techcloudToggleSidebar = function() {
-				console.log('TechCloud: Sidebar toggle via global function!');
-				$('body').toggleClass('sidebar-collapsed');
-				const isCollapsed = $('body').hasClass('sidebar-collapsed');
-				try {
-					localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
-				} catch (e) {}
-			};
-
 			console.log('TechCloud: Sidebar toggle handlers attached (3 methods)');
-		} else {
-			console.warn('TechCloud: Sidebar toggle button not found!');
 		}
+
+		// Shared handler function
+		function handleSidebarToggle(e) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			// Toggle the sidebar-collapsed class on body
+			$('body').toggleClass('sidebar-collapsed');
+			console.log('TechCloud: Body classes after toggle:', $('body').attr('class'));
+
+			// Optional: Save state to localStorage for persistence
+			const isCollapsed = $('body').hasClass('sidebar-collapsed');
+			try {
+				localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
+			} catch (e) {
+				// localStorage might not be available
+			}
+		}
+
+		// Expose global function for onclick fallback
+		window.techcloudToggleSidebar = function() {
+			console.log('TechCloud: Sidebar toggle via global function!');
+			$('body').toggleClass('sidebar-collapsed');
+			const isCollapsed = $('body').hasClass('sidebar-collapsed');
+			try {
+				localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
+			} catch (e) {}
+		};
+
+		// Check if button exists immediately
+		let toggleBtn = document.querySelector('.sidebar-toggle-btn');
+		if (toggleBtn) {
+			setupSidebarToggle(toggleBtn);
+			return;
+		}
+
+		// If button doesn't exist yet, set up observers to wait for it
+		console.log('TechCloud: Sidebar toggle button not found initially, setting up observers...');
+
+		// Method 1: Use MutationObserver to watch for button being added
+		const observer = new MutationObserver(function(mutations) {
+			mutations.forEach(function(mutation) {
+				mutation.addedNodes.forEach(function(node) {
+					if (node.nodeType === Node.ELEMENT_NODE) {
+						// Check if the added node is the button
+						if (node.matches && node.matches('.sidebar-toggle-btn')) {
+							console.log('TechCloud: Sidebar toggle button added via MutationObserver');
+							observer.disconnect();
+							setupSidebarToggle(node);
+							return;
+						}
+
+						// Check if the button is inside the added node
+						const btn = node.querySelector ? node.querySelector('.sidebar-toggle-btn') : null;
+						if (btn) {
+							console.log('TechCloud: Sidebar toggle button found inside added node');
+							observer.disconnect();
+							setupSidebarToggle(btn);
+							return;
+						}
+					}
+				});
+			});
+		});
+
+		// Start observing
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+
+		// Method 2: Fallback periodic check
+		let checkCount = 0;
+		const maxChecks = 50; // Check for up to ~5 seconds (50 * 100ms)
+
+		const checkForButton = function() {
+			checkCount++;
+			toggleBtn = document.querySelector('.sidebar-toggle-btn');
+
+			if (toggleBtn) {
+				console.log('TechCloud: Sidebar toggle button found via periodic check (attempt ' + checkCount + ')');
+				observer.disconnect();
+				setupSidebarToggle(toggleBtn);
+			} else if (checkCount < maxChecks) {
+				setTimeout(checkForButton, 100); // Check every 100ms
+			} else {
+				console.warn('TechCloud: Sidebar toggle button not found after ' + maxChecks + ' attempts');
+			}
+		};
+
+		// Start periodic checking after a short delay
+		setTimeout(checkForButton, 200);
 
 		// Shared handler function
 		function handleSidebarToggle(e) {
