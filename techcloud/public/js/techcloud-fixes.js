@@ -809,43 +809,81 @@
 	}
 
 	// ============================================
-	// SIDEBAR TOGGLE HEADER FIX
+	// CONTAINER POSITIONING FIX - PREVENT HIDING UNDER STICKY HEADER
 	// ============================================
 
-	function fixHeaderOnSidebarToggle() {
+	function fixContainerPositioning() {
 		// Only apply to Material theme
 		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
 			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
 			return;
 		}
 
-		// Fix header misalignment after sidebar toggle
-		$(document).on("sidebar-toggle", () => {
-			$(".page-head").css("transform", "none");
+		function ensureContainersVisible() {
+			// Reset margins on all container elements to prevent hiding under sticky header
+			const containers = document.querySelectorAll('.container');
+			containers.forEach(container => {
+				if (container) {
+					container.style.marginTop = '0';
+					container.style.marginBottom = '0';
+					container.style.position = 'relative';
+					container.style.zIndex = 'auto';
+				}
+			});
+
+			// Specifically fix page content containers
+			const pageContainers = document.querySelectorAll('.page-container .container, .layout-main .container, .layout-main-section .container');
+			pageContainers.forEach(container => {
+				if (container) {
+					container.style.marginTop = '0';
+					container.style.marginLeft = '0';
+					container.style.marginRight = '0';
+					container.style.position = 'relative';
+					container.style.zIndex = '1';
+				}
+			});
+		}
+
+		// Apply immediately
+		ensureContainersVisible();
+
+		// Watch for dynamically added containers
+		const observer = new MutationObserver(function(mutations) {
+			let needsUpdate = false;
+			mutations.forEach(function(mutation) {
+				if (mutation.type === 'childList') {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType === Node.ELEMENT_NODE) {
+							if (node.classList?.contains('container') ||
+								node.querySelector?.('.container')) {
+								needsUpdate = true;
+							}
+						}
+					});
+				}
+			});
+			if (needsUpdate) {
+				setTimeout(ensureContainersVisible, 10);
+			}
 		});
 
-		// Also listen for custom sidebar events
-		$(document).on("toggleSidebar", () => {
-			setTimeout(() => {
-				$(".page-head").css({
-					"transform": "none",
-					"left": "0"
-				});
-			}, 10);
+		observer.observe(document.body, {
+			childList: true,
+			subtree: true
 		});
 	}
 
-	// Initialize sidebar toggle fix
+	// Initialize container positioning fix
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', fixHeaderOnSidebarToggle);
+		document.addEventListener('DOMContentLoaded', fixContainerPositioning);
 	} else {
-		fixHeaderOnSidebarToggle();
+		fixContainerPositioning();
 	}
 
 	// Also run after Frappe is ready
 	if (window.frappe && frappe.ready) {
 		frappe.ready(ensurePageHeadFlex);
-		frappe.ready(fixHeaderOnSidebarToggle);
+		frappe.ready(fixContainerPositioning);
 	}
 
 	// Retry after delays to catch late-loading modules
