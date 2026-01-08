@@ -324,10 +324,10 @@ function fixMaterialDashboard() {
 // Apply dashboard fixes when theme is applied - SAFE FROM MULTIPLE LOADS
 if (typeof window.originalApplyMaterialTheme === 'undefined') {
 	window.originalApplyMaterialTheme = applyMaterialTheme;
-	applyMaterialTheme = function(SelectedColor) {
+applyMaterialTheme = function(SelectedColor) {
 		window.originalApplyMaterialTheme.call(this, SelectedColor);
-		fixMaterialDashboard();
-	};
+	fixMaterialDashboard();
+};
 }
 
 // Apply dashboard fixes on page load for dashboard pages - ONLY FOR MATERIAL THEME

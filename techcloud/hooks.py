@@ -28,9 +28,7 @@ app_license = "mit"
 # CSS is always loaded but scoped with html[data-theme="material"] selectors
 # JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
 app_include_css = [
-    "/assets/techcloud/css/material.css",
-    "/assets/techcloud/css/dashboard-fixes.css",
-    "/assets/techcloud/css/desk-layout.css"
+    "/assets/techcloud/css/material.css"
 ]
 app_include_js = [
     "/assets/techcloud/js/fix-highlight.js",
