@@ -4612,6 +4612,39 @@ html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item {
   position: relative !important;
 }
 
+/* Fix sidebar icon colors for items without techcloud-icon class */
+/* Accounting - Blue */
+html[data-theme="material"] .sidebar-item-container[item-name="Accounting"] .sidebar-item-icon svg.icon.icon-md,
+html[data-theme-mode="material"] .sidebar-item-container[item-name="Accounting"] .sidebar-item-icon svg.icon.icon-md {
+  fill: #2196F3 !important;
+  stroke: #2196F3 !important;
+  color: #2196F3 !important;
+}
+
+/* Payables - Purple */
+html[data-theme="material"] .sidebar-item-container[item-name="Payables"] .sidebar-item-icon svg.icon.icon-md,
+html[data-theme-mode="material"] .sidebar-item-container[item-name="Payables"] .sidebar-item-icon svg.icon.icon-md {
+  fill: #9C27B0 !important;
+  stroke: #9C27B0 !important;
+  color: #9C27B0 !important;
+}
+
+/* Receivables - Purple */
+html[data-theme="material"] .sidebar-item-container[item-name="Receivables"] .sidebar-item-icon svg.icon.icon-md,
+html[data-theme-mode="material"] .sidebar-item-container[item-name="Receivables"] .sidebar-item-icon svg.icon.icon-md {
+  fill: #9C27B0 !important;
+  stroke: #9C27B0 !important;
+  color: #9C27B0 !important;
+}
+
+/* Financial Reports - Amber/Gold */
+html[data-theme="material"] .sidebar-item-container[item-name="Financial Reports"] .sidebar-item-icon svg.icon.icon-md,
+html[data-theme-mode="material"] .sidebar-item-container[item-name="Financial Reports"] .sidebar-item-icon svg.icon.icon-md {
+  fill: #FFB300 !important;
+  stroke: #FFB300 !important;
+  color: #FFB300 !important;
+}
+
 html[data-theme="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
 html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .sidebar-item-control,
 html[data-theme="material"] .layout-side-section .standard-sidebar-item .sidebar-item-control,
