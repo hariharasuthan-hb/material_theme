@@ -447,8 +447,71 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-primary) !important;
     box-shadow: var(--md-shadow-1);
-  } 
-  
+  }
+
+/* ========== FIX AWESOMEPLETE IN MODAL ========== */
+
+/* Ensure modal allows dropdown overlay */
+html[data-theme="material"] .modal-body,
+html[data-theme-mode="material"] .modal-body {
+  overflow: visible !important;
+}
+
+/* Make awesomplete container full width */
+html[data-theme="material"] .modal-body .awesomplete,
+html[data-theme-mode="material"] .modal-body .awesomplete {
+  width: 100%;
+}
+
+/* Dropdown alignment + width */
+html[data-theme="material"] .modal-body .awesomplete > ul,
+html[data-theme-mode="material"] .modal-body .awesomplete > ul {
+  width: 100% !important;
+  min-width: 100% !important;
+  box-sizing: border-box;
+  margin-top: 4px;
+  border-radius: 8px;
+  padding: 4px 0;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  z-index: 1055; /* higher than modal content */
+}
+
+/* Fix dropdown position */
+html[data-theme="material"] .modal-body .awesomplete > ul[hidden],
+html[data-theme-mode="material"] .modal-body .awesomplete > ul[hidden] {
+  display: none;
+}
+
+/* Pills + input alignment */
+html[data-theme="material"] .table-multiselect,
+html[data-theme-mode="material"] .table-multiselect {
+  min-height: 40px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Pills spacing */
+html[data-theme="material"] .table-multiselect .data-pill,
+html[data-theme-mode="material"] .table-multiselect .data-pill {
+  margin: 2px 4px 2px 0;
+}
+
+/* Input alignment inside pills */
+html[data-theme="material"] .table-multiselect input,
+html[data-theme-mode="material"] .table-multiselect input {
+  min-height: 32px;
+  line-height: 32px;
+  padding: 0 6px;
+}
+
+/* Prevent overlap with next field */
+html[data-theme="material"] .frappe-control,
+html[data-theme-mode="material"] .frappe-control {
+  margin-bottom: 14px;
+}
+
   /* Page Heading */
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .page-head {
     border-bottom: none !important;
