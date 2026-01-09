@@ -6556,6 +6556,16 @@ html[data-theme-mode="material"] .widget.chart-widget {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Number Widget Box Styling */
+html[data-theme="material"] .widget.number-widget-box .widget-body .widget-content,
+html[data-theme-mode="material"] .widget.number-widget-box .widget-body .widget-content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: var(--padding-md);
+    padding-left: 5%;
+}
+
 html[data-theme="material"] .chart-title,
 html[data-theme-mode="material"] .chart-title,
 html[data-theme="material"] .widget-group-title,
