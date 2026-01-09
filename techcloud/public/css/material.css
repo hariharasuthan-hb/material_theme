@@ -13796,3 +13796,104 @@ html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_
   margin-top: 4px !important;
   line-height: 1.4 !important;
 }
+
+/* ========== GRID BUTTONS - Professional Compact Style ========== */
+
+/* Grid footer layout */
+html[data-theme="material"] .grid-buttons,
+html[data-theme-mode="material"] .grid-buttons,
+html[data-theme="material"] .grid-bulk-actions,
+html[data-theme-mode="material"] .grid-bulk-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Base grid button style */
+html[data-theme="material"] .grid-buttons .btn,
+html[data-theme-mode="material"] .grid-buttons .btn,
+html[data-theme="material"] .grid-bulk-actions .btn,
+html[data-theme-mode="material"] .grid-bulk-actions .btn {
+  font-size: 13px !important;
+  padding: 22px 34px !important;
+  height: 25px !important;
+  border-radius: 6px !important;
+  border: 0 !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Add Row – primary action */
+html[data-theme="material"] .grid-add-row,
+html[data-theme-mode="material"] .grid-add-row {
+  background: linear-gradient(135deg, #4f8cff, #3b6eea) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 6px rgba(79,140,255,.35) !important;
+}
+
+html[data-theme="material"] .grid-add-row:hover,
+html[data-theme-mode="material"] .grid-add-row:hover {
+  background: linear-gradient(135deg, #3b6eea, #2f5cd6) !important;
+}
+
+/* Add Multiple – secondary */
+html[data-theme="material"] .grid-add-multiple-rows,
+html[data-theme-mode="material"] .grid-add-multiple-rows {
+  background: #eef2ff !important;
+  color: #3b6eea !important;
+}
+
+html[data-theme="material"] .grid-add-multiple-rows:hover,
+html[data-theme-mode="material"] .grid-add-multiple-rows:hover {
+  background: #e0e7ff !important;
+}
+
+/* Delete buttons – soft danger */
+html[data-theme="material"] .grid-remove-rows,
+html[data-theme-mode="material"] .grid-remove-rows,
+html[data-theme="material"] .grid-remove-all-rows,
+html[data-theme-mode="material"] .grid-remove-all-rows {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+html[data-theme="material"] .grid-remove-rows:hover,
+html[data-theme-mode="material"] .grid-remove-rows:hover,
+html[data-theme="material"] .grid-remove-all-rows:hover,
+html[data-theme-mode="material"] .grid-remove-all-rows:hover {
+  background: #fecaca !important;
+}
+
+/* Download / Upload */
+html[data-theme="material"] .grid-download,
+html[data-theme-mode="material"] .grid-download {
+  background: #ecfeff !important;
+  color: #0369a1 !important;
+}
+
+html[data-theme="material"] .grid-upload,
+html[data-theme-mode="material"] .grid-upload {
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+}
+
+html[data-theme="material"] .grid-download:hover,
+html[data-theme-mode="material"] .grid-download:hover {
+  background: #cffafe !important;
+}
+
+html[data-theme="material"] .grid-upload:hover,
+html[data-theme-mode="material"] .grid-upload:hover {
+  background: #dcfce7 !important;
+}
+
+/* Pagination alignment */
+html[data-theme="material"] .grid-pagination,
+html[data-theme-mode="material"] .grid-pagination {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+}
