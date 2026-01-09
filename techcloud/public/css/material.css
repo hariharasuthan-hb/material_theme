@@ -224,6 +224,8 @@ html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-m
   html[data-theme-mode="material"] .layout-main-section-wrapper.col-md-12 {
     width: 100% !important;
     max-width: 100% !important;
+    height: auto !important; /* Remove fixed height */
+    overflow: visible !important; /* Remove scroll - let parent handle scrolling */
     /* flex: 1 1 100% !important; */
   }
 
@@ -5032,7 +5034,7 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
     margin-top: 2% !important;
-    margin-right: 5% !important;
+    margin-right: 2% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
     overflow-y: auto !important;
