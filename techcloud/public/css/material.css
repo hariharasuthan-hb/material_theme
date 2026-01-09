@@ -479,31 +479,221 @@ html[data-theme-mode="material"] .modal-body .awesomplete > ul {
 /* Fix dropdown position */
 html[data-theme="material"] .modal-body .awesomplete > ul[hidden],
 html[data-theme-mode="material"] .modal-body .awesomplete > ul[hidden] {
-  display: none;
+  display: none !important;
 }
 
-/* Pills + input alignment */
-html[data-theme="material"] .table-multiselect,
-html[data-theme-mode="material"] .table-multiselect {
-  min-height: 40px;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+/* Ensure dropdown closes after selection */
+html[data-theme="material"] .awesomplete > ul[hidden],
+html[data-theme-mode="material"] .awesomplete > ul[hidden] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-/* Pills spacing */
+/* Force close on selection - prevent dropdown from staying open */
+html[data-theme="material"] .awesomplete > ul:not([hidden]),
+html[data-theme-mode="material"] .awesomplete > ul:not([hidden]) {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Specific fix for Assign To field dropdown closing */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .awesomplete > ul[hidden],
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .awesomplete > ul[hidden] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: scale(0.95) !important;
+  pointer-events: none !important;
+}
+
+/* Smooth transition when closing */
+html[data-theme="material"] .awesomplete > ul,
+html[data-theme-mode="material"] .awesomplete > ul {
+  transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease !important;
+}
+
+/* Ensure selected item interaction closes dropdown */
+html[data-theme="material"] .awesomplete > ul li a:active,
+html[data-theme-mode="material"] .awesomplete > ul li a:active {
+  background: linear-gradient(135deg, #dbeafe, #f0f4ff) !important;
+}
+
+/* Prevent dropdown from reopening immediately after selection */
+html[data-theme="material"] .awesomplete:focus-within > ul[hidden],
+html[data-theme-mode="material"] .awesomplete:focus-within > ul[hidden] {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Main Container (pill field) - Clean, modern layout */
+html[data-theme="material"] .control-input.form-control.table-multiselect,
+html[data-theme-mode="material"] .control-input.form-control.table-multiselect {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  min-height: 100px !important;
+  padding: 6px 10px !important;
+  border: 1px solid #dbeafe !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  transition: all .2s ease !important;
+}
+
+/* Focus State (Premium Feel) */
+html[data-theme="material"] .control-input.form-control.table-multiselect:focus-within,
+html[data-theme-mode="material"] .control-input.form-control.table-multiselect:focus-within {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.15) !important;
+}
+
+/* Selected Pills (emails) - Modern rounded tag style */
 html[data-theme="material"] .table-multiselect .data-pill,
 html[data-theme-mode="material"] .table-multiselect .data-pill {
-  margin: 2px 4px 2px 0;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #eef4ff, #e0eaff) !important;
+  border: 1px solid #c7d2fe !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #1e3a8a !important;
+  box-shadow: 0 2px 6px rgba(59,130,246,.15) !important;
+  transition: all 0.2s ease !important;
+  width: 37% !important;
 }
 
-/* Input alignment inside pills */
+/* Pill Text - Clean styling */
+html[data-theme="material"] .table-multiselect .btn-link-to-form,
+html[data-theme-mode="material"] .table-multiselect .btn-link-to-form {
+  color: inherit !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  font-weight: inherit !important;
+}
+
+/* Remove (×) Button — clean & subtle, professional */
+html[data-theme="material"] .table-multiselect .btn-remove,
+html[data-theme-mode="material"] .table-multiselect .btn-remove {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: rgba(30,58,138,.12) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all .15s ease !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-theme="material"] .table-multiselect .btn-remove:hover,
+html[data-theme-mode="material"] .table-multiselect .btn-remove:hover {
+  background: rgba(30,58,138,.25) !important;
+}
+
+html[data-theme="material"] .table-multiselect .btn-remove svg,
+html[data-theme-mode="material"] .table-multiselect .btn-remove svg {
+  width: 10px !important;
+  height: 10px !important;
+  color: #1e3a8a !important;
+}
+
+/* Input inside pills - Clean inline experience */
+html[data-theme="material"] .table-multiselect .awesomplete,
+html[data-theme-mode="material"] .table-multiselect .awesomplete {
+  flex: 1 !important;
+  min-width: 120px !important;
+}
+
 html[data-theme="material"] .table-multiselect input,
-html[data-theme-mode="material"] .table-multiselect input {
-  min-height: 32px;
-  line-height: 32px;
-  padding: 0 6px;
+html[data-theme-mode="material"] .table-multiselect input,
+html[data-theme="material"] .table-multiselect .input-with-feedback,
+html[data-theme-mode="material"] .table-multiselect .input-with-feedback {
+  background: transparent !important;
+  border: 0 !important;
+  color: #374151 !important;
+  padding: 6px 4px !important;
+  font-size: 13px !important;
+  min-width: 120px !important;
+  flex: 1 !important;
+  width: auto !important;
+
+  /* Ensure visibility */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Input focus enhancement */
+html[data-theme="material"] .table-multiselect input:focus,
+html[data-theme-mode="material"] .table-multiselect input:focus,
+html[data-theme="material"] .table-multiselect .input-with-feedback:focus,
+html[data-theme-mode="material"] .table-multiselect .input-with-feedback:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Specific styling for bold input in MultiSelectPills */
+html[data-theme="material"] .table-multiselect .input-with-feedback.bold,
+html[data-theme-mode="material"] .table-multiselect .input-with-feedback.bold {
+  color: #374151 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Input Alignment (VERY IMPORTANT) - Inline experience */
+html[data-theme="material"] .table-multiselect .awesomplete,
+html[data-theme-mode="material"] .table-multiselect .awesomplete,
+html[data-theme="material"] .table-multiselect .link-field,
+html[data-theme-mode="material"] .table-multiselect .link-field {
+  flex: 1 !important;
+  min-width: 140px !important;
+  display: flex !important;
+}
+
+/* Placeholder styling for better UX */
+html[data-theme="material"] .table-multiselect input::placeholder,
+html[data-theme-mode="material"] .table-multiselect input::placeholder,
+html[data-theme="material"] .table-multiselect .input-with-feedback::placeholder,
+html[data-theme-mode="material"] .table-multiselect .input-with-feedback::placeholder {
+  color: #9ca3af !important;
+  font-weight: 400 !important;
+  opacity: 0.7 !important;
+}
+
+/* Dropdown (Create / Search / Users) - Clean modern look */
+html[data-theme="material"] .table-multiselect .awesomplete > ul,
+html[data-theme-mode="material"] .table-multiselect .awesomplete > ul {
+  margin-top: 8px !important;
+  padding: 6px !important;
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 25px 50px rgba(0,0,0,.18) !important;
+  z-index: 9999 !important;
+}
+
+html[data-theme="material"] .table-multiselect .awesomplete > ul div[role="option"],
+html[data-theme-mode="material"] .table-multiselect .awesomplete > ul div[role="option"] {
+  padding: 10px 12px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+html[data-theme="material"] .table-multiselect .awesomplete > ul div:hover,
+html[data-theme-mode="material"] .table-multiselect .awesomplete > ul div[aria-selected="true"],
+html[data-theme="material"] .table-multiselect .awesomplete > ul div[aria-selected="true"],
+html[data-theme-mode="material"] .table-multiselect .awesomplete > ul div[aria-selected="true"] {
+  background: #eef4ff !important;
 }
 
 /* Prevent overlap with next field */
@@ -3824,6 +4014,11 @@ html[data-theme-mode="material"] .modal-content {
   border: 1px solid rgba(0, 137, 255, 0.12);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+
+  /* Fix modal height and footer visibility */
+  max-height: 90vh !important; /* Maximum 90% of viewport height */
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Header */
@@ -3862,6 +4057,16 @@ html[data-theme-mode="material"] .modal-body {
   background: #f8fafc;
 }
 
+/* Modal body - scrollable content area */
+html[data-theme="material"] .modal-body,
+html[data-theme-mode="material"] .modal-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  max-height: calc(90vh - 140px) !important; /* Account for header/footer */
+  padding: 20px !important;
+}
+
 /* Modal-specific form card - softer, less boxy appearance */
 html[data-theme="material"] .modal-body .form-layout,
 html[data-theme-mode="material"] .modal-body .form-layout {
@@ -3896,12 +4101,14 @@ html[data-theme-mode="material"] .modal-body .checkbox {
   margin-top: 6px;
 }
 
-/* Footer */
+/* Footer - always visible at bottom */
 html[data-theme="material"] .modal-footer,
 html[data-theme-mode="material"] .modal-footer {
+  flex-shrink: 0 !important;
   padding: 16px 24px;
   background: #ffffff;
   border-top: 1px solid #e5e7eb;
+  margin-top: auto !important;
 }
 
 /* Footer buttons */
@@ -11521,7 +11728,7 @@ html[data-theme-mode="material"] [data-theme] .check {
     height: 28px !important;
     border-radius: 50% !important;
     background: #2563eb !important;
-    color: #fff !important;
+    color: #374151 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -11543,7 +11750,7 @@ html[data-theme-mode="material"] [data-theme] .check {
     height: 26px !important;
     border-radius: 50% !important;
     background: #2563eb !important;
-    color: #fff !important;
+    color: #374151 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -12791,7 +12998,7 @@ html[data-theme-mode="material"] .form-sidebar .form-stats svg {
 /* Follow button in stats */
 html[data-theme="material"] .form-sidebar .form-follow,
 html[data-theme-mode="material"] .form-sidebar .form-follow {
-  padding: 6px 12px !important;
+  padding: 10px 23px 10px 9px !important;
   background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
   color: white !important;
   border-radius: 8px !important;
@@ -12956,4 +13163,636 @@ html[data-theme-mode="material"] .form-sidebar .hidden {
     margin: 16px !important;
     padding: 12px !important;
   }
+}
+
+/* ========== WHITE BACKGROUND AWESOMEPLETE STYLING ========== */
+
+/* Clean white background dropdown container */
+html[data-theme="material"] ul[role="listbox"],
+html[data-theme-mode="material"] ul[role="listbox"] {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+  padding: 8px 0 !important;
+  margin: 4px 0 0 0 !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  z-index: 1100 !important;
+  position: absolute !important;
+  min-width: 100% !important;
+  width: 100% !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Clean dropdown list items */
+html[data-theme="material"] ul[role="listbox"] li,
+html[data-theme-mode="material"] ul[role="listbox"] li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* Professional dropdown links */
+html[data-theme="material"] ul[role="listbox"] li a,
+html[data-theme-mode="material"] ul[role="listbox"] li a {
+  display: block !important;
+  padding: 12px 16px !important;
+  text-decoration: none !important;
+  color: #374151 !important;
+  transition: all 0.2s ease !important;
+  border-radius: 6px !important;
+  margin: 2px 8px !important;
+  border: 1px solid transparent !important;
+}
+
+/* Hover effects for dropdown items */
+html[data-theme="material"] ul[role="listbox"] li a:hover,
+html[data-theme-mode="material"] ul[role="listbox"] li a:hover {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9) !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  transform: translateX(2px) !important;
+}
+
+/* Selected item styling */
+html[data-theme="material"] ul[role="listbox"] li[aria-selected="true"] a,
+html[data-theme-mode="material"] ul[role="listbox"] li[aria-selected="true"] a {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff) !important;
+  border-color: #bfdbfe !important;
+  color: #1e40af !important;
+  font-weight: 600 !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* User information paragraph styling */
+html[data-theme="material"] ul[role="listbox"] li a p,
+html[data-theme-mode="material"] ul[role="listbox"] li a p {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+/* Primary user text (email/name) */
+html[data-theme="material"] ul[role="listbox"] li a p strong,
+html[data-theme-mode="material"] ul[role="listbox"] li a p strong {
+  display: block !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+}
+
+/* Secondary user text (subtitle/role) */
+html[data-theme="material"] ul[role="listbox"] li a p .small,
+html[data-theme-mode="material"] ul[role="listbox"] li a p .small {
+  font-size: 12px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  opacity: 0.8 !important;
+}
+
+/* Selected item text colors */
+html[data-theme="material"] ul[role="listbox"] li[aria-selected="true"] a p strong,
+html[data-theme-mode="material"] ul[role="listbox"] li[aria-selected="true"] a p strong {
+  color: #1d4ed8 !important;
+}
+
+html[data-theme="material"] ul[role="listbox"] li[aria-selected="true"] a p .small,
+html[data-theme-mode="material"] ul[role="listbox"] li[aria-selected="true"] a p .small {
+  color: #3b82f6 !important;
+  opacity: 1 !important;
+}
+
+/* Hover state text colors */
+html[data-theme="material"] ul[role="listbox"] li a:hover p strong,
+html[data-theme-mode="material"] ul[role="listbox"] li a:hover p strong {
+  color: #0f172a !important;
+}
+
+html[data-theme="material"] ul[role="listbox"] li a:hover p .small,
+html[data-theme-mode="material"] ul[role="listbox"] li a:hover p .small {
+  color: #475569 !important;
+  opacity: 1 !important;
+}
+
+/* Custom scrollbar for white dropdown */
+html[data-theme="material"] ul[role="listbox"]::-webkit-scrollbar,
+html[data-theme-mode="material"] ul[role="listbox"]::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+html[data-theme="material"] ul[role="listbox"]::-webkit-scrollbar-track,
+html[data-theme-mode="material"] ul[role="listbox"]::-webkit-scrollbar-track {
+  background: #f8fafc !important;
+  border-radius: 3px !important;
+}
+
+html[data-theme="material"] ul[role="listbox"]::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] ul[role="listbox"]::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 3px !important;
+  border: 1px solid #f1f5f9 !important;
+}
+
+html[data-theme="material"] ul[role="listbox"]::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] ul[role="listbox"]::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* Enhanced empty state for white theme */
+html[data-theme="material"] ul[role="listbox"]:empty::before,
+html[data-theme-mode="material"] ul[role="listbox"]:empty::before {
+  content: "No results found" !important;
+  display: block !important;
+  padding: 20px 16px !important;
+  text-align: center !important;
+  color: #94a3b8 !important;
+  font-size: 14px !important;
+  font-style: italic !important;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9) !important;
+  margin: 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Professional spacing and layout */
+html[data-theme="material"] ul[role="listbox"] li:not(:last-child),
+html[data-theme-mode="material"] ul[role="listbox"] li:not(:last-child) {
+  border-bottom: 1px solid #f1f5f9 !important;
+  margin-bottom: 0 !important;
+}
+
+html[data-theme="material"] ul[role="listbox"] li:last-child a,
+html[data-theme-mode="material"] ul[role="listbox"] li:last-child a {
+  margin-bottom: 4px !important;
+}
+
+/* Accessibility improvements */
+html[data-theme="material"] ul[role="listbox"] li a:focus,
+html[data-theme-mode="material"] ul[role="listbox"] li a:focus {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff) !important;
+}
+
+/* Loading state styling */
+html[data-theme="material"] ul[role="listbox"][aria-busy="true"],
+html[data-theme-mode="material"] ul[role="listbox"][aria-busy="true"] {
+  opacity: 0.7 !important;
+}
+
+html[data-theme="material"] ul[role="listbox"][aria-busy="true"]::after,
+html[data-theme-mode="material"] ul[role="listbox"][aria-busy="true"]::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: -10px 0 0 -10px !important;
+  border: 2px solid #e5e7eb !important;
+  border-top: 2px solid #3b82f6 !important;
+  border-radius: 50% !important;
+  animation: spin 1s linear infinite !important;
+  z-index: 1 !important;
+}
+
+/* ========== FORCE DROPDOWN CLOSE BEHAVIOR ========== */
+
+/* Ensure dropdown closes when input loses focus */
+html[data-theme="material"] .awesomplete:not(:focus-within) > ul,
+html[data-theme-mode="material"] .awesomplete:not(:focus-within) > ul {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Specific behavior for Assign To field */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .awesomplete:not(:focus-within) > ul,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .awesomplete:not(:focus-within) > ul {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: scale(0.95) !important;
+}
+
+/* Ensure dropdown appears only when input is focused and has content */
+html[data-theme="material"] .awesomplete:focus-within > ul:not([hidden]),
+html[data-theme-mode="material"] .awesomplete:focus-within > ul:not([hidden]) {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
+}
+
+/* Prevent dropdown from showing when input is empty */
+html[data-theme="material"] .awesomplete input[value=""]:focus ~ ul,
+html[data-theme-mode="material"] .awesomplete input[value=""]:focus ~ ul {
+  display: none !important;
+}
+
+/* Force close when clicking outside */
+html[data-theme="material"] .awesomplete > ul,
+html[data-theme-mode="material"] .awesomplete > ul {
+  /* This ensures JavaScript can properly control visibility */
+  /* The [hidden] attribute will be managed by Awesomplete library */
+}
+
+/* Additional insurance - close dropdown when selection is made */
+html[data-theme="material"] .awesomplete > ul li a[data-value]:active,
+html[data-theme-mode="material"] .awesomplete > ul li a[data-value]:active {
+  /* This ensures the dropdown closes immediately on selection */
+  pointer-events: none !important;
+}
+
+/* Modal responsive adjustments */
+@media (max-width: 768px) {
+  html[data-theme="material"] .modal-content,
+  html[data-theme-mode="material"] .modal-content {
+    max-height: 95vh !important;
+    margin: 2.5vh auto !important;
+  }
+
+  html[data-theme="material"] .modal-body,
+  html[data-theme-mode="material"] .modal-body {
+    max-height: calc(95vh - 120px) !important;
+    padding: 15px !important;
+  }
+
+  html[data-theme="material"] .modal-footer,
+  html[data-theme-mode="material"] .modal-footer {
+    padding: 12px 16px !important;
+  }
+}
+
+/* Ensure modal doesn't exceed viewport on small screens */
+@media (max-height: 600px) {
+  html[data-theme="material"] .modal-content,
+  html[data-theme-mode="material"] .modal-content {
+    max-height: 98vh !important;
+    margin: 1vh auto !important;
+  }
+
+  html[data-theme="material"] .modal-body,
+  html[data-theme-mode="material"] .modal-body {
+    max-height: calc(98vh - 100px) !important;
+    padding: 10px !important;
+  }
+}
+
+/* ========== VALIDATION MESSAGES ABOVE MODALS ========== */
+
+/* Frappe validation messages - appear above all content */
+html[data-theme="material"] .validation-message,
+html[data-theme-mode="material"] .validation-message,
+html[data-theme="material"] .error-message,
+html[data-theme-mode="material"] .error-message,
+html[data-theme="material"] .frappe-alert,
+html[data-theme-mode="material"] .frappe-alert,
+html[data-theme="material"] .alert,
+html[data-theme-mode="material"] .alert,
+html[data-theme="material"] .toast,
+html[data-theme-mode="material"] .toast,
+html[data-theme="material"] .notification,
+html[data-theme-mode="material"] .notification {
+  z-index: 99999 !important; /* Above everything, including modals */
+  position: fixed !important;
+  pointer-events: auto !important;
+}
+
+/* Specific positioning for different validation message types */
+html[data-theme="material"] .validation-message,
+html[data-theme-mode="material"] .validation-message {
+  top: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  max-width: 400px !important;
+  z-index: 99999 !important;
+}
+
+html[data-theme="material"] .error-message,
+html[data-theme-mode="material"] .error-message {
+  top: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: 500px !important;
+  z-index: 99999 !important;
+}
+
+html[data-theme="material"] .frappe-alert,
+html[data-theme-mode="material"] .frappe-alert {
+  top: 80px !important;
+  right: 20px !important;
+  left: auto !important;
+  max-width: 350px !important;
+  z-index: 99999 !important;
+}
+
+/* Alert/Toast styling */
+html[data-theme="material"] .alert,
+html[data-theme-mode="material"] .alert,
+html[data-theme="material"] .toast,
+html[data-theme-mode="material"] .toast {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+  max-width: 400px !important;
+  min-width: 300px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* Notification styling */
+html[data-theme="material"] .notification,
+html[data-theme-mode="material"] .notification {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  z-index: 99999 !important;
+  max-width: 350px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+}
+
+/* Error state styling for validation messages */
+html[data-theme="material"] .validation-message.error,
+html[data-theme-mode="material"] .validation-message.error,
+html[data-theme="material"] .error-message,
+html[data-theme-mode="material"] .error-message {
+  background: linear-gradient(135deg, #fee2e2, #fecaca) !important;
+  border: 1px solid #f87171 !important;
+  color: #dc2626 !important;
+}
+
+/* Success state styling */
+html[data-theme="material"] .validation-message.success,
+html[data-theme-mode="material"] .validation-message.success {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0) !important;
+  border: 1px solid #4ade80 !important;
+  color: #16a34a !important;
+}
+
+/* Warning state styling */
+html[data-theme="material"] .validation-message.warning,
+html[data-theme-mode="material"] .validation-message.warning {
+  background: linear-gradient(135deg, #fef3c7, #fde68a) !important;
+  border: 1px solid #f59e0b !important;
+  color: #d97706 !important;
+}
+
+/* Info state styling */
+html[data-theme="material"] .validation-message.info,
+html[data-theme-mode="material"] .validation-message.info {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe) !important;
+  border: 1px solid #3b82f6 !important;
+  color: #2563eb !important;
+}
+
+/* Ensure validation messages don't get clipped by modal overlays */
+html[data-theme="material"] .modal-backdrop ~ .validation-message,
+html[data-theme-mode="material"] .modal-backdrop ~ .validation-message,
+html[data-theme="material"] .modal-backdrop ~ .error-message,
+html[data-theme-mode="material"] .modal-backdrop ~ .error-message,
+html[data-theme="material"] .modal-backdrop ~ .frappe-alert,
+html[data-theme-mode="material"] .modal-backdrop ~ .frappe-alert {
+  z-index: 99999 !important;
+  position: fixed !important;
+}
+
+/* Animation for validation messages */
+html[data-theme="material"] .validation-message,
+html[data-theme-mode="material"] .validation-message,
+html[data-theme="material"] .error-message,
+html[data-theme-mode="material"] .error-message,
+html[data-theme="material"] .frappe-alert,
+html[data-theme-mode="material"] .frappe-alert {
+  animation: slideInFromRight 0.3s ease-out !important;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Close button styling for validation messages */
+html[data-theme="material"] .validation-message .close,
+html[data-theme-mode="material"] .validation-message .close,
+html[data-theme="material"] .error-message .close,
+html[data-theme-mode="material"] .error-message .close,
+html[data-theme="material"] .frappe-alert .close,
+html[data-theme-mode="material"] .frappe-alert .close {
+  opacity: 0.7 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+html[data-theme="material"] .validation-message .close:hover,
+html[data-theme-mode="material"] .validation-message .close:hover,
+html[data-theme="material"] .error-message .close:hover,
+html[data-theme-mode="material"] .error-message .close:hover,
+html[data-theme="material"] .frappe-alert .close:hover,
+html[data-theme-mode="material"] .frappe-alert .close:hover {
+  opacity: 1 !important;
+}
+
+/* Responsive adjustments for validation messages */
+@media (max-width: 768px) {
+  html[data-theme="material"] .validation-message,
+  html[data-theme-mode="material"] .validation-message,
+  html[data-theme="material"] .error-message,
+  html[data-theme-mode="material"] .error-message,
+  html[data-theme="material"] .frappe-alert,
+  html[data-theme-mode="material"] .frappe-alert,
+  html[data-theme="material"] .alert,
+  html[data-theme-mode="material"] .alert,
+  html[data-theme="material"] .toast,
+  html[data-theme-mode="material"] .toast {
+    left: 10px !important;
+    right: 10px !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+
+  html[data-theme="material"] .notification,
+  html[data-theme-mode="material"] .notification {
+    left: 10px !important;
+    right: 10px !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ========== ASSIGN TO FIELD STYLING (Match User Group Design) ========== */
+
+/* Assign To field container - Match User Group field styling */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"],
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] {
+  position: relative !important;
+  margin-bottom: 16px !important;
+}
+
+/* Assign To field group container */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .form-group,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .form-group {
+  margin-bottom: 8px !important;
+}
+
+/* Assign To label styling - Match User Group label */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .control-label,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .control-label,
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .control-label.req,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .control-label.req {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+  padding-right: 0 !important;
+}
+
+/* Required asterisk for Assign To */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .control-label.req:after,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .control-label.req:after {
+  content: " *" !important;
+  color: #ef4444 !important;
+  font-weight: 700 !important;
+}
+
+/* Assign To control input wrapper */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .control-input-wrapper,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .control-input-wrapper {
+  position: relative !important;
+}
+
+/* Help text for Assign To field */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to"] .help-box,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to"] .help-box {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  margin-top: 4px !important;
+  line-height: 1.4 !important;
+}
+
+/* ========== ASSIGN TO USER GROUP FIELD STYLING (Reference Design) ========== */
+
+/* Assign To User Group field container */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"],
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] {
+  position: relative !important;
+  margin-bottom: 16px !important;
+}
+
+/* User Group field group container */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-group,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-group {
+  margin-bottom: 8px !important;
+}
+
+/* User Group label styling */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .control-label,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .control-label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+  padding-right: 0 !important;
+}
+
+/* User Group input styling - Modern design */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-control,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-control {
+  height: 44px !important;
+  padding: 12px 16px !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-control:focus,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .form-control:focus {
+  border-color: #4f8cff !important;
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.1) !important;
+  outline: none !important;
+  background: #fefefe !important;
+}
+
+/* User Group link field container */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-field,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-field {
+  position: relative !important;
+}
+
+/* User Group link buttons */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn {
+  position: absolute !important;
+  right: 8px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  gap: 4px !important;
+}
+
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a {
+  padding: 6px !important;
+  border-radius: 6px !important;
+  background: #f3f4f6 !important;
+  border: 1px solid #d1d5db !important;
+  color: #6b7280 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a:hover,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a:hover {
+  background: #4f8cff !important;
+  border-color: #4f8cff !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a svg,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .link-btn a svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* User Group help text */
+html[data-theme="material"] .frappe-control[data-fieldname="assign_to_user_group"] .help-box,
+html[data-theme-mode="material"] .frappe-control[data-fieldname="assign_to_user_group"] .help-box {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  margin-top: 4px !important;
+  line-height: 1.4 !important;
 }
