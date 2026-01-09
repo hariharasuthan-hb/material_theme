@@ -12503,3 +12503,457 @@ html[data-theme-mode="material"] .frappe-chart .graph-svg-tip text {
   html[data-theme-mode="material"] .workspace-skeleton {
     background: transparent !important;
 }
+
+/* ============================================
+   MATERIAL THEME – PROFESSIONAL SIDEBAR BEAUTIFICATION
+   Clean, modern styling for Frappe form sidebars
+   ============================================ */
+
+/* Main sidebar container - clean and modern */
+html[data-theme="material"] .form-sidebar.overlay-sidebar,
+html[data-theme-mode="material"] .form-sidebar.overlay-sidebar {
+  background: linear-gradient(180deg, #fafbfc 0%, #f1f3f4 100%) !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Sidebar menu lists - clean spacing */
+html[data-theme="material"] .form-sidebar .sidebar-menu,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu {
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* Sidebar list items - remove default styling */
+html[data-theme="material"] .form-sidebar .sidebar-menu li,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu li {
+  margin-bottom: 4px !important;
+  list-style: none !important;
+}
+
+/* Form sidebar items - modern card-like appearance */
+html[data-theme="material"] .form-sidebar .form-sidebar-items,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 14px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(8px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-sidebar-items:hover,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-sidebar-items::before,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: linear-gradient(180deg, #6366f1, #8b5cf6) !important;
+  border-radius: 0 3px 3px 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-sidebar-items:hover::before,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items:hover::before {
+  opacity: 1 !important;
+}
+
+/* Icon and text alignment in sidebar items */
+html[data-theme="material"] .form-sidebar .form-sidebar-items span:first-child,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items span:first-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  flex: 1 !important;
+}
+
+/* Icons in sidebar items */
+html[data-theme="material"] .form-sidebar .form-sidebar-items svg,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-items svg {
+  flex-shrink: 0 !important;
+  color: #6b7280 !important;
+  width: 18px !important;
+  height: 18px !important;
+  opacity: 0.8 !important;
+}
+
+/* Action buttons - modern and subtle */
+html[data-theme="material"] .form-sidebar .icon-btn,
+html[data-theme-mode="material"] .form-sidebar .icon-btn {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 8px !important;
+  padding: 6px !important;
+  color: #6b7280 !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+html[data-theme="material"] .form-sidebar .icon-btn:hover,
+html[data-theme-mode="material"] .form-sidebar .icon-btn:hover {
+  background: #6366f1 !important;
+  border-color: #6366f1 !important;
+  color: white !important;
+  transform: scale(1.05) !important;
+}
+
+html[data-theme="material"] .form-sidebar .icon-btn svg,
+html[data-theme-mode="material"] .form-sidebar .icon-btn svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Assignments section */
+html[data-theme="material"] .form-sidebar .form-assignments,
+html[data-theme-mode="material"] .form-sidebar .form-assignments {
+  margin-bottom: 12px !important;
+}
+
+html[data-theme="material"] .form-sidebar .assignments,
+html[data-theme-mode="material"] .form-sidebar .assignments {
+  margin-top: 8px !important;
+  padding: 8px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Attachments section */
+html[data-theme="material"] .form-sidebar .form-attachments,
+html[data-theme-mode="material"] .form-sidebar .form-attachments {
+  margin-bottom: 12px !important;
+}
+
+html[data-theme="material"] .form-sidebar .attachments-actions,
+html[data-theme-mode="material"] .form-sidebar .attachments-actions {
+  margin-bottom: 8px !important;
+}
+
+/* Tags section */
+html[data-theme="material"] .form-sidebar .form-tags,
+html[data-theme-mode="material"] .form-sidebar .form-tags {
+  margin-bottom: 12px !important;
+}
+
+/* Shared section */
+html[data-theme="material"] .form-sidebar .form-shared,
+html[data-theme-mode="material"] .form-sidebar .form-shared {
+  margin-bottom: 12px !important;
+}
+
+html[data-theme="material"] .form-sidebar .shares,
+html[data-theme-mode="material"] .form-sidebar .shares {
+  margin-top: 8px !important;
+  padding: 8px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Followed by section */
+html[data-theme="material"] .form-sidebar .followed-by-section,
+html[data-theme-mode="material"] .form-sidebar .followed-by-section {
+  margin-bottom: 16px !important;
+}
+
+html[data-theme="material"] .form-sidebar .followed-by-label,
+html[data-theme-mode="material"] .form-sidebar .followed-by-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #6b7280 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 8px !important;
+  padding: 8px 14px !important;
+}
+
+html[data-theme="material"] .form-sidebar .followed-by,
+html[data-theme-mode="material"] .form-sidebar .followed-by {
+  padding: 8px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="material"] .form-sidebar .document-follow,
+html[data-theme-mode="material"] .form-sidebar .document-follow {
+  margin-top: 8px !important;
+  text-align: center !important;
+}
+
+html[data-theme="material"] .form-sidebar .document-follow a,
+html[data-theme-mode="material"] .form-sidebar .document-follow a {
+  display: inline-block !important;
+  padding: 6px 12px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 6px !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .document-follow a:hover,
+html[data-theme-mode="material"] .form-sidebar .document-follow a:hover {
+  background: #6366f1 !important;
+  border-color: #6366f1 !important;
+  color: white !important;
+}
+
+/* Stats section - likes, comments, follow */
+html[data-theme="material"] .form-sidebar .form-sidebar-stats,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-stats {
+  margin-top: 16px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-sidebar-stats li,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-stats li {
+  padding: 12px 14px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-sidebar-stats li:hover,
+html[data-theme-mode="material"] .form-sidebar .form-sidebar-stats li:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Stats content styling */
+html[data-theme="material"] .form-sidebar .form-stats,
+html[data-theme-mode="material"] .form-sidebar .form-stats {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #6b7280 !important;
+  font-size: 13px !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-stats span,
+html[data-theme-mode="material"] .form-sidebar .form-stats span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-stats span:hover,
+html[data-theme-mode="material"] .form-sidebar .form-stats span:hover {
+  color: #374151 !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-stats svg,
+html[data-theme-mode="material"] .form-sidebar .form-stats svg {
+  width: 16px !important;
+  height: 16px !important;
+  color: #9ca3af !important;
+}
+
+/* Follow button in stats */
+html[data-theme="material"] .form-sidebar .form-follow,
+html[data-theme-mode="material"] .form-sidebar .form-follow {
+  padding: 6px 12px !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+html[data-theme="material"] .form-sidebar .form-follow:hover,
+html[data-theme-mode="material"] .form-sidebar .form-follow:hover {
+  background: linear-gradient(135deg, #5855eb, #7c3aed) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Separator line */
+html[data-theme="material"] .form-sidebar hr,
+html[data-theme-mode="material"] .form-sidebar hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent) !important;
+  margin: 16px 0 !important;
+}
+
+/* Metadata section - muted and clean */
+html[data-theme="material"] .form-sidebar .sidebar-menu.text-muted,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu.text-muted {
+  margin-top: 8px !important;
+}
+
+html[data-theme="material"] .form-sidebar .sidebar-menu.text-muted li,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu.text-muted li {
+  padding: 6px 14px !important;
+  font-size: 11px !important;
+  color: #9ca3af !important;
+  line-height: 1.4 !important;
+}
+
+html[data-theme="material"] .form-sidebar .sidebar-menu.text-muted a,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu.text-muted a {
+  color: #6366f1 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .sidebar-menu.text-muted a:hover,
+html[data-theme-mode="material"] .form-sidebar .sidebar-menu.text-muted a:hover {
+  color: #4f46e5 !important;
+}
+
+/* Show all button styling */
+html[data-theme="material"] .form-sidebar .show-all-btn,
+html[data-theme-mode="material"] .form-sidebar .show-all-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 12px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 8px !important;
+  color: #6b7280 !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  margin-top: 8px !important;
+}
+
+html[data-theme="material"] .form-sidebar .show-all-btn:hover,
+html[data-theme-mode="material"] .form-sidebar .show-all-btn:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #374151 !important;
+  transform: translateY(-1px) !important;
+}
+
+html[data-theme="material"] .form-sidebar .show-all-btn svg,
+html[data-theme-mode="material"] .form-sidebar .show-all-btn svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Pill labels and links */
+html[data-theme="material"] .form-sidebar .pill-label,
+html[data-theme-mode="material"] .form-sidebar .pill-label {
+  font-weight: 500 !important;
+  color: #374151 !important;
+}
+
+html[data-theme="material"] .form-sidebar .explore-link,
+html[data-theme-mode="material"] .form-sidebar .explore-link {
+  color: #6366f1 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+
+html[data-theme="material"] .form-sidebar .explore-link:hover,
+html[data-theme-mode="material"] .form-sidebar .explore-link:hover {
+  color: #4f46e5 !important;
+}
+
+/* Rating icons section */
+html[data-theme="material"] .form-sidebar .sidebar-rating,
+html[data-theme-mode="material"] .form-sidebar .sidebar-rating {
+  margin-bottom: 12px !important;
+}
+
+html[data-theme="material"] .form-sidebar .rating-icons,
+html[data-theme-mode="material"] .form-sidebar .rating-icons {
+  padding: 8px 14px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Badge hover effects */
+html[data-theme="material"] .form-sidebar .badge-hover,
+html[data-theme-mode="material"] .form-sidebar .badge-hover {
+  color: #6b7280 !important;
+  transition: color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+html[data-theme="material"] .form-sidebar .badge-hover:hover,
+html[data-theme-mode="material"] .form-sidebar .badge-hover:hover {
+  color: #374151 !important;
+}
+
+/* Strong text styling */
+html[data-theme="material"] .form-sidebar .strong,
+html[data-theme-mode="material"] .form-sidebar .strong {
+  font-weight: 600 !important;
+  color: #374151 !important;
+}
+
+/* Ellipsis text handling */
+html[data-theme="material"] .form-sidebar .ellipsis,
+html[data-theme-mode="material"] .form-sidebar .ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Hide utility classes */
+html[data-theme="material"] .form-sidebar .hide,
+html[data-theme-mode="material"] .form-sidebar .hide,
+html[data-theme="material"] .form-sidebar .hidden,
+html[data-theme-mode="material"] .form-sidebar .hidden {
+  display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  html[data-theme="material"] .form-sidebar.overlay-sidebar,
+  html[data-theme-mode="material"] .form-sidebar.overlay-sidebar {
+    margin: 16px !important;
+    padding: 12px !important;
+  }
+}
