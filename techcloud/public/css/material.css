@@ -7309,7 +7309,7 @@ html[data-theme-mode="material"] .widget-body .link-item {
     padding: var(--spacing-md) !important;
     margin-top: -2% !important;
     margin-right: auto !important;
-    margin-bottom: 1% !important;
+    margin-bottom: 5% !important;
     /* width: 100% !important; */
   }
 }
@@ -8624,13 +8624,6 @@ html[data-theme-mode="material"] [data-page-route="Workspaces"] .codex-editor .c
   /* padding-bottom: 20px !important; */
 }
 
-[data-page-route=Workspaces] .codex-editor .codex-editor__redactor .ce-block .ce-block__content .ce-header {
-    padding-left: 7px !important;
-    margin-bottom: 0 !important;
-    /* flex: 1; */
-    padding-top: 1%;
-}
-
 /* Tablet and mobile - Sidebar adjustments */
 @media (max-width: 991px) {
   /* Sidebar width removed - using default/other CSS */
@@ -9744,20 +9737,6 @@ html[data-theme-mode="material"] .widget.number-widget-box .widget-title {
     font-size: 13px;
     font-weight: 600;
     opacity: 0.85;
-}
-
-.widget.number-widget-box .widget-body .widget-content .number {
-    font-size: var(--text-2xl);
-    font-weight: var(--weight-semibold);
-    letter-spacing: 0.01em;
-    line-height: var(--text-line-height-3xl);
-    color: var(--text-color);
-    padding-left: 2%;
-}
-
-.widget.number-widget-box .widget-body .widget-content .percentage-stat-area {
-    font-size: 0.75rem;
-    margin-top: var(--margin-sm);
 }
 
 html[data-theme="material"] .card-stats,
@@ -12400,42 +12379,6 @@ html[data-theme="material"] .frappe-chart .graph-svg-tip text,
 html[data-theme-mode="material"] .frappe-chart .graph-svg-tip text {
     fill: #ffffff !important;
 }
-  /* Responsive adjustments for smaller buttons */
-  @media (max-width: 768px) {
-    html[data-theme="material"] .workspace-footer,
-    html[data-theme-mode="material"] .workspace-footer {
-      padding: 12px 20px !important;
-      gap: 6px !important;
-      margin-top: 20px !important;
-    }
-
-    html[data-theme="material"] .workspace-footer .btn,
-    html[data-theme-mode="material"] .workspace-footer .btn {
-      padding: 6px 12px !important;
-      font-size: 11px !important;
-      min-height: 32px !important;
-    }
-
-    /* Keep buttons compact on very small screens */
-    @media (max-width: 480px) {
-      html[data-theme="material"] .workspace-footer,
-      html[data-theme-mode="material"] .workspace-footer {
-        justify-content: center !important; /* Center on very small screens for better UX */
-        flex-direction: row !important; /* Keep horizontal but centered */
-        gap: 6px !important; /* Smaller gap on mobile */
-        padding: 12px 16px !important; /* Reduced padding */
-      }
-
-      html[data-theme="material"] .workspace-footer .btn,
-      html[data-theme-mode="material"] .workspace-footer .btn {
-        flex: none !important; /* No stretching */
-        width: auto !important; /* Content-sized width */
-        padding: 5px 10px !important; /* Even more compact on mobile */
-        font-size: 11px !important; /* Smaller font on mobile */
-        min-height: 28px !important; /* Compact height */
-      }
-    }
-  }
 
   /* Fix blue loading background - Prevent blue colors during page loading */
   /* Neutral skeleton cards during loading */
