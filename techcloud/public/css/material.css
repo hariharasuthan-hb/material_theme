@@ -1706,6 +1706,257 @@ html[data-theme-mode="material"] .frappe-control {
     background-image: none !important; /* Remove any gradients */
   }
 
+  /* Fix: Ensure page-head is always visible during loading */
+  html[data-theme="material"].loading .page-head,
+  html[data-theme-mode="material"].loading .page-head,
+  html[data-theme="material"] body.loading .page-head,
+  html[data-theme-mode="material"] body.loading .page-head,
+  html[data-theme="material"] .page-head.page-loading,
+  html[data-theme-mode="material"] .page-head.page-loading {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+  }
+
+  /* Ensure container header loads properly */
+  html[data-theme="material"].loading .container,
+  html[data-theme-mode="material"].loading .container,
+  html[data-theme="material"] body.loading .container,
+  html[data-theme-mode="material"] body.loading .container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Ensure page-head-content loads properly */
+  html[data-theme="material"].loading .page-head-content,
+  html[data-theme-mode="material"].loading .page-head-content,
+  html[data-theme="material"] body.loading .page-head-content,
+  html[data-theme-mode="material"] body.loading .page-head-content,
+  html[data-theme="material"].loading .row.flex.align-center.page-head-content.justify-between,
+  html[data-theme-mode="material"].loading .row.flex.align-center.page-head-content.justify-between {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Ensure page-title section loads properly */
+  html[data-theme="material"].loading .page-title,
+  html[data-theme-mode="material"].loading .page-title,
+  html[data-theme="material"] body.loading .page-title,
+  html[data-theme-mode="material"] body.loading .page-title,
+  html[data-theme="material"].loading .col-md-4.col-sm-6.col-xs-7.page-title,
+  html[data-theme-mode="material"].loading .col-md-4.col-sm-6.col-xs-7.page-title {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    flex: 1 !important;
+  }
+
+  /* Ensure sidebar toggle button loads properly */
+  html[data-theme="material"].loading .sidebar-toggle-btn,
+  html[data-theme-mode="material"].loading .sidebar-toggle-btn,
+  html[data-theme="material"] body.loading .sidebar-toggle-btn,
+  html[data-theme-mode="material"] body.loading .sidebar-toggle-btn {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure title area loads properly */
+  html[data-theme="material"].loading .title-area,
+  html[data-theme-mode="material"].loading .title-area,
+  html[data-theme="material"] body.loading .title-area,
+  html[data-theme-mode="material"] body.loading .title-area,
+  html[data-theme="material"].loading .flex.fill-width.title-area,
+  html[data-theme-mode="material"].loading .flex.fill-width.title-area {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure title text loads properly */
+  html[data-theme="material"].loading .title-text,
+  html[data-theme-mode="material"].loading .title-text,
+  html[data-theme="material"] body.loading .title-text,
+  html[data-theme-mode="material"] body.loading .title-text {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  /* Ensure page actions load properly */
+  html[data-theme="material"].loading .page-actions,
+  html[data-theme-mode="material"].loading .page-actions,
+  html[data-theme="material"] body.loading .page-actions,
+  html[data-theme-mode="material"] body.loading .page-actions,
+  html[data-theme="material"].loading .flex.col.page-actions.justify-content-end,
+  html[data-theme-mode="material"].loading .flex.col.page-actions.justify-content-end {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Ensure standard actions load properly */
+  html[data-theme="material"].loading .standard-actions,
+  html[data-theme-mode="material"].loading .standard-actions,
+  html[data-theme="material"] body.loading .standard-actions,
+  html[data-theme-mode="material"] body.loading .standard-actions {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure all buttons in header load properly */
+  html[data-theme="material"].loading .page-head .btn,
+  html[data-theme-mode="material"].loading .page-head .btn,
+  html[data-theme="material"] body.loading .page-head .btn,
+  html[data-theme-mode="material"] body.loading .page-head .btn {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure dropdown menus load properly */
+  html[data-theme="material"].loading .dropdown-menu,
+  html[data-theme-mode="material"].loading .dropdown-menu,
+  html[data-theme="material"] body.loading .dropdown-menu,
+  html[data-theme-mode="material"] body.loading .dropdown-menu {
+    display: none !important; /* Keep hidden until actually opened */
+  }
+
+  /* Ensure navbar container loads properly (top navigation bar) */
+  html[data-theme="material"].loading .navbar,
+  html[data-theme-mode="material"].loading .navbar,
+  html[data-theme="material"] body.loading .navbar,
+  html[data-theme-mode="material"] body.loading .navbar,
+  html[data-theme="material"].loading .navbar-brand,
+  html[data-theme-mode="material"].loading .navbar-brand,
+  html[data-theme="material"] body.loading .navbar-brand,
+  html[data-theme-mode="material"] body.loading .navbar-brand {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure navbar navigation loads properly */
+  html[data-theme="material"].loading .navbar-nav,
+  html[data-theme-mode="material"].loading .navbar-nav,
+  html[data-theme="material"] body.loading .navbar-nav,
+  html[data-theme-mode="material"] body.loading .navbar-nav,
+  html[data-theme="material"].loading .nav-item,
+  html[data-theme-mode="material"].loading .nav-item,
+  html[data-theme="material"] body.loading .nav-item,
+  html[data-theme-mode="material"] body.loading .nav-item {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure search bar loads properly */
+  html[data-theme="material"].loading .search-bar,
+  html[data-theme-mode="material"].loading .search-bar,
+  html[data-theme="material"] body.loading .search-bar,
+  html[data-theme-mode="material"] body.loading .search-bar,
+  html[data-theme="material"].loading .input-group,
+  html[data-theme-mode="material"].loading .input-group,
+  html[data-theme="material"] body.loading .input-group,
+  html[data-theme-mode="material"] body.loading .input-group {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure navbar buttons and dropdowns load properly */
+  html[data-theme="material"].loading .navbar .btn,
+  html[data-theme-mode="material"].loading .navbar .btn,
+  html[data-theme="material"] body.loading .navbar .btn,
+  html[data-theme-mode="material"] body.loading .navbar .btn,
+  html[data-theme="material"].loading .navbar .dropdown-toggle,
+  html[data-theme-mode="material"].loading .navbar .dropdown-toggle,
+  html[data-theme="material"] body.loading .navbar .dropdown-toggle,
+  html[data-theme-mode="material"] body.loading .navbar .dropdown-toggle {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure app logo loads properly */
+  html[data-theme="material"].loading .app-logo,
+  html[data-theme-mode="material"].loading .app-logo,
+  html[data-theme="material"] body.loading .app-logo,
+  html[data-theme-mode="material"] body.loading .app-logo,
+  html[data-theme="material"].loading .navbar-home img,
+  html[data-theme-mode="material"].loading .navbar-home img,
+  html[data-theme="material"] body.loading .navbar-home img,
+  html[data-theme-mode="material"] body.loading .navbar-home img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: 48px !important;
+    width: auto !important;
+  }
+
+  /* Ensure breadcrumbs load properly */
+  html[data-theme="material"].loading #navbar-breadcrumbs,
+  html[data-theme-mode="material"].loading #navbar-breadcrumbs,
+  html[data-theme="material"] body.loading #navbar-breadcrumbs,
+  html[data-theme-mode="material"] body.loading #navbar-breadcrumbs {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+  }
+
+  /* Ensure navbar search input loads properly */
+  html[data-theme="material"].loading #navbar-search,
+  html[data-theme-mode="material"].loading #navbar-search,
+  html[data-theme="material"] body.loading #navbar-search,
+  html[data-theme-mode="material"] body.loading #navbar-search {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure avatar loads properly */
+  html[data-theme="material"].loading .avatar,
+  html[data-theme-mode="material"].loading .avatar,
+  html[data-theme="material"] body.loading .avatar,
+  html[data-theme-mode="material"] body.loading .avatar,
+  html[data-theme="material"].loading .avatar-frame,
+  html[data-theme-mode="material"].loading .avatar-frame,
+  html[data-theme="material"] body.loading .avatar-frame,
+  html[data-theme-mode="material"] body.loading .avatar-frame {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   /* Enhanced stat labels and widget labels */
   html[data-theme="material"] .stat-label,
   html[data-theme-mode="material"] .stat-label,
