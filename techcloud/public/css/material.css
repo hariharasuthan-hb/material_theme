@@ -4577,6 +4577,11 @@ html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .des
     z-index: 100 !important;
     display: flex !important;
     flex-direction: column !important;
+    /* Enhanced scrolling experience */
+    scroll-behavior: smooth !important;
+    /* Custom scrollbar for better UX */
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(0, 137, 255, 0.3) transparent !important;
 }
 
 /* Sidebar Logo/Brand */
@@ -4597,13 +4602,51 @@ html[data-theme-mode="material"] .layout-side-section .sidebar-brand {
 }
 
 /* Sidebar Navigation Menu - Section Headers (like "PUBLIC") */
-/* Sidebar Navigation Menu - Section Headers (ONLY for Main Menu, NOT Submenu) */
-html[data-theme="material"] .desk-sidebar .standard-sidebar-section,
-html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section,
-html[data-theme="material"] .layout-side-section .standard-sidebar-section,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section {
-  margin-bottom: 12px !important;
-  margin-top: 8px !important; /* Reduced from 16px */
+/* Webkit scrollbar styling for modern browsers */
+html[data-theme="material"] .desk-sidebar::-webkit-scrollbar,
+html[data-theme-mode="material"] .desk-sidebar::-webkit-scrollbar,
+html[data-theme="material"] .layout-side-section::-webkit-scrollbar,
+html[data-theme-mode="material"] .layout-side-section::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+html[data-theme="material"] .desk-sidebar::-webkit-scrollbar-track,
+html[data-theme-mode="material"] .desk-sidebar::-webkit-scrollbar-track,
+html[data-theme="material"] .layout-side-section::-webkit-scrollbar-track,
+html[data-theme-mode="material"] .layout-side-section::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+html[data-theme="material"] .desk-sidebar::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] .desk-sidebar::-webkit-scrollbar-thumb,
+html[data-theme="material"] .layout-side-section::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] .layout-side-section::-webkit-scrollbar-thumb {
+  background: rgba(0, 137, 255, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+html[data-theme="material"] .desk-sidebar::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] .desk-sidebar::-webkit-scrollbar-thumb:hover,
+html[data-theme="material"] .layout-side-section::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] .layout-side-section::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 137, 255, 0.5) !important;
+}
+
+/* Ensure sidebar content doesn't get cut off */
+html[data-theme="material"] .desk-sidebar .sidebar-menu,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-menu,
+html[data-theme="material"] .layout-side-section .sidebar-menu,
+html[data-theme-mode="material"] .layout-side-section .sidebar-menu {
+  padding-bottom: 20px !important; /* Extra padding at bottom to ensure last items are fully visible */
+}
+
+  /* Sidebar Navigation Menu - Section Headers (ONLY for Main Menu, NOT Submenu) */
+  html[data-theme="material"] .desk-sidebar .standard-sidebar-section,
+  html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section,
+  html[data-theme="material"] .layout-side-section .standard-sidebar-section,
+  html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section {
+  margin-bottom: 8px !important; /* More compact for better space utilization */
+  margin-top: 4px !important; /* Reduced for efficient layout */
 }
 
 /* First section header - no top margin */
@@ -5152,7 +5195,8 @@ html[data-theme-mode="material"] .sidebar-item-control .dropdown-list {
   background: #FFFFFF !important; /* White background */
   border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Subtle border */
   border-radius: 8px !important; /* Rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important; /* Subtle shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow for better visibility */
+  z-index: 99998 !important; /* Very high z-index to ensure dropdown is always visible */
   min-width: 100% !important;
   max-width: 100% !important;
   width: 100% !important;
@@ -5217,7 +5261,7 @@ html[data-theme-mode="material"] .layout-side-section .dropdown-list:not(.hidden
   pointer-events: auto !important; /* Ensure clickable */
   max-height: 1000px !important; /* Allow full expansion */
   overflow: visible !important;
-  z-index: 1000 !important; /* High z-index when visible */
+  z-index: 99998 !important; /* Very high z-index to ensure visibility above all content */
   background: #FFFFFF !important; /* White background when visible */
 }
 
