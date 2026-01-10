@@ -4570,7 +4570,9 @@ html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .des
     padding: 0px 0px 0px 0px !important;
     left: 0 !important;
     top: 44px !important;
-    height: calc(100vh - 44px) !important;
+    /* Dynamic height calculation for better menu visibility */
+    height: calc(100vh - 44px - 120px) !important; /* Account for footer space */
+    min-height: 400px !important; /* Ensure minimum height for content */
     overflow-y: auto !important;
     overflow-x: visible !important;
     /* box-sizing: border-box !important; */
@@ -5581,7 +5583,9 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme="material"] .layout-side-section,
   html[data-theme-mode="material"] .layout-side-section {
     top: 44px !important;
-    height: calc(100vh - 44px) !important;
+    /* Dynamic height for tablets accounting for footer */
+    height: calc(100vh - 44px - 100px) !important;
+    min-height: 350px !important;
   }
   
   html[data-theme="material"] .layout-main-section,
@@ -7882,7 +7886,9 @@ html[data-theme-mode="material"] .widget-body .link-item {
   html[data-theme="material"] .layout-side-section,
   html[data-theme-mode="material"] .layout-side-section {
     top: 44px !important;
-    height: calc(100vh - 44px) !important;
+    /* Dynamic height for small tablets */
+    height: calc(100vh - 44px - 90px) !important;
+    min-height: 300px !important;
   }
   
   html[data-theme="material"] .layout-main-section,
@@ -7904,7 +7910,11 @@ html[data-theme-mode="material"] .widget-body .link-item {
   html[data-theme="material"] .layout-side-section,
   html[data-theme-mode="material"] .layout-side-section {
     top: 44px !important;
-    height: calc(100vh - 44px) !important;
+    /* Dynamic height calculation accounting for footer space */
+    height: calc(100vh - 44px - 120px) !important; /* Subtract header + footer space */
+    /* Ensure sidebar can accommodate all menu items */
+    min-height: 400px !important; /* Minimum height to show content */
+    max-height: calc(100vh - 44px - 80px) !important; /* Maximum to prevent overflow */
   }
   
   /* Layout main container - now handled by Bootstrap grid above */
@@ -10516,15 +10526,6 @@ html[data-theme-mode="material"] .frappe-chart .legend-item text {
 }
 
 /* Chart Axis Labels - MATERIAL THEME ONLY */
-html[data-theme="material"] .frappe-chart .x.axis text,
-html[data-theme="material"] .frappe-chart .y.axis text,
-html[data-theme-mode="material"] .frappe-chart .x.axis text,
-html[data-theme-mode="material"] .frappe-chart .y.axis text {
-    fill: #6b7280 !important; /* Medium gray for axis labels */
-    font-size: 11px !important;
-    font-weight: 400 !important;
-}
-
 /* Chart Tooltip Text */
 html[data-theme="material"] .frappe-chart .graph-svg-tip .title,
 .frappe-chart .graph-svg-tip .tooltip-value,
@@ -12956,11 +12957,22 @@ html[data-theme-mode="material"] .frappe-chart .legend {
    CHART AXIS AND GRID IMPROVEMENTS
    ============================================ */
 
-/* Axis labels - ensure readability */
+/* Axis labels - general rule for all axis text */
 html[data-theme="material"] .frappe-chart .axis text,
 html[data-theme-mode="material"] .frappe-chart .axis text {
     fill: #6b7280 !important;
     font-size: 12px !important;
+}
+
+/* X and Y axis labels - specific override for better visibility */
+html[data-theme="material"] .frappe-chart .x.axis text,
+html[data-theme-mode="material"] .frappe-chart .x.axis text,
+html[data-theme="material"] .frappe-chart .y.axis text,
+html[data-theme-mode="material"] .frappe-chart .y.axis text {
+    fill: #22375f !important; /* Dark blue for axis labels - higher specificity */
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    color: #000 !important; /* Fallback for non-SVG text */
 }
 
 /* Grid lines - subtle but visible */
