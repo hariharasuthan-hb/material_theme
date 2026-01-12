@@ -1,7 +1,7 @@
-app_name = "material_theme"
-app_title = "Material Theme"
+app_name = "techcloud"
+app_title = "Techcloud ERP"
 app_publisher = "Itrostack LLP"
-app_description = "Material Theme"
+app_description = "Techcloud ERP Theme"
 app_email = "info@itrostack.com"
 app_license = "mit"
 
@@ -25,15 +25,32 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = ["/assets/material_theme/css/material.css",
-                   ]
+# CSS is always loaded but scoped with html[data-theme="material"] selectors
+# JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
+app_include_css = [
+    "/assets/techcloud/css/material.css"
+]
 app_include_js = [
-                    "/assets/material_theme/js/material.js",
-                    "/assets/material_theme/js/material-theme-customizer.js",
-                    "/assets/material_theme/js/theme.js",]
+    "/assets/techcloud/js/fix-highlight.js",
+    "/assets/techcloud/js/material.js",
+    "/assets/techcloud/js/material-theme-customizer.js",
+    "/assets/techcloud/js/dashboard-widget-head-remover.js",
+    "/assets/techcloud/js/theme.js",
+    "/assets/techcloud/js/techcloud-icons.js",
+    "/assets/techcloud/js/icon-debug.js",
+    "/assets/techcloud/js/techcloud-unified-header.js",
+    "/assets/techcloud/js/techcloud-fixes.js"
+]
 
 # include js, css files in header of web template
-web_include_css = "/assets/material_theme/css/material.css"
+# NOTE: Frappe templates iterate `web_include_css` / `web_include_js`.
+# They must be LISTS (strings would be iterated character-by-character).
+web_include_css = ["/assets/techcloud/css/material.css"]
+web_include_js = [
+    "/assets/techcloud/js/techcloud-login.js",
+    "/assets/techcloud/js/techcloud-icons.js",
+    "/assets/techcloud/js/techcloud-header.js"
+]
 # web_include_js = "/assets/material_theme/js/material-theme-website.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -55,7 +72,8 @@ web_include_css = "/assets/material_theme/css/material.css"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "material_theme/public/icons.svg"
+# Path is relative to app's public folder (without "public" in the path)
+app_include_icons = "techcloud/icons/icons.svg"
 
 # Home Pages
 # ----------
@@ -179,11 +197,11 @@ web_include_css = "/assets/material_theme/css/material.css"
 # ------------------------------
 #
 override_whitelisted_methods = {
-    "frappe.core.doctype.user.user.switch_theme": "material_theme.overrides.switch_theme.switch_theme"
+    "frappe.core.doctype.user.user.switch_theme": "techcloud.overrides.switch_theme.switch_theme"
 }
 
-# Update website context to add head_html for Material Theme
-update_website_context = ["material_theme.utils.update_material_theme_context"]
+# Update website context to add head_html for Techcloud Theme
+update_website_context = ["techcloud.utils.update_techcloud_theme_context"]
 
 #
 # each overriding function accepts a `data` argument;
@@ -204,7 +222,9 @@ update_website_context = ["material_theme.utils.update_material_theme_context"]
 
 # Request Events
 # ----------------
-# before_request = ["material_theme.utils.before_request"]
+# before_request adds inline script to set data-theme attribute early for desk pages
+# CSS is loaded via app_include_css hook and scoped with html[data-theme="material"]
+before_request = ["techcloud.utils.before_request"]
 # after_request = ["material_theme.utils.after_request"]
 
 # Job Events

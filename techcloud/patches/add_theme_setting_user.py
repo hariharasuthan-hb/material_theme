@@ -1,14 +1,14 @@
 import frappe
 
 def execute():
-    """Add 'Material' options to desk_theme field in User DocType."""
+    """Add 'Techcloud' option to desk_theme field in User DocType."""
     
     print(f"Running Patch")
     # Get the User DocType
     user_doctype = frappe.get_doc("DocType", "User")
     
-    # New theme options to add
-    new_options = ["Material"]
+    # New theme options to add (Techcloud will be mapped to Material internally)
+    new_options = ["Techcloud"]
     
     # Find the desk_theme field
     for field in user_doctype.fields:

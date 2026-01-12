@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Techcloud ERP Web - Pages Index</title>
+    <link rel="stylesheet" href="css/techcloud-erp.css">
+    <style>
+        .pages-index {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            padding: 40px 20px;
+        }
+        .pages-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        .pages-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .pages-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .pages-list {
+            display: grid;
+            gap: 16px;
+        }
+        .page-link {
+            display: block;
+            padding: 20px 24px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .page-link:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 137, 255, 0.2);
+        }
+        .page-link-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .page-link-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="pages-index">
+        <div class="pages-container">
+            <h1 class="pages-title">Techcloud ERP Web</h1>
+            <p class="pages-subtitle">Select a page to view</p>
+            
+            <div class="pages-list">
+                <a href="techcloud-erp.html" class="page-link">
+                    <div class="page-link-title">Login Page (with Illustration)</div>
+                    <div class="page-link-desc">Full login page with form and illustration section</div>
+                </a>
+                
+                <a href="login-simple.html" class="page-link">
+                    <div class="page-link-title">Simple Login Page</div>
+                    <div class="page-link-desc">Centered login form without illustration</div>
+                </a>
+                
+                <a href="dashboard.html" class="page-link">
+                    <div class="page-link-title">Dashboard</div>
+                    <div class="page-link-desc">Main dashboard with stats, charts, and activity feed</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
