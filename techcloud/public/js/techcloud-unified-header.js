@@ -36,12 +36,17 @@
             
             // Insert after search bar or at appropriate position
             const searchContainer = navbar.querySelector('.awesomplete, .form-control')?.parentElement;
-            if (searchContainer && searchContainer.nextSibling) {
+            const canInsertAfterSearch =
+                searchContainer &&
+                searchContainer.parentElement === navbarContainer &&
+                searchContainer.nextSibling;
+
+            if (canInsertAfterSearch) {
                 navbarContainer.insertBefore(titleContainer, searchContainer.nextSibling);
             } else {
-                // Insert before navbar-nav
+                // Insert before navbar-nav when possible, otherwise append
                 const navNav = navbar.querySelector('.navbar-nav');
-                if (navNav) {
+                if (navNav && navNav.parentElement === navbarContainer) {
                     navbarContainer.insertBefore(titleContainer, navNav);
                 } else {
                     navbarContainer.appendChild(titleContainer);
