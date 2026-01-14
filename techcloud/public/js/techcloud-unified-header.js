@@ -20,6 +20,8 @@
 
         const navbar = document.querySelector('.navbar');
         if (!navbar) {
+            // Navbar not ready yet, retry
+            setTimeout(initUnifiedHeader, 100);
             return;
         }
 
@@ -54,6 +56,68 @@
             }
         }
 
+        // Hide page-head title area so title shows only in top navbar
+        const pageTitleArea = document.querySelector('.page-head .page-title .title-area');
+        if (pageTitleArea) {
+            pageTitleArea.style.display = 'none';
+        }
+
+        let pageHeadObserver = null;
+        let pageHeadRetryTimer = null;
+
+        function attachPageHeadObserver() {
+            const pageHead = document.querySelector('.page-head');
+            if (!pageHead) {
+                return false;
+            }
+            if (pageHeadObserver) {
+                pageHeadObserver.disconnect();
+            }
+            pageHeadObserver = new MutationObserver(function(mutations) {
+                let shouldSync = false;
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                        const target = mutation.target;
+                        if (target.closest('.page-head') || 
+                            target.classList?.contains('title-text') || 
+                            target.classList?.contains('sub-heading') ||
+                            target.classList?.contains('indicator-pill')) {
+                            shouldSync = true;
+                        }
+                    }
+                });
+                if (shouldSync) {
+                    setTimeout(syncPageTitle, 50);
+                }
+            });
+
+            pageHeadObserver.observe(pageHead, {
+                childList: true,
+                subtree: true,
+                characterData: true
+            });
+
+            return true;
+        }
+
+        function ensurePageHeadObserver() {
+            if (attachPageHeadObserver()) return;
+            if (pageHeadRetryTimer) return;
+            pageHeadRetryTimer = setInterval(() => {
+                if (attachPageHeadObserver()) {
+                    clearInterval(pageHeadRetryTimer);
+                    pageHeadRetryTimer = null;
+                    syncPageTitle();
+                }
+            }, 100);
+            setTimeout(() => {
+                if (pageHeadRetryTimer) {
+                    clearInterval(pageHeadRetryTimer);
+                    pageHeadRetryTimer = null;
+                }
+            }, 5000);
+        }
+
         // Function to sync page title from page-head to navbar
         function syncPageTitle() {
             const pageHead = document.querySelector('.page-head');
@@ -74,6 +138,7 @@
 
             if (titleElement) {
                 titleText = titleElement.textContent || titleElement.innerText || '';
+                console.log("[Techcloud] page-head title-text:", titleText);
             }
 
             if (subHeadingElement && !subHeadingElement.classList.contains('hide')) {
@@ -108,34 +173,8 @@
         // Initial sync
         syncPageTitle();
 
-        // Watch for page title changes (Frappe updates title dynamically)
-        const observer = new MutationObserver(function(mutations) {
-            let shouldSync = false;
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' || mutation.type === 'characterData') {
-                    const target = mutation.target;
-                    if (target.closest('.page-head') || 
-                        target.classList?.contains('title-text') || 
-                        target.classList?.contains('sub-heading') ||
-                        target.classList?.contains('indicator-pill')) {
-                        shouldSync = true;
-                    }
-                }
-            });
-            if (shouldSync) {
-                setTimeout(syncPageTitle, 50);
-            }
-        });
-
-        // Observe page-head for changes
-        const pageHead = document.querySelector('.page-head');
-        if (pageHead) {
-            observer.observe(pageHead, {
-                childList: true,
-                subtree: true,
-                characterData: true
-            });
-        }
+        // Observe page-head for changes (may be created after refresh)
+        ensurePageHeadObserver();
 
         // Also listen for Frappe page title updates
         if (window.frappe && window.frappe.ui && window.frappe.ui.page) {
@@ -147,6 +186,13 @@
                     return result;
                 };
             }
+        }
+
+        if (window.jQuery) {
+            $(document).on("page-change", function() {
+                ensurePageHeadObserver();
+                setTimeout(syncPageTitle, 50);
+            });
         }
     }
 

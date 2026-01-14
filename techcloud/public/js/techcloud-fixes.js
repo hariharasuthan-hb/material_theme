@@ -70,7 +70,6 @@
 		// Throttled scroll handler to prevent excessive updates
 		window.addEventListener('scroll', requestTick, { passive: true });
 
-		console.log('TechCloud sticky header initialized successfully');
 	}
 
 	// Initialize sticky header after DOM is ready
@@ -378,7 +377,6 @@
 			});
 		}, 1000); // Check every second
 
-		console.log("Techcloud: Enhanced modal ARIA accessibility fix applied");
 	}
 
 	// ============================================
@@ -448,7 +446,6 @@
 			};
 		}
 
-		console.log('TechCloud: Moment.js deprecation warning fix applied');
 	}
 
 	// ============================================
@@ -545,20 +542,16 @@
 	// Restores ERPNext sidebar toggle behavior for Material theme
 	// ============================================
 	function initializeSidebarToggle() {
-		console.log('TechCloud: Initializing sidebar toggle functionality');
 
 		// Only apply to Material theme
 		if (!document.documentElement.getAttribute('data-theme')?.includes('material') &&
 			!document.documentElement.getAttribute('data-theme-mode')?.includes('material')) {
-			console.log('TechCloud: Not Material theme, skipping sidebar toggle');
 			return;
 		}
 
-		console.log('TechCloud: Material theme detected, setting up sidebar toggle');
 
 		// Function to setup button handlers once button is found
 		function setupSidebarToggle(toggleBtn) {
-			console.log('TechCloud: Sidebar toggle button found:', toggleBtn);
 
 			// Remove any existing handlers first to avoid conflicts
 			$(document).off('click', '.sidebar-toggle-btn');
@@ -566,20 +559,17 @@
 			// Add multiple click handlers for redundancy
 			// Method 1: jQuery delegated handler
 			$(document).on('click', '.sidebar-toggle-btn', function(e) {
-				console.log('TechCloud: Sidebar toggle button clicked (jQuery)!');
 				handleSidebarToggle(e);
 			});
 
 			// Method 2: Direct event listener as backup
 			toggleBtn.addEventListener('click', function(e) {
-				console.log('TechCloud: Sidebar toggle button clicked (direct)!');
 				handleSidebarToggle(e);
 			});
 
 			// Method 3: Set onclick attribute as final fallback
 			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
 
-			console.log('TechCloud: Sidebar toggle handlers attached (3 methods)');
 		}
 
 		// Shared handler function
@@ -589,7 +579,6 @@
 
 			// Toggle the sidebar-collapsed class on body
 			$('body').toggleClass('sidebar-collapsed');
-			console.log('TechCloud: Body classes after toggle:', $('body').attr('class'));
 
 			// Optional: Save state to localStorage for persistence
 			const isCollapsed = $('body').hasClass('sidebar-collapsed');
@@ -602,7 +591,6 @@
 
 		// Expose global function for onclick fallback
 		window.techcloudToggleSidebar = function() {
-			console.log('TechCloud: Sidebar toggle via global function!');
 			$('body').toggleClass('sidebar-collapsed');
 			const isCollapsed = $('body').hasClass('sidebar-collapsed');
 			try {
@@ -618,7 +606,6 @@
 		}
 
 		// If button doesn't exist yet, set up observers to wait for it
-		console.log('TechCloud: Sidebar toggle button not found initially, setting up observers...');
 
 		// Method 1: Use MutationObserver to watch for button being added
 		const observer = new MutationObserver(function(mutations) {
@@ -627,7 +614,6 @@
 					if (node.nodeType === Node.ELEMENT_NODE) {
 						// Check if the added node is the button
 						if (node.matches && node.matches('.sidebar-toggle-btn')) {
-							console.log('TechCloud: Sidebar toggle button added via MutationObserver');
 							observer.disconnect();
 							setupSidebarToggle(node);
 							return;
@@ -636,7 +622,6 @@
 						// Check if the button is inside the added node
 						const btn = node.querySelector ? node.querySelector('.sidebar-toggle-btn') : null;
 						if (btn) {
-							console.log('TechCloud: Sidebar toggle button found inside added node');
 							observer.disconnect();
 							setupSidebarToggle(btn);
 							return;
@@ -661,7 +646,6 @@
 			toggleBtn = document.querySelector('.sidebar-toggle-btn');
 
 			if (toggleBtn) {
-				console.log('TechCloud: Sidebar toggle button found via periodic check (attempt ' + checkCount + ')');
 				observer.disconnect();
 				setupSidebarToggle(toggleBtn);
 			} else if (checkCount < maxChecks) {
@@ -681,7 +665,6 @@
 
 			// Toggle the sidebar-collapsed class on body
 			$('body').toggleClass('sidebar-collapsed');
-			console.log('TechCloud: Body classes after toggle:', $('body').attr('class'));
 
 			// Optional: Save state to localStorage for persistence
 			const isCollapsed = $('body').hasClass('sidebar-collapsed');
@@ -702,7 +685,6 @@
 			// localStorage might not be available
 		}
 
-		console.log('TechCloud sidebar toggle functionality initialized');
 	}
 
 	// ============================================

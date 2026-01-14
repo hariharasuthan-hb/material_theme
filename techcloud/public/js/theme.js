@@ -29,7 +29,6 @@
 			}
 
 			toggle_theme(theme) {
-				console.log("TechcloudThemeSwitcher.toggle_theme called with theme:", theme);
 
 				// Handle techcloud theme specially - map "material" to "Material" for server call
 				let server_theme = theme;
@@ -49,20 +48,16 @@
 					this.injectTechCloudAssets();
 					document.documentElement.setAttribute("data-theme", "material");
 					document.documentElement.setAttribute("data-theme-mode", "material");
-					console.log("Applied Techcloud theme - set data-theme='material' and data-theme-mode='material'");
 				} else {
 					// Remove TechCloud assets for other themes
 					this.removeTechCloudAssets();
 					if (theme === "dark") {
 						document.documentElement.setAttribute("data-theme-mode", "dark");
-						console.log("Applied Dark theme - set data-theme-mode='dark'");
 					} else if (theme === "automatic") {
 						document.documentElement.setAttribute("data-theme-mode", "automatic");
-						console.log("Applied Automatic theme - set data-theme-mode='automatic'");
 					} else {
 						// Light theme or any other theme
 						document.documentElement.setAttribute("data-theme-mode", theme.toLowerCase());
-						console.log("Applied", theme, "theme - set data-theme-mode='" + theme.toLowerCase() + "'");
 					}
 				}
 
@@ -77,7 +72,6 @@
 				frappe.xcall("frappe.core.doctype.user.user.switch_theme", {
 					theme: server_theme.charAt(0).toUpperCase() + server_theme.slice(1), // Title case
 				}).then(() => {
-					console.log("Theme switch server call completed for:", server_theme);
 
 					// Additional re-evaluation after server response
 					setTimeout(() => {
@@ -104,7 +98,6 @@
 							}
 						});
 
-						console.log("Enhanced theme re-evaluation completed");
 					}, 150);
 				}).catch((error) => {
 					console.error("Theme switch server call failed:", error);
@@ -122,7 +115,6 @@
 					link.type = 'text/css';
 					link.href = cssPath;
 					document.head.appendChild(link);
-					console.log("Injected TechCloud CSS:", cssPath);
 				}
 
 				// Inject JavaScript files if not already present
@@ -142,7 +134,6 @@
 						const script = document.createElement('script');
 						script.src = jsPath;
 						document.head.appendChild(script);
-						console.log("Injected TechCloud JS:", jsPath);
 					}
 				});
 			}
@@ -154,7 +145,6 @@
 				const cssLink = document.querySelector(`link[href="/assets/${appName}/css/material.css"]`);
 				if (cssLink) {
 					cssLink.remove();
-					console.log("Removed TechCloud CSS");
 				}
 
 				// Remove JavaScript files
@@ -173,7 +163,6 @@
 					const script = document.querySelector(`script[src="${jsPath}"]`);
 					if (script) {
 						script.remove();
-						console.log("Removed TechCloud JS:", jsPath);
 					}
 				});
 			}
@@ -227,22 +216,7 @@
 		} catch (e) {
 			// Ignore init errors
 		}
-		try {
-			if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
-				const bootTheme = String(window.frappe.boot.desk_theme || "");
-				const displayTheme = bootTheme.toLowerCase() === "material" ? "Techcloud" : bootTheme;
-				console.log("Current desk theme (boot):", displayTheme);
-			}
-			const html = document.documentElement;
-			if (html) {
-				console.log("Current theme attrs:", {
-					"data-theme": html.getAttribute("data-theme"),
-					"data-theme-mode": html.getAttribute("data-theme-mode"),
-				});
-			}
-		} catch (e) {
-			// Ignore logging errors
-		}
+		// No extra logging here by request
 	}
 
 	// Try immediately, then retry for a few seconds (desk boot timing varies)
