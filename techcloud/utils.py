@@ -11,6 +11,19 @@ def before_request():
 	# No action needed here - CSS is loaded via app_include_css hook and scoped with html[data-theme="material"]
 	pass
 
+
+def extend_bootinfo(bootinfo):
+	"""Normalize Techcloud desk_theme so app.html and JS use 'Material' consistently."""
+	try:
+		desk_theme = bootinfo.get("desk_theme") if isinstance(bootinfo, dict) else None
+		if isinstance(desk_theme, str) and desk_theme.lower() == "techcloud":
+			bootinfo["desk_theme"] = "Material"
+			if isinstance(bootinfo.get("user"), dict):
+				bootinfo["user"]["desk_theme"] = "Material"
+	except Exception:
+		# Silent fail: bootinfo normalization should never block boot
+		pass
+
 def update_techcloud_theme_context(context):
 	"""Update website context to conditionally load Techcloud CSS for website pages
 	Also adds script to head_html for desk pages if Material theme is active"""

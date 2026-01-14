@@ -211,6 +211,38 @@
 	function init() {
 		patchThemeSwitcher();
 		patchUserDeskThemeOptions();
+		try {
+			const bootTheme = String(window.frappe?.boot?.desk_theme || "").toLowerCase();
+			if (bootTheme === "material" || bootTheme === "techcloud") {
+				// Ensure Techcloud assets are present on refresh when theme is active
+				const ts = new window.frappe.ui.ThemeSwitcher();
+				ts.injectTechCloudAssets();
+				document.documentElement.setAttribute("data-theme", "material");
+				document.documentElement.setAttribute("data-theme-mode", "material");
+			} else if (bootTheme) {
+				// Ensure Techcloud assets are removed when another theme is active
+				const ts = new window.frappe.ui.ThemeSwitcher();
+				ts.removeTechCloudAssets();
+			}
+		} catch (e) {
+			// Ignore init errors
+		}
+		try {
+			if (window.frappe && window.frappe.boot && window.frappe.boot.desk_theme) {
+				const bootTheme = String(window.frappe.boot.desk_theme || "");
+				const displayTheme = bootTheme.toLowerCase() === "material" ? "Techcloud" : bootTheme;
+				console.log("Current desk theme (boot):", displayTheme);
+			}
+			const html = document.documentElement;
+			if (html) {
+				console.log("Current theme attrs:", {
+					"data-theme": html.getAttribute("data-theme"),
+					"data-theme-mode": html.getAttribute("data-theme-mode"),
+				});
+			}
+		} catch (e) {
+			// Ignore logging errors
+		}
 	}
 
 	// Try immediately, then retry for a few seconds (desk boot timing varies)

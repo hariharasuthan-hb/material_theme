@@ -193,6 +193,9 @@ override_whitelisted_methods = {
 # Update website context to add head_html for Techcloud Theme
 update_website_context = ["techcloud.utils.update_techcloud_theme_context"]
 
+# Normalize Techcloud desk_theme for bootinfo to avoid mismatched data-theme
+extend_bootinfo = ["techcloud.utils.extend_bootinfo"]
+
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
