@@ -133,11 +133,10 @@ def update_techcloud_theme_context(context):
 					# Silent fail - icons are optional
 					pass
 
-			# For website pages only - add CSS to head_html
-			# Desk pages use app_include_css hook (no core file modifications)
+			# Add CSS to head_html for both website and desk pages with TechCloud theme
 			techcloud_css_path = f"/assets/{app_name}/css/material.css"
 			
-			# Add Techcloud CSS link to head_html (for website pages)
+			# Add Techcloud CSS link to head_html (for website and desk pages with TechCloud theme)
 			# Use direct link tag to avoid preload warnings
 			# Wrap in try-except to handle asset bundling errors gracefully
 			try:
@@ -163,7 +162,29 @@ def update_techcloud_theme_context(context):
 				current_head_html = re.sub(r'<link[^>]*rel=["\']preload["\'][^>]*material\.css[^>]*>', '', current_head_html)
 				if techcloud_css_fallback not in current_head_html:
 					context["head_html"] = current_head_html + techcloud_css_fallback
-			
+
+			# Add TechCloud JavaScript files for desk pages with TechCloud theme
+			# Only load when TechCloud theme is active to prevent affecting other themes
+			if is_techcloud_desk_theme and is_desk_page:
+				techcloud_js_files = [
+					"/assets/techcloud/js/fix-highlight.js",
+					"/assets/techcloud/js/material.js",
+					"/assets/techcloud/js/material-theme-customizer.js",
+					"/assets/techcloud/js/dashboard-widget-head-remover.js",
+					"/assets/techcloud/js/techcloud-icons.js",
+					"/assets/techcloud/js/icon-debug.js",
+					"/assets/techcloud/js/techcloud-unified-header.js",
+					"/assets/techcloud/js/techcloud-fixes.js"
+				]
+
+				current_head_html = context.get("head_html", "") or ""
+				for js_file in techcloud_js_files:
+					js_script = f'<script src="{js_file}"></script>'
+					if js_script not in current_head_html:
+						current_head_html += js_script
+
+				context["head_html"] = current_head_html
+
 			# Add login page restructure script for login pages
 			if is_login_page:
 				login_script_path = f"/assets/{app_name}/js/techcloud-login.js"

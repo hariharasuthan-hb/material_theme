@@ -43,21 +43,27 @@
 				document.documentElement.removeAttribute("data-theme");
 				document.documentElement.removeAttribute("data-theme-mode");
 
-				// Set the appropriate theme attributes based on the selected theme
+				// Handle TechCloud theme asset injection/removal
 				if (theme === "material") {
+					// Inject TechCloud assets if not already present
+					this.injectTechCloudAssets();
 					document.documentElement.setAttribute("data-theme", "material");
 					document.documentElement.setAttribute("data-theme-mode", "material");
 					console.log("Applied Techcloud theme - set data-theme='material' and data-theme-mode='material'");
-				} else if (theme === "dark") {
-					document.documentElement.setAttribute("data-theme-mode", "dark");
-					console.log("Applied Dark theme - set data-theme-mode='dark'");
-				} else if (theme === "automatic") {
-					document.documentElement.setAttribute("data-theme-mode", "automatic");
-					console.log("Applied Automatic theme - set data-theme-mode='automatic'");
 				} else {
-					// Light theme or any other theme
-					document.documentElement.setAttribute("data-theme-mode", theme.toLowerCase());
-					console.log("Applied", theme, "theme - set data-theme-mode='" + theme.toLowerCase() + "'");
+					// Remove TechCloud assets for other themes
+					this.removeTechCloudAssets();
+					if (theme === "dark") {
+						document.documentElement.setAttribute("data-theme-mode", "dark");
+						console.log("Applied Dark theme - set data-theme-mode='dark'");
+					} else if (theme === "automatic") {
+						document.documentElement.setAttribute("data-theme-mode", "automatic");
+						console.log("Applied Automatic theme - set data-theme-mode='automatic'");
+					} else {
+						// Light theme or any other theme
+						document.documentElement.setAttribute("data-theme-mode", theme.toLowerCase());
+						console.log("Applied", theme, "theme - set data-theme-mode='" + theme.toLowerCase() + "'");
+					}
 				}
 
 				// Force immediate CSS re-evaluation before server call
@@ -102,6 +108,73 @@
 					}, 150);
 				}).catch((error) => {
 					console.error("Theme switch server call failed:", error);
+				});
+			}
+
+			injectTechCloudAssets() {
+				const appName = "techcloud"; // Dynamic app name detection would be better but hardcode for now
+
+				// Inject CSS if not already present
+				const cssPath = `/assets/${appName}/css/material.css`;
+				if (!document.querySelector(`link[href="${cssPath}"]`)) {
+					const link = document.createElement('link');
+					link.rel = 'stylesheet';
+					link.type = 'text/css';
+					link.href = cssPath;
+					document.head.appendChild(link);
+					console.log("Injected TechCloud CSS:", cssPath);
+				}
+
+				// Inject JavaScript files if not already present
+				const jsFiles = [
+					`/assets/${appName}/js/fix-highlight.js`,
+					`/assets/${appName}/js/material.js`,
+					`/assets/${appName}/js/material-theme-customizer.js`,
+					`/assets/${appName}/js/dashboard-widget-head-remover.js`,
+					`/assets/${appName}/js/techcloud-icons.js`,
+					`/assets/${appName}/js/icon-debug.js`,
+					`/assets/${appName}/js/techcloud-unified-header.js`,
+					`/assets/${appName}/js/techcloud-fixes.js`
+				];
+
+				jsFiles.forEach(jsPath => {
+					if (!document.querySelector(`script[src="${jsPath}"]`)) {
+						const script = document.createElement('script');
+						script.src = jsPath;
+						document.head.appendChild(script);
+						console.log("Injected TechCloud JS:", jsPath);
+					}
+				});
+			}
+
+			removeTechCloudAssets() {
+				const appName = "techcloud";
+
+				// Remove CSS
+				const cssLink = document.querySelector(`link[href="/assets/${appName}/css/material.css"]`);
+				if (cssLink) {
+					cssLink.remove();
+					console.log("Removed TechCloud CSS");
+				}
+
+				// Remove JavaScript files
+				const jsFiles = [
+					`/assets/${appName}/js/fix-highlight.js`,
+					`/assets/${appName}/js/material.js`,
+					`/assets/${appName}/js/material-theme-customizer.js`,
+					`/assets/${appName}/js/dashboard-widget-head-remover.js`,
+					`/assets/${appName}/js/techcloud-icons.js`,
+					`/assets/${appName}/js/icon-debug.js`,
+					`/assets/${appName}/js/techcloud-unified-header.js`,
+					`/assets/${appName}/js/techcloud-fixes.js`
+				];
+
+				jsFiles.forEach(jsPath => {
+					const script = document.querySelector(`script[src="${jsPath}"]`);
+					if (script) {
+						script.remove();
+						console.log("Removed TechCloud JS:", jsPath);
+					}
 				});
 			}
 		};

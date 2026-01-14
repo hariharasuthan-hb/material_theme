@@ -25,21 +25,11 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# CSS is always loaded but scoped with html[data-theme="material"] selectors
-# JavaScript sets data-theme attribute based on desk_theme (no core file modifications needed)
-app_include_css = [
-    "/assets/techcloud/css/material.css"
-]
+# CSS and JS are loaded conditionally via update_website_context based on theme
+# But theme.js needs to be loaded globally to show TechCloud in theme switcher
+app_include_css = []
 app_include_js = [
-    "/assets/techcloud/js/fix-highlight.js",
-    "/assets/techcloud/js/material.js",
-    "/assets/techcloud/js/material-theme-customizer.js",
-    "/assets/techcloud/js/dashboard-widget-head-remover.js",
-    "/assets/techcloud/js/theme.js",
-    "/assets/techcloud/js/techcloud-icons.js",
-    "/assets/techcloud/js/icon-debug.js",
-    "/assets/techcloud/js/techcloud-unified-header.js",
-    "/assets/techcloud/js/techcloud-fixes.js"
+    "/assets/techcloud/js/theme.js"  # Only theme switcher, assets loaded conditionally
 ]
 
 # include js, css files in header of web template
