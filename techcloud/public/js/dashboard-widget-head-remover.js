@@ -29,7 +29,6 @@ frappe.provide("techcloud.dashboard");
         $('.widget-group .widget-group-head').remove();
         $('div.widget-group-head').remove();
 
-        console.log('Techcloud Dashboard: Removed widget-group-head elements for clean layout');
     }
 
     // Remove immediately if DOM is ready

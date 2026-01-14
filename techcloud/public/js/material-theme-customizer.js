@@ -41,7 +41,6 @@ function applySavedTheme() {
         applyMaterialTheme(themeColor);
     }
 
-    console.log("Techcloud theme applied safely");
 }
 
 // Make globally available for other scripts
@@ -65,7 +64,6 @@ $(document).on("toolbar_setup", function () {
         return;
     }
 
-    console.log("Techcloud theme active - adding theme color menu");
 
     // Apply saved theme color if available
     var themeColor = localStorage.getItem("ItrostackThemeColor");
@@ -115,7 +113,6 @@ $(document).on("page_change", function() {
             $('.widget-group-head').remove();
             $('.widget-group .widget-group-head').remove();
             $('div.widget-group-head').remove();
-            console.log('Techcloud Dashboard: Widget headers removed for clean layout');
         }, 100);
     }
 });
@@ -161,7 +158,6 @@ $(document).on("toolbar_setup", function () {
 		return;
 	}
 
-	console.log("Techcloud theme active - adding theme color menu");
 
 	// Apply saved theme color if available
 	var themeColor = localStorage.getItem("ItrostackThemeColor");
@@ -192,7 +188,6 @@ function applyMaterialTheme(SelectedColor)
 	const isMaterialTheme = themeMode === "material" || theme === "material";
 
 	if (!isMaterialTheme) {
-		console.log("Material theme not active, skipping color application");
 		return; // Exit early if not using Material theme
 	}
 
@@ -209,7 +204,6 @@ function applyMaterialTheme(SelectedColor)
 			if (SelectedColor && SelectedColor.startsWith('#')) {
 				r.style.setProperty('--primary', SelectedColor);
 				localStorage.setItem("ItrostackThemeColor", SelectedColor);
-				console.log("Material theme fallback color applied:", SelectedColor);
 			}
 			return;
 		}
@@ -238,7 +232,6 @@ function applyMaterialTheme(SelectedColor)
 		// Setting the primary color for frappe (on :root)
 	r.style.setProperty('--primary', color);
 
-		console.log("Material theme full color scheme applied:", color);
 	} catch (error) {
 		console.error("Error applying Material theme color:", error);
 
@@ -248,7 +241,6 @@ function applyMaterialTheme(SelectedColor)
 			if (SelectedColor && SelectedColor.startsWith('#')) {
 				r.style.setProperty('--primary', SelectedColor);
 				localStorage.setItem("ItrostackThemeColor", SelectedColor);
-				console.log("Material theme fallback color applied after error:", SelectedColor);
 			}
 		} catch (fallbackError) {
 			console.error("Fallback color application also failed:", fallbackError);
@@ -306,7 +298,6 @@ function fixMaterialDashboard() {
 				el.style.position = "relative";
 			});
 
-			console.log("Material theme dashboard fixes applied");
 		}, 600);
 
 		// Additional fix for charts that load later
@@ -452,7 +443,6 @@ function fixChartLegends() {
 			});
 		}, 1000);
 
-		console.log("Chart legends fixed for Material theme");
 	} catch (error) {
 		console.warn("Chart legends fix failed:", error);
 	}
@@ -501,7 +491,6 @@ $(document).ready(function() {
             $('.widget-group-head').hide();
             $('.widget-group .widget-group-head').hide();
 
-            console.log('Dashboard: Removed widget-group-head elements for full width layout');
         }
 
         // Remove immediately
@@ -525,7 +514,6 @@ $(document).ready(function() {
                     });
 
                     if (hasWidgetGroupHead) {
-                        console.log('Dashboard: Detected new widget-group-head, removing...');
                         setTimeout(removeWidgetGroupHeads, 50);
                     }
                 }
