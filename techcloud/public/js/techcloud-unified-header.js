@@ -25,8 +25,8 @@
             return true;
         }
 
-        const mainSection = document.querySelector(".layout-main-section");
-        if (!mainSection) return false;
+		const mainSection = document.querySelector(".col.layout-main-section-wrapper");
+		if (!mainSection) return false;
 
         const pageHead = document.querySelector(".page-head");
         if (!pageHead) return false;

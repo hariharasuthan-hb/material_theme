@@ -4532,7 +4532,9 @@ html[data-theme-mode="material"] body[data-route] {
 html[data-theme="material"] .layout-main-section,
 html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
-html[data-theme-mode="material"] .layout-main-section-wrapper {
+html[data-theme-mode="material"] .layout-main-section-wrapper,
+html[data-theme="material"] .col.layout-main-section-wrapper,
+html[data-theme-mode="material"] .col.layout-main-section-wrapper {
   margin-left: 0 !important;
   margin-top: 1.5%;
 }
