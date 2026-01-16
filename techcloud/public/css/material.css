@@ -4529,6 +4529,14 @@ html[data-theme-mode="material"] body[data-route] {
   overflow: hidden !important;
 }
 
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section,
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .layout-main-section-wrapper {
+  margin-left: 0 !important;
+  margin-top: 1.5%;
+}
+
 /* Responsive min-height - dynamically adjusts based on viewport size */
 /* Mobile devices - use dynamic viewport height to account for browser UI */
 @media (max-width: 575px) {
@@ -7927,9 +7935,9 @@ html[data-theme-mode="material"] .widget-body .link-item {
   html[data-theme-mode="material"] [data-page-route="Workspaces"] .layout-main .layout-main-section {
     /* border: 1px solid var(--techcloud-border-color) !important; */
     padding: var(--spacing-md) !important;
-    margin-top: -2% !important;
+    margin-top: 0% !important;
     margin-right: auto !important;
-    margin-bottom: 5% !important;
+    margin-bottom: 0% !important;
     /* width: 100% !important; */
   }
 }
