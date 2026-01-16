@@ -5635,7 +5635,7 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-top: 2% !important;
+    margin-top: 5% !important;
     margin-right: 2% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
