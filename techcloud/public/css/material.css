@@ -1470,7 +1470,7 @@ html[data-theme-mode="material"] .frappe-control {
     justify-content: flex-end !important;
     flex-direction: row !important;
     gap: 8px !important;
-    padding: 30px 0 125px 24px !important;
+    padding: 0px !important;
     /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%) !important; */
     border-top: 1px solid rgba(0, 137, 255, 0.1) !important;
     margin-top: 0px !important;
@@ -4211,7 +4211,7 @@ html[data-theme-mode="material"] .layout-main-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
   margin-left: 0 !important;
-  margin-top: -3%;
+  margin-top: 0%;
 }
 
 /* Clean single background when collapsed */
@@ -4569,7 +4569,7 @@ html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .des
     border-right: 1px solid var(--techcloud-border-color) !important;
     padding: 0px 0px 0px 0px !important;
     left: 0 !important;
-    top: 44px !important;
+    top: 0px !important;
     /* Dynamic height calculation for better menu visibility */
     height: calc(100vh - 44px - 120px) !important; /* Account for footer space */
     min-height: 400px !important; /* Ensure minimum height for content */
@@ -5635,7 +5635,7 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-top: 5% !important;
+    margin-top: 14;
     margin-right: 2% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
@@ -7909,12 +7909,12 @@ html[data-theme-mode="material"] .widget-body .link-item {
   html[data-theme-mode="material"] .desk-sidebar,
   html[data-theme="material"] .layout-side-section,
   html[data-theme-mode="material"] .layout-side-section {
-    top: 44px !important;
+    top: 0x !important;
     /* Dynamic height calculation accounting for footer space */
-    height: calc(100vh - 44px - 120px) !important; /* Subtract header + footer space */
+    height: calc(100vh - 0px - 120px) !important; /* Subtract header + footer space */
     /* Ensure sidebar can accommodate all menu items */
     min-height: 400px !important; /* Minimum height to show content */
-    max-height: calc(100vh - 44px - 80px) !important; /* Maximum to prevent overflow */
+    max-height: calc(100vh - 0px - 80px) !important; /* Maximum to prevent overflow */
   }
   
   /* Layout main container - now handled by Bootstrap grid above */
