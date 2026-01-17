@@ -5,7 +5,7 @@
    NEVER affects Dark, Light, or other themes.
    Uses html[data-theme="material"] selectors exclusively.
 
-   ⚠️  DUPLICATE RULE PREVENTION WARNING ⚠️
+   ⚠️  DUPLICATE RULE PREVENTION 12426 ⚠️
    ===============================================
    BEFORE adding ANY new CSS rule:
    1. Search the file for similar selectors
@@ -4537,6 +4537,14 @@ html[data-theme="material"] .col.layout-main-section-wrapper,
 html[data-theme-mode="material"] .col.layout-main-section-wrapper {
   margin-left: 0 !important;
   margin-top: 1.5%;
+}
+
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar {
+  height: 78px;
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
 }
 
 /* Responsive min-height - dynamically adjusts based on viewport size */
@@ -12430,7 +12438,6 @@ body[data-sidebar="collapsed"] .page-head {
     width: 100% !important;
     margin-bottom: 16px !important;
     padding: 12px 0 !important;
-    border-bottom: 1px solid #e5e7eb !important;
     visibility: visible !important;
     opacity: 1 !important;
 }

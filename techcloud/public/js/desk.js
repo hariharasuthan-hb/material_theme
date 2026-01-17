@@ -195,22 +195,54 @@
 
 		mainSection.prepend(headerEl);
 		const pageHeadContent = (scope || document).querySelector(".page-head-content");
+		const pageHead = pageHeadContent
+			? pageHeadContent.closest(".page-head")
+			: (scope || document).querySelector(".page-head");
 		const headerContainer = pageHeadContent && pageHeadContent.closest(".container");
-		if (headerContainer) {
-			headerEl.appendChild(headerContainer);
-		if (!headerContainer.classList.contains("page-header-container")) {
-			headerContainer.classList.add("page-header-container");
+		if (pageHead) {
+			pageHead.setAttribute("data-techcloud-header", "1");
+			if (!headerEl.contains(pageHead)) {
+				headerEl.appendChild(pageHead);
+			}
+			if (headerContainer && !headerContainer.classList.contains("page-header-container")) {
+				headerContainer.classList.add("page-header-container");
+			}
+			return "moved";
 		}
-		}
-		return true;
+		return "inserted";
 	}
 
 	function applyUnifiedHeader() {
 		if (!document.body) return;
 		const pageContainer = getActivePageContainer();
 		const scope = pageContainer || document;
-		if (!insertUnifiedHeader(scope)) return;
-		removeDefaultHeaders(scope);
+		const result = insertUnifiedHeader(scope);
+		if (!result) return;
+		if (result === "moved") {
+			removeDefaultHeaders(scope);
+		}
+		bindThemeToggle(scope);
+		initDropdowns(scope);
+	}
+
+	function bindThemeToggle(scope) {
+		const root = (scope && scope.querySelector) ? scope : document;
+		const toggle = Array.from(root.querySelectorAll(".dropdown-menu .dropdown-item"))
+			.find((el) => (el.textContent || "").trim() === "Toggle Theme");
+		if (!toggle || toggle.dataset.techcloudBound === "1") return;
+		toggle.dataset.techcloudBound = "1";
+		toggle.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (window.frappe && frappe.ui && frappe.ui.ThemeSwitcher) {
+				new frappe.ui.ThemeSwitcher().show();
+			}
+		});
+	}
+
+	function initDropdowns(scope) {
+		if (!window.jQuery) return;
+		const root = (scope && scope.querySelector) ? scope : document;
+		$(root).find('[data-toggle="dropdown"]').dropdown();
 	}
 
 	function scheduleApply() {
