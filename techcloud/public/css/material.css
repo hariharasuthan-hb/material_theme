@@ -4547,6 +4547,269 @@ html[data-theme-mode="material"] .navbar {
   padding: 0;
 }
 
+/* =========================================================
+   UNIFIED ERP STICKY HEADER
+   Modern • Professional • Responsive
+   ========================================================= */
+
+html[data-theme="material"] .unified-sticky-header,
+html[data-theme-mode="material"] .unified-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  background: #fff;
+  border-bottom: 1px solid #e6e9ef;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* ---------------------------------------------------------
+   TOP NAVBAR (ERP MAIN NAV)
+--------------------------------------------------------- */
+
+html[data-theme="material"] .unified-sticky-header .navbar,
+html[data-theme-mode="material"] .unified-sticky-header .navbar {
+  min-height: 44px;
+  padding: 0 8px;
+  background: inherit;
+}
+
+html[data-theme="material"] .unified-sticky-header .navbar .container,
+html[data-theme-mode="material"] .unified-sticky-header .navbar .container {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+html[data-theme="material"] .unified-sticky-header .navbar-brand,
+html[data-theme-mode="material"] .unified-sticky-header .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+html[data-theme="material"] .unified-sticky-header .app-logo,
+html[data-theme-mode="material"] .unified-sticky-header .app-logo {
+  height: 24px;
+  width: auto;
+}
+
+html[data-theme="material"] #navbar-breadcrumbs,
+html[data-theme-mode="material"] #navbar-breadcrumbs {
+  display: flex;
+  gap: 12px;
+  margin-left: 12px;
+}
+
+html[data-theme="material"] #navbar-breadcrumbs li a,
+html[data-theme-mode="material"] #navbar-breadcrumbs li a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted, #6b7280);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+html[data-theme="material"] #navbar-breadcrumbs li a:hover,
+html[data-theme-mode="material"] #navbar-breadcrumbs li a:hover {
+  color: var(--primary, #2563eb);
+}
+
+/* ---------------------------------------------------------
+   SEARCH BAR
+--------------------------------------------------------- */
+
+html[data-theme="material"] .search-bar,
+html[data-theme-mode="material"] .search-bar {
+  max-width: 360px;
+  margin-right: 12px;
+}
+
+html[data-theme="material"] .search-bar input,
+html[data-theme-mode="material"] .search-bar input {
+  height: 32px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  background: var(--control-bg, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+}
+
+html[data-theme="material"] .search-bar input:focus,
+html[data-theme-mode="material"] .search-bar input:focus {
+  background: #fff;
+  border-color: var(--primary, #2563eb);
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------
+   NAV ICONS (NOTIFICATION / USER / HELP)
+--------------------------------------------------------- */
+
+html[data-theme="material"] .navbar-nav .nav-link,
+html[data-theme-mode="material"] .navbar-nav .nav-link {
+  padding: 0 10px;
+  color: var(--text-muted, #6b7280);
+}
+
+html[data-theme="material"] .navbar-nav .nav-link:hover,
+html[data-theme-mode="material"] .navbar-nav .nav-link:hover {
+  color: var(--primary, #2563eb);
+}
+
+html[data-theme="material"] .vertical-bar,
+html[data-theme-mode="material"] .vertical-bar {
+  width: 1px;
+  height: 20px;
+  background: var(--border-color, #e5e7eb);
+  margin: 0 8px;
+}
+
+html[data-theme="material"] .avatar-medium,
+html[data-theme-mode="material"] .avatar-medium {
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+}
+
+/* ---------------------------------------------------------
+   PAGE HEADER (TITLE + ACTIONS)
+--------------------------------------------------------- */
+
+html[data-theme="material"] .page-head,
+html[data-theme-mode="material"] .page-head {
+  min-height: 52px;
+  padding: 6px 0;
+  background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+  border-top: 1px solid #f1f3f5;
+}
+
+html[data-theme="material"] .page-header-container,
+html[data-theme-mode="material"] .page-header-container {
+  padding: 6px 0;
+}
+
+html[data-theme="material"] .page-title h3,
+html[data-theme-mode="material"] .page-title h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-color, #111827);
+  margin: 0;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn,
+html[data-theme-mode="material"] .sidebar-toggle-btn {
+  margin-right: 10px;
+  color: var(--text-muted, #6b7280);
+  opacity: 0.8;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn:hover,
+html[data-theme-mode="material"] .sidebar-toggle-btn:hover {
+  color: var(--primary, #2563eb);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   PAGE ACTION BUTTONS
+--------------------------------------------------------- */
+
+html[data-theme="material"] .page-actions .btn,
+html[data-theme-mode="material"] .page-actions .btn {
+  height: 30px;
+  padding: 0 12px;
+  font-size: 12.5px;
+  border-radius: 6px;
+}
+
+html[data-theme="material"] .page-actions .btn-primary,
+html[data-theme-mode="material"] .page-actions .btn-primary {
+  background: var(--primary, #2563eb);
+  border-color: var(--primary, #2563eb);
+}
+
+html[data-theme="material"] .page-actions .btn-primary:hover,
+html[data-theme-mode="material"] .page-actions .btn-primary:hover {
+  background: #1e40af;
+  border-color: #1e40af;
+}
+
+html[data-theme="material"] .page-actions:empty::after,
+html[data-theme-mode="material"] .page-actions:empty::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 24px;
+  background: #e5e7eb;
+}
+
+/* ---------------------------------------------------------
+   DROPDOWNS
+--------------------------------------------------------- */
+
+html[data-theme="material"] .dropdown-menu,
+html[data-theme-mode="material"] .dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color, #e5e7eb);
+}
+
+html[data-theme="material"] .dropdown-item,
+html[data-theme-mode="material"] .dropdown-item {
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+html[data-theme="material"] .dropdown-item:hover,
+html[data-theme-mode="material"] .dropdown-item:hover {
+  background: var(--control-bg, #f9fafb);
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE BEHAVIOR
+--------------------------------------------------------- */
+
+@media (max-width: 991px) {
+  html[data-theme="material"] #navbar-breadcrumbs,
+  html[data-theme-mode="material"] #navbar-breadcrumbs {
+    display: none;
+  }
+
+  html[data-theme="material"] .search-bar,
+  html[data-theme-mode="material"] .search-bar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  html[data-theme="material"] .unified-sticky-header,
+  html[data-theme-mode="material"] .unified-sticky-header {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+  }
+
+  html[data-theme="material"] .page-title h3,
+  html[data-theme-mode="material"] .page-title h3 {
+    font-size: 14px;
+  }
+
+  html[data-theme="material"] .page-actions .btn,
+  html[data-theme-mode="material"] .page-actions .btn {
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+/* ---------------------------------------------------------
+   FULL WIDTH MODE FIX
+--------------------------------------------------------- */
+
+html[data-theme="material"] body[data-full-width="true"] .unified-sticky-header .container,
+html[data-theme-mode="material"] body[data-full-width="true"] .unified-sticky-header .container {
+  max-width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 /* Responsive min-height - dynamically adjusts based on viewport size */
 /* Mobile devices - use dynamic viewport height to account for browser UI */
 @media (max-width: 575px) {
