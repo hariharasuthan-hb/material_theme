@@ -1,0 +1,15 @@
+/* Unified header inside layout-main-section */
+.layout-main-section .unified-sticky-header,
+.layout-main-section.frappe-card .unified-sticky-header {
+	position: relative;
+	background: var(--bg-color, #fff);
+	border-bottom: 1px solid var(--border-color, #e5e7eb);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	margin: 0 0 12px 0;
+	z-index: 1;
+}
+
+.layout-main-section .unified-sticky-header .page-head-content,
+.layout-main-section.frappe-card .unified-sticky-header .page-head-content {
+	position: static;
+}
