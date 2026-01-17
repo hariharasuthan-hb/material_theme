@@ -227,6 +227,9 @@
 				if (mutation.type !== "childList") continue;
 				for (const node of mutation.addedNodes) {
 					if (!(node instanceof Element)) continue;
+					if (node.matches(".sticky-top") || node.querySelector(".sticky-top")) {
+						removeDefaultHeaders(document);
+					}
 					if (
 						node.matches(".page-head-content") ||
 						node.querySelector(".page-head-content") ||

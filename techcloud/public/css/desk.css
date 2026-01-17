@@ -13,3 +13,9 @@
 .layout-main-section.frappe-card .unified-sticky-header .page-head-content {
 	position: static;
 }
+
+/* Force-hide the default sticky header injected by Frappe */
+.sticky-top,
+.sticky-header-container {
+	display: none !important;
+}
