@@ -4560,6 +4560,8 @@ html[data-theme-mode="material"] .unified-sticky-header {
   background: #fff;
   border-bottom: 1px solid #e6e9ef;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------------------------------------------------
@@ -4571,6 +4573,28 @@ html[data-theme-mode="material"] .unified-sticky-header .navbar {
   min-height: 44px;
   padding: 0 8px;
   background: inherit;
+}
+
+/* Sidebar toggle inside sticky header - proper alignment & hit area */
+html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn,
+html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  margin-right: 10px;
+  border-radius: 18px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #6b7280);
+}
+
+html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn:hover,
+html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn:hover {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--primary, #2563eb);
 }
 
 html[data-theme="material"] .unified-sticky-header .navbar .container,
@@ -4681,6 +4705,19 @@ html[data-theme-mode="material"] .avatar-medium {
    PAGE HEADER (TITLE + ACTIONS)
 --------------------------------------------------------- */
 
+html[data-theme="material"] .unified-sticky-header .navbar {
+  order: 1;
+}
+
+html[data-theme="material"] .unified-sticky-header .page-head,
+html[data-theme-mode="material"] .unified-sticky-header .page-head {
+  order: 2;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+
 html[data-theme="material"] .page-head,
 html[data-theme-mode="material"] .page-head {
   min-height: 52px;
@@ -4708,6 +4745,35 @@ html[data-theme-mode="material"] .sidebar-toggle-btn {
   margin-right: 10px;
   color: var(--text-muted, #6b7280);
   opacity: 0.8;
+}
+
+/* Match core behavior: show only one icon at a time */
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
+  display: none;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
+  transition: all 0.5s ease-in-out;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon {
+  display: inline-block;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder {
+  display: none;
+}
+
+/* Hide legacy sidebar toggle inside page header to avoid duplicate icon */
+html[data-theme="material"] .page-head .sidebar-toggle-btn,
+html[data-theme-mode="material"] .page-head .sidebar-toggle-btn {
+  display: none !important;
 }
 
 html[data-theme="material"] .sidebar-toggle-btn:hover,
