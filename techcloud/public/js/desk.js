@@ -45,9 +45,6 @@
 <div class="unified-sticky-header">
   <header class="navbar navbar-expand" role="navigation">
     <div class="container" style="margin: 0px; position: relative; z-index: 1;">
-      <a class="navbar-brand navbar-home" href="/app">
-        <img class="app-logo" src="/assets/erpnext/images/erpnext-logo.svg" alt="App Logo">
-      </a>
       <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs">
         <li><a href="/app/stock">Stock</a></li>
         <li><a href="/app/item-group/view/List">Item Group</a></li>
@@ -212,6 +209,85 @@
 		return "inserted";
 	}
 
+	function ensureSidebarLogo() {
+		const sidebar = document.querySelector(".layout-side-section");
+		if (!sidebar) {
+			console.log("[Techcloud] Sidebar not found");
+			return false;
+		}
+
+		// Check if sidebar is visible
+		const computedStyle = window.getComputedStyle(sidebar);
+		if (computedStyle.display === "none") {
+			console.log("[Techcloud] Sidebar is hidden, skipping logo insertion");
+			return false;
+		}
+
+		// Completely remove the "Navigate to main content" button from DOM
+		const skipLink = sidebar.querySelector('button.sr-only.sr-only-focusable');
+		if (skipLink && skipLink.parentElement) {
+			skipLink.parentElement.removeChild(skipLink);
+		}
+
+		// Remove any existing techcloud sidebar logo to avoid duplicates
+		const existingLogo = sidebar.querySelector(".navbar-brand.techcloud-sidebar-logo");
+		if (existingLogo && existingLogo.parentElement) {
+			existingLogo.parentElement.removeChild(existingLogo);
+		}
+
+		// Find the list-sidebar container (the visible sidebar wrapper)
+		const listSidebar = sidebar.querySelector(".list-sidebar");
+		if (!listSidebar) {
+			console.log("[Techcloud] list-sidebar not found");
+			return false;
+		}
+
+		// Check if logo already exists
+		if (listSidebar.querySelector(".techcloud-sidebar-logo")) {
+			console.log("[Techcloud] Logo already exists in sidebar");
+			return true;
+		}
+
+		// Find the original navbar-brand logo
+		const originalLogo = document.querySelector(".sticky-top .navbar-brand, header.navbar .navbar-brand, .unified-sticky-header .navbar-brand");
+		let logoElement = null;
+
+		if (originalLogo && originalLogo.querySelector(".app-logo")) {
+			// Clone the logo element
+			logoElement = originalLogo.cloneNode(true);
+			logoElement.classList.add("techcloud-sidebar-logo");
+			// Remove any classes that might hide it
+			logoElement.classList.remove("d-none", "hidden");
+			logoElement.style.display = "";
+			logoElement.style.visibility = "";
+		} else {
+			// Create a new logo element if not found
+			logoElement = document.createElement("a");
+			logoElement.className = "navbar-brand navbar-home techcloud-sidebar-logo";
+			logoElement.href = "/app";
+			const logoImg = document.createElement("img");
+			logoImg.className = "app-logo";
+			logoImg.src = (window.frappe && frappe.boot && frappe.boot.app_logo_url) || "/assets/erpnext/images/erpnext-logo.svg";
+			logoImg.alt = "App Logo";
+			logoElement.appendChild(logoImg);
+		}
+
+		// Ensure logo is visible
+		logoElement.style.display = "block";
+		logoElement.style.visibility = "visible";
+		logoElement.style.opacity = "1";
+
+		// Insert logo at the very beginning of list-sidebar, before everything else
+		if (listSidebar.firstChild) {
+			listSidebar.insertBefore(logoElement, listSidebar.firstChild);
+		} else {
+			listSidebar.appendChild(logoElement);
+		}
+
+		console.log("[Techcloud] Logo inserted into sidebar:", logoElement);
+		return true;
+	}
+
 	function applyUnifiedHeader() {
 		if (!document.body) return;
 		const pageContainer = getActivePageContainer();
@@ -223,6 +299,7 @@
 		}
 		bindThemeToggle(scope);
 		initDropdowns(scope);
+		ensureSidebarLogo();
 	}
 
 	function bindThemeToggle(scope) {
@@ -248,7 +325,10 @@
 	function scheduleApply() {
 		if (applyTimer) clearTimeout(applyTimer);
 		applyTimer = setTimeout(() => {
-			requestAnimationFrame(applyUnifiedHeader);
+			requestAnimationFrame(() => {
+				applyUnifiedHeader();
+				ensureSidebarLogo();
+			});
 		}, 120);
 	}
 
@@ -256,28 +336,63 @@
 		if (observer || !document.body) return;
 		observer = new MutationObserver((mutations) => {
 			for (const mutation of mutations) {
-				if (mutation.type !== "childList") continue;
-				for (const node of mutation.addedNodes) {
-					if (!(node instanceof Element)) continue;
-					if (node.matches(".sticky-top") || node.querySelector(".sticky-top")) {
-						removeDefaultHeaders(document);
+				// Watch for childList changes
+				if (mutation.type === "childList") {
+					for (const node of mutation.addedNodes) {
+						if (!(node instanceof Element)) continue;
+						if (node.matches(".sticky-top") || node.querySelector(".sticky-top")) {
+							removeDefaultHeaders(document);
+						}
+						if (
+							node.matches(".page-head-content") ||
+							node.querySelector(".page-head-content") ||
+							node.matches(".layout-main-section") ||
+							node.querySelector(".layout-main-section") ||
+							node.matches(".page-container") ||
+							node.querySelector(".page-container")
+						) {
+							scheduleApply();
+							return;
+						}
+						// Watch for sidebar changes
+						if (
+							node.matches(".layout-side-section") ||
+							node.querySelector(".layout-side-section") ||
+							node.matches(".desk-sidebar") ||
+							node.querySelector(".desk-sidebar") ||
+							node.matches(".list-sidebar") ||
+							node.querySelector(".list-sidebar")
+						) {
+							setTimeout(() => {
+								ensureSidebarLogo();
+							}, 100);
+						}
 					}
+				}
+				// Watch for attribute changes (like style changes when sidebar becomes visible)
+				if (mutation.type === "attributes") {
+					const target = mutation.target;
 					if (
-						node.matches(".page-head-content") ||
-						node.querySelector(".page-head-content") ||
-						node.matches(".layout-main-section") ||
-						node.querySelector(".layout-main-section") ||
-						node.matches(".page-container") ||
-						node.querySelector(".page-container")
+						target.matches(".layout-side-section") ||
+						target.matches(".list-sidebar") ||
+						target.closest(".layout-side-section")
 					) {
-						scheduleApply();
-						return;
+						if (mutation.attributeName === "style" || mutation.attributeName === "class") {
+							setTimeout(() => {
+								ensureSidebarLogo();
+							}, 100);
+						}
 					}
 				}
 			}
 		});
 
-		observer.observe(document.body, { childList: true, subtree: true });
+		observer.observe(document.body, { 
+			childList: true, 
+			subtree: true,
+			attributes: true,
+			attributeFilter: ["style", "class"]
+		});
 	}
 
 	if (document.readyState === "loading") {
@@ -301,4 +416,32 @@
 	if (window.frappe && frappe.after_ajax) {
 		frappe.after_ajax(scheduleApply);
 	}
+
+	// Periodic check to ensure sidebar logo is always present (catches edge cases)
+	setInterval(() => {
+		const sidebar = document.querySelector(".layout-side-section");
+		if (sidebar) {
+			const computedStyle = window.getComputedStyle(sidebar);
+			// Only ensure logo if sidebar is visible
+			if (computedStyle.display !== "none" && computedStyle.visibility !== "hidden") {
+				const listSidebar = sidebar.querySelector(".list-sidebar");
+				if (listSidebar) {
+					const logo = listSidebar.querySelector(".techcloud-sidebar-logo");
+					if (!logo) {
+						console.log("[Techcloud] Logo missing, re-adding...");
+						ensureSidebarLogo();
+					} else {
+						// Ensure logo is visible
+						const logoStyle = window.getComputedStyle(logo);
+						if (logoStyle.display === "none" || logoStyle.visibility === "hidden") {
+							console.log("[Techcloud] Logo hidden, making visible...");
+							logo.style.display = "block";
+							logo.style.visibility = "visible";
+							logo.style.opacity = "1";
+						}
+					}
+				}
+			}
+		}
+	}, 1000);
 })();
