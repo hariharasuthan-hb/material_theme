@@ -25,9 +25,8 @@
 	}
 
 	function removeDefaultHeaders(scope) {
+		// Only clean up legacy in-page headers, do NOT remove the main top navbar.
 		const selectors = [
-			"header.navbar",
-			".navbar.navbar-expand",
 			".page-head",
 			".page-header-container",
 			".navbar-header"
@@ -296,12 +295,6 @@
 			skipLink.parentElement.removeChild(skipLink);
 		}
 
-		// Remove any existing techcloud sidebar logo to avoid duplicates
-		const existingLogo = sidebar.querySelector(".navbar-brand.techcloud-sidebar-logo");
-		if (existingLogo && existingLogo.parentElement) {
-			existingLogo.parentElement.removeChild(existingLogo);
-		}
-
 		// Find the list-sidebar container (the visible sidebar wrapper)
 		const listSidebar = sidebar.querySelector(".list-sidebar");
 		if (!listSidebar) {
@@ -310,8 +303,12 @@
 		}
 
 		// Check if logo already exists
-		if (listSidebar.querySelector(".techcloud-sidebar-logo")) {
-			console.log("[Techcloud] Logo already exists in sidebar");
+		const existingLogo = listSidebar.querySelector(".techcloud-sidebar-logo");
+		if (existingLogo) {
+			// Just ensure it's visible; don't recreate or spam logs
+			existingLogo.style.display = "block";
+			existingLogo.style.visibility = "visible";
+			existingLogo.style.opacity = "1";
 			return true;
 		}
 
