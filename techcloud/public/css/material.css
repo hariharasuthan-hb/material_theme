@@ -4560,6 +4560,8 @@ html[data-theme-mode="material"] .unified-sticky-header {
   background: #fff;
   border-bottom: 1px solid #e6e9ef;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------------------------------------------------
@@ -4571,6 +4573,28 @@ html[data-theme-mode="material"] .unified-sticky-header .navbar {
   min-height: 44px;
   padding: 0 8px;
   background: inherit;
+}
+
+/* Sidebar toggle inside sticky header - proper alignment & hit area */
+html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn,
+html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  margin-right: 10px;
+  border-radius: 18px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #6b7280);
+}
+
+html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn:hover,
+html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn:hover {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--primary, #2563eb);
 }
 
 html[data-theme="material"] .unified-sticky-header .navbar .container,
@@ -4598,7 +4622,13 @@ html[data-theme="material"] #navbar-breadcrumbs,
 html[data-theme-mode="material"] #navbar-breadcrumbs {
   display: flex;
   gap: 12px;
-  margin-left: 12px;
+  margin-left: 0;
+}
+
+/* Hide navbar-brand in unified header (logo should be in sidebar) */
+html[data-theme="material"] .unified-sticky-header .navbar-brand,
+html[data-theme-mode="material"] .unified-sticky-header .navbar-brand {
+  display: none !important;
 }
 
 html[data-theme="material"] #navbar-breadcrumbs li a,
@@ -4675,6 +4705,19 @@ html[data-theme-mode="material"] .avatar-medium {
    PAGE HEADER (TITLE + ACTIONS)
 --------------------------------------------------------- */
 
+html[data-theme="material"] .unified-sticky-header .navbar {
+  order: 1;
+}
+
+html[data-theme="material"] .unified-sticky-header .page-head,
+html[data-theme-mode="material"] .unified-sticky-header .page-head {
+  order: 2;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
+
 html[data-theme="material"] .page-head,
 html[data-theme-mode="material"] .page-head {
   min-height: 52px;
@@ -4702,6 +4745,35 @@ html[data-theme-mode="material"] .sidebar-toggle-btn {
   margin-right: 10px;
   color: var(--text-muted, #6b7280);
   opacity: 0.8;
+}
+
+/* Match core behavior: show only one icon at a time */
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
+  display: none;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
+  transition: all 0.5s ease-in-out;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon {
+  display: inline-block;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder {
+  display: none;
+}
+
+/* Hide legacy sidebar toggle inside page header to avoid duplicate icon */
+html[data-theme="material"] .page-head .sidebar-toggle-btn,
+html[data-theme-mode="material"] .page-head .sidebar-toggle-btn {
+  display: none !important;
 }
 
 html[data-theme="material"] .sidebar-toggle-btn:hover,
@@ -4852,19 +4924,13 @@ html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .des
     left: 0 !important;
     top: 0px !important;
     /* Dynamic height calculation for better menu visibility */
-    height: calc(100vh - 44px - 120px) !important; /* Account for footer space */
+    height: 100% !important;
     min-height: 400px !important; /* Ensure minimum height for content */
-    overflow-y: auto !important;
-    overflow-x: visible !important;
+    overflow: visible !important; /* Remove scrollbar from desk-sidebar - let list-sidebar handle it */
     /* box-sizing: border-box !important; */
     z-index: 100 !important;
     display: flex !important;
     flex-direction: column !important;
-    /* Enhanced scrolling experience */
-    scroll-behavior: smooth !important;
-    /* Custom scrollbar for better UX */
-    scrollbar-width: thin !important;
-    scrollbar-color: rgba(0, 137, 255, 0.3) transparent !important;
 }
 
 /* Sidebar Logo/Brand */
@@ -4882,6 +4948,172 @@ html[data-theme-mode="material"] .layout-side-section .sidebar-brand {
   padding-bottom: 12px !important; /* Reduced from 24px */
   border-bottom: 1px solid var(--techcloud-border-color) !important;
   letter-spacing: -0.5px !important;
+}
+
+/* Sidebar navbar-brand logo styling */
+html[data-theme="material"] .layout-side-section .navbar-brand,
+html[data-theme-mode="material"] .layout-side-section .navbar-brand,
+html[data-theme="material"] .desk-sidebar .navbar-brand,
+html[data-theme-mode="material"] .desk-sidebar .navbar-brand {
+  display: block !important;
+  text-align: center !important;
+  margin: 16px 0 !important;
+  padding: 0 !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+  padding-bottom: 12px !important;
+}
+
+html[data-theme="material"] .layout-side-section .navbar-brand .app-logo,
+html[data-theme-mode="material"] .layout-side-section .navbar-brand .app-logo,
+html[data-theme="material"] .desk-sidebar .navbar-brand .app-logo,
+html[data-theme-mode="material"] .desk-sidebar .navbar-brand .app-logo {
+  max-width: 120px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Techcloud sidebar logo specific styling - Sticky at top */
+html[data-theme="material"] .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .techcloud-sidebar-logo,
+html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
+  display: block !important;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 16px 12px 12px 12px !important;
+  border-bottom: 1px solid var(--techcloud-border-color) !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 60px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
+  margin-top: 0 !important;
+  padding-top: 16px !important;
+}
+
+/* Ensure list-sidebar shows logo at top - Single scrollbar container */
+html[data-theme="material"] .list-sidebar,
+html[data-theme-mode="material"] .list-sidebar {
+  position: relative !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Prevent double scrollbars - ensure parent containers don't scroll */
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section {
+  overflow: visible !important;
+}
+
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar {
+  overflow: visible !important;
+}
+
+html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo:first-child,
+html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo:first-child,
+html[data-theme="material"] .list-sidebar > .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .list-sidebar > .techcloud-sidebar-logo {
+  margin-top: 0 !important;
+  padding-top: 16px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%) !important;
+}
+
+html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
+html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
+  max-width: 120px !important;
+  width: auto !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Professional Sidebar Container Styling */
+html[data-theme="material"] .layout-side-section,
+html[data-theme-mode="material"] .layout-side-section {
+  background: transparent !important;
+  border-right: 1px solid rgba(229, 231, 235, 0.5) !important;
+  position: relative !important;
+  overflow: visible !important; /* Prevent scrollbar on parent */
+}
+
+html[data-theme="material"] .layout-side-section .list-sidebar,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%) !important;
+  border-left: 2px solid #e5e7eb !important;
+  padding: 0 !important;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.06) !important;
+  position: relative !important;
+  overflow-y: auto !important; /* Single scrollbar - only on list-sidebar */
+  overflow-x: hidden !important;
+  height: 100% !important;
+  max-height: 100vh !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent !important;
+}
+
+/* Smooth scrolling for sidebar */
+html[data-theme="material"] .layout-side-section .list-sidebar,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar {
+  scroll-behavior: smooth !important;
+}
+
+/* Custom scrollbar styling for webkit browsers */
+html[data-theme="material"] .layout-side-section .list-sidebar::-webkit-scrollbar,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+html[data-theme="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-track,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+html[data-theme="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-thumb,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 3px !important;
+}
+
+html[data-theme="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-thumb:hover,
+html[data-theme-mode="material"] .layout-side-section .list-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Completely hide and remove the "Navigate to main content" button */
+html[data-theme="material"] .layout-side-section button.sr-only.sr-only-focusable,
+html[data-theme-mode="material"] .layout-side-section button.sr-only.sr-only-focusable {
+  display: none !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
 }
 
 /* Sidebar Navigation Menu - Section Headers (like "PUBLIC") */
