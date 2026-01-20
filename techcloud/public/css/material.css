@@ -4603,7 +4603,9 @@ html[data-theme-mode="material"] #navbar-breadcrumbs {
 
 /* Hide navbar-brand in unified header (logo should be in sidebar) */
 html[data-theme="material"] .unified-sticky-header .navbar-brand,
-html[data-theme-mode="material"] .unified-sticky-header .navbar-brand {
+html[data-theme-mode="material"] .unified-sticky-header .navbar-brand,
+html[data-theme="material"] .unified-sticky-header-wrapper .navbar-brand:not(.techcloud-sidebar-logo),
+html[data-theme-mode="material"] .unified-sticky-header-wrapper .navbar-brand:not(.techcloud-sidebar-logo) {
   display: none !important;
 }
 
