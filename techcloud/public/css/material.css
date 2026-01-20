@@ -15609,3 +15609,38 @@ html[data-theme-mode="material"] .col-lg-2.layout-side-section.print-preview-sid
   color: var(--techcloud-text-primary) !important;
   border-color: var(--techcloud-border-color) !important;
 }
+
+/* Enhanced indicator pill styling for shortcuts */
+html[data-theme="material"] div[shortcut_name] .indicator-pill,
+html[data-theme-mode="material"] div[shortcut_name] .indicator-pill {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 5px 9px 21px 7px !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+    color: white !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 4px rgba(72, 187, 120, 0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* General indicator pill styling for material theme */
+html[data-theme="material"] .indicator-pill,
+html[data-theme-mode="material"] .indicator-pill,
+body[data-theme-mode="material"] .indicator-pill,
+html[data-theme="material"] .indicator-pill-right,
+html[data-theme-mode="material"] .indicator-pill-right,
+body[data-theme-mode="material"] .indicator-pill-right,
+html[data-theme="material"] .indicator-pill-round,
+html[data-theme-mode="material"] .indicator-pill-round,
+body[data-theme-mode="material"] .indicator-pill-round {
+    border-radius: 16px !important;
+    padding: 2px 8px 23px 7px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    /* box-shadow: var(--md-shadow-2) !important; */
+}
