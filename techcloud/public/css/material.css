@@ -4229,13 +4229,15 @@ html[data-theme-mode="material"] body.sidebar-collapsed {
   overflow-x: hidden !important;
 }
 
-/* Smooth transitions */
+
+/* Smooth transitions - but ensure immediate response to sidebar-collapsed */
 html[data-theme="material"] .layout-side-section,
 html[data-theme-mode="material"] .layout-side-section,
 html[data-theme="material"] .layout-main-section-wrapper,
 html[data-theme-mode="material"] .layout-main-section-wrapper {
   transition: all 0.25s ease !important;
 }
+
 
 /* Smooth transition for sidebar collapse/expand */
 html[data-theme="material"] .layout-side-section,
@@ -6742,8 +6744,7 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-top: 14;
-    margin-right: 2% !important;
+    margin-right: 0% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
     overflow-y: auto !important;
@@ -7051,17 +7052,17 @@ html[data-theme-mode="material"] .page-title .sub-heading {
 /* Page Title Indicator - Professional Badge */
 html[data-theme="material"] .page-title .indicator-pill,
 html[data-theme-mode="material"] .page-title .indicator-pill {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-  color: #ffffff !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  padding: 4px 8px !important;
-  border-radius: 12px !important;
-  margin-left: 8px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.025em !important;
-  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
-  border: none !important;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 10px 7px 26px 7px !important;
+    border-radius: 12px !important;
+    margin-left: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2) !important;
+    border: none !important;
 }
 
 /* More Button - Professional Icon Button */
@@ -15643,4 +15644,10 @@ body[data-theme-mode="material"] .indicator-pill-round {
     font-size: 12px !important;
     font-weight: 500 !important;
     /* box-shadow: var(--md-shadow-2) !important; */
+}
+
+/* Hide settings dropdown button in sidebar */
+html[data-theme="material"] .btn.btn-xs.setting-btn.dropdown-btn,
+html[data-theme-mode="material"] .btn.btn-xs.setting-btn.dropdown-btn {
+    display: none !important;
 }

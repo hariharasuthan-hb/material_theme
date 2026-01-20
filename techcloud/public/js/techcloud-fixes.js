@@ -406,8 +406,18 @@
 
 			frappe.datetime.convert_to_user_tz = function(value, format) {
 				try {
+					// Handle Moment.js objects (the main cause of the warning)
+					if (value && typeof value === 'object' && value._isAMomentObject) {
+						// If it's already a valid Moment object, convert it to a proper format
+						if (value.isValid()) {
+							value = value.toISOString();
+						} else {
+							console.warn('TechCloud: Invalid Moment object passed to convert_to_user_tz');
+							return originalConvertToUserTz.call(this, null, format);
+						}
+					}
 					// Ensure value is properly formatted before passing to moment
-					if (value && typeof value === 'string') {
+					else if (value && typeof value === 'string') {
 						// Check and convert problematic date formats to prevent Moment.js warnings
 
 						// If it's not already an ISO string or standard format, convert it
@@ -426,21 +436,34 @@
 					// Call the original function with properly formatted value
 					return originalConvertToUserTz.call(this, value, format);
 				} catch (e) {
+					console.warn('TechCloud: Primary Moment.js fix failed:', e.message);
 					// If our fix fails, try to provide a safe fallback
 					try {
-						// Last resort: try to create a valid date
+						// Handle invalid Moment objects
+						if (value && typeof value === 'object' && value._isAMomentObject && !value.isValid()) {
+							console.warn('TechCloud: Invalid Moment object detected, returning null');
+							return originalConvertToUserTz.call(this, null, format);
+						}
+
+						// Last resort: try to create a valid date from string
 						if (value && typeof value === 'string') {
 							const date = new Date(value);
-							if (!isNaN(date.getTime())) {
+							if (!isNaN(date.getTime()) && date.getTime() > 0) {
 								value = date.toISOString();
 								return originalConvertToUserTz.call(this, value, format);
 							}
 						}
+
+						// Handle empty/invalid values
+						if (!value || (typeof value === 'string' && value.trim() === '')) {
+							return originalConvertToUserTz.call(this, null, format);
+						}
+
 					} catch (fallbackError) {
-						// Ultimate fallback
+						console.warn('TechCloud: Fallback Moment.js fix also failed:', fallbackError.message);
 					}
 
-					console.warn('TechCloud: Moment.js fix failed, using original function');
+					console.warn('TechCloud: All Moment.js fixes failed, using original function');
 					return originalConvertToUserTz.call(this, value, format);
 				}
 			};
@@ -550,32 +573,12 @@
 		}
 
 
-		// Function to setup button handlers once button is found
-		function setupSidebarToggle(toggleBtn) {
-
-			// Remove any existing handlers first to avoid conflicts
-			$(document).off('click', '.sidebar-toggle-btn');
-
-			// Add multiple click handlers for redundancy
-			// Method 1: jQuery delegated handler
-			$(document).on('click', '.sidebar-toggle-btn', function(e) {
-				handleSidebarToggle(e);
-			});
-
-			// Method 2: Direct event listener as backup
-			toggleBtn.addEventListener('click', function(e) {
-				handleSidebarToggle(e);
-			});
-
-			// Method 3: Set onclick attribute as final fallback
-			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
-
-		}
-
 		// Shared handler function
 		function handleSidebarToggle(e) {
-			e.preventDefault();
-			e.stopPropagation();
+			if (e) {
+				e.preventDefault();
+				e.stopPropagation();
+			}
 
 			// Toggle the sidebar-collapsed class on body
 			$('body').toggleClass('sidebar-collapsed');
@@ -591,12 +594,35 @@
 
 		// Expose global function for onclick fallback
 		window.techcloudToggleSidebar = function() {
-			$('body').toggleClass('sidebar-collapsed');
-			const isCollapsed = $('body').hasClass('sidebar-collapsed');
-			try {
-				localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
-			} catch (e) {}
+			console.log('TechCloud: Global sidebar toggle called');
+			handleSidebarToggle();
 		};
+
+		// Function to setup button handlers once button is found
+		function setupSidebarToggle(toggleBtn) {
+			console.log('TechCloud: Setting up sidebar toggle for button:', toggleBtn);
+
+			// Remove any existing handlers first to avoid conflicts
+			$(document).off('click', '.sidebar-toggle-btn');
+
+			// Add multiple click handlers for redundancy
+			// Method 1: jQuery delegated handler
+			$(document).on('click', '.sidebar-toggle-btn', function(e) {
+				console.log('TechCloud: jQuery handler triggered');
+				handleSidebarToggle(e);
+			});
+
+			// Method 2: Direct event listener as backup
+			toggleBtn.addEventListener('click', function(e) {
+				console.log('TechCloud: Direct event listener triggered');
+				handleSidebarToggle(e);
+			});
+
+			// Method 3: Set onclick attribute as final fallback
+			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
+
+			console.log('TechCloud: Sidebar toggle setup complete');
+		}
 
 		// Check if button exists immediately
 		let toggleBtn = document.querySelector('.sidebar-toggle-btn');
@@ -657,23 +683,6 @@
 
 		// Start periodic checking after a short delay
 		setTimeout(checkForButton, 200);
-
-		// Shared handler function
-		function handleSidebarToggle(e) {
-			e.preventDefault();
-			e.stopPropagation();
-
-			// Toggle the sidebar-collapsed class on body
-			$('body').toggleClass('sidebar-collapsed');
-
-			// Optional: Save state to localStorage for persistence
-			const isCollapsed = $('body').hasClass('sidebar-collapsed');
-			try {
-				localStorage.setItem('techcloud-sidebar-collapsed', isCollapsed);
-			} catch (e) {
-				// localStorage might not be available
-			}
-		}
 
 		// Restore sidebar state from localStorage on page load
 		try {
