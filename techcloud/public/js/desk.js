@@ -2,11 +2,6 @@
 (function () {
 	"use strict";
 
-	// Mark that the script has loaded
-	if (document.body) {
-		document.body.setAttribute('data-techcloud-desk-loaded', 'true');
-	}
-
 	let applyTimer = null;
 	let observer = null;
 
@@ -57,7 +52,11 @@
       <div class="collapse navbar-collapse justify-content-end">
         <form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
           <div class="input-group search-bar text-muted">
-            <input id="navbar-search" type="text" class="form-control" placeholder="Search or type a command (⌘ + G)" aria-haspopup="true" autocomplete="off">
+            <div class="awesomplete">
+              <input id="navbar-search" type="text" class="form-control" placeholder="Search or type a command (⌘ + G)" aria-haspopup="true" autocomplete="off" aria-expanded="false" aria-owns="awesomplete_list_1" role="combobox">
+              <ul hidden="" role="listbox" id="awesomplete_list_1"></ul>
+              <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true">Begin typing for results.</span>
+            </div>
             <span class="search-icon">
               <svg class="icon icon-sm techcloud-icon"><use href="#icon-search"></use></svg>
             </span>
@@ -301,12 +300,7 @@
 		bindThemeToggle(scope);
 		initDropdowns(scope);
 		ensureSidebarLogo();
-
-		// Initialize search after header is created, but wait a bit for DOM to settle
-		setTimeout(() => {
-			console.log('[Techcloud] Calling initializeSearch from applyUnifiedHeader');
-			initializeSearch();
-		}, 50);
+		initializeSearch();
 	}
 
 	function bindThemeToggle(scope) {
@@ -331,51 +325,25 @@
 
 	function initializeSearch() {
 		// Initialize Frappe search functionality on the custom navbar search input
-		const searchInput = document.getElementById('navbar-search');
 		const searchBar = document.querySelector('.search-bar');
-
 		if (searchBar) {
 			// Ensure search bar is visible (remove hidden class if present)
 			searchBar.classList.remove('hidden');
 		}
 
 		// Wait for frappe boot to complete before initializing search
-		if (window.frappe && window.frappe.boot && window.frappe.search && window.frappe.search.AwesomeBar && searchInput) {
+		if (window.frappe && window.frappe.boot && window.frappe.search && window.frappe.search.AwesomeBar && window.frappe.ui && window.frappe.ui.toolbar) {
 			try {
-				// Check if search is already initialized to prevent duplicates
-				if (searchInput.dataset.awesomeBarInitialized) {
-					return;
-				}
-
-				// Mark as initialized
-				searchInput.dataset.awesomeBarInitialized = 'true';
-
-				// Try to use the existing toolbar setup if available, otherwise create directly
-				if (window.frappe.ui && window.frappe.ui.toolbar && window.frappe.ui.toolbar.setup_awesomebar) {
-					// Remove any existing search bar hidden class first
-					$('.search-bar').removeClass('hidden');
-					// Call the toolbar's setup method
-					window.frappe.ui.toolbar.setup_awesomebar();
-				} else {
-					// Fallback: Create and setup AwesomeBar directly
-					let awesome_bar = new frappe.search.AwesomeBar();
-					awesome_bar.setup("#navbar-search");
-
-					// Add the additional searchable functions
-					if (window.frappe && window.frappe.search && window.frappe.search.utils) {
-						frappe.search.utils.make_function_searchable(
-							frappe.utils.generate_tracking_url,
-							__("Generate Tracking URL")
-						);
-
-						if (frappe.model.can_read("RQ Job")) {
-							frappe.search.utils.make_function_searchable(function () {
-								frappe.set_route("List", "RQ Job");
-							}, __("Background Jobs"));
-						}
+				// Check if search is already initialized
+				if (window.frappe.ui.toolbar.setup_awesomebar && !document.querySelector('.search-bar.awesome-bar-initialized')) {
+					// Mark search bar as initialized to prevent duplicate initialization
+					if (searchBar) {
+						searchBar.classList.add('awesome-bar-initialized');
 					}
-				}
 
+					// Initialize the awesome bar
+					window.frappe.ui.toolbar.setup_awesomebar();
+				}
 			} catch (e) {
 				console.warn('[Techcloud] Failed to initialize search:', e);
 			}
@@ -479,16 +447,8 @@
 
 	if (window.frappe && frappe.ready) {
 		frappe.ready(() => {
-			// Ensure search is initialized after frappe boot and header is created
-			const checkAndInit = () => {
-				const searchInput = document.getElementById('navbar-search');
-				if (searchInput) {
-					initializeSearch();
-				} else {
-					setTimeout(checkAndInit, 200);
-				}
-			};
-			setTimeout(checkAndInit, 100);
+			// Ensure search is initialized after frappe boot
+			setTimeout(initializeSearch, 100);
 		});
 	}
 
