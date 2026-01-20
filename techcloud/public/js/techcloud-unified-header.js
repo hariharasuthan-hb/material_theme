@@ -19,30 +19,9 @@
         }
     }
 
+    // Desk header is now fully controlled by techcloud/public/js/desk.js.
+    // This file is kept as a safe no-op so it doesn't fight with the new unified header.
     function movePageHeadIntoMain() {
-        // Only run on desk pages (not website pages)
-        if (!document.body.hasAttribute("data-route")) {
-            return true;
-        }
-
-		const mainSection = document.querySelector(".col.layout-main-section-wrapper");
-		if (!mainSection) return false;
-
-        const pageHead = document.querySelector(".page-head");
-        if (!pageHead) return false;
-
-        if (pageHead.parentElement !== mainSection) {
-            mainSection.prepend(pageHead);
-        }
-
-        normalizePageHeadPosition(pageHead);
-
-        const titleElement = pageHead.querySelector(".title-text");
-        if (titleElement) {
-            const titleText = titleElement.textContent || titleElement.innerText || "";
-            console.log("[Techcloud] page-head title-text:", titleText);
-        }
-
         return true;
     }
 
@@ -56,21 +35,8 @@
         setTimeout(initUnifiedHeader, 100);
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initUnifiedHeader);
-    } else {
-        initUnifiedHeader();
-    }
-
-    if (typeof frappe !== "undefined" && frappe.ready) {
-        frappe.ready(initUnifiedHeader);
-    }
-
-    if (window.jQuery) {
-        $(document).on("page-change", function() {
-            initUnifiedHeader();
-        });
-    }
+    // We intentionally do NOT hook into any lifecycle events here anymore,
+    // to avoid double-moving .page-head. techcloud/public/js/desk.js owns that logic.
 })();
 
 
