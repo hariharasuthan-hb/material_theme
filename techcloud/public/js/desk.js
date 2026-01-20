@@ -42,21 +42,20 @@
 	function ensureSidebarLogo() {
 		// Always keep exactly ONE Techcloud logo, on the primary visible sidebar.
 
-		// 1. Find the primary visible sidebar container (prioritize list sidebars)
-		const candidateContainers = Array.from(
-			document.querySelectorAll(
-				".col-lg-2.layout-side-section .list-sidebar, .list-sidebar, .desk-sidebar, .standard-sidebar"
-			)
-		).filter((el) => {
-			const style = window.getComputedStyle(el);
-			return style.display !== "none" && style.visibility !== "hidden";
-		});
+		// 1. Find the primary sidebar container.
+		// For list views like the snippet you pasted, this is:
+		//   .col-lg-2.layout-side-section .list-sidebar
+		// Fall back to any .list-sidebar / .desk-sidebar / .standard-sidebar.
+		const container =
+			document.querySelector(".col-lg-2.layout-side-section .list-sidebar") ||
+			document.querySelector(".list-sidebar") ||
+			document.querySelector(".desk-sidebar") ||
+			document.querySelector(".standard-sidebar");
 
-		if (!candidateContainers.length) return false;
-
-		const container = candidateContainers[0];
-
-		if (!container) return false;
+		if (!container) {
+			// No sidebar rendered yet; nothing to do.
+			return false;
+		}
 
 		// 2. Remove skip-link button inside this container
 		const skipLink = container.querySelector("button.sr-only.sr-only-focusable");
