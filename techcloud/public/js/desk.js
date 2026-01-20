@@ -2,6 +2,11 @@
 (function () {
 	"use strict";
 
+	// Mark that the script has loaded
+	if (document.body) {
+		document.body.setAttribute('data-techcloud-desk-loaded', 'true');
+	}
+
 	let applyTimer = null;
 	let observer = null;
 
@@ -25,8 +30,9 @@
 	}
 
 	function removeDefaultHeaders(scope) {
-		// Only clean up legacy in-page headers, do NOT remove the main top navbar.
 		const selectors = [
+			"header.navbar",
+			".navbar.navbar-expand",
 			".page-head",
 			".page-header-container",
 			".navbar-header"
@@ -43,17 +49,6 @@
 		return `
 <div class="unified-sticky-header">
   <header class="navbar navbar-expand" role="navigation">
-    <button class="btn-reset sidebar-toggle-btn" title="" aria-label="Toggle Sidebar" data-original-title="Toggle Sidebar" onclick="window.techcloudToggleSidebar &amp;&amp; window.techcloudToggleSidebar()">
-      <svg class="es-icon icon-md sidebar-toggle-placeholder">
-        <use href="#es-line-align-justify"></use>
-      </svg>
-      <span class="sidebar-toggle-icon">
-        <svg class="es-icon icon-md">
-          <use href="#es-line-sidebar-collapse">
-          </use>
-        </svg>
-      </span>
-    </button>
     <div class="container" style="margin: 0px; position: relative; z-index: 1;">
       <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs">
         <li><a href="/app/stock">Stock</a></li>
@@ -62,11 +57,7 @@
       <div class="collapse navbar-collapse justify-content-end">
         <form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
           <div class="input-group search-bar text-muted">
-            <div class="awesomplete">
-              <input id="navbar-search" type="text" class="form-control" placeholder="Search or type a command (⌘ + G)" aria-haspopup="true" autocomplete="off" aria-expanded="false" aria-owns="awesomplete_list_1" role="combobox">
-              <ul hidden="" role="listbox" id="awesomplete_list_1"></ul>
-              <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true">Begin typing for results.</span>
-            </div>
+            <input id="navbar-search" type="text" class="form-control" placeholder="Search or type a command (⌘ + G)" aria-haspopup="true" autocomplete="off">
             <span class="search-icon">
               <svg class="icon icon-sm techcloud-icon"><use href="#icon-search"></use></svg>
             </span>
@@ -193,38 +184,7 @@
 		const mainSection = getLayoutMain(scope);
 		if (!mainSection) return false;
 
-		const existingHeader = mainSection.querySelector(".unified-sticky-header");
-		const pageHeadContent = (scope || document).querySelector(".page-head-content");
-		const pageHead = pageHeadContent
-			? pageHeadContent.closest(".page-head")
-			: (scope || document).querySelector(".page-head");
-
-		// Remove legacy toggle button inside page head to avoid duplicates/conflicts
-		if (pageHead) {
-			const legacyToggle = pageHead.querySelector(".sidebar-toggle-btn");
-			if (legacyToggle && legacyToggle.parentElement) {
-				legacyToggle.parentElement.removeChild(legacyToggle);
-			}
-		}
-
-		// If unified header exists, ensure page-head is after navbar
-		if (existingHeader && pageHead) {
-			const navbar = existingHeader.querySelector(".navbar");
-			if (navbar && pageHead.parentElement === existingHeader) {
-				// Ensure page-head comes after navbar
-				if (navbar.nextSibling !== pageHead) {
-					existingHeader.insertBefore(pageHead, navbar.nextSibling);
-				}
-			} else if (navbar && !existingHeader.contains(pageHead)) {
-				// Page-head not in header yet, append after navbar
-				existingHeader.insertBefore(pageHead, navbar.nextSibling);
-			}
-			// Normalize positioning
-			normalizePageHeadPosition(pageHead);
-			return "moved";
-		}
-
-		if (existingHeader) return true;
+		if (mainSection.querySelector(".unified-sticky-header")) return true;
 
 		const wrapper = document.createElement("div");
 		wrapper.innerHTML = buildUnifiedHeader();
@@ -232,47 +192,22 @@
 		if (!headerEl) return false;
 
 		mainSection.prepend(headerEl);
-		const navbar = headerEl.querySelector(".navbar");
+		const pageHeadContent = (scope || document).querySelector(".page-head-content");
+		const pageHead = pageHeadContent
+			? pageHeadContent.closest(".page-head")
+			: (scope || document).querySelector(".page-head");
 		const headerContainer = pageHeadContent && pageHeadContent.closest(".container");
-		
 		if (pageHead) {
 			pageHead.setAttribute("data-techcloud-header", "1");
-			// Ensure page-head comes AFTER navbar
-			if (navbar) {
-				// Insert page-head right after navbar
-				navbar.parentNode.insertBefore(pageHead, navbar.nextSibling);
-			} else {
-				// Fallback: append to headerEl
+			if (!headerEl.contains(pageHead)) {
 				headerEl.appendChild(pageHead);
 			}
-			// Normalize positioning to ensure it's relative, not fixed/absolute
-			normalizePageHeadPosition(pageHead);
 			if (headerContainer && !headerContainer.classList.contains("page-header-container")) {
 				headerContainer.classList.add("page-header-container");
 			}
 			return "moved";
 		}
 		return "inserted";
-	}
-
-	function normalizePageHeadPosition(pageHead) {
-		if (!pageHead) return;
-		try {
-			const pos = window.getComputedStyle(pageHead).position;
-			if (pos === "fixed" || pos === "absolute") {
-				pageHead.style.position = "relative";
-				pageHead.style.top = "auto";
-				pageHead.style.left = "auto";
-				pageHead.style.right = "auto";
-				pageHead.style.zIndex = "1";
-			}
-			// Remove any top positioning that references navbar height
-			if (pageHead.style.top && pageHead.style.top.includes("var(--navbar-height)")) {
-				pageHead.style.top = "auto";
-			}
-		} catch (e) {
-			// ignore
-		}
 	}
 
 	function ensureSidebarLogo() {
@@ -295,6 +230,12 @@
 			skipLink.parentElement.removeChild(skipLink);
 		}
 
+		// Remove any existing techcloud sidebar logo to avoid duplicates
+		const existingLogo = sidebar.querySelector(".navbar-brand.techcloud-sidebar-logo");
+		if (existingLogo && existingLogo.parentElement) {
+			existingLogo.parentElement.removeChild(existingLogo);
+		}
+
 		// Find the list-sidebar container (the visible sidebar wrapper)
 		const listSidebar = sidebar.querySelector(".list-sidebar");
 		if (!listSidebar) {
@@ -303,12 +244,8 @@
 		}
 
 		// Check if logo already exists
-		const existingLogo = listSidebar.querySelector(".techcloud-sidebar-logo");
-		if (existingLogo) {
-			// Just ensure it's visible; don't recreate or spam logs
-			existingLogo.style.display = "block";
-			existingLogo.style.visibility = "visible";
-			existingLogo.style.opacity = "1";
+		if (listSidebar.querySelector(".techcloud-sidebar-logo")) {
+			console.log("[Techcloud] Logo already exists in sidebar");
 			return true;
 		}
 
@@ -364,6 +301,12 @@
 		bindThemeToggle(scope);
 		initDropdowns(scope);
 		ensureSidebarLogo();
+
+		// Initialize search after header is created, but wait a bit for DOM to settle
+		setTimeout(() => {
+			console.log('[Techcloud] Calling initializeSearch from applyUnifiedHeader');
+			initializeSearch();
+		}, 50);
 	}
 
 	function bindThemeToggle(scope) {
@@ -384,6 +327,59 @@
 		if (!window.jQuery) return;
 		const root = (scope && scope.querySelector) ? scope : document;
 		$(root).find('[data-toggle="dropdown"]').dropdown();
+	}
+
+	function initializeSearch() {
+		// Initialize Frappe search functionality on the custom navbar search input
+		const searchInput = document.getElementById('navbar-search');
+		const searchBar = document.querySelector('.search-bar');
+
+		if (searchBar) {
+			// Ensure search bar is visible (remove hidden class if present)
+			searchBar.classList.remove('hidden');
+		}
+
+		// Wait for frappe boot to complete before initializing search
+		if (window.frappe && window.frappe.boot && window.frappe.search && window.frappe.search.AwesomeBar && searchInput) {
+			try {
+				// Check if search is already initialized to prevent duplicates
+				if (searchInput.dataset.awesomeBarInitialized) {
+					return;
+				}
+
+				// Mark as initialized
+				searchInput.dataset.awesomeBarInitialized = 'true';
+
+				// Try to use the existing toolbar setup if available, otherwise create directly
+				if (window.frappe.ui && window.frappe.ui.toolbar && window.frappe.ui.toolbar.setup_awesomebar) {
+					// Remove any existing search bar hidden class first
+					$('.search-bar').removeClass('hidden');
+					// Call the toolbar's setup method
+					window.frappe.ui.toolbar.setup_awesomebar();
+				} else {
+					// Fallback: Create and setup AwesomeBar directly
+					let awesome_bar = new frappe.search.AwesomeBar();
+					awesome_bar.setup("#navbar-search");
+
+					// Add the additional searchable functions
+					if (window.frappe && window.frappe.search && window.frappe.search.utils) {
+						frappe.search.utils.make_function_searchable(
+							frappe.utils.generate_tracking_url,
+							__("Generate Tracking URL")
+						);
+
+						if (frappe.model.can_read("RQ Job")) {
+							frappe.search.utils.make_function_searchable(function () {
+								frappe.set_route("List", "RQ Job");
+							}, __("Background Jobs"));
+						}
+					}
+				}
+
+			} catch (e) {
+				console.warn('[Techcloud] Failed to initialize search:', e);
+			}
+		}
 	}
 
 	function scheduleApply() {
@@ -479,6 +475,21 @@
 
 	if (window.frappe && frappe.after_ajax) {
 		frappe.after_ajax(scheduleApply);
+	}
+
+	if (window.frappe && frappe.ready) {
+		frappe.ready(() => {
+			// Ensure search is initialized after frappe boot and header is created
+			const checkAndInit = () => {
+				const searchInput = document.getElementById('navbar-search');
+				if (searchInput) {
+					initializeSearch();
+				} else {
+					setTimeout(checkAndInit, 200);
+				}
+			};
+			setTimeout(checkAndInit, 100);
+		});
 	}
 
 	// Periodic check to ensure sidebar logo is always present (catches edge cases)
