@@ -88,51 +88,70 @@
 		if (!mainSection) return;
 
 		// Use Frappe's existing sticky header container / sticky-top navbar
-		// instead of building our own.
-		const sticky =
+		const stickyContainer =
 			scope.querySelector(".sticky-header-container") ||
 			scope.querySelector(".sticky-top") ||
-			scope.querySelector("header.navbar") ||
+			scope.querySelector("header.navbar")?.closest(".sticky-top") ||
 			document.querySelector(".sticky-header-container") ||
-			document.querySelector(".sticky-top") ||
-			document.querySelector("header.navbar");
-		if (!sticky) return;
+			document.querySelector(".sticky-top");
 
-		// Create or reuse unified header wrapper
-		let wrapper = mainSection.querySelector(".unified-sticky-header-wrapper");
-		if (!wrapper) {
-			wrapper = document.createElement("div");
-			wrapper.className = "unified-sticky-header-wrapper";
-			mainSection.prepend(wrapper);
-		}
+		const navbar = stickyContainer
+			? stickyContainer.querySelector("header.navbar") || stickyContainer
+			: document.querySelector("header.navbar");
 
-		// Move navbar into wrapper and enforce order:
-		// sticky header FIRST, page-head SECOND.
-
-		// 1. Ensure sticky header lives in wrapper and is always the first child
-		if (!wrapper.contains(sticky)) {
-			if (sticky.parentElement) sticky.parentElement.removeChild(sticky);
-			wrapper.insertBefore(sticky, wrapper.firstChild || null);
-		} else if (wrapper.firstElementChild !== sticky) {
-			// Sticky is inside wrapper but not first; move it to the top
-			wrapper.insertBefore(sticky, wrapper.firstChild);
-		}
-
-		// 2. Ensure page-head (title + actions) is immediately after sticky header
 		const pageHead =
 			scope.querySelector(".page-head") || document.querySelector(".page-head");
-		if (pageHead) {
-			if (!wrapper.contains(pageHead)) {
-				if (pageHead.parentElement) pageHead.parentElement.removeChild(pageHead);
-				wrapper.insertBefore(pageHead, sticky.nextSibling);
-			} else if (pageHead.previousElementSibling !== sticky) {
-				// Page-head is in wrapper but not directly after sticky; fix order
-				wrapper.insertBefore(pageHead, sticky.nextSibling);
+
+		if (!navbar && !pageHead) return;
+
+		// Create or reuse unified header shell
+		let unifiedHeader = mainSection.querySelector(".unified-header");
+		if (!unifiedHeader) {
+			unifiedHeader = document.createElement("div");
+			unifiedHeader.className = "unified-header";
+			mainSection.prepend(unifiedHeader);
+		}
+
+		// ---------- TOP BAR (utility/nav) ----------
+		if (navbar) {
+			// Strip navbar-brand here; sidebar owns the logo
+			const navbarBrand = navbar.querySelector(
+				".navbar-brand:not(.techcloud-sidebar-logo)"
+			);
+			if (navbarBrand && navbarBrand.parentElement) {
+				navbarBrand.parentElement.removeChild(navbarBrand);
+			}
+
+			let topbar = unifiedHeader.querySelector(".unified-topbar");
+			if (!topbar) {
+				topbar = document.createElement("div");
+				topbar.className = "unified-topbar";
+				unifiedHeader.appendChild(topbar);
+			}
+
+			if (!topbar.contains(navbar)) {
+				if (navbar.parentElement) navbar.parentElement.removeChild(navbar);
+				topbar.appendChild(navbar);
 			}
 		}
 
-		bindThemeToggle(wrapper);
-		initDropdowns(wrapper);
+		// ---------- PAGE BAR (title/actions) ----------
+		if (pageHead) {
+			let pagebar = unifiedHeader.querySelector(".unified-pagebar");
+			if (!pagebar) {
+				pagebar = document.createElement("div");
+				pagebar.className = "unified-pagebar";
+				unifiedHeader.appendChild(pagebar);
+			}
+
+			if (!pagebar.contains(pageHead)) {
+				if (pageHead.parentElement) pageHead.parentElement.removeChild(pageHead);
+				pagebar.appendChild(pageHead);
+			}
+		}
+
+		bindThemeToggle(unifiedHeader);
+		initDropdowns(unifiedHeader);
 		cleanupUnwantedLayout();
 		initializeSearch();
 	}

@@ -13,3 +13,12 @@
 .layout-main-section.frappe-card .unified-sticky-header .page-head-content {
 	position: static;
 }
+
+.unified-topbar .navbar, html[data-theme="material"] .unified-topbar .navbar, html[data-theme-mode="material"] .unified-topbar .navbar {
+    height: 48px !important;
+    min-height: 48px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    width: 100%;
+}
