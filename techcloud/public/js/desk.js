@@ -20,350 +20,266 @@
 		const scope = pageContainer || document;
 		return (
 			scope.querySelector(".layout-main-section.frappe-card") ||
-			scope.querySelector(".layout-main-section")
+			scope.querySelector(".layout-main-section") ||
+			// Some pages (like Workspaces / Manufacturing) use slightly different wrappers
+			scope.querySelector(".layout-main") ||
+			scope.querySelector(".page-content") ||
+			scope.querySelector(".page-container")
 		);
 	}
 
-	function removeDefaultHeaders(scope) {
-		// Only clean up legacy in-page headers, do NOT remove the main top navbar.
-		const selectors = [
-			".page-head",
-			".page-header-container",
-			".navbar-header"
-		];
-		selectors.forEach((selector) => {
-			(scope || document).querySelectorAll(selector).forEach((el) => {
-				if (el.closest(".unified-sticky-header")) return;
-				if (el.parentElement) el.parentElement.removeChild(el);
+	function removeDefaultHeaders() {
+		// No-op: we now reuse Frappe's own navbar instead of removing it.
+	}
+
+	function cleanupUnwantedLayout() {
+		// Remove Frappe's accessibility skip buttons that get re-injected
+		document
+			.querySelectorAll('[aria-label="Navigate to main content"]')
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
 			});
+
+		// Remove logo from menu list (should only be in sidebar container, not menu)
+		document
+			.querySelectorAll(".desk-sidebar.list-unstyled.sidebar-menu .techcloud-sidebar-logo")
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
+			});
+
+		// Remove logo from overlay sidebar (should only be in main sidebar, not overlay)
+		document
+			.querySelectorAll(".list-sidebar.overlay-sidebar .techcloud-sidebar-logo")
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
+			});
+
+		// Remove duplicate page-head containers if any
+		const pageHeads = document.querySelectorAll(".page-head");
+		if (pageHeads.length > 1) {
+			// Keep only the first one, remove duplicates
+			for (let i = 1; i < pageHeads.length; i++) {
+				const duplicate = pageHeads[i];
+				if (duplicate.parentElement) {
+					duplicate.parentElement.removeChild(duplicate);
+				} else {
+					duplicate.remove();
+				}
+			}
+		}
+
+		// Ensure page-head comes after sticky-header-container (if not using unified-header)
+		const stickyHeader = document.querySelector(".sticky-header-container");
+		const pageHead = document.querySelector(".page-head");
+		
+		if (stickyHeader && pageHead && !document.querySelector(".unified-header")) {
+			// Only reorder if unified-header is not being used
+			if (stickyHeader.nextElementSibling !== pageHead && stickyHeader.parentNode) {
+				stickyHeader.parentNode.insertBefore(
+					pageHead,
+					stickyHeader.nextSibling
+				);
+			}
+		}
+	}
+
+	function ensureSidebarLogo(retryCount = 0) {
+		// Target ONLY actual sidebar containers (exclude menu lists and overlay sidebars)
+		// Exclude:
+		// - .desk-sidebar.list-unstyled.sidebar-menu (menu list, not container)
+		// - .list-sidebar.overlay-sidebar (overlay sidebar, not main sidebar)
+		const sidebars = document.querySelectorAll(
+			".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+		);
+
+		// If no sidebars found and we haven't retried too many times, retry after delay
+		if (sidebars.length === 0 && retryCount < 3) {
+			setTimeout(() => {
+				ensureSidebarLogo(retryCount + 1);
+			}, 200);
+			return;
+		}
+
+		sidebars.forEach((sidebar) => {
+			if (!sidebar) return;
+
+			// Skip if this is a menu list (not a container)
+			if (sidebar.classList.contains("list-unstyled") && sidebar.classList.contains("sidebar-menu")) {
+				return;
+			}
+
+			// Skip if this is an overlay sidebar (not main sidebar)
+			if (sidebar.classList.contains("overlay-sidebar")) {
+				return;
+			}
+
+			const style = window.getComputedStyle(sidebar);
+			if (style.display === "none" || style.visibility === "hidden") return;
+
+			// ✅ Prevent duplicate logo (check both class and data-flag for extra safety)
+			if (sidebar.querySelector(".techcloud-sidebar-logo") || sidebar.dataset.techcloudLogo === "1") return;
+
+			const logo = document.createElement("a");
+			logo.className = "navbar-brand navbar-home techcloud-sidebar-logo";
+			logo.href = "/app";
+
+			const img = document.createElement("img");
+			img.className = "app-logo";
+			img.src =
+				(window.frappe && frappe.boot && frappe.boot.app_logo_url) ||
+				"/assets/erpnext/images/erpnext-logo.svg";
+			img.alt = "App Logo";
+
+			logo.appendChild(img);
+			sidebar.insertBefore(logo, sidebar.firstChild);
+			
+			// Mark sidebar as having logo (survives multiple renders better)
+			sidebar.dataset.techcloudLogo = "1";
 		});
 	}
-
-	function buildUnifiedHeader() {
-		return `
-<div class="unified-sticky-header">
-  <header class="navbar navbar-expand" role="navigation">
-    <button class="btn-reset sidebar-toggle-btn" title="" aria-label="Toggle Sidebar" data-original-title="Toggle Sidebar" onclick="window.techcloudToggleSidebar &amp;&amp; window.techcloudToggleSidebar()">
-      <svg class="es-icon icon-md sidebar-toggle-placeholder">
-        <use href="#es-line-align-justify"></use>
-      </svg>
-      <span class="sidebar-toggle-icon">
-        <svg class="es-icon icon-md">
-          <use href="#es-line-sidebar-collapse">
-          </use>
-        </svg>
-      </span>
-    </button>
-    <div class="container" style="margin: 0px; position: relative; z-index: 1;">
-      <ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs">
-        <li><a href="/app/stock">Stock</a></li>
-        <li><a href="/app/item-group/view/List">Item Group</a></li>
-      </ul>
-      <div class="collapse navbar-collapse justify-content-end">
-        <form class="form-inline fill-width justify-content-end" role="search" onsubmit="return false;">
-          <div class="input-group search-bar text-muted">
-            <div class="awesomplete">
-              <input id="navbar-search" type="text" class="form-control" placeholder="Search or type a command (⌘ + G)" aria-haspopup="true" autocomplete="off" aria-expanded="false" aria-owns="awesomplete_list_1" role="combobox">
-              <ul hidden="" role="listbox" id="awesomplete_list_1"></ul>
-              <span class="visually-hidden" role="status" aria-live="assertive" aria-atomic="true">Begin typing for results.</span>
-            </div>
-            <span class="search-icon">
-              <svg class="icon icon-sm techcloud-icon"><use href="#icon-search"></use></svg>
-            </span>
-          </div>
-        </form>
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown dropdown-notifications dropdown-mobile">
-            <button class="btn-reset nav-link notifications-icon text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="" data-original-title="Notifications">
-              <span class="notifications-seen">
-                <span class="sr-only">No new notifications</span>
-                <svg class="es-icon icon-sm" style="stroke:none;"><use href="#es-line-notifications"></use></svg>
-              </span>
-              <span class="notifications-unseen">
-                <span class="sr-only">You have unseen notifications</span>
-                <svg class="es-icon icon-sm"><use href="#es-line-notifications-unseen"></use></svg>
-              </span>
-            </button>
-            <div class="dropdown-menu notifications-list dropdown-menu-right" role="menu">
-              <div class="notification-list-header">
-                <div class="header-items">
-                  <ul class="notification-item-tabs nav nav-tabs" role="tablist">
-                    <li class="notifications-category active" id="notifications" data-toggle="collapse">Notifications</li>
-                    <li class="notifications-category" id="todays_events" data-toggle="collapse">Events</li>
-                    <li class="notifications-category" id="changelog_feed" data-toggle="collapse">What's New</li>
-                  </ul>
-                </div>
-                <div class="header-actions">
-                  <span class="notification-settings pull-right" data-action="go_to_settings" title="" data-original-title="Notification Settings">
-                    <svg class="icon icon-sm techcloud-icon" aria-hidden="true"><use href="#icon-setting-gear"></use></svg>
-                  </span>
-                  <span class="mark-all-read pull-right" data-action="mark_all_as_read" title="" data-original-title="Mark all as read">
-                    <svg class="icon icon-sm techcloud-icon" aria-hidden="true"><use href="#icon-mark-as-read"></use></svg>
-                  </span>
-                </div>
-              </div>
-              <div class="notification-list-body">
-                <div class="panel-notifications">
-                  <div>
-                    <div class="notification-null-state">
-                      <div class="text-center">
-                        <img src="/assets/frappe/images/ui-states/notification-empty-state.svg" alt="Generic Empty State" class="null-state">
-                        <div class="title">No New notifications</div>
-                        <div class="subtitle">Looks like you haven’t received any notifications.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel-events">
-                  <div style="display: none;">
-                    <div class="notification-null-state">
-                      <div class="text-center">
-                        <img src="/assets/frappe/images/ui-states/event-empty-state.svg" alt="Generic Empty State" class="null-state">
-                        <div class="title">No Upcoming Events</div>
-                        <div class="subtitle">There are no upcoming events for you.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel-changelog-feed">
-                  <div style="display: none;">
-                    <div class="notification-null-state">
-                      <div class="text-center">
-                        <img src="/assets/frappe/images/ui-states/notification-empty-state.svg" alt="Generic Empty State" class="null-state">
-                        <div class="title">Nothing New</div>
-                        <div class="subtitle">There is nothing new to show you right now.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item dropdown dropdown-message dropdown-mobile hidden">
-            <button class="btn-reset nav-link notifications-icon text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span><svg class="es-icon icon-sm"><use href="#es-line-chat-alt"></use></svg></span>
-            </button>
-          </li>
-          <li class="vertical-bar d-none d-sm-block"></li>
-          <li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
-            <button class="btn-reset nav-link" data-toggle="dropdown" aria-controls="toolbar-help" aria-label="Help Dropdown">
-              <span>Help <svg class="es-icon icon-xs"><use href="#es-line-down"></use></svg></span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" id="toolbar-help" role="menu">
-              <div id="help-links"></div>
-              <div class="dropdown-divider documentation-links" style="display: none;"></div>
-              <a class="dropdown-item" href="https://docs.erpnext.com/">Documentation</a>
-              <a class="dropdown-item" href="https://discuss.frappe.io">User Forum</a>
-              <a class="dropdown-item" href="https://frappe.io/school?utm_source=in_app">Frappe School</a>
-              <a class="dropdown-item" href="https://github.com/frappe/erpnext/issues">Report an Issue</a>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.show_about()">About</button>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.show_shortcuts(event)">Keyboard Shortcuts</button>
-              <a class="dropdown-item" href="https://frappe.io/support">Frappe Support</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown dropdown-navbar-user dropdown-mobile">
-            <button class="btn-reset nav-link" data-toggle="dropdown" aria-label="User Menu">
-              <span class="avatar avatar-medium" title="hari">
-                <div class="avatar-frame standard-image" style="background-color: var(--red-avatar-bg); color: var(--red-avatar-color)" title="hari">h</div>
-              </span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" id="toolbar-user" role="menu">
-              <a class="dropdown-item" href="/app/user-profile">My Profile</a>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.route_to_user()">My Settings</button>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.setup_session_defaults()">Session Defaults</button>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.clear_cache()">Reload</button>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.view_website()">View Website</button>
-              <a class="dropdown-item" href="/apps">Apps</a>
-              <button class="btn-reset dropdown-item" onclick="return frappe.ui.toolbar.toggle_full_width()">Toggle Full Width</button>
-              <button class="btn-reset dropdown-item" onclick="return new frappe.ui.ThemeSwitcher().show()">Toggle Theme</button>
-              <div class="dropdown-divider"></div>
-              <button class="btn-reset dropdown-item" onclick="return frappe.app.logout()">Log out</button>
-              <a class="dropdown-item" onclick="return erpnext.demo.clear_demo()">Clear Demo Data</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header>
-</div>
-		`.trim();
-	}
-
-	function insertUnifiedHeader(scope) {
-		const mainSection = getLayoutMain(scope);
-		if (!mainSection) return false;
-
-		const existingHeader = mainSection.querySelector(".unified-sticky-header");
-		const pageHeadContent = (scope || document).querySelector(".page-head-content");
-		const pageHead = pageHeadContent
-			? pageHeadContent.closest(".page-head")
-			: (scope || document).querySelector(".page-head");
-
-		// Remove legacy toggle button inside page head to avoid duplicates/conflicts
-		if (pageHead) {
-			const legacyToggle = pageHead.querySelector(".sidebar-toggle-btn");
-			if (legacyToggle && legacyToggle.parentElement) {
-				legacyToggle.parentElement.removeChild(legacyToggle);
-			}
-		}
-
-		// If unified header exists, ensure page-head is after navbar
-		if (existingHeader && pageHead) {
-			const navbar = existingHeader.querySelector(".navbar");
-			if (navbar && pageHead.parentElement === existingHeader) {
-				// Ensure page-head comes after navbar
-				if (navbar.nextSibling !== pageHead) {
-					existingHeader.insertBefore(pageHead, navbar.nextSibling);
-				}
-			} else if (navbar && !existingHeader.contains(pageHead)) {
-				// Page-head not in header yet, append after navbar
-				existingHeader.insertBefore(pageHead, navbar.nextSibling);
-			}
-			// Normalize positioning
-			normalizePageHeadPosition(pageHead);
-			return "moved";
-		}
-
-		if (existingHeader) return true;
-
-		const wrapper = document.createElement("div");
-		wrapper.innerHTML = buildUnifiedHeader();
-		const headerEl = wrapper.firstElementChild;
-		if (!headerEl) return false;
-
-		mainSection.prepend(headerEl);
-		const navbar = headerEl.querySelector(".navbar");
-		const headerContainer = pageHeadContent && pageHeadContent.closest(".container");
-		
-		if (pageHead) {
-			pageHead.setAttribute("data-techcloud-header", "1");
-			// Ensure page-head comes AFTER navbar
-			if (navbar) {
-				// Insert page-head right after navbar
-				navbar.parentNode.insertBefore(pageHead, navbar.nextSibling);
-			} else {
-				// Fallback: append to headerEl
-				headerEl.appendChild(pageHead);
-			}
-			// Normalize positioning to ensure it's relative, not fixed/absolute
-			normalizePageHeadPosition(pageHead);
-			if (headerContainer && !headerContainer.classList.contains("page-header-container")) {
-				headerContainer.classList.add("page-header-container");
-			}
-			return "moved";
-		}
-		return "inserted";
-	}
-
-	function normalizePageHeadPosition(pageHead) {
-		if (!pageHead) return;
-		try {
-			const pos = window.getComputedStyle(pageHead).position;
-			if (pos === "fixed" || pos === "absolute") {
-				pageHead.style.position = "relative";
-				pageHead.style.top = "auto";
-				pageHead.style.left = "auto";
-				pageHead.style.right = "auto";
-				pageHead.style.zIndex = "1";
-			}
-			// Remove any top positioning that references navbar height
-			if (pageHead.style.top && pageHead.style.top.includes("var(--navbar-height)")) {
-				pageHead.style.top = "auto";
-			}
-		} catch (e) {
-			// ignore
-		}
-	}
-
-	function ensureSidebarLogo() {
-		const sidebar = document.querySelector(".layout-side-section");
-		if (!sidebar) {
-			console.log("[Techcloud] Sidebar not found");
-			return false;
-		}
-
-		// Check if sidebar is visible
-		const computedStyle = window.getComputedStyle(sidebar);
-		if (computedStyle.display === "none") {
-			console.log("[Techcloud] Sidebar is hidden, skipping logo insertion");
-			return false;
-		}
-
-		// Completely remove the "Navigate to main content" button from DOM
-		const skipLink = sidebar.querySelector('button.sr-only.sr-only-focusable');
-		if (skipLink && skipLink.parentElement) {
-			skipLink.parentElement.removeChild(skipLink);
-		}
-
-		// Find the list-sidebar container (the visible sidebar wrapper)
-		const listSidebar = sidebar.querySelector(".list-sidebar");
-		if (!listSidebar) {
-			console.log("[Techcloud] list-sidebar not found");
-			return false;
-		}
-
-		// Check if logo already exists
-		const existingLogo = listSidebar.querySelector(".techcloud-sidebar-logo");
-		if (existingLogo) {
-			// Just ensure it's visible; don't recreate or spam logs
-			existingLogo.style.display = "block";
-			existingLogo.style.visibility = "visible";
-			existingLogo.style.opacity = "1";
-			return true;
-		}
-
-		// Find the original navbar-brand logo
-		const originalLogo = document.querySelector(".sticky-top .navbar-brand, header.navbar .navbar-brand, .unified-sticky-header .navbar-brand");
-		let logoElement = null;
-
-		if (originalLogo && originalLogo.querySelector(".app-logo")) {
-			// Clone the logo element
-			logoElement = originalLogo.cloneNode(true);
-			logoElement.classList.add("techcloud-sidebar-logo");
-			// Remove any classes that might hide it
-			logoElement.classList.remove("d-none", "hidden");
-			logoElement.style.display = "";
-			logoElement.style.visibility = "";
-		} else {
-			// Create a new logo element if not found
-			logoElement = document.createElement("a");
-			logoElement.className = "navbar-brand navbar-home techcloud-sidebar-logo";
-			logoElement.href = "/app";
-			const logoImg = document.createElement("img");
-			logoImg.className = "app-logo";
-			logoImg.src = (window.frappe && frappe.boot && frappe.boot.app_logo_url) || "/assets/erpnext/images/erpnext-logo.svg";
-			logoImg.alt = "App Logo";
-			logoElement.appendChild(logoImg);
-		}
-
-		// Ensure logo is visible
-		logoElement.style.display = "block";
-		logoElement.style.visibility = "visible";
-		logoElement.style.opacity = "1";
-
-		// Insert logo at the very beginning of list-sidebar, before everything else
-		if (listSidebar.firstChild) {
-			listSidebar.insertBefore(logoElement, listSidebar.firstChild);
-		} else {
-			listSidebar.appendChild(logoElement);
-		}
-
-		console.log("[Techcloud] Logo inserted into sidebar:", logoElement);
-		return true;
-	}
+	
 
 	function applyUnifiedHeader() {
 		if (!document.body) return;
+
 		const pageContainer = getActivePageContainer();
 		const scope = pageContainer || document;
-		const result = insertUnifiedHeader(scope);
-		if (!result) return;
-		if (result === "moved") {
-			removeDefaultHeaders(scope);
+		const mainSection = getLayoutMain(scope);
+		if (!mainSection) return;
+
+		// Find navbar (may be inside sticky-top or standalone)
+		// Try multiple selectors to ensure we find the navbar
+		let stickyContainer = null;
+		let navbar = null;
+
+		// Look for existing navbar in various locations
+		const possibleLocations = [
+			scope.querySelector(".sticky-header-container"),
+			scope.querySelector(".sticky-top"),
+			document.querySelector(".sticky-header-container"),
+			document.querySelector(".sticky-top"),
+			document.querySelector("header.navbar")?.closest(".sticky-top")
+		];
+
+		for (const location of possibleLocations) {
+			if (location) {
+				const foundNavbar = location.querySelector("header.navbar") ||
+					(location.tagName === 'HEADER' && location.classList.contains('navbar') ? location : null);
+				if (foundNavbar) {
+					stickyContainer = location;
+					navbar = foundNavbar;
+					console.log("TechCloud: Found navbar in", location.className, navbar);
+					break;
+				}
+			}
 		}
-		bindThemeToggle(scope);
-		initDropdowns(scope);
-		ensureSidebarLogo();
+
+		// Fallback: look for navbar anywhere in document
+		if (!navbar) {
+			navbar = document.querySelector("header.navbar");
+			if (navbar) {
+				stickyContainer = navbar.closest(".sticky-top") || navbar.closest(".sticky-header-container");
+				console.log("TechCloud: Found navbar via fallback", navbar);
+			} else {
+				console.log("TechCloud: No navbar found");
+			}
+		}
+
+		const pageHead =
+			scope.querySelector(".page-head") || document.querySelector(".page-head");
+
+		if (!navbar && !pageHead) return;
+
+		// Create or reuse unified header container
+		let unifiedHeader = mainSection.querySelector(".unified-header");
+		if (!unifiedHeader) {
+			unifiedHeader = document.createElement("div");
+			unifiedHeader.className = "unified-header";
+			mainSection.prepend(unifiedHeader);
+		}
+
+		// ---------- TOP BAR (utility/nav) ----------
+		if (navbar) {
+			// Remove navbar-brand (sidebar owns the logo) - clean DOM, no CSS hacks
+			const navbarBrand = navbar.querySelector(
+				".navbar-brand:not(.techcloud-sidebar-logo)"
+			);
+			if (navbarBrand) {
+				navbarBrand.remove();
+			}
+
+			// Get or create unified-topbar
+			let topbar = unifiedHeader.querySelector(".unified-topbar");
+			if (!topbar) {
+				topbar = document.createElement("div");
+				topbar.className = "unified-topbar";
+				unifiedHeader.appendChild(topbar);
+			}
+
+			// Move navbar into topbar if not already there
+			if (!topbar.contains(navbar)) {
+				console.log("TechCloud: Moving navbar to unified-topbar");
+				// Ensure navbar is removed from its current parent first
+				if (navbar.parentElement) {
+					navbar.parentElement.removeChild(navbar);
+				}
+				// Append navbar directly to topbar
+				topbar.appendChild(navbar);
+				console.log("TechCloud: Navbar moved successfully");
+
+				// Clean up empty sticky containers
+				if (stickyContainer && !stickyContainer.hasChildNodes()) {
+					console.log("TechCloud: Cleaning up empty sticky container");
+					if (stickyContainer.parentElement) {
+						stickyContainer.parentElement.removeChild(stickyContainer);
+					}
+				}
+			} else {
+				console.log("TechCloud: Navbar already in unified-topbar");
+			}
+
+			// Ensure navbar content is properly initialized
+			setTimeout(() => {
+				initDropdowns(navbar);
+				initializeSearch();
+			}, 100);
+		}
+
+		// ---------- PAGE BAR (title/actions) ----------
+		if (pageHead) {
+			// Get or create unified-pagebar
+			let pagebar = unifiedHeader.querySelector(".unified-pagebar");
+			if (!pagebar) {
+				pagebar = document.createElement("div");
+				pagebar.className = "unified-pagebar";
+				unifiedHeader.appendChild(pagebar);
+			}
+
+			// Move page-head into pagebar if not already there
+			if (!pagebar.contains(pageHead)) {
+				if (pageHead.parentElement) {
+					pageHead.parentElement.removeChild(pageHead);
+				}
+				pagebar.appendChild(pageHead);
+			}
+		}
+
+		bindThemeToggle(unifiedHeader);
+		initDropdowns(unifiedHeader);
+		cleanupUnwantedLayout();
+		initializeSearch();
 	}
 
 	function bindThemeToggle(scope) {
@@ -386,12 +302,48 @@
 		$(root).find('[data-toggle="dropdown"]').dropdown();
 	}
 
+	function initializeSearch() {
+		// Initialize Frappe search functionality on the navbar search input
+		// Frappe expects #navbar-search element to exist
+		const searchInput = document.querySelector('#navbar-search');
+		const searchBar = document.querySelector('.search-bar');
+		
+		if (!searchInput) {
+			// Search input doesn't exist yet, try again after a short delay
+			setTimeout(initializeSearch, 100);
+			return;
+		}
+
+		// Ensure search bar wrapper is visible (Frappe's setup_awesomebar does this too, but ensure it's done)
+		if (searchBar) {
+			searchBar.classList.remove('hidden');
+		}
+
+		// Wait for frappe boot to complete before initializing search
+		if (window.frappe && window.frappe.boot && window.frappe.search && window.frappe.search.AwesomeBar && window.frappe.ui && window.frappe.ui.toolbar) {
+			try {
+				// Check if search is already initialized (Frappe checks internally, but we add extra safety)
+				if (window.frappe.ui.toolbar.setup_awesomebar && !searchInput.dataset.awesomeBarInitialized) {
+					// Mark as initialized to prevent duplicate initialization
+					searchInput.dataset.awesomeBarInitialized = '1';
+
+					// Initialize the awesome bar (this will setup #navbar-search automatically)
+					window.frappe.ui.toolbar.setup_awesomebar();
+				}
+			} catch (e) {
+				console.warn('[Techcloud] Failed to initialize search:', e);
+			}
+		} else {
+			// Frappe not ready yet, retry after delay
+			setTimeout(initializeSearch, 100);
+		}
+	}
+
 	function scheduleApply() {
 		if (applyTimer) clearTimeout(applyTimer);
 		applyTimer = setTimeout(() => {
 			requestAnimationFrame(() => {
 				applyUnifiedHeader();
-				ensureSidebarLogo();
 			});
 		}, 120);
 	}
@@ -404,8 +356,13 @@
 				if (mutation.type === "childList") {
 					for (const node of mutation.addedNodes) {
 						if (!(node instanceof Element)) continue;
-						if (node.matches(".sticky-top") || node.querySelector(".sticky-top")) {
-							removeDefaultHeaders(document);
+						// When Frappe injects or re-renders the sticky header / navbar,
+						// re-apply unified header.
+						if (
+							node.matches(".sticky-top, .sticky-header-container") ||
+							node.querySelector(".sticky-top, .sticky-header-container")
+						) {
+							scheduleApply();
 						}
 						if (
 							node.matches(".page-head-content") ||
@@ -418,7 +375,7 @@
 							scheduleApply();
 							return;
 						}
-						// Watch for sidebar changes
+						// Watch for sidebar changes - ONLY sidebar-specific mutations
 						if (
 							node.matches(".layout-side-section") ||
 							node.querySelector(".layout-side-section") ||
@@ -430,6 +387,16 @@
 							setTimeout(() => {
 								ensureSidebarLogo();
 							}, 100);
+						}
+
+						// Watch for page-head or sticky-header changes
+						if (
+							node.matches(".page-head, .sticky-header-container") ||
+							node.querySelector(".page-head, .sticky-header-container")
+						) {
+							setTimeout(() => {
+								cleanupUnwantedLayout();
+							}, 50);
 						}
 					}
 				}
@@ -467,45 +434,51 @@
 
 	startObserver();
 
+	// Route change handler - ONLY place for sidebar logo on navigation
 	if (window.frappe && frappe.router && frappe.router.on) {
-		frappe.router.on("change", scheduleApply);
+		frappe.router.on("change", () => {
+			setTimeout(() => {
+				scheduleApply();
+				ensureSidebarLogo();
+				cleanupUnwantedLayout();
+			}, 100);
+		});
 	} else if (window.jQuery) {
-		$(document).on("page-change", scheduleApply);
-	}
-
-	if (window.jQuery) {
-		$(document).on("page-render", scheduleApply);
+		// Fallback for older Frappe versions without router
+		$(document).on("page-change", () => {
+			setTimeout(() => {
+				scheduleApply();
+				ensureSidebarLogo();
+				cleanupUnwantedLayout();
+			}, 100);
+		});
 	}
 
 	if (window.frappe && frappe.after_ajax) {
 		frappe.after_ajax(scheduleApply);
 	}
 
-	// Periodic check to ensure sidebar logo is always present (catches edge cases)
-	setInterval(() => {
-		const sidebar = document.querySelector(".layout-side-section");
-		if (sidebar) {
-			const computedStyle = window.getComputedStyle(sidebar);
-			// Only ensure logo if sidebar is visible
-			if (computedStyle.display !== "none" && computedStyle.visibility !== "hidden") {
-				const listSidebar = sidebar.querySelector(".list-sidebar");
-				if (listSidebar) {
-					const logo = listSidebar.querySelector(".techcloud-sidebar-logo");
-					if (!logo) {
-						console.log("[Techcloud] Logo missing, re-adding...");
-						ensureSidebarLogo();
-					} else {
-						// Ensure logo is visible
-						const logoStyle = window.getComputedStyle(logo);
-						if (logoStyle.display === "none" || logoStyle.visibility === "hidden") {
-							console.log("[Techcloud] Logo hidden, making visible...");
-							logo.style.display = "block";
-							logo.style.visibility = "visible";
-							logo.style.opacity = "1";
-						}
-					}
-				}
-			}
-		}
-	}, 1000);
+	// Initial load - ensure sidebar logo after Frappe boot
+	if (window.frappe && frappe.ready) {
+		frappe.ready(() => {
+			scheduleApply();
+			ensureSidebarLogo();
+			cleanupUnwantedLayout();
+			// Ensure search is initialized after frappe boot
+			setTimeout(initializeSearch, 100);
+		});
+	}
+
+	// NOTE: ensureSidebarLogo() is ONLY called from:
+	// 1. MutationObserver (sidebar-specific mutations) - lines 316, 341
+	// 2. Router change (frappe.router.on("change")) - line 370
+	// 3. Page-change fallback (if router not available) - line 379
+	// 4. Initial load (frappe.ready) - line 393
+	// 
+	// It is NOT called from:
+	// - applyUnifiedHeader() ✅
+	// - scheduleApply() ✅
+	// - setInterval ✅ (removed - no polling)
+	// - page-render ✅ (removed - only page-change as fallback)
+	// - frappe.after_ajax ✅
 })();

@@ -4540,135 +4540,686 @@ html[data-theme-mode="material"] .col.layout-main-section-wrapper {
 }
 
 html[data-theme="material"] .navbar,
+html[data-theme="material"] .navbar,
 html[data-theme-mode="material"] .navbar {
-  height: 78px;
-  background: var(--navbar-bg);
-  border-bottom: 1px solid var(--border-color);
+  height: 60px;
+  /* background: var(--navbar-bg); */
+  /* border-bottom: 1px solid var(--border-color); */
   padding: 0;
 }
 
-/* =========================================================
-   UNIFIED ERP STICKY HEADER
-   Modern • Professional • Responsive
-   ========================================================= */
+/* ================================
+   UNIFIED HEADER – DASHBOARD STYLE
+   (Top utility bar + page title bar)
+   ================================ */
 
-html[data-theme="material"] .unified-sticky-header,
-html[data-theme-mode="material"] .unified-sticky-header {
-  position: sticky;
-  top: 0;
-  z-index: 1050;
-  background: #fff;
-  border-bottom: 1px solid #e6e9ef;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+ .unified-header, html[data-theme="material"] .unified-header, html[data-theme-mode="material"] .unified-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--bg-color, #fff);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.unified-topbar, html[data-theme="material"] .unified-topbar, html[data-theme-mode="material"] .unified-topbar {
+    height: 63px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color, #fff);
+    border-bottom: 1px solid var(--border-color, #f1f3f5);
+    /* margin-bottom: 1%; */
+    
+}
+
+.unified-pagebar,
+html[data-theme="material"] .unified-pagebar,
+html[data-theme-mode="material"] .unified-pagebar {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove sticky-header-container spacing but keep content visible */
+.unified-topbar .sticky-header-container,
+html[data-theme="material"] .unified-topbar .sticky-header-container,
+html[data-theme-mode="material"] .unified-topbar .sticky-header-container {
+  /* display: none; - Removed to allow content to show */
+  margin: 0;
+  padding: 0;
+}
+
+.unified-topbar .header-content,
+html[data-theme="material"] .unified-topbar .header-content,
+html[data-theme-mode="material"] .unified-topbar .header-content {
+  /* display: none; - Commented out to allow header content to show */
+  visibility: visible;
+}
+
+.unified-header * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Remove unnecessary shadows */
+.unified-topbar,
+.unified-pagebar {
+  box-shadow: none;
+}
+
+/* ---------- TOP BAR ---------- */
+
+/* Top utility bar */
+.unified-topbar,
+html[data-theme="material"] .unified-topbar,
+html[data-theme-mode="material"] .unified-topbar {
+  height: 48px;
+  flex-shrink: 0; /* prevents compression */
   display: flex;
-  flex-direction: column;
-}
-
-/* ---------------------------------------------------------
-   TOP NAVBAR (ERP MAIN NAV)
---------------------------------------------------------- */
-
-html[data-theme="material"] .unified-sticky-header .navbar,
-html[data-theme-mode="material"] .unified-sticky-header .navbar {
-  min-height: 44px;
-  padding: 0 8px;
-  background: inherit;
-}
-
-/* Sidebar toggle inside sticky header - proper alignment & hit area */
-html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn,
-html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn {
-  display: inline-flex !important;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin-left: 4px;
-  margin-right: 10px;
-  border-radius: 18px;
-  background: transparent;
-  border: none;
-  color: var(--text-muted, #6b7280);
+  background-color: var(--bg-color, #fff);
+  border-bottom: 1px solid var(--border-color, #f1f3f5);
 }
 
-html[data-theme="material"] .unified-sticky-header .sidebar-toggle-btn:hover,
-html[data-theme-mode="material"] .unified-sticky-header .sidebar-toggle-btn:hover {
-  background: rgba(148, 163, 184, 0.12);
+.unified-topbar .navbar,
+html[data-theme="material"] .unified-topbar .navbar,
+html[data-theme-mode="material"] .unified-topbar .navbar {
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.unified-topbar .navbar, html[data-theme="material"] .unified-topbar .navbar, html[data-theme-mode="material"] .unified-topbar .navbar {
+    /* height: 55px !important; */
+    /* min-height: 63px !important; */
+    /* padding: 0 !important; */
+    background: transparent !important;
+    border-bottom: none !important;
+    width: 100%;
+}
+
+/* Force navbar content visibility in unified-topbar */
+.unified-topbar .navbar,
+.unified-topbar .navbar .navbar-collapse,
+.unified-topbar .navbar .navbar-nav,
+.unified-topbar .navbar .search-bar,
+.unified-topbar .navbar form,
+.unified-topbar .navbar .navbar-brand {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.unified-topbar .search-bar.hidden {
+    display: flex !important;
+}
+
+/* Ensure unified-topbar shows its content */
+.unified-topbar:empty::after {
+    content: "Loading navbar...";
+    color: #666;
+    font-style: italic;
+    padding: 10px;
+}
+
+.unified-topbar .navbar .container,
+html[data-theme="material"] .unified-topbar .navbar .container,
+html[data-theme-mode="material"] .unified-topbar .navbar .container {
+  height: 48px !important;
+  padding: 0 16px !important;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ===== NAVBAR LAYOUT - CENTERED SEARCH + RIGHT ICONS ===== */
+/* High specificity to override conflicting rules */
+
+/* 1. Make navbar full width */
+.navbar > .container,
+.navbar .container,
+html[data-theme="material"] .navbar > .container,
+html[data-theme-mode="material"] .navbar > .container,
+html[data-theme="material"] .navbar .container,
+html[data-theme-mode="material"] .navbar .container,
+.unified-topbar .navbar > .container,
+.unified-topbar .navbar .container,
+html[data-theme="material"] .unified-topbar .navbar > .container,
+html[data-theme-mode="material"] .unified-topbar .navbar > .container,
+html[data-theme="material"] .unified-topbar .navbar .container,
+html[data-theme-mode="material"] .unified-topbar .navbar .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 2. Breadcrumbs stay LEFT */
+#navbar-breadcrumbs,
+html[data-theme="material"] #navbar-breadcrumbs,
+html[data-theme-mode="material"] #navbar-breadcrumbs {
+  flex: 0 0 auto !important;
+}
+
+/* 3. Navbar collapse becomes flex */
+.navbar-collapse,
+html[data-theme="material"] .navbar-collapse,
+html[data-theme-mode="material"] .navbar-collapse,
+.unified-topbar .navbar-collapse,
+html[data-theme="material"] .unified-topbar .navbar-collapse,
+html[data-theme-mode="material"] .unified-topbar .navbar-collapse,
+html[data-theme="material"] .navbar .container > .navbar-collapse,
+html[data-theme-mode="material"] .navbar .container > .navbar-collapse,
+html[data-theme="material"] .unified-topbar .navbar .container > .navbar-collapse,
+html[data-theme-mode="material"] .unified-topbar .navbar .container > .navbar-collapse {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1;
+}
+
+/* 4. Search CENTERED */
+.navbar-collapse > form,
+html[data-theme="material"] .navbar-collapse > form,
+html[data-theme-mode="material"] .navbar-collapse > form,
+.unified-topbar .navbar-collapse > form,
+html[data-theme="material"] .unified-topbar .navbar-collapse > form,
+html[data-theme-mode="material"] .unified-topbar .navbar-collapse > form {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Search width control */
+.search-bar,
+.navbar-search,
+.unified-topbar .search-bar,
+html[data-theme="material"] .unified-topbar .search-bar,
+html[data-theme-mode="material"] .unified-topbar .search-bar {
+  width: 100%;
+  max-width: 420px !important;
+}
+
+/* 5. Right menu HARD RIGHT */
+.navbar-collapse > .navbar-nav,
+html[data-theme="material"] .navbar-collapse > .navbar-nav,
+html[data-theme-mode="material"] .navbar-collapse > .navbar-nav,
+.unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme="material"] .unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme-mode="material"] .unified-topbar .navbar-collapse > .navbar-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin-left: auto !important;
+}
+
+/* 6. Spacing cleanup */
+.navbar-nav > li,
+html[data-theme="material"] .navbar-nav > li,
+html[data-theme-mode="material"] .navbar-nav > li,
+.unified-topbar .navbar-nav > li,
+html[data-theme="material"] .unified-topbar .navbar-nav > li,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav > li {
+  margin-left: 10px;
+}
+
+.vertical-bar,
+html[data-theme="material"] .vertical-bar,
+html[data-theme-mode="material"] .vertical-bar {
+  margin: 0 8px;
+}
+
+/* 7. Height & padding polish */
+.navbar,
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar,
+.unified-topbar .navbar,
+html[data-theme="material"] .unified-topbar .navbar,
+html[data-theme-mode="material"] .unified-topbar .navbar {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* Mobile fix */
+@media (max-width: 991px) {
+  .navbar .container,
+  html[data-theme="material"] .navbar .container,
+  html[data-theme-mode="material"] .navbar .container,
+  .unified-topbar .navbar .container,
+  html[data-theme="material"] .unified-topbar .navbar .container,
+  html[data-theme-mode="material"] .unified-topbar .navbar .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar-collapse,
+  html[data-theme="material"] .navbar-collapse,
+  html[data-theme-mode="material"] .navbar-collapse,
+  .unified-topbar .navbar-collapse,
+  html[data-theme="material"] .unified-topbar .navbar-collapse,
+  html[data-theme-mode="material"] .unified-topbar .navbar-collapse {
+    flex-direction: column;
+  }
+
+  .navbar-collapse > form,
+  html[data-theme="material"] .navbar-collapse > form,
+  html[data-theme-mode="material"] .navbar-collapse > form,
+  .unified-topbar .navbar-collapse > form,
+  html[data-theme="material"] .unified-topbar .navbar-collapse > form,
+  html[data-theme-mode="material"] .unified-topbar .navbar-collapse > form {
+    justify-content: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .navbar-collapse > .navbar-nav,
+  html[data-theme="material"] .navbar-collapse > .navbar-nav,
+  html[data-theme-mode="material"] .navbar-collapse > .navbar-nav,
+  .unified-topbar .navbar-collapse > .navbar-nav,
+  html[data-theme="material"] .unified-topbar .navbar-collapse > .navbar-nav,
+  html[data-theme-mode="material"] .unified-topbar .navbar-collapse > .navbar-nav {
+    margin-left: 0 !important;
+  }
+}
+
+/* 5. Right menu HARD RIGHT - override ALL conflicting rules */
+.navbar-collapse > .navbar-nav,
+html[data-theme="material"] .navbar-collapse > .navbar-nav,
+html[data-theme-mode="material"] .navbar-collapse > .navbar-nav,
+.unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme="material"] .unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme-mode="material"] .unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme="material"] .navbar .container > .navbar-nav,
+html[data-theme-mode="material"] .navbar .container > .navbar-nav,
+html[data-theme="material"] .unified-topbar .navbar .container > .navbar-nav,
+html[data-theme-mode="material"] .unified-topbar .navbar .container > .navbar-nav {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-left: auto !important;
+}
+
+/* Override the conflicting rule that applies margin-left: auto to ALL navbar-nav */
+html[data-theme="material"] .unified-topbar .navbar-nav,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav {
+  margin-left: 0 !important;
+}
+
+html[data-theme="material"] .unified-topbar .navbar-collapse > .navbar-nav,
+html[data-theme-mode="material"] .unified-topbar .navbar-collapse > .navbar-nav {
+  margin-left: auto !important;
+}
+
+/* 6. Spacing cleanup */
+.navbar-nav > li {
+  margin-left: 10px;
+}
+
+.vertical-bar {
+  margin: 0 8px;
+}
+
+/* 7. Height & padding polish */
+.navbar,
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* Mobile fix */
+@media (max-width: 991px) {
+  .navbar .container,
+  html[data-theme="material"] .navbar .container,
+  html[data-theme-mode="material"] .navbar .container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .navbar-collapse,
+  html[data-theme="material"] .navbar-collapse,
+  html[data-theme-mode="material"] .navbar-collapse {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .navbar-collapse > form,
+  .navbar-collapse .form-inline,
+  html[data-theme="material"] .navbar-collapse > form,
+  html[data-theme-mode="material"] .navbar-collapse > form {
+    order: 1 !important;
+    justify-content: flex-start !important;
+    margin-bottom: 8px !important;
+  }
+
+  .navbar-collapse > .navbar-nav,
+  html[data-theme="material"] .navbar-collapse > .navbar-nav,
+  html[data-theme-mode="material"] .navbar-collapse > .navbar-nav {
+    order: 2 !important;
+    margin-left: 0 !important;
+  }
+}
+
+.unified-topbar .search-bar input,
+html[data-theme="material"] .unified-topbar .search-bar input,
+html[data-theme-mode="material"] .unified-topbar .search-bar input {
+  width: 100%;
+  height: 32px;
+  border-radius: 999px;
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-color, #333);
+}
+
+.unified-topbar .search-bar input:focus,
+html[data-theme="material"] .unified-topbar .search-bar input:focus,
+html[data-theme-mode="material"] .unified-topbar .search-bar input:focus {
+  border-color: var(--primary, #2563eb);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+  outline: none;
+}
+
+/* Search icon positioning */
+.search-icon {
+  left: 12px;
+}
+
+/* Navbar shadow polish */
+.unified-topbar .navbar,
+html[data-theme="material"] .unified-topbar .navbar,
+html[data-theme-mode="material"] .unified-topbar .navbar {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.unified-topbar .navbar-nav .nav-link,
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: var(--text-color, #333);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.unified-topbar .navbar-nav .nav-link:hover,
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link:hover,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link:hover {
   color: var(--primary, #2563eb);
 }
 
-html[data-theme="material"] .unified-sticky-header .navbar .container,
-html[data-theme-mode="material"] .unified-sticky-header .navbar .container {
-  height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-html[data-theme="material"] .unified-sticky-header .navbar-brand,
-html[data-theme-mode="material"] .unified-sticky-header .navbar-brand {
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
-
-html[data-theme="material"] .unified-sticky-header .app-logo,
-html[data-theme-mode="material"] .unified-sticky-header .app-logo {
-  height: 24px;
-  width: auto;
-}
-
+/* Breadcrumb compact - remove extra gap */
+#navbar-breadcrumbs,
+.unified-topbar #navbar-breadcrumbs,
 html[data-theme="material"] #navbar-breadcrumbs,
 html[data-theme-mode="material"] #navbar-breadcrumbs {
-  display: flex;
-  gap: 12px;
-  margin-left: 0;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
-/* Hide navbar-brand in unified header (logo should be in sidebar) */
-html[data-theme="material"] .unified-sticky-header .navbar-brand,
-html[data-theme-mode="material"] .unified-sticky-header .navbar-brand {
-  display: none !important;
-}
-
-html[data-theme="material"] #navbar-breadcrumbs li a,
-html[data-theme-mode="material"] #navbar-breadcrumbs li a {
+/* Reduce visual clutter in breadcrumbs */
+#navbar-breadcrumbs a,
+html[data-theme="material"] #navbar-breadcrumbs a,
+html[data-theme-mode="material"] #navbar-breadcrumbs a {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-muted, #6b7280);
   text-decoration: none;
-  white-space: nowrap;
 }
 
-html[data-theme="material"] #navbar-breadcrumbs li a:hover,
-html[data-theme-mode="material"] #navbar-breadcrumbs li a:hover {
+#navbar-breadcrumbs a:hover,
+html[data-theme="material"] #navbar-breadcrumbs a:hover,
+html[data-theme-mode="material"] #navbar-breadcrumbs a:hover {
   color: var(--primary, #2563eb);
 }
 
-/* ---------------------------------------------------------
-   SEARCH BAR
---------------------------------------------------------- */
+/* ==============================
+   FIX PAGE-HEAD OVERLAP
+============================== */
 
-html[data-theme="material"] .search-bar,
-html[data-theme-mode="material"] .search-bar {
-  max-width: 360px;
-  margin-right: 12px;
+/* ---------- PAGE BAR ---------- */
+
+/* Page bar must be flexible */
+.unified-pagebar,
+html[data-theme="material"] .unified-pagebar,
+html[data-theme-mode="material"] .unified-pagebar {
+  min-height: 44px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  background-color: var(--fg-color, #fafafa);
+  border-bottom: 1px solid var(--border-color, #eee);
+  border-top: 1px solid var(--border-color, #eef0f2);
+  margin-top: 2% !important;
 }
 
-html[data-theme="material"] .search-bar input,
-html[data-theme-mode="material"] .search-bar input {
-  height: 32px;
-  border-radius: 6px;
-  font-size: 12.5px;
-  background: var(--control-bg, #f9fafb);
-  border: 1px solid var(--border-color, #e5e7eb);
+/* ===== REMOVE EXTRA HEADER SPACE ===== */
+/* Page-head compact height */
+.unified-pagebar .page-head,
+html[data-theme="material"] .unified-pagebar .page-head,
+html[data-theme-mode="material"] .unified-pagebar .page-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  background: transparent;
+  margin: 0;
+  box-shadow: none !important;
+  border-bottom: none !important;
 }
 
-html[data-theme="material"] .search-bar input:focus,
-html[data-theme-mode="material"] .search-bar input:focus {
-  background: #fff;
-  border-color: var(--primary, #2563eb);
-  box-shadow: none;
+/* Container should wrap */
+.unified-pagebar .page-head .container,
+html[data-theme="material"] .unified-pagebar .page-head .container,
+html[data-theme-mode="material"] .unified-pagebar .page-head .container {
+  padding: 0 16px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
+  margin: 0;
+}
+
+/* Critical: NO WRAP for compact layout */
+.page-head-content,
+html[data-theme="material"] .page-head-content,
+html[data-theme-mode="material"] .page-head-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 12px;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+/* Row container alignment */
+.page-head-content .row,
+html[data-theme="material"] .page-head-content .row,
+html[data-theme-mode="material"] .page-head-content .row {
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+  margin: 0;
+}
+
+/* Title row compact */
+.page-title,
+html[data-theme="material"] .page-title,
+html[data-theme-mode="material"] .page-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+  margin: 0;
+  padding: 0 !important;
+}
+
+/* Title */
+.unified-pagebar h3,
+.unified-pagebar .page-title h3,
+.unified-pagebar .title-text,
+html[data-theme="material"] .unified-pagebar h3,
+html[data-theme-mode="material"] .unified-pagebar h3,
+html[data-theme="material"] .unified-pagebar .page-title h3,
+html[data-theme-mode="material"] .unified-pagebar .page-title h3,
+html[data-theme="material"] .unified-pagebar .title-text,
+html[data-theme-mode="material"] .unified-pagebar .title-text {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: var(--text-color, #333) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+}
+
+.unified-pagebar .sub-heading,
+html[data-theme="material"] .unified-pagebar .sub-heading,
+html[data-theme-mode="material"] .unified-pagebar .sub-heading {
+  font-size: 0.875rem;
+  color: var(--text-muted, #888);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle-btn,
+html[data-theme="material"] .sidebar-toggle-btn,
+html[data-theme-mode="material"] .sidebar-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 !important;
+  margin-right: 8px !important;
+  padding: 4px !important;
+  color: var(--text-color, #333);
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.title-area,
+html[data-theme="material"] .title-area,
+html[data-theme-mode="material"] .title-area {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px;
+  flex: 1;
+}
+
+.title-area .flex,
+html[data-theme="material"] .title-area .flex,
+html[data-theme-mode="material"] .title-area .flex {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+}
+
+.title-area,
+html[data-theme="material"] .title-area,
+html[data-theme-mode="material"] .title-area {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Three-dot menu */
+.page-title .btn,
+html[data-theme="material"] .page-title .btn,
+html[data-theme-mode="material"] .page-title .btn {
+  margin-left: 4px;
+}
+
+/* Right side buttons */
+.page-actions,
+html[data-theme="material"] .page-actions,
+html[data-theme-mode="material"] .page-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Column container for page actions */
+.page-head-content .col.page-actions,
+.page-head-content .flex.col.page-actions,
+html[data-theme="material"] .page-head-content .col.page-actions,
+html[data-theme-mode="material"] .page-head-content .col.page-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix column alignment in page head */
+.page-head-content .col-md-4,
+.page-head-content .col-sm-6,
+.page-head-content .col-xs-7,
+html[data-theme="material"] .page-head-content .col-md-4,
+html[data-theme-mode="material"] .page-head-content .col-md-4 {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Prevent buttons from breaking layout */
+.page-actions > *,
+html[data-theme="material"] .page-actions > *,
+html[data-theme-mode="material"] .page-actions > * {
+  white-space: nowrap;
+}
+
+/* LIST VIEW dropdown */
+.page-actions .btn,
+html[data-theme="material"] .page-actions .btn,
+html[data-theme-mode="material"] .page-actions .btn {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Primary action button */
+.page-actions .btn-primary,
+html[data-theme="material"] .page-actions .btn-primary,
+html[data-theme-mode="material"] .page-actions .btn-primary {
+  padding: 0 16px;
+  font-weight: 500;
+}
+
+/* Smooth hover clarity */
+.page-actions .btn:hover,
+html[data-theme="material"] .page-actions .btn:hover,
+html[data-theme-mode="material"] .page-actions .btn:hover {
+  transform: translateY(-0.5px);
+  transition: transform 0.15s ease;
+}
+
+/* ---------- FIX ERP SPACING ---------- */
+
+.layout-main-section {
+  padding-top: 0 !important;
+}
+
+.page-head,
+.navbar {
+  margin: 0 !important;
 }
 
 /* ---------------------------------------------------------
@@ -4678,7 +5229,7 @@ html[data-theme-mode="material"] .search-bar input:focus {
 html[data-theme="material"] .navbar-nav .nav-link,
 html[data-theme-mode="material"] .navbar-nav .nav-link {
   padding: 0 10px;
-  color: var(--text-muted, #6b7280);
+  color: #6b7280;
 }
 
 html[data-theme="material"] .navbar-nav .nav-link:hover,
@@ -4690,8 +5241,54 @@ html[data-theme="material"] .vertical-bar,
 html[data-theme-mode="material"] .vertical-bar {
   width: 1px;
   height: 20px;
-  background: var(--border-color, #e5e7eb);
+  background: #e5e7eb;
   margin: 0 8px;
+}
+
+/* Avatar Frame */
+.avatar-frame,
+html[data-theme="material"] .avatar-frame,
+html[data-theme-mode="material"] .avatar-frame {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary, #0056b3);
+}
+
+/* Avatar Frame - prevent overlap */
+.avatar-frame,
+.avatar.avatar-medium .avatar-frame,
+html[data-theme="material"] .avatar-frame,
+html[data-theme-mode="material"] .avatar-frame,
+html[data-theme="material"] .avatar.avatar-medium .avatar-frame,
+html[data-theme-mode="material"] .avatar.avatar-medium .avatar-frame {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary, #0056b3);
+  flex-shrink: 0;
+}
+
+/* Ensure avatar doesn't overlap */
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link .avatar,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link .avatar {
+  margin: 0;
+  padding: 0;
+}
+
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link .avatar .avatar-frame,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link .avatar .avatar-frame {
+  margin: 0;
 }
 
 html[data-theme="material"] .avatar-medium,
@@ -4705,38 +5302,28 @@ html[data-theme-mode="material"] .avatar-medium {
    PAGE HEADER (TITLE + ACTIONS)
 --------------------------------------------------------- */
 
-html[data-theme="material"] .unified-sticky-header .navbar {
-  order: 1;
+html[data-theme="material"] .unified-pagebar .page-head,
+html[data-theme-mode="material"] .unified-pagebar .page-head {
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background: transparent;
 }
 
-html[data-theme="material"] .unified-sticky-header .page-head,
-html[data-theme-mode="material"] .unified-sticky-header .page-head {
-  order: 2;
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-}
-
-html[data-theme="material"] .page-head,
-html[data-theme-mode="material"] .page-head {
-  min-height: 52px;
-  padding: 6px 0;
-  background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
-  border-top: 1px solid #f1f3f5;
-}
-
-html[data-theme="material"] .page-header-container,
-html[data-theme-mode="material"] .page-header-container {
-  padding: 6px 0;
+/* Remove default ERPNext spacing inside page-head container */
+html[data-theme="material"] .unified-pagebar .page-head .container,
+html[data-theme-mode="material"] .unified-pagebar .page-head .container {
+  padding: 0 16px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 html[data-theme="material"] .page-title h3,
 html[data-theme-mode="material"] .page-title h3 {
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--text-color, #111827);
+  color: #111827;
   margin: 0;
 }
 
@@ -4745,35 +5332,6 @@ html[data-theme-mode="material"] .sidebar-toggle-btn {
   margin-right: 10px;
   color: var(--text-muted, #6b7280);
   opacity: 0.8;
-}
-
-/* Match core behavior: show only one icon at a time */
-html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
-html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
-  display: none;
-}
-
-html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
-html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
-html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
-html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
-  transition: all 0.5s ease-in-out;
-}
-
-html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon,
-html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-icon {
-  display: inline-block;
-}
-
-html[data-theme="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder,
-html[data-theme-mode="material"] .sidebar-toggle-btn:hover .sidebar-toggle-placeholder {
-  display: none;
-}
-
-/* Hide legacy sidebar toggle inside page header to avoid duplicate icon */
-html[data-theme="material"] .page-head .sidebar-toggle-btn,
-html[data-theme-mode="material"] .page-head .sidebar-toggle-btn {
-  display: none !important;
 }
 
 html[data-theme="material"] .sidebar-toggle-btn:hover,
@@ -4792,6 +5350,42 @@ html[data-theme-mode="material"] .page-actions .btn {
   padding: 0 12px;
   font-size: 12.5px;
   border-radius: 6px;
+}
+
+/* ---------- DROPDOWNS (Unified Header) ---------- */
+html[data-theme="material"] .dropdown-menu,
+html[data-theme-mode="material"] .dropdown-menu {
+  min-width: 220px;
+  background: var(--bg-color, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 0;
+}
+
+html[data-theme="material"] .dropdown-item,
+html[data-theme-mode="material"] .dropdown-item {
+  font-size: 0.875rem;
+  color: var(--text-color, #333);
+  padding: 0.5rem 1rem;
+}
+
+html[data-theme="material"] .dropdown-item:hover,
+html[data-theme-mode="material"] .dropdown-item:hover {
+  background-color: var(--bg-hover-color, #f7f7f7);
+  cursor: pointer;
+}
+
+/* Remove extra top padding so content starts immediately under unified header */
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section {
+  padding-top: 0 !important;
+}
+
+/* Prevent layout reflow on sticky headers */
+html[data-theme="material"] body,
+html[data-theme-mode="material"] body {
+  overflow-anchor: none;
 }
 
 html[data-theme="material"] .page-actions .btn-primary,
@@ -4854,8 +5448,8 @@ html[data-theme-mode="material"] .dropdown-item:hover {
 }
 
 @media (max-width: 768px) {
-  html[data-theme="material"] .unified-sticky-header,
-  html[data-theme-mode="material"] .unified-sticky-header {
+  html[data-theme="material"] .unified-header,
+  html[data-theme-mode="material"] .unified-header {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
   }
 
@@ -4875,8 +5469,8 @@ html[data-theme-mode="material"] .dropdown-item:hover {
    FULL WIDTH MODE FIX
 --------------------------------------------------------- */
 
-html[data-theme="material"] body[data-full-width="true"] .unified-sticky-header .container,
-html[data-theme-mode="material"] body[data-full-width="true"] .unified-sticky-header .container {
+html[data-theme="material"] body[data-full-width="true"] .unified-header .container,
+html[data-theme-mode="material"] body[data-full-width="true"] .unified-header .container {
   max-width: 100%;
   padding-left: 16px;
   padding-right: 16px;
@@ -12868,6 +13462,8 @@ body[data-theme-mode="material"] .page-head {
   margin-right: 8px;
 }
 
+/* Hide workspace setting (three-dots) button from side menu bar in Material theme */
+
 /* Prevent layout jump when sidebar toggles */
 body.sidebar-collapsed .page-head,
 body[data-sidebar="collapsed"] .page-head {
@@ -15012,4 +15608,39 @@ html[data-theme-mode="material"] .col-lg-2.layout-side-section.print-preview-sid
   background: var(--techcloud-light-gray) !important;
   color: var(--techcloud-text-primary) !important;
   border-color: var(--techcloud-border-color) !important;
+}
+
+/* Enhanced indicator pill styling for shortcuts */
+html[data-theme="material"] div[shortcut_name] .indicator-pill,
+html[data-theme-mode="material"] div[shortcut_name] .indicator-pill {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 5px 9px 21px 7px !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+    color: white !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 2px 4px rgba(72, 187, 120, 0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* General indicator pill styling for material theme */
+html[data-theme="material"] .indicator-pill,
+html[data-theme-mode="material"] .indicator-pill,
+body[data-theme-mode="material"] .indicator-pill,
+html[data-theme="material"] .indicator-pill-right,
+html[data-theme-mode="material"] .indicator-pill-right,
+body[data-theme-mode="material"] .indicator-pill-right,
+html[data-theme="material"] .indicator-pill-round,
+html[data-theme-mode="material"] .indicator-pill-round,
+body[data-theme-mode="material"] .indicator-pill-round {
+    border-radius: 16px !important;
+    padding: 2px 8px 23px 7px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    /* box-shadow: var(--md-shadow-2) !important; */
 }
