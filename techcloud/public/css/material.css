@@ -866,6 +866,7 @@ html[data-theme-mode="material"] .frappe-control {
     
   html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] input[type=checkbox]:checked:before {
     color: var(--md-sys-color-on-primary);
+    padding: 0px !important;
   }
   
   /* Rich Text Editor */
@@ -6742,8 +6743,8 @@ html[data-theme-mode="material"] .layout-main-section-wrapper {
   html[data-theme-mode="material"] .layout-main-section,
   html[data-theme="material"] .layout-main-section-wrapper,
   html[data-theme-mode="material"] .layout-main-section-wrapper {
-    margin-top: 14;
-    margin-right: 2% !important;
+    margin-top: 14px;
+    margin-right: 0% !important;
     max-width: 100% !important;
     height: calc(-44px + 100vh) !important;
     overflow-y: auto !important;
@@ -9018,10 +9019,10 @@ html[data-theme-mode="material"] .widget-body .link-item {
   html[data-theme-mode="material"] .layout-side-section {
     top: 0x !important;
     /* Dynamic height calculation accounting for footer space */
-    height: calc(100vh - 0px - 120px) !important; /* Subtract header + footer space */
+    height: calc(100vh - 0px - 0px) !important; /* Subtract header + footer space */
     /* Ensure sidebar can accommodate all menu items */
     min-height: 400px !important; /* Minimum height to show content */
-    max-height: calc(100vh - 0px - 80px) !important; /* Maximum to prevent overflow */
+    max-height: calc(100vh - 0px - 0px) !important; /* Maximum to prevent overflow */
   }
   
   /* Layout main container - now handled by Bootstrap grid above */
