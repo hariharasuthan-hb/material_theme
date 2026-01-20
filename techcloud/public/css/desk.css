@@ -587,3 +587,15 @@ body {
 [data-theme-mode="dark"] .dropdown-item:hover {
 	background-color: var(--bg-hover-color, #2a2a2a);
 }
+
+/* Safe navbar alignment */
+.techcloud-navbar-brand {
+    margin-right: auto;
+    flex-shrink: 0;
+}
+
+.techcloud-navbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}

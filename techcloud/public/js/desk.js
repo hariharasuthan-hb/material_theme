@@ -160,16 +160,42 @@
 		if (!mainSection) return;
 
 		// Find navbar (may be inside sticky-top or standalone)
-		const stickyContainer =
-			scope.querySelector(".sticky-header-container") ||
-			scope.querySelector(".sticky-top") ||
-			scope.querySelector("header.navbar")?.closest(".sticky-top") ||
-			document.querySelector(".sticky-header-container") ||
-			document.querySelector(".sticky-top");
+		// Try multiple selectors to ensure we find the navbar
+		let stickyContainer = null;
+		let navbar = null;
 
-		const navbar = stickyContainer
-			? stickyContainer.querySelector("header.navbar") || stickyContainer
-			: document.querySelector("header.navbar");
+		// Look for existing navbar in various locations
+		const possibleLocations = [
+			scope.querySelector(".sticky-header-container"),
+			scope.querySelector(".sticky-top"),
+			document.querySelector(".sticky-header-container"),
+			document.querySelector(".sticky-top"),
+			document.querySelector("header.navbar")?.closest(".sticky-top")
+		];
+
+		for (const location of possibleLocations) {
+			if (location) {
+				const foundNavbar = location.querySelector("header.navbar") ||
+					(location.tagName === 'HEADER' && location.classList.contains('navbar') ? location : null);
+				if (foundNavbar) {
+					stickyContainer = location;
+					navbar = foundNavbar;
+					console.log("TechCloud: Found navbar in", location.className, navbar);
+					break;
+				}
+			}
+		}
+
+		// Fallback: look for navbar anywhere in document
+		if (!navbar) {
+			navbar = document.querySelector("header.navbar");
+			if (navbar) {
+				stickyContainer = navbar.closest(".sticky-top") || navbar.closest(".sticky-header-container");
+				console.log("TechCloud: Found navbar via fallback", navbar);
+			} else {
+				console.log("TechCloud: No navbar found");
+			}
+		}
 
 		const pageHead =
 			scope.querySelector(".page-head") || document.querySelector(".page-head");
@@ -202,22 +228,33 @@
 				unifiedHeader.appendChild(topbar);
 			}
 
-			// Extract navbar from sticky-top wrapper if needed
-			const stickyTop = navbar.closest(".sticky-top");
-			if (stickyTop && stickyTop !== topbar) {
-				// Remove navbar from sticky-top
-				if (navbar.parentElement) {
-					navbar.parentElement.removeChild(navbar);
-				}
-			}
-
 			// Move navbar into topbar if not already there
 			if (!topbar.contains(navbar)) {
+				console.log("TechCloud: Moving navbar to unified-topbar");
+				// Ensure navbar is removed from its current parent first
 				if (navbar.parentElement) {
 					navbar.parentElement.removeChild(navbar);
 				}
+				// Append navbar directly to topbar
 				topbar.appendChild(navbar);
+				console.log("TechCloud: Navbar moved successfully");
+
+				// Clean up empty sticky containers
+				if (stickyContainer && !stickyContainer.hasChildNodes()) {
+					console.log("TechCloud: Cleaning up empty sticky container");
+					if (stickyContainer.parentElement) {
+						stickyContainer.parentElement.removeChild(stickyContainer);
+					}
+				}
+			} else {
+				console.log("TechCloud: Navbar already in unified-topbar");
 			}
+
+			// Ensure navbar content is properly initialized
+			setTimeout(() => {
+				initDropdowns(navbar);
+				initializeSearch();
+			}, 100);
 		}
 
 		// ---------- PAGE BAR (title/actions) ----------

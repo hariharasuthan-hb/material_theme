@@ -4582,17 +4582,20 @@ html[data-theme-mode="material"] .unified-pagebar {
   z-index: 1;
 }
 
-/* Remove sticky-header-container spacing */
+/* Remove sticky-header-container spacing but keep content visible */
 .unified-topbar .sticky-header-container,
 html[data-theme="material"] .unified-topbar .sticky-header-container,
 html[data-theme-mode="material"] .unified-topbar .sticky-header-container {
-  display: none;
+  /* display: none; - Removed to allow content to show */
+  margin: 0;
+  padding: 0;
 }
 
 .unified-topbar .header-content,
 html[data-theme="material"] .unified-topbar .header-content,
 html[data-theme-mode="material"] .unified-topbar .header-content {
-  display: none;
+  /* display: none; - Commented out to allow header content to show */
+  visibility: visible;
 }
 
 .unified-header * {
@@ -4637,6 +4640,30 @@ html[data-theme-mode="material"] .unified-topbar .navbar {
     background: transparent !important;
     border-bottom: none !important;
     width: 100%;
+}
+
+/* Force navbar content visibility in unified-topbar */
+.unified-topbar .navbar,
+.unified-topbar .navbar .navbar-collapse,
+.unified-topbar .navbar .navbar-nav,
+.unified-topbar .navbar .search-bar,
+.unified-topbar .navbar form,
+.unified-topbar .navbar .navbar-brand {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.unified-topbar .search-bar.hidden {
+    display: flex !important;
+}
+
+/* Ensure unified-topbar shows its content */
+.unified-topbar:empty::after {
+    content: "Loading navbar...";
+    color: #666;
+    font-style: italic;
+    padding: 10px;
 }
 
 .unified-topbar .navbar .container,
