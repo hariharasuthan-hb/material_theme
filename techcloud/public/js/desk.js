@@ -40,69 +40,44 @@
 	}
 
 	function ensureSidebarLogo() {
-		// Always keep exactly ONE Techcloud logo, on the primary visible sidebar.
+		// Target ONLY outer side-section containers; never attach logo directly inside .desk-sidebar.
 
-		// 1. Find the primary sidebar container.
-		// For list views like the snippet you pasted, this is:
-		//   .col-lg-2.layout-side-section .list-sidebar
-		// Fall back to any .list-sidebar / .desk-sidebar / .standard-sidebar.
-		const container =
-			document.querySelector(".col-lg-2.layout-side-section .list-sidebar") ||
-			document.querySelector(".list-sidebar") ||
-			document.querySelector(".desk-sidebar") ||
-			document.querySelector(".standard-sidebar");
+		// First, remove any stray logos that ended up inside the desk sidebar menu itself.
+		Array.from(
+			document.querySelectorAll(
+				".desk-sidebar.list-unstyled.sidebar-menu .techcloud-sidebar-logo"
+			)
+		).forEach((el) => {
+			if (el.parentElement) el.parentElement.removeChild(el);
+		});
 
-		if (!container) {
-			// No sidebar rendered yet; nothing to do.
-			return false;
-		}
+		const sidebars = document.querySelectorAll(".layout-side-section, .standard-sidebar");
 
-		// 2. Remove skip-link button inside this container
-		const skipLink = container.querySelector("button.sr-only.sr-only-focusable");
-		if (skipLink && skipLink.parentElement) {
-			skipLink.parentElement.removeChild(skipLink);
-		}
-
-		// 3. If multiple logos exist (from previous layouts), keep only one
-		const allLogos = Array.from(document.querySelectorAll(".techcloud-sidebar-logo"));
-		let logo = allLogos[0] || null;
-
-		if (allLogos.length > 1) {
-			allLogos.slice(1).forEach((extra) => {
-				if (extra.parentElement) extra.parentElement.removeChild(extra);
-			});
-		}
-
-		// 4. If a logo exists but is in the wrong container, move it
-		if (logo && logo.parentElement !== container) {
-			if (logo.parentElement) logo.parentElement.removeChild(logo);
-			container.insertBefore(logo, container.firstChild || null);
-		}
-
-		// 5. If no logo exists at all, create one
-		if (!logo) {
-			logo = document.createElement("a");
+		sidebars.forEach((sidebar) => {
+			if (!sidebar) return;
+	
+			const style = window.getComputedStyle(sidebar);
+			if (style.display === "none" || style.visibility === "hidden") return;
+	
+			// ✅ Prevent duplicate logo
+			if (sidebar.querySelector(".techcloud-sidebar-logo")) return;
+	
+			const logo = document.createElement("a");
 			logo.className = "navbar-brand navbar-home techcloud-sidebar-logo";
 			logo.href = "/app";
-
-			const logoImg = document.createElement("img");
-			logoImg.className = "app-logo";
-			logoImg.src =
+	
+			const img = document.createElement("img");
+			img.className = "app-logo";
+			img.src =
 				(window.frappe && frappe.boot && frappe.boot.app_logo_url) ||
 				"/assets/erpnext/images/erpnext-logo.svg";
-			logoImg.alt = "App Logo";
-			logo.appendChild(logoImg);
-
-			container.insertBefore(logo, container.firstChild || null);
-		}
-
-		// 6. Ensure the logo is visible
-		logo.style.display = "block";
-		logo.style.visibility = "visible";
-		logo.style.opacity = "1";
-
-		return true;
+			img.alt = "App Logo";
+	
+			logo.appendChild(img);
+			sidebar.insertBefore(logo, sidebar.firstChild);
+		});
 	}
+	
 
 	function applyUnifiedHeader() {
 		if (!document.body) return;
@@ -158,7 +133,6 @@
 
 		bindThemeToggle(wrapper);
 		initDropdowns(wrapper);
-		ensureSidebarLogo();
 		cleanupUnwantedLayout();
 		initializeSearch();
 	}
@@ -215,7 +189,6 @@
 		applyTimer = setTimeout(() => {
 			requestAnimationFrame(() => {
 				applyUnifiedHeader();
-				ensureSidebarLogo();
 			});
 		}, 120);
 	}
@@ -298,17 +271,26 @@
 
 	if (window.frappe && frappe.router && frappe.router.on) {
 		frappe.router.on("change", () => {
-			setTimeout(scheduleApply, 50);
+			setTimeout(() => {
+				scheduleApply();
+				ensureSidebarLogo();
+			}, 80);
 		});
 	} else if (window.jQuery) {
 		$(document).on("page-change", () => {
-			setTimeout(scheduleApply, 50);
+			setTimeout(() => {
+				scheduleApply();
+				ensureSidebarLogo();
+			}, 80);
 		});
 	}
 
 	if (window.jQuery) {
 		$(document).on("page-render", () => {
-			setTimeout(scheduleApply, 50);
+			setTimeout(() => {
+				scheduleApply();
+				ensureSidebarLogo();
+			}, 80);
 		});
 	}
 
@@ -320,14 +302,9 @@
 		frappe.ready(() => {
 			// Ensure unified header + sidebar logo after Frappe boot
 			scheduleApply();
+			ensureSidebarLogo();
 			// Ensure search is initialized after frappe boot
 			setTimeout(initializeSearch, 100);
 		});
 	}
-
-	// Periodic check to ensure sidebar logo is always present (catches edge cases)
-	setInterval(() => {
-		// Re-ensure logo on whatever sidebar is currently rendered
-		ensureSidebarLogo();
-	}, 1000);
 })();
