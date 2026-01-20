@@ -4540,10 +4540,11 @@ html[data-theme-mode="material"] .col.layout-main-section-wrapper {
 }
 
 html[data-theme="material"] .navbar,
+html[data-theme="material"] .navbar,
 html[data-theme-mode="material"] .navbar {
-  height: 78px;
-  background: var(--navbar-bg);
-  border-bottom: 1px solid var(--border-color);
+  height: 60px;
+  /* background: var(--navbar-bg); */
+  /* border-bottom: 1px solid var(--border-color); */
   padding: 0;
 }
 
@@ -4552,14 +4553,46 @@ html[data-theme-mode="material"] .navbar {
    (Top utility bar + page title bar)
    ================================ */
 
-/* ===== UNIFIED HEADER CLARITY FIX ===== */
-.unified-header {
-  position: sticky;
-  top: 0;
-  z-index: 1100;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+ .unified-header, html[data-theme="material"] .unified-header, html[data-theme-mode="material"] .unified-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: var(--bg-color, #fff);
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.unified-topbar, html[data-theme="material"] .unified-topbar, html[data-theme-mode="material"] .unified-topbar {
+    height: 63px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color, #fff);
+    border-bottom: 1px solid var(--border-color, #f1f3f5);
+    /* margin-bottom: 1%; */
+    
+}
+
+.unified-pagebar,
+html[data-theme="material"] .unified-pagebar,
+html[data-theme-mode="material"] .unified-pagebar {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove sticky-header-container spacing */
+.unified-topbar .sticky-header-container,
+html[data-theme="material"] .unified-topbar .sticky-header-container,
+html[data-theme-mode="material"] .unified-topbar .sticky-header-container {
+  display: none;
+}
+
+.unified-topbar .header-content,
+html[data-theme="material"] .unified-topbar .header-content,
+html[data-theme-mode="material"] .unified-topbar .header-content {
+  display: none;
 }
 
 .unified-header * {
@@ -4576,13 +4609,15 @@ html[data-theme-mode="material"] .navbar {
 /* ---------- TOP BAR ---------- */
 
 /* Top utility bar */
-.unified-topbar {
+.unified-topbar,
+html[data-theme="material"] .unified-topbar,
+html[data-theme-mode="material"] .unified-topbar {
   height: 48px;
   flex-shrink: 0; /* prevents compression */
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border-bottom: 1px solid #f1f3f5;
+  background-color: var(--bg-color, #fff);
+  border-bottom: 1px solid var(--border-color, #f1f3f5);
 }
 
 .unified-topbar .navbar,
@@ -4593,6 +4628,15 @@ html[data-theme-mode="material"] .unified-topbar .navbar {
   padding: 0 !important;
   background: transparent !important;
   border-bottom: none !important;
+}
+
+.unified-topbar .navbar, html[data-theme="material"] .unified-topbar .navbar, html[data-theme-mode="material"] .unified-topbar .navbar {
+    /* height: 55px !important; */
+    /* min-height: 63px !important; */
+    /* padding: 0 !important; */
+    background: transparent !important;
+    border-bottom: none !important;
+    width: 100%;
 }
 
 .unified-topbar .navbar .container,
@@ -4835,12 +4879,22 @@ html[data-theme-mode="material"] .navbar {
 .unified-topbar .search-bar input,
 html[data-theme="material"] .unified-topbar .search-bar input,
 html[data-theme-mode="material"] .unified-topbar .search-bar input {
+  width: 100%;
   height: 32px;
   border-radius: 999px;
-  padding-left: 36px;
-  font-size: 13px;
-  background: var(--control-bg, #f3f4f6);
-  border: none;
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-color, #333);
+}
+
+.unified-topbar .search-bar input:focus,
+html[data-theme="material"] .unified-topbar .search-bar input:focus,
+html[data-theme-mode="material"] .unified-topbar .search-bar input:focus {
+  border-color: var(--primary, #2563eb);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+  outline: none;
 }
 
 /* Search icon positioning */
@@ -4855,12 +4909,20 @@ html[data-theme-mode="material"] .unified-topbar .navbar {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
-.unified-topbar .navbar-nav .nav-link {
+.unified-topbar .navbar-nav .nav-link,
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
   padding: 0 10px;
-  color: #6b7280;
+  color: var(--text-color, #333);
+  font-size: 0.875rem;
+  text-decoration: none;
 }
 
-.unified-topbar .navbar-nav .nav-link:hover {
+.unified-topbar .navbar-nav .nav-link:hover,
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link:hover,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link:hover {
   color: var(--primary, #2563eb);
 }
 
@@ -4880,7 +4942,15 @@ html[data-theme-mode="material"] #navbar-breadcrumbs {
 html[data-theme="material"] #navbar-breadcrumbs a,
 html[data-theme-mode="material"] #navbar-breadcrumbs a {
   font-size: 12px;
-  color: #6b7280;
+  font-weight: 500;
+  color: var(--text-muted, #6b7280);
+  text-decoration: none;
+}
+
+#navbar-breadcrumbs a:hover,
+html[data-theme="material"] #navbar-breadcrumbs a:hover,
+html[data-theme-mode="material"] #navbar-breadcrumbs a:hover {
+  color: var(--primary, #2563eb);
 }
 
 /* ==============================
@@ -4890,72 +4960,151 @@ html[data-theme-mode="material"] #navbar-breadcrumbs a {
 /* ---------- PAGE BAR ---------- */
 
 /* Page bar must be flexible */
-.unified-pagebar {
+.unified-pagebar,
+html[data-theme="material"] .unified-pagebar,
+html[data-theme-mode="material"] .unified-pagebar {
   min-height: 44px;
   height: auto;
   display: flex;
   align-items: center;
-  background: #f9fafb;
-  border-top: 1px solid #eef0f2;
+  background-color: var(--fg-color, #fafafa);
+  border-bottom: 1px solid var(--border-color, #eee);
+  border-top: 1px solid var(--border-color, #eef0f2);
+  margin-top: 2% !important;
 }
 
 /* ===== REMOVE EXTRA HEADER SPACE ===== */
-/* Page-head must be allowed to grow */
+/* Page-head compact height */
 .unified-pagebar .page-head,
 html[data-theme="material"] .unified-pagebar .page-head,
 html[data-theme-mode="material"] .unified-pagebar .page-head {
-  padding: 6px 16px !important;
-  min-height: unset !important;
-  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
   background: transparent;
   margin: 0;
   box-shadow: none !important;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: none !important;
 }
 
 /* Container should wrap */
 .unified-pagebar .page-head .container,
 html[data-theme="material"] .unified-pagebar .page-head .container,
 html[data-theme-mode="material"] .unified-pagebar .page-head .container {
-  padding: 0 16px;
+  padding: 0 16px !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
+  margin: 0;
 }
 
-/* Critical: allow wrapping */
+/* Critical: NO WRAP for compact layout */
 .page-head-content,
 html[data-theme="material"] .page-head-content,
 html[data-theme-mode="material"] .page-head-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap; /* ✅ THIS FIXES OVERLAP */
-  gap: 8px;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 12px;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+/* Row container alignment */
+.page-head-content .row,
+html[data-theme="material"] .page-head-content .row,
+html[data-theme-mode="material"] .page-head-content .row {
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+  margin: 0;
 }
 
 /* Title row compact */
 .page-title,
 html[data-theme="material"] .page-title,
 html[data-theme-mode="material"] .page-title {
-  padding: 4px 0 !important;
+  display: flex !important;
+  align-items: center !important;
   gap: 8px;
+  margin: 0;
+  padding: 0 !important;
 }
 
 /* Title */
 .unified-pagebar h3,
 .unified-pagebar .page-title h3,
+.unified-pagebar .title-text,
 html[data-theme="material"] .unified-pagebar h3,
 html[data-theme-mode="material"] .unified-pagebar h3,
 html[data-theme="material"] .unified-pagebar .page-title h3,
-html[data-theme-mode="material"] .unified-pagebar .page-title h3 {
-  font-size: 16px !important;
+html[data-theme-mode="material"] .unified-pagebar .page-title h3,
+html[data-theme="material"] .unified-pagebar .title-text,
+html[data-theme-mode="material"] .unified-pagebar .title-text {
+  font-size: 1rem !important;
   font-weight: 600 !important;
-  color: #111827 !important;
+  color: var(--text-color, #333) !important;
   margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+}
+
+.unified-pagebar .sub-heading,
+html[data-theme="material"] .unified-pagebar .sub-heading,
+html[data-theme-mode="material"] .unified-pagebar .sub-heading {
+  font-size: 0.875rem;
+  color: var(--text-muted, #888);
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle-btn,
+html[data-theme="material"] .sidebar-toggle-btn,
+html[data-theme-mode="material"] .sidebar-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 !important;
+  margin-right: 8px !important;
+  padding: 4px !important;
+  color: var(--text-color, #333);
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.title-area,
+html[data-theme="material"] .title-area,
+html[data-theme-mode="material"] .title-area {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px;
+  flex: 1;
+}
+
+.title-area .flex,
+html[data-theme="material"] .title-area .flex,
+html[data-theme-mode="material"] .title-area .flex {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px;
+}
+
+.title-area,
+html[data-theme="material"] .title-area,
+html[data-theme-mode="material"] .title-area {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Three-dot menu */
@@ -4969,10 +5118,37 @@ html[data-theme-mode="material"] .page-title .btn {
 .page-actions,
 html[data-theme="material"] .page-actions,
 html[data-theme-mode="material"] .page-actions {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Column container for page actions */
+.page-head-content .col.page-actions,
+.page-head-content .flex.col.page-actions,
+html[data-theme="material"] .page-head-content .col.page-actions,
+html[data-theme-mode="material"] .page-head-content .col.page-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix column alignment in page head */
+.page-head-content .col-md-4,
+.page-head-content .col-sm-6,
+.page-head-content .col-xs-7,
+html[data-theme="material"] .page-head-content .col-md-4,
+html[data-theme-mode="material"] .page-head-content .col-md-4 {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Prevent buttons from breaking layout */
@@ -5042,6 +5218,52 @@ html[data-theme-mode="material"] .vertical-bar {
   margin: 0 8px;
 }
 
+/* Avatar Frame */
+.avatar-frame,
+html[data-theme="material"] .avatar-frame,
+html[data-theme-mode="material"] .avatar-frame {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary, #0056b3);
+}
+
+/* Avatar Frame - prevent overlap */
+.avatar-frame,
+.avatar.avatar-medium .avatar-frame,
+html[data-theme="material"] .avatar-frame,
+html[data-theme-mode="material"] .avatar-frame,
+html[data-theme="material"] .avatar.avatar-medium .avatar-frame,
+html[data-theme-mode="material"] .avatar.avatar-medium .avatar-frame {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary, #0056b3);
+  flex-shrink: 0;
+}
+
+/* Ensure avatar doesn't overlap */
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link .avatar,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link .avatar {
+  margin: 0;
+  padding: 0;
+}
+
+html[data-theme="material"] .unified-topbar .navbar-nav .nav-link .avatar .avatar-frame,
+html[data-theme-mode="material"] .unified-topbar .navbar-nav .nav-link .avatar .avatar-frame {
+  margin: 0;
+}
+
 html[data-theme="material"] .avatar-medium,
 html[data-theme-mode="material"] .avatar-medium {
   width: 32px;
@@ -5101,6 +5323,30 @@ html[data-theme-mode="material"] .page-actions .btn {
   padding: 0 12px;
   font-size: 12.5px;
   border-radius: 6px;
+}
+
+/* ---------- DROPDOWNS (Unified Header) ---------- */
+html[data-theme="material"] .dropdown-menu,
+html[data-theme-mode="material"] .dropdown-menu {
+  min-width: 220px;
+  background: var(--bg-color, #fff);
+  border: 1px solid var(--border-color, #eee);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 0;
+}
+
+html[data-theme="material"] .dropdown-item,
+html[data-theme-mode="material"] .dropdown-item {
+  font-size: 0.875rem;
+  color: var(--text-color, #333);
+  padding: 0.5rem 1rem;
+}
+
+html[data-theme="material"] .dropdown-item:hover,
+html[data-theme-mode="material"] .dropdown-item:hover {
+  background-color: var(--bg-hover-color, #f7f7f7);
+  cursor: pointer;
 }
 
 /* Remove extra top padding so content starts immediately under unified header */

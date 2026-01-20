@@ -1,16 +1,30 @@
 /* ======================================================
-   UNIFIED HEADER – DASHBOARD STYLE
-   Clean • Professional • ERPNext-safe
+   UNIFIED HEADER – CLEAN & MINIMAL
+   Theme-Compatible (Light/Dark/Material)
+   ERPNext-safe
 ====================================================== */
 
-/* ===== UNIFIED HEADER CLARITY FIX ===== */
+/* ===== UNIFIED HEADER ===== */
 .unified-header {
 	position: sticky;
 	top: 0;
-	z-index: 1100;
-	background: #ffffff;
-	border-bottom: 1px solid #e5e7eb;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+	z-index: 1000;
+	width: 100%;
+	background-color: var(--bg-color, #fff);
+	border-bottom: 1px solid var(--border-color, #e5e7eb);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Ensure topbar stays above pagebar */
+.unified-topbar {
+	position: relative;
+	z-index: 2;
+}
+
+.unified-pagebar {
+	position: relative;
+	z-index: 1;
 }
 
 /* Remove unnecessary shadows */
@@ -41,26 +55,29 @@
 	margin: 0 !important;
 }
 
-/* ---------- TOP BAR ---------- */
+/* ---------- TOPBAR / NAVBAR ---------- */
 
-/* Top utility bar */
 .unified-topbar {
 	height: 48px;
-	flex-shrink: 0; /* prevents compression */
+	flex-shrink: 0;
 	display: flex;
 	align-items: center;
-	background: #ffffff;
-	border-bottom: 1px solid #f1f3f5;
+	background-color: var(--bg-color, #fff);
+	border-bottom: 1px solid var(--border-color, #f1f3f5);
 }
 
+.unified-topbar header.navbar,
 .unified-topbar .navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem;
 	height: 48px;
-	padding: 0;
 	background: transparent;
 	border-bottom: none;
 }
 
-/* 1. Make navbar full width */
+/* Make navbar full width */
 .unified-topbar .navbar > .container,
 .unified-topbar .navbar .container {
 	max-width: 100% !important;
@@ -70,9 +87,19 @@
 	gap: 16px;
 	height: 48px;
 	padding: 0 16px;
+	margin: 0 !important;
 }
 
-/* 2. Breadcrumbs stay LEFT */
+/* Remove sticky-header-container spacing */
+.unified-topbar .sticky-header-container {
+	display: none;
+}
+
+.unified-topbar .header-content {
+	display: none;
+}
+
+/* Breadcrumbs stay LEFT */
 #navbar-breadcrumbs {
 	display: flex;
 	gap: 10px;
@@ -82,52 +109,88 @@
 	flex: 0 0 auto;
 }
 
-/* Reduce visual clutter in breadcrumbs */
 #navbar-breadcrumbs a {
 	font-size: 12px;
-	color: #6b7280;
+	font-weight: 500;
+	color: var(--text-muted, #6b7280);
+	text-decoration: none;
 }
 
 #navbar-breadcrumbs a:hover {
-	color: var(--primary);
+	color: var(--primary, #2563eb);
 }
 
-/* 3. Navbar collapse becomes flex */
+/* Navbar collapse becomes flex */
 .unified-topbar .navbar-collapse {
 	display: flex !important;
 	align-items: center;
 	flex: 1;
 }
 
-/* 4. Search CENTERED */
+/* Search CENTERED */
 .unified-topbar .navbar-collapse > form {
 	flex: 1;
 	display: flex;
 	justify-content: center;
 }
 
-/* Search width control */
-.unified-topbar .search-bar {
+.unified-topbar .form-inline.fill-width {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+/* Search Bar */
+.input-group.search-bar {
+	position: relative;
+	width: 250px;
+	max-width: 100%;
+}
+
+.unified-topbar .input-group.search-bar {
 	width: 100%;
 	max-width: 420px;
 	background: var(--control-bg, #f3f4f6);
 	border-radius: 999px;
+	padding: 0;
 }
 
-.unified-topbar .search-bar input {
-	height: 32px;
-	border-radius: 999px;
-	padding-left: 36px;
-	font-size: 13px;
-	background: transparent;
-	border: none;
+.unified-topbar .input-group.search-bar .awesomplete {
+	width: 100%;
 }
 
+.input-group.search-bar input,
+.unified-topbar .search-bar input,
+.unified-topbar #navbar-search {
+	width: 100% !important;
+	height: 32px !important;
+	padding: 0 36px 0 36px !important;
+	border: none !important;
+	border-radius: 999px !important;
+	font-size: 0.875rem;
+	background: transparent !important;
+	color: var(--text-color, #333);
+}
+
+.unified-topbar .search-bar input:focus,
+.unified-topbar #navbar-search:focus {
+	border: none !important;
+	box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+	outline: none;
+}
+
+.input-group.search-bar .search-icon,
 .unified-topbar .search-icon {
+	position: absolute;
+	top: 50%;
 	left: 12px;
+	transform: translateY(-50%);
+	pointer-events: none;
+	color: var(--text-muted, #6b7280);
+	z-index: 1;
 }
 
-/* 5. Right menu HARD RIGHT */
+/* Right menu HARD RIGHT */
 .unified-topbar .navbar-collapse > .navbar-nav {
 	flex: 0 0 auto;
 	display: flex;
@@ -135,19 +198,55 @@
 	margin-left: auto !important;
 }
 
-/* 6. Spacing cleanup */
+.navbar-nav {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.navbar-nav li {
+	margin-left: 1rem;
+}
+
 .unified-topbar .navbar-nav > li {
 	margin-left: 10px;
+}
+
+.navbar-nav .nav-link,
+.unified-topbar .nav-link {
+	display: flex;
+	align-items: center;
+	color: var(--text-color, #333);
+	font-size: 0.875rem;
+	text-decoration: none;
+	padding: 0 10px;
+}
+
+.navbar-nav .nav-link:hover,
+.unified-topbar .nav-link:hover {
+	color: var(--primary, #2563eb);
+}
+
+.navbar-nav .nav-link svg,
+.unified-topbar .nav-link svg {
+	margin-left: 0.25rem;
+}
+
+.vertical-bar {
+	width: 1px;
+	height: 20px;
+	background: var(--border-color, #e5e7eb);
+	margin: 0 8px;
 }
 
 .unified-topbar .vertical-bar {
 	margin: 0 8px;
 }
 
-/* 7. Height & padding polish */
+/* Height & padding polish */
 .unified-topbar .navbar {
-	padding-top: 6px;
-	padding-bottom: 6px;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -172,90 +271,146 @@
 	}
 }
 
-.search-bar input:focus {
-	background: #fff;
-	border-color: var(--primary);
-	box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+/* ---------- DROPDOWNS ---------- */
+
+.dropdown-menu {
+	min-width: 220px;
+	background: var(--bg-color, #fff);
+	border: 1px solid var(--border-color, #eee);
+	border-radius: 4px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+	padding: 0.5rem 0;
 }
 
-/* Icons */
-.unified-topbar .nav-link {
-	padding: 0 10px;
-	color: #6b7280;
+.dropdown-item {
+	font-size: 0.875rem;
+	color: var(--text-color, #333);
+	padding: 0.5rem 1rem;
 }
 
-.unified-topbar .nav-link:hover {
-	color: var(--primary);
+.dropdown-item:hover {
+	background-color: var(--bg-hover-color, #f7f7f7);
+	cursor: pointer;
 }
 
-.vertical-bar {
-	width: 1px;
-	height: 20px;
-	background: #e5e7eb;
-	margin: 0 8px;
-}
+/* ---------- PAGEBAR ---------- */
 
-/* ==============================
-   FIX PAGE-HEAD OVERLAP
-============================== */
-
-/* ---------- PAGE BAR ---------- */
-
-/* Page bar must be flexible */
 .unified-pagebar {
+	background-color: var(--fg-color, #fafafa);
+	border-bottom: 1px solid var(--border-color, #eee);
 	min-height: 44px;
 	height: auto;
 	display: flex;
 	align-items: center;
-	background: #f9fafb;
-	border-top: 1px solid #eef0f2;
 }
 
-/* ===== REMOVE EXTRA HEADER SPACE ===== */
-/* Page-head must be allowed to grow */
 .unified-pagebar .page-head {
-	padding: 6px 16px !important;
-	min-height: unset !important;
-	height: auto !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	min-height: 44px !important;
+	height: 44px !important;
+	padding: 0 !important;
+	width: 100%;
 	background: transparent;
 	margin: 0;
 	box-shadow: none !important;
-	border-bottom: 1px solid #e5e7eb;
+	border-bottom: none !important;
 }
 
-/* Container should wrap */
 .unified-pagebar .page-head .container {
-	padding: 0 16px;
+	padding: 0 16px !important;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
-	display: flex;
-	align-items: center;
+	display: flex !important;
+	align-items: center !important;
+	height: 100%;
+	margin: 0;
 }
 
-/* Critical: allow wrapping */
+/* Critical: proper alignment - NO WRAP for compact layout */
 .page-head-content {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap; /* ✅ THIS FIXES OVERLAP */
-	gap: 8px;
-	margin-bottom: 0 !important;
-	padding-bottom: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	flex-wrap: nowrap !important;
+	gap: 12px;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100%;
 }
 
-/* Title row compact */
+/* Row container alignment */
+.page-head-content .row {
+	display: flex !important;
+	align-items: center !important;
+	width: 100%;
+	margin: 0;
+}
+
 .page-title {
-	padding: 4px 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+}
+
+.unified-pagebar .page-head .page-title {
+	padding: 0 !important;
 	gap: 8px;
 }
 
-/* Title */
+/* Sidebar toggle button */
+.sidebar-toggle-btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 0 !important;
+	margin-right: 8px !important;
+	padding: 4px !important;
+	color: var(--text-color, #333);
+	vertical-align: middle;
+	line-height: 1;
+}
+
+.title-area {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	gap: 8px;
+	flex: 1;
+}
+
+.title-area .flex {
+	display: flex !important;
+	align-items: center !important;
+	gap: 8px;
+}
+
+.title-text,
 .unified-pagebar h3,
 .unified-pagebar .page-title h3 {
-	font-size: 16px;
-	font-weight: 600;
-	color: #111827;
-	margin: 0;
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+	color: var(--text-color, #333) !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1.2 !important;
+	vertical-align: middle;
+}
+
+.sub-heading {
+	font-size: 0.875rem;
+	color: var(--text-muted, #888);
+}
+
+.unified-pagebar .sub-heading {
+	font-size: 0.875rem;
+	color: var(--text-muted, #888);
 }
 
 /* Three-dot menu */
@@ -265,53 +420,170 @@
 
 /* ---------- ACTION BUTTONS ---------- */
 
-/* Right side buttons */
 .page-actions {
-	display: flex;
-	align-items: center;
+	display: flex !important;
+	align-items: center !important;
 	gap: 8px;
-	flex-wrap: wrap; /* ✅ allows buttons to move down */
+	flex-wrap: nowrap;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
-/* Prevent buttons from breaking layout */
 .page-actions > * {
 	white-space: nowrap;
+	margin: 0;
 }
 
-/* LIST VIEW dropdown */
+/* Column container for page actions */
+.page-head-content .col.page-actions,
+.page-head-content .flex.col.page-actions {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-end !important;
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 0;
+}
+
+.btn {
+	font-size: 0.875rem;
+	padding: 0.375rem 0.75rem;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+}
+
 .page-actions .btn {
-	height: 34px;
-	padding: 0 12px;
 	border-radius: 8px;
-	font-size: 13px;
+	height: 34px;
 }
 
-/* Primary action */
+.btn-primary {
+	background-color: var(--primary, #0056b3);
+	color: #fff;
+}
+
 .page-actions .btn-primary {
 	padding: 0 16px;
 	font-weight: 500;
 }
 
-/* Smooth hover clarity */
+.btn-primary:hover {
+	background-color: var(--primary-dark, #004494);
+}
+
 .page-actions .btn:hover {
 	transform: translateY(-0.5px);
 	transition: transform 0.15s ease;
 }
 
-/* ---------- DROPDOWNS ---------- */
+/* ---------- AVATAR ---------- */
 
-.dropdown-menu {
-	border-radius: 8px;
-	border: 1px solid #e5e7eb;
-	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+.avatar-frame,
+.avatar.avatar-medium .avatar-frame {
+	width: 32px !important;
+	height: 32px !important;
+	border-radius: 50% !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-weight: 600;
+	color: #fff;
+	background-color: var(--primary, #0056b3);
+	flex-shrink: 0;
 }
 
-.dropdown-item {
-	font-size: 13px;
-	padding: 8px 14px;
+/* Ensure avatar doesn't overlap */
+.unified-topbar .navbar-nav .nav-link .avatar {
+	margin: 0;
+	padding: 0;
+}
+
+.unified-topbar .navbar-nav .nav-link .avatar .avatar-frame {
+	margin: 0;
+}
+
+/* ---------- UTILITIES ---------- */
+
+.flex {
+	display: flex;
+}
+
+.fill-width {
+	width: 100%;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.indicator-pill {
+	display: inline-block;
+	min-width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #ff4d4f;
+	margin-left: 0.5rem;
+	flex-shrink: 0;
+}
+
+/* Fix column alignment in page head */
+.page-head-content .col-md-4,
+.page-head-content .col-sm-6,
+.page-head-content .col-xs-7 {
+	display: flex !important;
+	align-items: center !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.page-head-content .col.page-actions {
+	flex: 0 0 auto;
 }
 
 /* Prevent layout reflow on sticky headers */
 body {
 	overflow-anchor: none;
+}
+
+/* ---------- DARK MODE SUPPORT ---------- */
+
+[data-theme="dark"] .unified-header,
+[data-theme-mode="dark"] .unified-header {
+	background-color: var(--bg-color, #1a1a1a);
+	border-bottom-color: var(--border-color, #333);
+}
+
+[data-theme="dark"] .unified-topbar,
+[data-theme-mode="dark"] .unified-topbar {
+	background-color: var(--bg-color, #1a1a1a);
+	border-bottom-color: var(--border-color, #333);
+}
+
+[data-theme="dark"] .unified-pagebar,
+[data-theme-mode="dark"] .unified-pagebar {
+	background-color: var(--fg-color, #242424);
+	border-bottom-color: var(--border-color, #333);
+}
+
+[data-theme="dark"] .dropdown-menu,
+[data-theme-mode="dark"] .dropdown-menu {
+	background-color: var(--bg-color, #1a1a1a);
+	border-color: var(--border-color, #333);
+}
+
+[data-theme="dark"] .dropdown-item,
+[data-theme-mode="dark"] .dropdown-item {
+	color: var(--text-color, #e0e0e0);
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme-mode="dark"] .dropdown-item:hover {
+	background-color: var(--bg-hover-color, #2a2a2a);
 }

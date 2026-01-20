@@ -36,17 +36,94 @@
 		// Remove Frappe's accessibility skip buttons that get re-injected
 		document
 			.querySelectorAll('[aria-label="Navigate to main content"]')
-			.forEach((el) => el.parentElement && el.parentElement.removeChild(el));
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
+			});
+
+		// Remove logo from menu list (should only be in sidebar container, not menu)
+		document
+			.querySelectorAll(".desk-sidebar.list-unstyled.sidebar-menu .techcloud-sidebar-logo")
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
+			});
+
+		// Remove logo from overlay sidebar (should only be in main sidebar, not overlay)
+		document
+			.querySelectorAll(".list-sidebar.overlay-sidebar .techcloud-sidebar-logo")
+			.forEach((el) => {
+				if (el.parentElement) {
+					el.parentElement.removeChild(el);
+				} else {
+					el.remove();
+				}
+			});
+
+		// Remove duplicate page-head containers if any
+		const pageHeads = document.querySelectorAll(".page-head");
+		if (pageHeads.length > 1) {
+			// Keep only the first one, remove duplicates
+			for (let i = 1; i < pageHeads.length; i++) {
+				const duplicate = pageHeads[i];
+				if (duplicate.parentElement) {
+					duplicate.parentElement.removeChild(duplicate);
+				} else {
+					duplicate.remove();
+				}
+			}
+		}
+
+		// Ensure page-head comes after sticky-header-container (if not using unified-header)
+		const stickyHeader = document.querySelector(".sticky-header-container");
+		const pageHead = document.querySelector(".page-head");
+		
+		if (stickyHeader && pageHead && !document.querySelector(".unified-header")) {
+			// Only reorder if unified-header is not being used
+			if (stickyHeader.nextElementSibling !== pageHead && stickyHeader.parentNode) {
+				stickyHeader.parentNode.insertBefore(
+					pageHead,
+					stickyHeader.nextSibling
+				);
+			}
+		}
 	}
 
-	function ensureSidebarLogo() {
-		// Target ONLY actual sidebar containers
+	function ensureSidebarLogo(retryCount = 0) {
+		// Target ONLY actual sidebar containers (exclude menu lists and overlay sidebars)
+		// Exclude:
+		// - .desk-sidebar.list-unstyled.sidebar-menu (menu list, not container)
+		// - .list-sidebar.overlay-sidebar (overlay sidebar, not main sidebar)
 		const sidebars = document.querySelectorAll(
-			".layout-side-section, .desk-sidebar, .standard-sidebar"
+			".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
 		);
+
+		// If no sidebars found and we haven't retried too many times, retry after delay
+		if (sidebars.length === 0 && retryCount < 3) {
+			setTimeout(() => {
+				ensureSidebarLogo(retryCount + 1);
+			}, 200);
+			return;
+		}
 
 		sidebars.forEach((sidebar) => {
 			if (!sidebar) return;
+
+			// Skip if this is a menu list (not a container)
+			if (sidebar.classList.contains("list-unstyled") && sidebar.classList.contains("sidebar-menu")) {
+				return;
+			}
+
+			// Skip if this is an overlay sidebar (not main sidebar)
+			if (sidebar.classList.contains("overlay-sidebar")) {
+				return;
+			}
 
 			const style = window.getComputedStyle(sidebar);
 			if (style.display === "none" || style.visibility === "hidden") return;
@@ -189,29 +266,39 @@
 	}
 
 	function initializeSearch() {
-		// Initialize Frappe search functionality on the custom navbar search input
+		// Initialize Frappe search functionality on the navbar search input
+		// Frappe expects #navbar-search element to exist
+		const searchInput = document.querySelector('#navbar-search');
 		const searchBar = document.querySelector('.search-bar');
+		
+		if (!searchInput) {
+			// Search input doesn't exist yet, try again after a short delay
+			setTimeout(initializeSearch, 100);
+			return;
+		}
+
+		// Ensure search bar wrapper is visible (Frappe's setup_awesomebar does this too, but ensure it's done)
 		if (searchBar) {
-			// Ensure search bar is visible (remove hidden class if present)
 			searchBar.classList.remove('hidden');
 		}
 
 		// Wait for frappe boot to complete before initializing search
 		if (window.frappe && window.frappe.boot && window.frappe.search && window.frappe.search.AwesomeBar && window.frappe.ui && window.frappe.ui.toolbar) {
 			try {
-				// Check if search is already initialized
-				if (window.frappe.ui.toolbar.setup_awesomebar && !document.querySelector('.search-bar.awesome-bar-initialized')) {
-					// Mark search bar as initialized to prevent duplicate initialization
-					if (searchBar) {
-						searchBar.classList.add('awesome-bar-initialized');
-					}
+				// Check if search is already initialized (Frappe checks internally, but we add extra safety)
+				if (window.frappe.ui.toolbar.setup_awesomebar && !searchInput.dataset.awesomeBarInitialized) {
+					// Mark as initialized to prevent duplicate initialization
+					searchInput.dataset.awesomeBarInitialized = '1';
 
-					// Initialize the awesome bar
+					// Initialize the awesome bar (this will setup #navbar-search automatically)
 					window.frappe.ui.toolbar.setup_awesomebar();
 				}
 			} catch (e) {
 				console.warn('[Techcloud] Failed to initialize search:', e);
 			}
+		} else {
+			// Frappe not ready yet, retry after delay
+			setTimeout(initializeSearch, 100);
 		}
 	}
 
@@ -251,7 +338,7 @@
 							scheduleApply();
 							return;
 						}
-						// Watch for sidebar changes
+						// Watch for sidebar changes - ONLY sidebar-specific mutations
 						if (
 							node.matches(".layout-side-section") ||
 							node.querySelector(".layout-side-section") ||
@@ -263,6 +350,16 @@
 							setTimeout(() => {
 								ensureSidebarLogo();
 							}, 100);
+						}
+
+						// Watch for page-head or sticky-header changes
+						if (
+							node.matches(".page-head, .sticky-header-container") ||
+							node.querySelector(".page-head, .sticky-header-container")
+						) {
+							setTimeout(() => {
+								cleanupUnwantedLayout();
+							}, 50);
 						}
 					}
 				}
@@ -306,6 +403,7 @@
 			setTimeout(() => {
 				scheduleApply();
 				ensureSidebarLogo();
+				cleanupUnwantedLayout();
 			}, 100);
 		});
 	} else if (window.jQuery) {
@@ -314,6 +412,7 @@
 			setTimeout(() => {
 				scheduleApply();
 				ensureSidebarLogo();
+				cleanupUnwantedLayout();
 			}, 100);
 		});
 	}
@@ -327,8 +426,22 @@
 		frappe.ready(() => {
 			scheduleApply();
 			ensureSidebarLogo();
+			cleanupUnwantedLayout();
 			// Ensure search is initialized after frappe boot
 			setTimeout(initializeSearch, 100);
 		});
 	}
+
+	// NOTE: ensureSidebarLogo() is ONLY called from:
+	// 1. MutationObserver (sidebar-specific mutations) - lines 316, 341
+	// 2. Router change (frappe.router.on("change")) - line 370
+	// 3. Page-change fallback (if router not available) - line 379
+	// 4. Initial load (frappe.ready) - line 393
+	// 
+	// It is NOT called from:
+	// - applyUnifiedHeader() ✅
+	// - scheduleApply() ✅
+	// - setInterval ✅ (removed - no polling)
+	// - page-render ✅ (removed - only page-change as fallback)
+	// - frappe.after_ajax ✅
 })();
