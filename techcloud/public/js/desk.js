@@ -40,41 +40,36 @@
 	}
 
 	function ensureSidebarLogo() {
-		// Target ONLY outer side-section containers; never attach logo directly inside .desk-sidebar.
-
-		// First, remove any stray logos that ended up inside the desk sidebar menu itself.
-		Array.from(
-			document.querySelectorAll(
-				".desk-sidebar.list-unstyled.sidebar-menu .techcloud-sidebar-logo"
-			)
-		).forEach((el) => {
-			if (el.parentElement) el.parentElement.removeChild(el);
-		});
-
-		const sidebars = document.querySelectorAll(".layout-side-section, .standard-sidebar");
+		// Target ONLY actual sidebar containers
+		const sidebars = document.querySelectorAll(
+			".layout-side-section, .desk-sidebar, .standard-sidebar"
+		);
 
 		sidebars.forEach((sidebar) => {
 			if (!sidebar) return;
-	
+
 			const style = window.getComputedStyle(sidebar);
 			if (style.display === "none" || style.visibility === "hidden") return;
-	
-			// ✅ Prevent duplicate logo
-			if (sidebar.querySelector(".techcloud-sidebar-logo")) return;
-	
+
+			// ✅ Prevent duplicate logo (check both class and data-flag for extra safety)
+			if (sidebar.querySelector(".techcloud-sidebar-logo") || sidebar.dataset.techcloudLogo === "1") return;
+
 			const logo = document.createElement("a");
 			logo.className = "navbar-brand navbar-home techcloud-sidebar-logo";
 			logo.href = "/app";
-	
+
 			const img = document.createElement("img");
 			img.className = "app-logo";
 			img.src =
 				(window.frappe && frappe.boot && frappe.boot.app_logo_url) ||
 				"/assets/erpnext/images/erpnext-logo.svg";
 			img.alt = "App Logo";
-	
+
 			logo.appendChild(img);
 			sidebar.insertBefore(logo, sidebar.firstChild);
+			
+			// Mark sidebar as having logo (survives multiple renders better)
+			sidebar.dataset.techcloudLogo = "1";
 		});
 	}
 	
@@ -87,7 +82,7 @@
 		const mainSection = getLayoutMain(scope);
 		if (!mainSection) return;
 
-		// Use Frappe's existing sticky header container / sticky-top navbar
+		// Find navbar (may be inside sticky-top or standalone)
 		const stickyContainer =
 			scope.querySelector(".sticky-header-container") ||
 			scope.querySelector(".sticky-top") ||
@@ -104,7 +99,7 @@
 
 		if (!navbar && !pageHead) return;
 
-		// Create or reuse unified header shell
+		// Create or reuse unified header container
 		let unifiedHeader = mainSection.querySelector(".unified-header");
 		if (!unifiedHeader) {
 			unifiedHeader = document.createElement("div");
@@ -114,14 +109,15 @@
 
 		// ---------- TOP BAR (utility/nav) ----------
 		if (navbar) {
-			// Strip navbar-brand here; sidebar owns the logo
+			// Remove navbar-brand (sidebar owns the logo) - clean DOM, no CSS hacks
 			const navbarBrand = navbar.querySelector(
 				".navbar-brand:not(.techcloud-sidebar-logo)"
 			);
-			if (navbarBrand && navbarBrand.parentElement) {
-				navbarBrand.parentElement.removeChild(navbarBrand);
+			if (navbarBrand) {
+				navbarBrand.remove();
 			}
 
+			// Get or create unified-topbar
 			let topbar = unifiedHeader.querySelector(".unified-topbar");
 			if (!topbar) {
 				topbar = document.createElement("div");
@@ -129,14 +125,27 @@
 				unifiedHeader.appendChild(topbar);
 			}
 
+			// Extract navbar from sticky-top wrapper if needed
+			const stickyTop = navbar.closest(".sticky-top");
+			if (stickyTop && stickyTop !== topbar) {
+				// Remove navbar from sticky-top
+				if (navbar.parentElement) {
+					navbar.parentElement.removeChild(navbar);
+				}
+			}
+
+			// Move navbar into topbar if not already there
 			if (!topbar.contains(navbar)) {
-				if (navbar.parentElement) navbar.parentElement.removeChild(navbar);
+				if (navbar.parentElement) {
+					navbar.parentElement.removeChild(navbar);
+				}
 				topbar.appendChild(navbar);
 			}
 		}
 
 		// ---------- PAGE BAR (title/actions) ----------
 		if (pageHead) {
+			// Get or create unified-pagebar
 			let pagebar = unifiedHeader.querySelector(".unified-pagebar");
 			if (!pagebar) {
 				pagebar = document.createElement("div");
@@ -144,8 +153,11 @@
 				unifiedHeader.appendChild(pagebar);
 			}
 
+			// Move page-head into pagebar if not already there
 			if (!pagebar.contains(pageHead)) {
-				if (pageHead.parentElement) pageHead.parentElement.removeChild(pageHead);
+				if (pageHead.parentElement) {
+					pageHead.parentElement.removeChild(pageHead);
+				}
 				pagebar.appendChild(pageHead);
 			}
 		}
@@ -288,28 +300,21 @@
 
 	startObserver();
 
+	// Route change handler - ONLY place for sidebar logo on navigation
 	if (window.frappe && frappe.router && frappe.router.on) {
 		frappe.router.on("change", () => {
 			setTimeout(() => {
 				scheduleApply();
 				ensureSidebarLogo();
-			}, 80);
+			}, 100);
 		});
 	} else if (window.jQuery) {
+		// Fallback for older Frappe versions without router
 		$(document).on("page-change", () => {
 			setTimeout(() => {
 				scheduleApply();
 				ensureSidebarLogo();
-			}, 80);
-		});
-	}
-
-	if (window.jQuery) {
-		$(document).on("page-render", () => {
-			setTimeout(() => {
-				scheduleApply();
-				ensureSidebarLogo();
-			}, 80);
+			}, 100);
 		});
 	}
 
@@ -317,9 +322,9 @@
 		frappe.after_ajax(scheduleApply);
 	}
 
+	// Initial load - ensure sidebar logo after Frappe boot
 	if (window.frappe && frappe.ready) {
 		frappe.ready(() => {
-			// Ensure unified header + sidebar logo after Frappe boot
 			scheduleApply();
 			ensureSidebarLogo();
 			// Ensure search is initialized after frappe boot

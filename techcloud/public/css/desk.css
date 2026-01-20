@@ -1,24 +1,317 @@
-/* Unified header inside layout-main-section */
-.layout-main-section .unified-sticky-header,
-.layout-main-section.frappe-card .unified-sticky-header {
-	position: relative;
-	background: var(--bg-color, #fff);
-	border-bottom: 1px solid var(--border-color, #e5e7eb);
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-	margin: 0 0 12px 0;
-	z-index: 1;
+/* ======================================================
+   UNIFIED HEADER – DASHBOARD STYLE
+   Clean • Professional • ERPNext-safe
+====================================================== */
+
+/* ===== UNIFIED HEADER CLARITY FIX ===== */
+.unified-header {
+	position: sticky;
+	top: 0;
+	z-index: 1100;
+	background: #ffffff;
+	border-bottom: 1px solid #e5e7eb;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.layout-main-section .unified-sticky-header .page-head-content,
-.layout-main-section.frappe-card .unified-sticky-header .page-head-content {
+/* Remove unnecessary shadows */
+.unified-topbar,
+.unified-pagebar {
+	box-shadow: none;
+}
+
+/* Remove default spacing when unified header is present */
+.layout-main-section .unified-header,
+.layout-main-section.frappe-card .unified-header {
+	margin: 0 0 12px 0;
+}
+
+.layout-main-section .unified-header .page-head-content,
+.layout-main-section.frappe-card .unified-header .page-head-content {
 	position: static;
 }
 
-.unified-topbar .navbar, html[data-theme="material"] .unified-topbar .navbar, html[data-theme-mode="material"] .unified-topbar .navbar {
-    height: 48px !important;
-    min-height: 48px !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border-bottom: none !important;
-    width: 100%;
+/* Remove layout top padding pushing content down */
+.layout-main-section {
+	padding-top: 0 !important;
+}
+
+/* Remove ERPNext default margins */
+.page-head,
+.navbar {
+	margin: 0 !important;
+}
+
+/* ---------- TOP BAR ---------- */
+
+/* Top utility bar */
+.unified-topbar {
+	height: 48px;
+	flex-shrink: 0; /* prevents compression */
+	display: flex;
+	align-items: center;
+	background: #ffffff;
+	border-bottom: 1px solid #f1f3f5;
+}
+
+.unified-topbar .navbar {
+	height: 48px;
+	padding: 0;
+	background: transparent;
+	border-bottom: none;
+}
+
+/* 1. Make navbar full width */
+.unified-topbar .navbar > .container,
+.unified-topbar .navbar .container {
+	max-width: 100% !important;
+	width: 100% !important;
+	display: flex !important;
+	align-items: center;
+	gap: 16px;
+	height: 48px;
+	padding: 0 16px;
+}
+
+/* 2. Breadcrumbs stay LEFT */
+#navbar-breadcrumbs {
+	display: flex;
+	gap: 10px;
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+	margin-bottom: 0 !important;
+	flex: 0 0 auto;
+}
+
+/* Reduce visual clutter in breadcrumbs */
+#navbar-breadcrumbs a {
+	font-size: 12px;
+	color: #6b7280;
+}
+
+#navbar-breadcrumbs a:hover {
+	color: var(--primary);
+}
+
+/* 3. Navbar collapse becomes flex */
+.unified-topbar .navbar-collapse {
+	display: flex !important;
+	align-items: center;
+	flex: 1;
+}
+
+/* 4. Search CENTERED */
+.unified-topbar .navbar-collapse > form {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+/* Search width control */
+.unified-topbar .search-bar {
+	width: 100%;
+	max-width: 420px;
+	background: var(--control-bg, #f3f4f6);
+	border-radius: 999px;
+}
+
+.unified-topbar .search-bar input {
+	height: 32px;
+	border-radius: 999px;
+	padding-left: 36px;
+	font-size: 13px;
+	background: transparent;
+	border: none;
+}
+
+.unified-topbar .search-icon {
+	left: 12px;
+}
+
+/* 5. Right menu HARD RIGHT */
+.unified-topbar .navbar-collapse > .navbar-nav {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	margin-left: auto !important;
+}
+
+/* 6. Spacing cleanup */
+.unified-topbar .navbar-nav > li {
+	margin-left: 10px;
+}
+
+.unified-topbar .vertical-bar {
+	margin: 0 8px;
+}
+
+/* 7. Height & padding polish */
+.unified-topbar .navbar {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile fix */
+@media (max-width: 991px) {
+	.unified-topbar .navbar .container {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.unified-topbar .navbar-collapse {
+		flex-direction: column;
+	}
+
+	.unified-topbar .navbar-collapse > form {
+		justify-content: flex-start;
+		margin-bottom: 8px;
+	}
+
+	.unified-topbar .navbar-collapse > .navbar-nav {
+		margin-left: 0 !important;
+	}
+}
+
+.search-bar input:focus {
+	background: #fff;
+	border-color: var(--primary);
+	box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
+}
+
+/* Icons */
+.unified-topbar .nav-link {
+	padding: 0 10px;
+	color: #6b7280;
+}
+
+.unified-topbar .nav-link:hover {
+	color: var(--primary);
+}
+
+.vertical-bar {
+	width: 1px;
+	height: 20px;
+	background: #e5e7eb;
+	margin: 0 8px;
+}
+
+/* ==============================
+   FIX PAGE-HEAD OVERLAP
+============================== */
+
+/* ---------- PAGE BAR ---------- */
+
+/* Page bar must be flexible */
+.unified-pagebar {
+	min-height: 44px;
+	height: auto;
+	display: flex;
+	align-items: center;
+	background: #f9fafb;
+	border-top: 1px solid #eef0f2;
+}
+
+/* ===== REMOVE EXTRA HEADER SPACE ===== */
+/* Page-head must be allowed to grow */
+.unified-pagebar .page-head {
+	padding: 6px 16px !important;
+	min-height: unset !important;
+	height: auto !important;
+	background: transparent;
+	margin: 0;
+	box-shadow: none !important;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+/* Container should wrap */
+.unified-pagebar .page-head .container {
+	padding: 0 16px;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	display: flex;
+	align-items: center;
+}
+
+/* Critical: allow wrapping */
+.page-head-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap; /* ✅ THIS FIXES OVERLAP */
+	gap: 8px;
+	margin-bottom: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+/* Title row compact */
+.page-title {
+	padding: 4px 0 !important;
+	gap: 8px;
+}
+
+/* Title */
+.unified-pagebar h3,
+.unified-pagebar .page-title h3 {
+	font-size: 16px;
+	font-weight: 600;
+	color: #111827;
+	margin: 0;
+}
+
+/* Three-dot menu */
+.page-title .btn {
+	margin-left: 4px;
+}
+
+/* ---------- ACTION BUTTONS ---------- */
+
+/* Right side buttons */
+.page-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap; /* ✅ allows buttons to move down */
+}
+
+/* Prevent buttons from breaking layout */
+.page-actions > * {
+	white-space: nowrap;
+}
+
+/* LIST VIEW dropdown */
+.page-actions .btn {
+	height: 34px;
+	padding: 0 12px;
+	border-radius: 8px;
+	font-size: 13px;
+}
+
+/* Primary action */
+.page-actions .btn-primary {
+	padding: 0 16px;
+	font-weight: 500;
+}
+
+/* Smooth hover clarity */
+.page-actions .btn:hover {
+	transform: translateY(-0.5px);
+	transition: transform 0.15s ease;
+}
+
+/* ---------- DROPDOWNS ---------- */
+
+.dropdown-menu {
+	border-radius: 8px;
+	border: 1px solid #e5e7eb;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.dropdown-item {
+	font-size: 13px;
+	padding: 8px 14px;
+}
+
+/* Prevent layout reflow on sticky headers */
+body {
+	overflow-anchor: none;
 }
