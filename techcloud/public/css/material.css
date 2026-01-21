@@ -5103,15 +5103,51 @@
      display: inline-flex !important;
      align-items: center !important;
      justify-content: center !important;
-     background: transparent;
-     border: none;
-     cursor: pointer;
+     background: transparent !important;
+     border: none !important;
+     cursor: pointer !important;
      margin: 0 !important;
      margin-right: 8px !important;
      padding: 4px !important;
-     color: var(--text-color, #333);
+     color: var(--text-color, #333) !important;
      vertical-align: middle;
      line-height: 1;
+   }
+
+   /* Hide workspace settings dropdown button */
+   html[data-theme="material"] .setting-btn.dropdown-btn,
+   html[data-theme-mode="material"] .setting-btn.dropdown-btn,
+   html[data-theme="material"] .sidebar-item-control .setting-btn.dropdown-btn,
+   html[data-theme-mode="material"] .sidebar-item-control .setting-btn.dropdown-btn,
+   html[data-theme="material"] .standard-sidebar-item:hover .setting-btn.dropdown-btn,
+   html[data-theme-mode="material"] .standard-sidebar-item:hover .setting-btn.dropdown-btn,
+   html[data-theme="material"] .standard-sidebar-item.selected .setting-btn.dropdown-btn,
+   html[data-theme-mode="material"] .standard-sidebar-item.selected .setting-btn.dropdown-btn {
+     display: none !important;
+   }
+
+   /* Hide all drop-icon buttons in material theme */
+   html[data-theme="material"] .drop-icon,
+   html[data-theme-mode="material"] .drop-icon {
+     display: none !important;
+   }
+
+   /* Hide sidebar-item-control when parent has no children */
+   html[data-theme="material"] .sidebar-item-container:not(:has(.sidebar-child-item.nested-container:not(:empty))) .sidebar-item-control,
+   html[data-theme-mode="material"] .sidebar-item-container:not(:has(.sidebar-child-item.nested-container:not(:empty))) .sidebar-item-control {
+     display: none !important;
+   }
+
+   /* Show sidebar child item nested containers only when they have child items */
+   html[data-theme="material"] .sidebar-child-item.nested-container:not(:empty),
+   html[data-theme-mode="material"] .sidebar-child-item.nested-container:not(:empty) {
+     display: block !important;
+   }
+
+   /* Hide empty sidebar child item nested containers */
+   html[data-theme="material"] .sidebar-child-item.nested-container:empty,
+   html[data-theme-mode="material"] .sidebar-child-item.nested-container:empty {
+     display: none !important;
    }
    
    .title-area,
@@ -7060,7 +7096,7 @@
      color: #ffffff !important;
      font-size: 11px !important;
      font-weight: 600 !important;
-     padding: 4px 8px !important;
+     padding: 7px 11px 22px 15px !important;
      border-radius: 12px !important;
      margin-left: 8px !important;
      text-transform: uppercase !important;
