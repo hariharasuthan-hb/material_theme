@@ -209,9 +209,35 @@
 			unifiedHeader.className = "unified-header";
 			mainSection.prepend(unifiedHeader);
 		}
+		
+		// Cleanup: Remove any unified-topbar that might exist inside unified-header
+		// (navbar should be in standalone unified-topbar, not inside unified-header)
+		const topbarInHeader = unifiedHeader.querySelector(".unified-topbar");
+		if (topbarInHeader) {
+			console.log("TechCloud: Removing unified-topbar from inside unified-header (should be standalone)");
+			const navbarInTopbar = topbarInHeader.querySelector("header.navbar");
+			if (navbarInTopbar && navbarInTopbar.parentElement) {
+				navbarInTopbar.parentElement.removeChild(navbarInTopbar);
+			}
+			if (topbarInHeader.parentElement) {
+				topbarInHeader.parentElement.removeChild(topbarInHeader);
+			}
+		}
 
-		// ---------- TOP BAR (utility/nav) ----------
+		// ---------- TOP BAR (utility/nav) - BEFORE unified-header ----------
 		if (navbar) {
+			// Check if navbar is already in standalone unified-topbar - if so, skip moving
+			const standaloneTopbar = mainSection.querySelector(".unified-topbar:not(.unified-header .unified-topbar)");
+			if (standaloneTopbar && standaloneTopbar.contains(navbar)) {
+				console.log("TechCloud: Navbar already correctly positioned in standalone unified-topbar");
+				// Just ensure dropdowns are initialized
+				setTimeout(() => {
+					initDropdowns(navbar);
+					initializeSearch();
+				}, 100);
+				return; // Skip the rest of navbar processing
+			}
+			
 			// Remove navbar-brand (sidebar owns the logo) - clean DOM, no CSS hacks
 			const navbarBrand = navbar.querySelector(
 				".navbar-brand:not(.techcloud-sidebar-logo)"
@@ -220,24 +246,40 @@
 				navbarBrand.remove();
 			}
 
-			// Get or create unified-topbar
-			let topbar = unifiedHeader.querySelector(".unified-topbar");
-			if (!topbar) {
-				topbar = document.createElement("div");
-				topbar.className = "unified-topbar";
-				unifiedHeader.appendChild(topbar);
+			// Get or create unified-topbar OUTSIDE unified-header (before it)
+			let unifiedTopbar = mainSection.querySelector(".unified-topbar:not(.unified-header .unified-topbar)");
+			
+			// Check if navbar is in unified-header's topbar - if so, we need to move it out
+			const topbarInHeader = unifiedHeader.querySelector(".unified-topbar");
+			if (topbarInHeader && topbarInHeader.contains(navbar)) {
+				console.log("TechCloud: Navbar found inside unified-header, moving to standalone topbar");
+				// Extract navbar from topbar in header
+				if (navbar.parentElement) {
+					navbar.parentElement.removeChild(navbar);
+				}
+				// Remove the topbar from unified-header
+				if (topbarInHeader.parentElement) {
+					topbarInHeader.parentElement.removeChild(topbarInHeader);
+				}
 			}
 
-			// Move navbar into topbar if not already there
-			if (!topbar.contains(navbar)) {
-				console.log("TechCloud: Moving navbar to unified-topbar");
+			if (!unifiedTopbar) {
+				unifiedTopbar = document.createElement("div");
+				unifiedTopbar.className = "unified-topbar";
+				// Insert BEFORE unified-header
+				mainSection.insertBefore(unifiedTopbar, unifiedHeader);
+			}
+
+			// Move navbar into standalone unified-topbar (NOT inside unified-header)
+			if (!unifiedTopbar.contains(navbar)) {
+				console.log("TechCloud: Moving navbar to standalone unified-topbar (before unified-header)");
 				// Ensure navbar is removed from its current parent first
 				if (navbar.parentElement) {
 					navbar.parentElement.removeChild(navbar);
 				}
-				// Append navbar directly to topbar
-				topbar.appendChild(navbar);
-				console.log("TechCloud: Navbar moved successfully");
+				// Append navbar directly to standalone topbar
+				unifiedTopbar.appendChild(navbar);
+				console.log("TechCloud: Navbar moved successfully to standalone unified-topbar");
 
 				// Clean up empty sticky containers
 				if (stickyContainer && !stickyContainer.hasChildNodes()) {
@@ -247,7 +289,7 @@
 					}
 				}
 			} else {
-				console.log("TechCloud: Navbar already in unified-topbar");
+				console.log("TechCloud: Navbar already in standalone unified-topbar");
 			}
 
 			// Ensure navbar content is properly initialized
@@ -299,7 +341,24 @@
 	function initDropdowns(scope) {
 		if (!window.jQuery) return;
 		const root = (scope && scope.querySelector) ? scope : document;
-		$(root).find('[data-toggle="dropdown"]').dropdown();
+		
+		// Initialize all dropdowns in the scope
+		$(root).find('[data-toggle="dropdown"]').each(function() {
+			// Re-initialize dropdown to ensure it works after DOM moves
+			if ($(this).data('bs.dropdown')) {
+				// If already initialized, dispose and reinitialize
+				$(this).dropdown('dispose');
+			}
+			$(this).dropdown();
+		});
+		
+		// Also initialize any dropdown menus that might be dynamically added
+		$(root).find('.dropdown-menu').each(function() {
+			const toggle = $(this).siblings('[data-toggle="dropdown"]').first();
+			if (toggle.length && !toggle.data('bs.dropdown')) {
+				toggle.dropdown();
+			}
+		});
 	}
 
 	function initializeSearch() {
@@ -397,6 +456,20 @@
 							setTimeout(() => {
 								cleanupUnwantedLayout();
 							}, 50);
+						}
+						
+						// Watch for dynamically injected navbar elements or dropdown menus
+						if (
+							node.matches(".navbar, .navbar-nav, .dropdown-menu, [data-toggle='dropdown']") ||
+							node.querySelector(".navbar, .navbar-nav, .dropdown-menu, [data-toggle='dropdown']")
+						) {
+							setTimeout(() => {
+								// Re-initialize dropdowns when Frappe injects new elements
+								const navbar = document.querySelector("header.navbar");
+								if (navbar) {
+									initDropdowns(navbar);
+								}
+							}, 100);
 						}
 					}
 				}

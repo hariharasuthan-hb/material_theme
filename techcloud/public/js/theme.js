@@ -4,10 +4,18 @@
 	"use strict";
 
 	function patchThemeSwitcher() {
-		if (!window.frappe || !window.frappe.ui || !window.frappe.ui.ThemeSwitcher) return false;
+		if (!window.frappe || !window.frappe.ui || !window.frappe.ui.ThemeSwitcher) {
+			console.log("TechCloud: ThemeSwitcher not available yet");
+			return false;
+		}
 
 		// Avoid patching multiple times
-		if (window.frappe.ui.ThemeSwitcher.__techcloud_patched) return true;
+		if (window.frappe.ui.ThemeSwitcher.__techcloud_patched) {
+			console.log("TechCloud: ThemeSwitcher already patched");
+			return true;
+		}
+
+		console.log("TechCloud: Patching ThemeSwitcher");
 
 		const BaseThemeSwitcher = window.frappe.ui.ThemeSwitcher;
 
@@ -29,6 +37,7 @@
 			}
 
 			toggle_theme(theme) {
+				console.log("TechCloud: toggle_theme called with:", theme, "on page:", window.location.pathname);
 
 				// Handle techcloud theme specially - map "material" to "Material" for server call
 				let server_theme = theme;
@@ -68,10 +77,12 @@
 
 				frappe.show_alert(__("Theme Changed"), 3);
 
+				console.log("TechCloud: Calling server theme switch for:", server_theme);
 				// Call the techcloud override method
 				frappe.xcall("frappe.core.doctype.user.user.switch_theme", {
 					theme: server_theme.charAt(0).toUpperCase() + server_theme.slice(1), // Title case
 				}).then(() => {
+					console.log("TechCloud: Server theme switch successful");
 
 					// Additional re-evaluation after server response
 					setTimeout(() => {
@@ -198,6 +209,7 @@
 	}
 
 	function init() {
+		console.log("TechCloud: Initializing theme system on page:", window.location.pathname);
 		patchThemeSwitcher();
 		patchUserDeskThemeOptions();
 		try {
