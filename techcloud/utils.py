@@ -87,9 +87,52 @@ def patch_preload_function():
 	utils.add_preload_for_bundled_assets = patched_add_preload_for_bundled_assets
 
 
+def patch_app_context():
+	"""Monkey patch frappe.www.app.get_context to ensure dev_server is set correctly for Socket.IO"""
+	from frappe import www
+	import frappe.www.app as app_module
+	
+	# Only patch once
+	if hasattr(app_module.get_context, '_techcloud_patched'):
+		return
+	
+	original_get_context = app_module.get_context
+	
+	def patched_get_context(context):
+		# Call original function first
+		context = original_get_context(context)
+		
+		# Ensure dev_server is set correctly for Socket.IO
+		# Use 1 (integer) instead of True (boolean) for JavaScript compatibility
+		# In Jinja2, {{ True }} outputs "True" (string), but {{ 1 }} outputs 1 (number)
+		if context:
+			try:
+				# Check if we're in development mode
+				is_dev = (
+					frappe.conf.developer_mode or 
+					frappe.local.dev_server or
+					frappe.conf.get("socketio_port") is not None
+				)
+				# Always set dev_server to 1 in development to fix Socket.IO
+				# This ensures the client connects to port 9000 instead of 8000
+				# Use 1 instead of True for JavaScript compatibility
+				if is_dev or not context.get("dev_server"):
+					context["dev_server"] = 1  # Use integer 1, not boolean True
+			except:
+				# If checks fail, assume dev mode and set to 1
+				context["dev_server"] = 1  # Use integer 1, not boolean True
+		
+		return context
+	
+	# Mark as patched
+	patched_get_context._techcloud_patched = True
+	app_module.get_context = patched_get_context
+
+
 def before_request():
 	"""Ensure Material desk theme sets data-theme attribute correctly
-	Also patch add_preload_for_bundled_assets to filter preload assets"""
+	Also patch add_preload_for_bundled_assets to filter preload assets
+	Also patch app context to ensure dev_server is set for Socket.IO"""
 	# The app.html template already sets data-theme="{{ desk_theme.lower() }}"
 	# So if desk_theme is "Material", it becomes "material" automatically
 	# The JavaScript in material.js ensures it stays set even if Frappe's theme switcher tries to change it
@@ -97,16 +140,34 @@ def before_request():
 	
 	# Patch add_preload_for_bundled_assets to filter preload assets before adding to response
 	patch_preload_function()
+	
+	# Patch app context to ensure dev_server is set for Socket.IO
+	patch_app_context()
 
 
 def extend_bootinfo(bootinfo):
-	"""Normalize Techcloud desk_theme so app.html and JS use 'Material' consistently."""
+	"""Normalize Techcloud desk_theme so app.html and JS use 'Material' consistently.
+	Also ensure socketio_port is in boot info for Socket.IO to work correctly."""
 	try:
 		desk_theme = bootinfo.get("desk_theme") if isinstance(bootinfo, dict) else None
 		if isinstance(desk_theme, str) and desk_theme.lower() == "techcloud":
 			bootinfo["desk_theme"] = "Material"
 			if isinstance(bootinfo.get("user"), dict):
 				bootinfo["user"]["desk_theme"] = "Material"
+		
+		# Ensure socketio_port is in boot info for Socket.IO client
+		if "socketio_port" not in bootinfo:
+			socketio_port = frappe.conf.get("socketio_port")
+			if not socketio_port:
+				# Try to get from site config
+				try:
+					socketio_port = frappe.db.get_value("System Settings", "System Settings", "socketio_port")
+				except:
+					pass
+			if not socketio_port:
+				# Default to 9000 for development
+				socketio_port = 9000
+			bootinfo["socketio_port"] = socketio_port
 	except Exception:
 		# Silent fail: bootinfo normalization should never block boot
 		pass
