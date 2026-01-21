@@ -5138,6 +5138,16 @@
      display: none !important;
    }
 
+   /* Sidebar section spacing */
+   html[data-theme="material"] .desk-sidebar .standard-sidebar-section,
+   html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-section,
+   html[data-theme="material"] .layout-side-section .standard-sidebar-section,
+   html[data-theme-mode="material"] .layout-side-section .standard-sidebar-section {
+     margin-bottom: 8px !important;
+     margin-top: 4px !important;
+     padding-left: 28px;
+   }
+
    /* Show sidebar child item nested containers only when they have child items */
    html[data-theme="material"] .sidebar-child-item.nested-container:not(:empty),
    html[data-theme-mode="material"] .sidebar-child-item.nested-container:not(:empty) {
