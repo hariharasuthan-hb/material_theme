@@ -576,6 +576,7 @@ body {
 [data-theme-mode="dark"] .dropdown-menu {
 	background-color: var(--bg-color, #1a1a1a);
 	border-color: var(--border-color, #333);
+	z-index: 1000 !important;
 }
 
 [data-theme="dark"] .dropdown-item,
@@ -586,6 +587,11 @@ body {
 [data-theme="dark"] .dropdown-item:hover,
 [data-theme-mode="dark"] .dropdown-item:hover {
 	background-color: var(--bg-hover-color, #2a2a2a);
+}
+
+[data-theme="dark"] .dropdown-menu.show,
+[data-theme-mode="dark"] .dropdown-menu.show {
+	z-index: 1050 !important;
 }
 
 /* Safe navbar alignment */

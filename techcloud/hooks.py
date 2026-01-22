@@ -10,7 +10,7 @@ app_license = "mit"
 app_include_css = []
 app_include_js = [
     "/assets/techcloud/js/theme.js",
-    "/assets/techcloud/js/desk.js",
+    # desk.js is now loaded conditionally when TechCloud theme is active
 ]
 
 # include js, css files in header of web template
