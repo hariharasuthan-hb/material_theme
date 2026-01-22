@@ -377,6 +377,24 @@
 	line-height: 1;
 }
 
+/* Control sidebar toggle icon visibility */
+.sidebar-toggle-btn .sidebar-toggle-placeholder {
+	display: inline-block !important;
+}
+
+.sidebar-toggle-btn .sidebar-toggle-icon {
+	display: none !important;
+}
+
+/* When sidebar is collapsed, show the toggle icon and hide placeholder */
+body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder {
+	display: none !important;
+}
+
+body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon {
+	display: inline-block !important;
+}
+
 .title-area {
 	display: flex !important;
 	flex-direction: row !important;
@@ -592,6 +610,17 @@ body {
 [data-theme="dark"] .dropdown-menu.show,
 [data-theme-mode="dark"] .dropdown-menu.show {
 	z-index: 1050 !important;
+}
+
+/* Dark theme sidebar toggle button */
+[data-theme="dark"] .sidebar-toggle-btn,
+[data-theme-mode="dark"] .sidebar-toggle-btn {
+	color: var(--text-color, #e0e0e0);
+}
+
+[data-theme="dark"] .sidebar-toggle-btn:hover,
+[data-theme-mode="dark"] .sidebar-toggle-btn:hover {
+	background-color: var(--bg-hover-color, #2a2a2a);
 }
 
 /* Safe navbar alignment */
