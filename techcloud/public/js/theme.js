@@ -53,22 +53,31 @@
 
 				// Handle TechCloud theme asset injection/removal
 				if (theme === "material") {
+					console.log("TechCloud: Switching TO material theme - injecting assets");
 					// Inject TechCloud assets if not already present
 					this.injectTechCloudAssets();
 					document.documentElement.setAttribute("data-theme", "material");
 					document.documentElement.setAttribute("data-theme-mode", "material");
 				} else {
+					console.log("TechCloud: Switching FROM material theme to:", theme, "- removing assets");
 					// Remove TechCloud assets for other themes
 					this.removeTechCloudAssets();
+					// Clear data-theme for non-TechCloud themes
+					document.documentElement.removeAttribute("data-theme");
 					if (theme === "dark") {
 						document.documentElement.setAttribute("data-theme-mode", "dark");
+						console.log("TechCloud: Set data-theme-mode to dark, cleared data-theme");
 					} else if (theme === "automatic") {
 						document.documentElement.setAttribute("data-theme-mode", "automatic");
+						console.log("TechCloud: Set data-theme-mode to automatic, cleared data-theme");
 					} else {
 						// Light theme or any other theme
 						document.documentElement.setAttribute("data-theme-mode", theme.toLowerCase());
+						console.log("TechCloud: Set data-theme-mode to:", theme.toLowerCase(), ", cleared data-theme");
 					}
 				}
+
+				console.log("TechCloud: Final data-theme attributes - data-theme:", document.documentElement.getAttribute("data-theme"), "data-theme-mode:", document.documentElement.getAttribute("data-theme-mode"));
 
 				// Force immediate CSS re-evaluation before server call
 				document.documentElement.style.display = 'none';
@@ -116,17 +125,27 @@
 			}
 
 			injectTechCloudAssets() {
+				console.log("TechCloud: Injecting TechCloud assets");
 				const appName = "techcloud"; // Dynamic app name detection would be better but hardcode for now
 
-				// Inject CSS if not already present
-				const cssPath = `/assets/${appName}/css/material.css`;
-				if (!document.querySelector(`link[href="${cssPath}"]`)) {
-					const link = document.createElement('link');
-					link.rel = 'stylesheet';
-					link.type = 'text/css';
-					link.href = cssPath;
-					document.head.appendChild(link);
-				}
+				// Inject CSS files if not already present
+				const cssFiles = [
+					`/assets/${appName}/css/material.css`,
+					`/assets/${appName}/css/desk.css`
+				];
+
+				cssFiles.forEach(cssPath => {
+					if (!document.querySelector(`link[href="${cssPath}"]`)) {
+						console.log("TechCloud: Injecting CSS:", cssPath);
+						const link = document.createElement('link');
+						link.rel = 'stylesheet';
+						link.type = 'text/css';
+						link.href = cssPath;
+						document.head.appendChild(link);
+					} else {
+						console.log("TechCloud: CSS already exists:", cssPath);
+					}
+				});
 
 				// Inject JavaScript files if not already present
 				const jsFiles = [
@@ -150,13 +169,24 @@
 			}
 
 			removeTechCloudAssets() {
+				console.log("TechCloud: Removing TechCloud assets");
 				const appName = "techcloud";
 
-				// Remove CSS
-				const cssLink = document.querySelector(`link[href="/assets/${appName}/css/material.css"]`);
-				if (cssLink) {
-					cssLink.remove();
-				}
+				// Remove CSS files
+				const cssFiles = [
+					`/assets/${appName}/css/material.css`,
+					`/assets/${appName}/css/desk.css`
+				];
+
+				cssFiles.forEach(cssPath => {
+					const cssLink = document.querySelector(`link[href="${cssPath}"]`);
+					if (cssLink) {
+						console.log("TechCloud: Removing CSS:", cssPath);
+						cssLink.remove();
+					} else {
+						console.log("TechCloud: CSS not found:", cssPath);
+					}
+				});
 
 				// Remove JavaScript files
 				const jsFiles = [

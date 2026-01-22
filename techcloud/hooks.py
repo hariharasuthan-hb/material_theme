@@ -6,10 +6,8 @@ app_email = "info@itrostack.com"
 app_license = "mit"
 
 # include js, css files in header of desk.html
-app_include_css = [
-    "/assets/techcloud/css/material.css",
-    "/assets/techcloud/css/desk.css",
-]
+# CSS and JS files are loaded conditionally via theme.js to avoid loading on non-TechCloud themes
+app_include_css = []
 app_include_js = [
     "/assets/techcloud/js/theme.js",
     "/assets/techcloud/js/desk.js",
