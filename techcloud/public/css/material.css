@@ -4566,7 +4566,6 @@
        border-bottom: 1px solid var(--border-color, #e5e7eb);
        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-       margin-top: 32px;
    }
    
    .unified-topbar, html[data-theme="material"] .unified-topbar, html[data-theme-mode="material"] .unified-topbar {
@@ -5002,7 +5001,7 @@
      background-color: var(--fg-color, #fafafa);
      border-bottom: 1px solid var(--border-color, #eee);
      border-top: 1px solid var(--border-color, #eef0f2);
-     margin-top: 2% !important;
+     margin-top: 0.3% !important;
    }
    
    /* ===== REMOVE EXTRA HEADER SPACE ===== */
@@ -5709,7 +5708,7 @@
    html[data-theme-mode="material"] .layout-side-section .list-sidebar {
      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%) !important;
      border-left: 2px solid #e5e7eb !important;
-     padding: 0 !important;
+     padding: 0px 0px 0px 23px !important;
      box-shadow: -4px 0 16px rgba(0, 0, 0, 0.06) !important;
      position: relative !important;
      overflow-y: auto !important; /* Single scrollbar - only on list-sidebar */
@@ -12441,6 +12440,14 @@
        border-radius: 8px !important;
        border: 1px solid #e5e7eb !important;
    }
+
+   /* Hide saved-filters when empty or no filters */
+   [data-theme="material"] .saved-filters:empty,
+   [data-theme-mode="material"] .saved-filters:empty,
+   [data-theme="material"] .saved-filters:not(:has(*)),
+   [data-theme-mode="material"] .saved-filters:not(:has(*)) {
+       display: none !important;
+   }
    
    /* ============================================
       FORM LAYOUT - SINGLE SCROLL CONTAINER
@@ -15695,4 +15702,105 @@
        font-weight: 500 !important;
        /* box-shadow: var(--md-shadow-2) !important; */
    }
+
+/* ============================= */
+/* CLEAN DASHBOARD WIDGET HEADER */
+/* ============================= */
+
+/* Force application even on AJAX-loaded content */
+.dashboard-widget-box .widget-head,
+body .dashboard-widget-box .widget-head,
+html body .dashboard-widget-box .widget-head {
+	display: flex !important;
+	align-items: flex-start !important; /* Align to top so controls align with title */
+	justify-content: space-between !important;
+	padding: 12px 16px !important;
+	border-bottom: 1px solid #e5e7eb !important;
+	background: #f9fafb !important;
+}
+
+/* LEFT SIDE */
+.dashboard-widget-box .widget-label {
+	display: flex;
+	flex-direction: column;
+	flex: 1; /* Take available space */
+}
+
+/* TITLE */
+.dashboard-widget-box .widget-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.4;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	margin: 0;
+}
+
+/* SUBTITLE */
+.dashboard-widget-box .widget-subtitle {
+	font-size: 12px;
+	color: #64748b;
+	margin-top: 2px;
+	margin-bottom: 0;
+}
+
+/* TIMESTAMP */
+.dashboard-widget-box .frappe-timestamp {
+	font-weight: 500;
+	color: #475569;
+}
+
+/* RIGHT SIDE (SEARCH + MENU) */
+.dashboard-widget-box .widget-control {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	align-self: flex-start; /* Align to top with title */
+}
+
+/* ICON BUTTONS */
+.dashboard-widget-box .widget-control .filter-chart,
+.dashboard-widget-box .widget-control .chart-menu {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 0;
+}
+
+/* HOVER */
+.dashboard-widget-box .widget-control .filter-chart:hover,
+.dashboard-widget-box .widget-control .chart-menu:hover {
+	background: #f1f5f9;
+}
+
+/* ICON SIZE */
+.dashboard-widget-box .widget-control .icon {
+	width: 14px;
+	height: 14px;
+	fill: #475569;
+}
+
+/* DROPDOWN */
+.dashboard-widget-box .dropdown-menu {
+	border-radius: 10px;
+	border: 1px solid #e5e7eb;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+	padding: 6px;
+}
+
+.dashboard-widget-box .dropdown-item {
+	font-size: 13px;
+	padding: 6px 10px;
+	border-radius: 6px;
+}
+
+.dashboard-widget-box .dropdown-item:hover {
+	background: #f1f5f9;
+}
    

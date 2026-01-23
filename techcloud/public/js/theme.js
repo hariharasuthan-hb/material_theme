@@ -49,7 +49,7 @@
 
 			show() {
 				console.log("TechCloud: show() method called");
-				// Ensure themes are loaded before showing
+				// Ensure themes are loaded before showming
 				return this.fetch_themes().then(() => {
 					console.log("TechCloud: Calling parent show method");
 					// Call parent show method
@@ -295,16 +295,287 @@
 		// No extra logging here by request
 	}
 
+	// Global CSS injection for AJAX-loaded content
+	function injectGlobalCSS() {
+		if (document.querySelector('#techcloud-global-styles')) return;
+
+		const globalStyles = document.createElement('style');
+		globalStyles.id = 'techcloud-global-styles';
+		globalStyles.textContent = `
+			/* ============================= */
+			/* COMPREHENSIVE MATERIAL THEME CSS */
+			/* ============================= */
+
+			/* Core Theme Attributes */
+			html[data-theme="material"],
+			html[data-theme-mode="material"] {
+				--primary-color: #1976d2;
+				--text-color: #1e293b;
+				--bg-color: #ffffff;
+				--border-color: #e2e8f0;
+			}
+
+			/* Icon Colors - Global */
+			html[data-theme="material"] .icon,
+			html[data-theme-mode="material"] .icon,
+			html[data-theme="material"] .es-icon,
+			html[data-theme-mode="material"] .es-icon,
+			html[data-theme="material"] .techcloud-icon,
+			html[data-theme-mode="material"] .techcloud-icon {
+				fill: #475569 !important;
+			}
+
+			/* Sidebar Elements */
+			html[data-theme="material"] .sidebar-toggle-btn,
+			html[data-theme-mode="material"] .sidebar-toggle-btn {
+				background: transparent !important;
+				border: none !important;
+				color: #475569 !important;
+			}
+
+			html[data-theme="material"] .standard-sidebar-item,
+			html[data-theme-mode="material"] .standard-sidebar-item {
+				border-radius: 8px !important;
+				margin: 2px 8px !important;
+				padding: 8px 12px !important;
+			}
+
+			html[data-theme="material"] .standard-sidebar-item.selected,
+			html[data-theme-mode="material"] .standard-sidebar-item.selected {
+				background: rgba(25, 118, 210, 0.1) !important;
+				color: #1976d2 !important;
+			}
+
+			/* Button Styles */
+			html[data-theme="material"] .btn,
+			html[data-theme-mode="material"] .btn {
+				border-radius: 8px !important;
+				font-weight: 500 !important;
+				transition: all 0.2s ease !important;
+			}
+
+			html[data-theme="material"] .btn-primary,
+			html[data-theme-mode="material"] .btn-primary {
+				background: #1976d2 !important;
+				border-color: #1976d2 !important;
+			}
+
+			html[data-theme="material"] .btn-secondary,
+			html[data-theme-mode="material"] .btn-secondary {
+				background: #f1f5f9 !important;
+				border-color: #e2e8f0 !important;
+				color: #475569 !important;
+			}
+
+			/* Form Controls */
+			html[data-theme="material"] .form-control,
+			html[data-theme-mode="material"] .form-control {
+				border: 1px solid #e2e8f0 !important;
+				border-radius: 8px !important;
+				padding: 8px 12px !important;
+			}
+
+			html[data-theme="material"] .form-control:focus,
+			html[data-theme-mode="material"] .form-control:focus {
+				border-color: #1976d2 !important;
+				box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1) !important;
+			}
+
+			/* Dropdown Menus */
+			html[data-theme="material"] .dropdown-menu,
+			html[data-theme-mode="material"] .dropdown-menu {
+				border: 1px solid #e2e8f0 !important;
+				border-radius: 12px !important;
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+				padding: 6px !important;
+			}
+
+			html[data-theme="material"] .dropdown-item,
+			html[data-theme-mode="material"] .dropdown-item {
+				border-radius: 6px !important;
+				padding: 6px 10px !important;
+			}
+
+			/* Page Headers */
+			html[data-theme="material"] .page-head,
+			html[data-theme-mode="material"] .page-head {
+				border-bottom: 1px solid #e2e8f0 !important;
+				padding-bottom: 16px !important;
+				margin-bottom: 20px !important;
+			}
+
+			/* Cards and Widgets */
+			html[data-theme="material"] .frappe-card,
+			html[data-theme-mode="material"] .frappe-card {
+				border: 1px solid #e2e8f0 !important;
+				border-radius: 12px !important;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+			}
+
+			html[data-theme="material"] .widget,
+			html[data-theme-mode="material"] .widget {
+				border-radius: 12px !important;
+				border: 1px solid #e2e8f0 !important;
+				background: #ffffff !important;
+			}
+
+			/* Dashboard Widgets - Specific */
+			html[data-theme="material"] .dashboard-widget-box .widget-head,
+			html[data-theme-mode="material"] .dashboard-widget-box .widget-head {
+				display: flex !important;
+				align-items: flex-start !important;
+				justify-content: space-between !important;
+				padding: 12px 16px !important;
+				background: #f9fafb !important;
+				border-bottom: 1px solid #e5e7eb !important;
+			}
+
+			html[data-theme="material"] .dashboard-widget-box .widget-title,
+			html[data-theme-mode="material"] .dashboard-widget-box .widget-title {
+				font-size: 14px !important;
+				font-weight: 600 !important;
+				color: #0f172a !important;
+				text-transform: uppercase !important;
+				letter-spacing: 0.3px !important;
+			}
+
+			html[data-theme="material"] .dashboard-widget-box .widget-control .filter-chart,
+			html[data-theme="material"] .dashboard-widget-box .widget-control .chart-menu,
+			html[data-theme-mode="material"] .dashboard-widget-box .widget-control .filter-chart,
+			html[data-theme-mode="material"] .dashboard-widget-box .widget-control .chart-menu {
+				width: 32px !important;
+				height: 32px !important;
+				background: #ffffff !important;
+				border: 1px solid #e5e7eb !important;
+				border-radius: 8px !important;
+			}
+
+			/* Modal Styles */
+			html[data-theme="material"] .modal-content,
+			html[data-theme-mode="material"] .modal-content {
+				border-radius: 16px !important;
+				border: none !important;
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+			}
+
+			/* Navigation */
+			html[data-theme="material"] .navbar,
+			html[data-theme-mode="material"] .navbar {
+				background: #ffffff !important;
+				border-bottom: 1px solid #e2e8f0 !important;
+			}
+
+			/* List Items */
+			html[data-theme="material"] .list-row-container,
+			html[data-theme-mode="material"] .list-row-container {
+				border-bottom: 1px solid #f1f5f9 !important;
+			}
+
+			html[data-theme="material"] .list-row-container:hover,
+			html[data-theme-mode="material"] .list-row-container:hover {
+				background: #f8fafc !important;
+			}
+
+			/* Saved Filters */
+			html[data-theme="material"] .saved-filters:empty,
+			html[data-theme-mode="material"] .saved-filters:empty,
+			html[data-theme="material"] .saved-filters:not(:has(*)),
+			html[data-theme-mode="material"] .saved-filters:not(:has(*)) {
+				display: none !important;
+			}
+
+			html[data-theme="material"] .saved-filters,
+			html[data-theme-mode="material"] .saved-filters {
+				margin-top: 12px !important;
+				padding: 12px !important;
+				background: #f8fafc !important;
+				border-radius: 8px !important;
+				border: 1px solid #e5e7eb !important;
+			}
+
+			/* Global Box Sizing */
+			html[data-theme="material"] *,
+			html[data-theme-mode="material"] * {
+				box-sizing: border-box !important;
+			}
+
+			/* Loading States */
+			html[data-theme="material"].loading *,
+			html[data-theme-mode="material"].loading * {
+				pointer-events: none !important;
+			}
+		`;
+
+		document.head.appendChild(globalStyles);
+		console.log("TechCloud: Injected comprehensive global CSS for all Material theme classes");
+	}
+
 	// Try immediately, then retry for a few seconds (desk boot timing varies)
 	init();
+	injectGlobalCSS();
+
 	const t = setInterval(() => {
 		init();
+		injectGlobalCSS();
 		if (patchThemeSwitcher() && patchUserDeskThemeOptions()) clearInterval(t);
 	}, 100);
 	setTimeout(() => clearInterval(t), 5000);
 
+	// Page change handler to reapply styles
+	$(document).on("page_change", function() {
+		console.log("TechCloud: Page change detected, reapplying global CSS");
+		setTimeout(injectGlobalCSS, 100);
+	});
+
+	// Watch for dynamically added elements and apply styles
+	const styleObserver = new MutationObserver(function(mutations) {
+		let needsStyleUpdate = false;
+
+		mutations.forEach(function(mutation) {
+			if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+				mutation.addedNodes.forEach(function(node) {
+					if (node.nodeType === Node.ELEMENT_NODE) {
+						// Check if added elements need styling
+						if (node.matches || node.webkitMatchesSelector) {
+							const matches = node.matches || node.webkitMatchesSelector;
+							if (matches.call(node, '.sidebar-toggle-btn, .sidebar-menu, .navbar, .dashboard-widget-box, .widget-head')) {
+								needsStyleUpdate = true;
+							}
+						}
+						// Check child elements too
+						if (node.querySelector && (node.querySelector('.sidebar-toggle-btn, .sidebar-menu, .navbar, .dashboard-widget-box, .widget-head'))) {
+							needsStyleUpdate = true;
+						}
+					}
+				});
+			}
+		});
+
+		if (needsStyleUpdate) {
+			console.log("TechCloud: Dynamic elements detected, ensuring CSS is applied");
+			setTimeout(injectGlobalCSS, 50);
+		}
+	});
+
+	// Start observing DOM changes
+	if (document.body) {
+		styleObserver.observe(document.body, {
+			childList: true,
+			subtree: true
+		});
+	}
+
 	// Also re-run after DOM ready
 	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", init);
+		document.addEventListener("DOMContentLoaded", function() {
+			init();
+			injectGlobalCSS();
+			if (document.body) {
+				styleObserver.observe(document.body, {
+					childList: true,
+					subtree: true
+				});
+			}
+		});
 	}
 })();
