@@ -10,9 +10,13 @@ frappe.provide("techcloud.theme");
 
 function isTechcloudTheme() {
     return (
-        window.frappe?.boot?.desk_theme?.toLowerCase() === "techcloud"
+        window.frappe?.boot?.desk_theme?.toLowerCase() === "material"
     );
 }
+
+// ============================================
+// Theme Detection - Functions will check isTechcloudTheme() before executing
+// ============================================
 
 // ============================================
 // SAFE THEME APPLICATION - OPT-IN ONLY

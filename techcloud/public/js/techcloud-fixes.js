@@ -406,14 +406,64 @@
 
 			frappe.datetime.convert_to_user_tz = function(value, format) {
 				try {
+					// Handle null/undefined/empty values first
+					if (!value || (typeof value === 'string' && value.trim() === '')) {
+						return originalConvertToUserTz.call(this, null, format);
+					}
+
 					// Handle Moment.js objects (the main cause of the warning)
 					if (value && typeof value === 'object' && value._isAMomentObject) {
-						// If it's already a valid Moment object, convert it to a proper format
-						if (value.isValid()) {
-							value = value.toISOString();
-						} else {
-							console.warn('TechCloud: Invalid Moment object passed to convert_to_user_tz');
-							return originalConvertToUserTz.call(this, null, format);
+						try {
+							// Check if isValid method exists and call it safely
+							if (typeof value.isValid === 'function') {
+								if (value.isValid()) {
+									// Valid Moment object - convert to ISO string
+									if (typeof value.toISOString === 'function') {
+										value = value.toISOString();
+									} else if (typeof value.format === 'function') {
+										value = value.format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+									} else {
+										// Fallback: try to extract date from internal properties
+										if (value._d && value._d instanceof Date) {
+											value = value._d.toISOString();
+										} else {
+											// Invalid Moment object with no valid date
+											return originalConvertToUserTz.call(this, null, format);
+										}
+									}
+								} else {
+									// Invalid Moment object - check if we can extract a date
+									if (value._d && value._d instanceof Date && !isNaN(value._d.getTime())) {
+										value = value._d.toISOString();
+									} else {
+										// Completely invalid - return null
+										return originalConvertToUserTz.call(this, null, format);
+									}
+								}
+							} else {
+								// Moment object without isValid method - try to extract date
+								if (value._d && value._d instanceof Date && !isNaN(value._d.getTime())) {
+									value = value._d.toISOString();
+								} else if (value._i && typeof value._i === 'string') {
+									// Try to parse the input string
+									const date = new Date(value._i);
+									if (!isNaN(date.getTime())) {
+										value = date.toISOString();
+									} else {
+										return originalConvertToUserTz.call(this, null, format);
+									}
+								} else {
+									// No way to extract valid date
+									return originalConvertToUserTz.call(this, null, format);
+								}
+							}
+						} catch (momentError) {
+							// If anything fails with Moment object, try to extract date
+							if (value._d && value._d instanceof Date && !isNaN(value._d.getTime())) {
+								value = value._d.toISOString();
+							} else {
+								return originalConvertToUserTz.call(this, null, format);
+							}
 						}
 					}
 					// Ensure value is properly formatted before passing to moment
@@ -429,42 +479,51 @@
 							if (!isNaN(date.getTime()) && date.getTime() > 0) {
 								// Convert to ISO format to ensure Moment.js compatibility
 								value = date.toISOString();
+							} else {
+								// Invalid date string
+								return originalConvertToUserTz.call(this, null, format);
 							}
+						}
+					}
+					// Handle Date objects
+					else if (value instanceof Date) {
+						if (!isNaN(value.getTime())) {
+							value = value.toISOString();
+						} else {
+							return originalConvertToUserTz.call(this, null, format);
 						}
 					}
 
 					// Call the original function with properly formatted value
 					return originalConvertToUserTz.call(this, value, format);
 				} catch (e) {
-					console.warn('TechCloud: Primary Moment.js fix failed:', e.message);
 					// If our fix fails, try to provide a safe fallback
 					try {
 						// Handle invalid Moment objects
-						if (value && typeof value === 'object' && value._isAMomentObject && !value.isValid()) {
-							console.warn('TechCloud: Invalid Moment object detected, returning null');
+						if (value && typeof value === 'object' && value._isAMomentObject) {
+							// Try to extract date from internal properties
+							if (value._d && value._d instanceof Date && !isNaN(value._d.getTime())) {
+								return originalConvertToUserTz.call(this, value._d.toISOString(), format);
+							}
+							// Return null for completely invalid Moment objects
 							return originalConvertToUserTz.call(this, null, format);
 						}
 
 						// Last resort: try to create a valid date from string
-						if (value && typeof value === 'string') {
+						if (value && typeof value === 'string' && value.trim() !== '') {
 							const date = new Date(value);
 							if (!isNaN(date.getTime()) && date.getTime() > 0) {
-								value = date.toISOString();
-								return originalConvertToUserTz.call(this, value, format);
+								return originalConvertToUserTz.call(this, date.toISOString(), format);
 							}
 						}
 
 						// Handle empty/invalid values
-						if (!value || (typeof value === 'string' && value.trim() === '')) {
-							return originalConvertToUserTz.call(this, null, format);
-						}
+						return originalConvertToUserTz.call(this, null, format);
 
 					} catch (fallbackError) {
-						console.warn('TechCloud: Fallback Moment.js fix also failed:', fallbackError.message);
+						// If everything fails, return null to prevent further errors
+						return originalConvertToUserTz.call(this, null, format);
 					}
-
-					console.warn('TechCloud: All Moment.js fixes failed, using original function');
-					return originalConvertToUserTz.call(this, value, format);
 				}
 			};
 		}
@@ -594,34 +653,27 @@
 
 		// Expose global function for onclick fallback
 		window.techcloudToggleSidebar = function() {
-			console.log('TechCloud: Global sidebar toggle called');
 			handleSidebarToggle();
 		};
 
 		// Function to setup button handlers once button is found
 		function setupSidebarToggle(toggleBtn) {
-			console.log('TechCloud: Setting up sidebar toggle for button:', toggleBtn);
-
 			// Remove any existing handlers first to avoid conflicts
 			$(document).off('click', '.sidebar-toggle-btn');
 
 			// Add multiple click handlers for redundancy
 			// Method 1: jQuery delegated handler
 			$(document).on('click', '.sidebar-toggle-btn', function(e) {
-				console.log('TechCloud: jQuery handler triggered');
 				handleSidebarToggle(e);
 			});
 
 			// Method 2: Direct event listener as backup
 			toggleBtn.addEventListener('click', function(e) {
-				console.log('TechCloud: Direct event listener triggered');
 				handleSidebarToggle(e);
 			});
 
 			// Method 3: Set onclick attribute as final fallback
 			toggleBtn.setAttribute('onclick', 'window.techcloudToggleSidebar && window.techcloudToggleSidebar()');
-
-			console.log('TechCloud: Sidebar toggle setup complete');
 		}
 
 		// Check if button exists immediately

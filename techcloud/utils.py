@@ -3,23 +3,171 @@ from frappe.utils.jinja_globals import include_style
 
 # No monkey patching needed! CSS is loaded via hooks and scoped with data-theme selectors
 # JavaScript sets data-theme="material" attribute based on desk_theme
+def filter_preload_assets():
+	"""
+	Filter out resources from preload_assets that shouldn't be preloaded:
+	- website_script.js on desk pages (only needed on website pages)
+	- TechCloud JS files that are conditionally loaded
+	- Resources that are loaded lazily or conditionally
+	"""
+	if not hasattr(frappe.local, "preload_assets"):
+		return
+	
+	# Get current page context to determine if this is a desk page
+	is_desk_page = False
+	try:
+		# Check if we're on a desk page (app pages)
+		request = getattr(frappe.local, "request", None)
+		if request:
+			path_str = str(getattr(request, "path", ""))
+			if path_str.startswith("/app"):
+				is_desk_page = True
+	except:
+		pass
+	
+	# Resources that shouldn't be preloaded on desk pages
+	no_preload_on_desk = [
+		"website_script.js",
+		"/website_script.js",
+	]
+	
+	# TechCloud resources that are conditionally loaded (don't preload)
+	techcloud_no_preload = [
+		"techcloud-login.js",
+		"techcloud-icons.js", 
+		"techcloud-header.js",
+	]
+	
+	# Filter scripts
+	if "script" in frappe.local.preload_assets:
+		filtered_scripts = []
+		for script in frappe.local.preload_assets["script"]:
+			should_preload = True
+			
+			# Don't preload website_script.js on desk pages
+			if is_desk_page:
+				for no_preload in no_preload_on_desk:
+					if no_preload in script:
+						should_preload = False
+						break
+			
+			# Don't preload TechCloud JS files that are conditionally loaded
+			for no_preload in techcloud_no_preload:
+				if no_preload in script:
+					should_preload = False
+					break
+			
+			if should_preload:
+				filtered_scripts.append(script)
+		
+		frappe.local.preload_assets["script"] = filtered_scripts
+	
+	# Filter styles (keep all styles for now, but can add filtering if needed)
+	# Styles are usually needed immediately, so we keep them preloaded
+
+
+def patch_preload_function():
+	"""Monkey patch frappe.website.utils.add_preload_for_bundled_assets to filter preloads"""
+	from frappe.website import utils
+	
+	# Only patch once
+	if hasattr(utils.add_preload_for_bundled_assets, '_techcloud_patched'):
+		return
+	
+	original_add_preload = utils.add_preload_for_bundled_assets
+	
+	def patched_add_preload_for_bundled_assets(response):
+		# Filter preload assets before adding to response
+		filter_preload_assets()
+		# Call original function
+		return original_add_preload(response)
+	
+	# Mark as patched
+	patched_add_preload_for_bundled_assets._techcloud_patched = True
+	utils.add_preload_for_bundled_assets = patched_add_preload_for_bundled_assets
+
+
+def patch_app_context():
+	"""Monkey patch frappe.www.app.get_context to ensure dev_server is set correctly for Socket.IO"""
+	from frappe import www
+	import frappe.www.app as app_module
+	
+	# Only patch once
+	if hasattr(app_module.get_context, '_techcloud_patched'):
+		return
+	
+	original_get_context = app_module.get_context
+	
+	def patched_get_context(context):
+		# Call original function first
+		context = original_get_context(context)
+		
+		# Ensure dev_server is set correctly for Socket.IO
+		# Use 1 (integer) instead of True (boolean) for JavaScript compatibility
+		# In Jinja2, {{ True }} outputs "True" (string), but {{ 1 }} outputs 1 (number)
+		if context:
+			try:
+				# Check if we're in development mode
+				is_dev = (
+					frappe.conf.developer_mode or 
+					frappe.local.dev_server or
+					frappe.conf.get("socketio_port") is not None
+				)
+				# Always set dev_server to 1 in development to fix Socket.IO
+				# This ensures the client connects to port 9000 instead of 8000
+				# Use 1 instead of True for JavaScript compatibility
+				if is_dev or not context.get("dev_server"):
+					context["dev_server"] = 1  # Use integer 1, not boolean True
+			except:
+				# If checks fail, assume dev mode and set to 1
+				context["dev_server"] = 1  # Use integer 1, not boolean True
+		
+		return context
+	
+	# Mark as patched
+	patched_get_context._techcloud_patched = True
+	app_module.get_context = patched_get_context
+
+
 def before_request():
-	"""Ensure Material desk theme sets data-theme attribute correctly"""
+	"""Ensure Material desk theme sets data-theme attribute correctly
+	Also patch add_preload_for_bundled_assets to filter preload assets
+	Also patch app context to ensure dev_server is set for Socket.IO"""
 	# The app.html template already sets data-theme="{{ desk_theme.lower() }}"
 	# So if desk_theme is "Material", it becomes "material" automatically
 	# The JavaScript in material.js ensures it stays set even if Frappe's theme switcher tries to change it
 	# No action needed here - CSS is loaded via app_include_css hook and scoped with html[data-theme="material"]
-	pass
+	
+	# Patch add_preload_for_bundled_assets to filter preload assets before adding to response
+	patch_preload_function()
+	
+	# Patch app context to ensure dev_server is set for Socket.IO
+	patch_app_context()
 
 
 def extend_bootinfo(bootinfo):
-	"""Normalize Techcloud desk_theme so app.html and JS use 'Material' consistently."""
+	"""Normalize Techcloud desk_theme so app.html and JS use 'Material' consistently.
+	Also ensure socketio_port is in boot info for Socket.IO to work correctly."""
 	try:
 		desk_theme = bootinfo.get("desk_theme") if isinstance(bootinfo, dict) else None
 		if isinstance(desk_theme, str) and desk_theme.lower() == "techcloud":
 			bootinfo["desk_theme"] = "Material"
 			if isinstance(bootinfo.get("user"), dict):
 				bootinfo["user"]["desk_theme"] = "Material"
+		
+		# Ensure socketio_port is in boot info for Socket.IO client
+		if "socketio_port" not in bootinfo:
+			socketio_port = frappe.conf.get("socketio_port")
+			if not socketio_port:
+				# Try to get from site config
+				try:
+					socketio_port = frappe.db.get_value("System Settings", "System Settings", "socketio_port")
+				except:
+					pass
+			if not socketio_port:
+				# Default to 9000 for development
+				socketio_port = 9000
+			bootinfo["socketio_port"] = socketio_port
 	except Exception:
 		# Silent fail: bootinfo normalization should never block boot
 		pass
@@ -27,6 +175,10 @@ def extend_bootinfo(bootinfo):
 def update_techcloud_theme_context(context):
 	"""Update website context to conditionally load Techcloud CSS for website pages
 	Also adds script to head_html for desk pages if Material theme is active"""
+	# Safety check: if context is None, return early
+	if context is None:
+		return context
+	
 	try:
 		# Get app name dynamically from current module (no hardcoding!)
 		# This works even if the app is renamed or imported to another site
