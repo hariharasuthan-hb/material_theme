@@ -323,6 +323,20 @@
 			html[data-theme="material"] .techcloud-icon,
 			html[data-theme-mode="material"] .techcloud-icon {
 				fill: #475569 !important;
+				width: 14px !important;
+				height: 14px !important;
+			}
+
+			html[data-theme="material"] .icon-sm,
+			html[data-theme-mode="material"] .icon-sm {
+				width: 16px !important;
+				height: 16px !important;
+			}
+
+			html[data-theme="material"] .icon-xs,
+			html[data-theme-mode="material"] .icon-xs {
+				width: 12px !important;
+				height: 12px !important;
 			}
 
 			/* Sidebar Elements */
@@ -367,6 +381,26 @@
 				color: #475569 !important;
 			}
 
+			html[data-theme="material"] .btn-default,
+			html[data-theme-mode="material"] .btn-default {
+				background: #ffffff !important;
+				border: 1px solid #e2e8f0 !important;
+				color: #475569 !important;
+			}
+
+			html[data-theme="material"] .icon-btn,
+			html[data-theme-mode="material"] .icon-btn {
+				padding: 6px !important;
+				border-radius: 6px !important;
+			}
+
+			html[data-theme="material"] .custom-btn-group,
+			html[data-theme-mode="material"] .custom-btn-group {
+				display: flex !important;
+				align-items: center !important;
+				gap: 4px !important;
+			}
+
 			/* Form Controls */
 			html[data-theme="material"] .form-control,
 			html[data-theme-mode="material"] .form-control {
@@ -394,14 +428,77 @@
 			html[data-theme-mode="material"] .dropdown-item {
 				border-radius: 6px !important;
 				padding: 6px 10px !important;
+				display: flex !important;
+				align-items: center !important;
+				gap: 8px !important;
 			}
 
-			/* Page Headers */
+			html[data-theme="material"] .menu-item-icon,
+			html[data-theme-mode="material"] .menu-item-icon {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: 16px !important;
+				flex-shrink: 0 !important;
+			}
+
+			html[data-theme="material"] .menu-item-label,
+			html[data-theme-mode="material"] .menu-item-label {
+				flex: 1 !important;
+			}
+
+			html[data-theme="material"] kbd,
+			html[data-theme-mode="material"] kbd {
+				background: #f1f5f9 !important;
+				border: 1px solid #d1d5db !important;
+				border-radius: 4px !important;
+				padding: 2px 6px !important;
+				font-size: 11px !important;
+				color: #6b7280 !important;
+				margin-left: auto !important;
+			}
+
+			/* Page Headers & Actions */
 			html[data-theme="material"] .page-head,
 			html[data-theme-mode="material"] .page-head {
 				border-bottom: 1px solid #e2e8f0 !important;
 				padding-bottom: 16px !important;
 				margin-bottom: 20px !important;
+			}
+
+			html[data-theme="material"] .page-actions,
+			html[data-theme-mode="material"] .page-actions {
+				display: flex !important;
+				justify-content: flex-end !important;
+				align-items: center !important;
+				gap: 8px !important;
+			}
+
+			html[data-theme="material"] .standard-actions,
+			html[data-theme-mode="material"] .standard-actions {
+				display: flex !important;
+				align-items: center !important;
+				gap: 6px !important;
+			}
+
+			html[data-theme="material"] .custom-actions,
+			html[data-theme-mode="material"] .custom-actions {
+				margin-right: 8px !important;
+			}
+
+			html[data-theme="material"] .menu-btn-group,
+			html[data-theme-mode="material"] .menu-btn-group {
+				position: relative !important;
+			}
+
+			html[data-theme="material"] .actions-btn-group,
+			html[data-theme-mode="material"] .actions-btn-group {
+				margin-left: 4px !important;
+			}
+
+			html[data-theme="material"] .page-icon-group,
+			html[data-theme-mode="material"] .page-icon-group {
+				margin-right: 8px !important;
 			}
 
 			/* Cards and Widgets */
