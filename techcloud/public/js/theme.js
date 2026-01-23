@@ -5,28 +5,22 @@
 
 	function patchThemeSwitcher() {
 		if (!window.frappe || !window.frappe.ui || !window.frappe.ui.ThemeSwitcher) {
-			console.log("TechCloud: ThemeSwitcher not available yet");
 			return false;
 		}
 
 		// Avoid patching multiple times
 		if (window.frappe.ui.ThemeSwitcher.__techcloud_patched) {
-			console.log("TechCloud: ThemeSwitcher already patched");
 			return true;
 		}
-
-		console.log("TechCloud: Patching ThemeSwitcher");
 
 		const BaseThemeSwitcher = window.frappe.ui.ThemeSwitcher;
 
 		window.frappe.ui.ThemeSwitcher = class TechcloudThemeSwitcher extends BaseThemeSwitcher {
 			constructor(...args) {
 				super(...args);
-				console.log("TechCloud: ThemeSwitcher constructor called");
 			}
 
 			async fetch_themes() {
-				console.log("TechCloud: fetch_themes called");
 				// Call parent method first if it exists
 				if (super.fetch_themes) {
 					await super.fetch_themes();
@@ -43,15 +37,12 @@
 						info: "Uses system's theme to switch between light and dark mode",
 					},
 				];
-				console.log("TechCloud: Themes loaded:", this.themes);
 				return this.themes;
 			}
 
 			show() {
-				console.log("TechCloud: show() method called");
 				// Ensure themes are loaded before showming
 				return this.fetch_themes().then(() => {
-					console.log("TechCloud: Calling parent show method");
 					// Call parent show method
 					if (super.show) {
 						return super.show();
@@ -65,8 +56,6 @@
 
 			toggle_theme(theme) {
 				return new Promise((resolve, reject) => {
-					console.log("TechCloud: toggle_theme called with:", theme, "on page:", window.location.pathname);
-
 					// Handle techcloud theme specially - map "material" to "Material" for server call
 					let server_theme = theme;
 					if (theme === "material") {
@@ -81,31 +70,24 @@
 
 					// Handle TechCloud theme asset injection/removal
 					if (theme === "material") {
-						console.log("TechCloud: Switching TO material theme - injecting assets");
 						// Inject TechCloud assets if not already present
 						this.injectTechCloudAssets();
 						document.documentElement.setAttribute("data-theme", "material");
 						document.documentElement.setAttribute("data-theme-mode", "material");
 					} else {
-						console.log("TechCloud: Switching FROM material theme to:", theme, "- removing assets");
 						// Remove TechCloud assets for other themes
 						this.removeTechCloudAssets();
 						// Clear data-theme for non-TechCloud themes
 						document.documentElement.removeAttribute("data-theme");
 						if (theme === "dark") {
 							document.documentElement.setAttribute("data-theme-mode", "dark");
-							console.log("TechCloud: Set data-theme-mode to dark, cleared data-theme");
 						} else if (theme === "automatic") {
 							document.documentElement.setAttribute("data-theme-mode", "automatic");
-							console.log("TechCloud: Set data-theme-mode to automatic, cleared data-theme");
 						} else {
 							// Light theme or any other theme
 							document.documentElement.setAttribute("data-theme-mode", theme.toLowerCase());
-							console.log("TechCloud: Set data-theme-mode to:", theme.toLowerCase(), ", cleared data-theme");
 						}
 					}
-
-					console.log("TechCloud: Final data-theme attributes - data-theme:", document.documentElement.getAttribute("data-theme"), "data-theme-mode:", document.documentElement.getAttribute("data-theme-mode"));
 
 					// Force immediate CSS re-evaluation before server call
 					document.documentElement.style.display = 'none';
@@ -114,12 +96,10 @@
 
 					frappe.show_alert(__("Theme Changed"), 3);
 
-					console.log("TechCloud: Calling server theme switch for:", server_theme);
 					// Call the techcloud override method
 					frappe.xcall("frappe.core.doctype.user.user.switch_theme", {
 						theme: server_theme.charAt(0).toUpperCase() + server_theme.slice(1), // Title case
 					}).then(() => {
-						console.log("TechCloud: Server theme switch successful");
 
 						// Additional re-evaluation after server response
 						setTimeout(() => {
@@ -157,7 +137,6 @@
 			}
 
 			injectTechCloudAssets() {
-				console.log("TechCloud: Injecting TechCloud assets");
 				const appName = "techcloud"; // Dynamic app name detection would be better but hardcode for now
 
 				// Inject CSS files if not already present
@@ -168,14 +147,11 @@
 
 				cssFiles.forEach(cssPath => {
 					if (!document.querySelector(`link[href="${cssPath}"]`)) {
-						console.log("TechCloud: Injecting CSS:", cssPath);
 						const link = document.createElement('link');
 						link.rel = 'stylesheet';
 						link.type = 'text/css';
 						link.href = cssPath;
 						document.head.appendChild(link);
-					} else {
-						console.log("TechCloud: CSS already exists:", cssPath);
 					}
 				});
 
@@ -202,7 +178,6 @@
 			}
 
 			removeTechCloudAssets() {
-				console.log("TechCloud: Removing TechCloud assets");
 				const appName = "techcloud";
 
 				// Remove CSS files
@@ -214,10 +189,7 @@
 				cssFiles.forEach(cssPath => {
 					const cssLink = document.querySelector(`link[href="${cssPath}"]`);
 					if (cssLink) {
-						console.log("TechCloud: Removing CSS:", cssPath);
 						cssLink.remove();
-					} else {
-						console.log("TechCloud: CSS not found:", cssPath);
 					}
 				});
 
@@ -273,7 +245,6 @@
 	}
 
 	function init() {
-		console.log("TechCloud: Initializing theme system on page:", window.location.pathname);
 		patchThemeSwitcher();
 		patchUserDeskThemeOptions();
 		try {
@@ -481,6 +452,35 @@
 				gap: 6px !important;
 			}
 
+			/* Primary Action Button - AJAX Proof Visibility */
+			html[data-theme="material"] .primary-action:not(.hide):not(:empty),
+			html[data-theme-mode="material"] .primary-action:not(.hide):not(:empty),
+			html[data-theme="material"] .page-actions .primary-action:not(.hide):not(:empty),
+			html[data-theme-mode="material"] .page-actions .primary-action:not(.hide):not(:empty) {
+				display: inline-flex !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+
+			html[data-theme="material"] .primary-action:not(.hide):has(*),
+			html[data-theme-mode="material"] .primary-action:not(.hide):has(*),
+			html[data-theme="material"] .primary-action:not(.hide)[data-label],
+			html[data-theme-mode="material"] .primary-action:not(.hide)[data-label] {
+				display: inline-flex !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+
+			/* All buttons in page-actions - show when not hidden */
+			html[data-theme="material"] .page-actions .btn:not(.hide):not(:empty),
+			html[data-theme-mode="material"] .page-actions .btn:not(.hide):not(:empty),
+			html[data-theme="material"] .page-actions .btn:not(.hide):has(*),
+			html[data-theme-mode="material"] .page-actions .btn:not(.hide):has(*) {
+				display: inline-flex !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+
 			html[data-theme="material"] .custom-actions,
 			html[data-theme-mode="material"] .custom-actions {
 				margin-right: 8px !important;
@@ -604,7 +604,6 @@
 		`;
 
 		document.head.appendChild(globalStyles);
-		console.log("TechCloud: Injected comprehensive global CSS for all Material theme classes");
 	}
 
 	// Try immediately, then retry for a few seconds (desk boot timing varies)
@@ -620,7 +619,6 @@
 
 	// Page change handler to reapply styles
 	$(document).on("page_change", function() {
-		console.log("TechCloud: Page change detected, reapplying global CSS");
 		setTimeout(injectGlobalCSS, 100);
 	});
 
@@ -649,7 +647,6 @@
 		});
 
 		if (needsStyleUpdate) {
-			console.log("TechCloud: Dynamic elements detected, ensuring CSS is applied");
 			setTimeout(injectGlobalCSS, 50);
 		}
 	});
