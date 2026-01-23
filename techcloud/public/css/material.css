@@ -725,11 +725,59 @@
        /* margin: 24px 0 16px 0; */
      }
      
-     /* List Views */
-     html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .list-row-head {
-       /* background-color: var(--md-surface); */
-       border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
-       /* padding: 8px 16px; */
+     /* ============================================
+        MATERIAL 3 – LISTS / REPORTS
+        ============================================ */
+     html[data-theme="material"] .list-row-head,
+     html[data-theme-mode="material"] .list-row-head {
+       background-color: var(--md-sys-color-surface-variant) !important;
+       border-bottom: 1px solid var(--md-sys-color-outline-variant) !important;
+       color: var(--md-sys-color-on-surface-variant) !important;
+       font-size: 12px !important;
+       font-weight: 500 !important;
+       text-transform: uppercase !important;
+       letter-spacing: 0.08em !important;
+     }
+
+     /* List row container */
+     html[data-theme="material"] .list-row-container,
+     html[data-theme-mode="material"] .list-row-container {
+       border-bottom: 1px solid rgba(15, 23, 42, 0.04) !important;
+       background-color: var(--md-sys-color-surface) !important;
+       transition: background-color 0.12s ease, box-shadow 0.12s ease !important;
+     }
+
+     /* Hover state */
+     html[data-theme="material"] .list-row-container:hover,
+     html[data-theme-mode="material"] .list-row-container:hover {
+       background-color: var(--md-sys-color-surface-container-low) !important;
+     }
+
+     /* Selected row */
+     html[data-theme="material"] .list-row-container.list-row-checked,
+     html[data-theme-mode="material"] .list-row-container.list-row-checked {
+       background-color: var(--md-sys-color-primary-container) !important;
+       box-shadow: 0 0 0 1px rgba(25, 118, 210, 0.35) inset !important;
+     }
+
+     html[data-theme="material"] .list-row-container.list-row-checked .list-subject,
+     html[data-theme-mode="material"] .list-row-container.list-row-checked .list-subject {
+       color: var(--md-sys-color-on-primary-container) !important;
+     }
+
+     /* Subject text */
+     html[data-theme="material"] .list-row-container .list-subject,
+     html[data-theme-mode="material"] .list-row-container .list-subject {
+       font-size: 14px !important;
+       font-weight: 500 !important;
+       color: var(--md-sys-color-on-surface) !important;
+     }
+
+     /* Secondary text */
+     html[data-theme="material"] .list-row-container .list-row-col.secondary,
+     html[data-theme-mode="material"] .list-row-container .list-row-col.secondary {
+       color: var(--md-sys-color-on-surface-variant) !important;
+       font-size: 12px !important;
      }
      
      html[data-theme="material"], html[data-theme-mode="material"], body[data-theme-mode="material"] .navbar-home img {
@@ -1308,25 +1356,26 @@
        z-index: 1 !important;
      }
    
-     /* Form fields beautification */
-     html[data-theme="material"] .form-group .control-input,
-     html[data-theme-mode="material"] .form-group .control-input {
-       border: 1px solid rgba(0, 137, 255, 0.2) !important;
-       border-radius: 8px !important;
-       padding: 12px 16px !important;
-       background: rgba(255, 255, 255, 0.8) !important;
-       transition: all 0.3s ease !important;
-       font-size: 14px !important;
-     }
-   
-     /* Form field focus states */
-     html[data-theme="material"] .form-group .control-input:focus,
-     html[data-theme-mode="material"] .form-group .control-input:focus {
-       border-color: #0089ff !important;
-       box-shadow: 0 0 0 3px rgba(0, 137, 255, 0.1) !important;
-       background: white !important;
-       outline: none !important;
-     }
+    /* Form fields – MD3 filled/outlined style */
+    html[data-theme="material"] .form-group .control-input,
+    html[data-theme-mode="material"] .form-group .control-input {
+      border-radius: 8px !important;
+      border: 1px solid var(--md-sys-color-outline-variant) !important;
+      padding: 10px 14px !important;
+      background: var(--md-sys-color-surface) !important;
+      color: var(--md-sys-color-on-surface) !important;
+      font-size: 14px !important;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
+    }
+  
+    /* Form field focus states – MD3 focus ring */
+    html[data-theme="material"] .form-group .control-input:focus,
+    html[data-theme-mode="material"] .form-group .control-input:focus {
+      border-color: var(--md-sys-color-primary) !important;
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.16) !important;
+      background: var(--md-sys-color-surface-bright, #ffffff) !important;
+      outline: none !important;
+    }
    
      /* Textarea specific styling */
      html[data-theme="material"] .form-group textarea.control-input,
@@ -1336,17 +1385,18 @@
        line-height: 1.6 !important;
      }
    
-     /* Form labels */
-     html[data-theme="material"] .form-group .control-label,
-     html[data-theme-mode="material"] .form-group .control-label {
-       color: #374151 !important;
-       font-weight: 600 !important;
-       font-size: 14px !important;
-       margin-bottom: 8px !important;
-       letter-spacing: 0.3px !important;
-     }
+    /* Form labels – MD3 label-medium */
+    html[data-theme="material"] .form-group .control-label,
+    html[data-theme-mode="material"] .form-group .control-label {
+      color: var(--md-sys-color-on-surface-variant) !important;
+      font-weight: 500 !important;
+      font-size: 13px !important;
+      margin-bottom: 4px !important;
+      letter-spacing: 0.15px !important;
+      text-transform: none !important;
+    }
    
-     /* Primary action buttons */
+    /* Primary action buttons – MD3 elevated button */
      html[data-theme="material"] .btn-primary,
      html[data-theme-mode="material"] .btn-primary {
        background: linear-gradient(135deg, #0089ff 0%, #00d4ff 100%) !important;
@@ -15702,6 +15752,119 @@
        font-weight: 500 !important;
        /* box-shadow: var(--md-shadow-2) !important; */
    }
+
+/* ============================================
+   MATERIAL 3 – DESK SHELL (NAVBAR, SIDEBAR, PAGE HEAD)
+   Scoped to Material theme only (ERPNext-safe)
+   ============================================ */
+
+html[data-theme="material"],
+html[data-theme-mode="material"] {
+  /* Base surface & text */
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+}
+
+/* Navbar ------------------------------------------------ */
+
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar {
+  background: var(--md-sys-color-surface) !important;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant) !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="material"] .navbar .navbar-brand,
+html[data-theme-mode="material"] .navbar .navbar-brand {
+  font-weight: 600 !important;
+  color: var(--md-sys-color-on-surface) !important;
+}
+
+html[data-theme="material"] .navbar-nav > li > a,
+html[data-theme-mode="material"] .navbar-nav > li > a {
+  color: var(--md-sys-color-on-surface-variant) !important;
+  font-weight: 500 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+html[data-theme="material"] .navbar-nav > li > a:hover,
+html[data-theme-mode="material"] .navbar-nav > li > a:hover {
+  background: rgba(15, 23, 42, 0.04) !important;
+  color: var(--md-sys-color-on-surface) !important;
+}
+
+/* Sidebar ------------------------------------------------ */
+
+html[data-theme="material"] .desk-sidebar,
+html[data-theme-mode="material"] .desk-sidebar {
+  background: var(--md-sys-color-surface-container-lowest) !important;
+  border-right: 1px solid var(--md-sys-color-outline-variant) !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item,
+html[data-theme-mode="material"] .standard-sidebar-item {
+  border-radius: 12px !important;
+  margin: 2px 8px !important;
+  padding: 6px 10px !important;
+  color: var(--md-sys-color-on-surface-variant) !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .standard-sidebar-item:hover {
+  background: var(--md-sys-color-surface-container-low) !important;
+  color: var(--md-sys-color-on-surface) !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .standard-sidebar-item.selected {
+  background: var(--md-sys-color-primary-container) !important;
+  color: var(--md-sys-color-on-primary-container) !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item .es-icon,
+html[data-theme-mode="material"] .standard-sidebar-item .es-icon {
+  margin-right: 6px !important;
+  fill: var(--md-sys-color-on-surface-variant) !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item.selected .es-icon,
+html[data-theme-mode="material"] .standard-sidebar-item.selected .es-icon {
+  fill: var(--md-sys-color-on-primary-container) !important;
+}
+
+/* Page head ------------------------------------------------ */
+
+html[data-theme="material"] .page-head,
+html[data-theme-mode="material"] .page-head {
+  background: var(--md-sys-color-surface) !important;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant) !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04) !important;
+}
+
+html[data-theme="material"] .page-head .page-title,
+html[data-theme-mode="material"] .page-head .page-title {
+  font-size: 20px !important; /* MD3 title-large */
+  font-weight: 600 !important;
+  color: var(--md-sys-color-on-surface) !important;
+  letter-spacing: 0.15px !important;
+}
+
+html[data-theme="material"] .page-head .page-subtitle,
+html[data-theme-mode="material"] .page-head .page-subtitle {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: var(--md-sys-color-on-surface-variant) !important;
+  margin-top: 2px !important;
+}
+
+html[data-theme="material"] .page-head .page-actions,
+html[data-theme-mode="material"] .page-head .page-actions {
+  gap: 6px !important;
+}
+
 
 /* ============================= */
 /* CLEAN DASHBOARD WIDGET HEADER */
