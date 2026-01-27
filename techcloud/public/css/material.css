@@ -2267,6 +2267,806 @@
      --techcloud-radius-xl: 16px;
      --techcloud-radius-full: 9999px;
      
+     /* ============================================
+        MODULE-SPECIFIC COLOR PALETTE (Colorful & Non-Uniform)
+        ============================================ */
+     --module-accounting: #0089FF;
+     --module-accounting-light: #E3F2FD;
+     --module-accounting-dark: #0066CC;
+     
+     --module-buying: #7B2CBF;
+     --module-buying-light: #F3E5F5;
+     --module-buying-dark: #5E1A9B;
+     
+     --module-selling: #FF6B35;
+     --module-selling-light: #FFF3E0;
+     --module-selling-dark: #E55100;
+     
+     --module-stock: #20B2AA;
+     --module-stock-light: #E0F7FA;
+     --module-stock-dark: #00897B;
+     
+     --module-manufacturing: #4CAF50;
+     --module-manufacturing-light: #E8F5E9;
+     --module-manufacturing-dark: #2E7D32;
+     
+     --module-projects: #5E35B1;
+     --module-projects-light: #EDE7F6;
+     --module-projects-dark: #4527A0;
+     
+     --module-hr: #E91E63;
+     --module-hr-light: #FCE4EC;
+     --module-hr-dark: #C2185B;
+     
+     --module-crm: #F44336;
+     --module-crm-light: #FFEBEE;
+     --module-crm-dark: #D32F2F;
+     
+     --module-support: #FFC107;
+     --module-support-light: #FFF9C4;
+     --module-support-dark: #FFA000;
+     
+     --module-setup: #607D8B;
+     --module-setup-light: #ECEFF1;
+     --module-setup-dark: #455A64;
+     
+     /* Default module color (fallback) */
+     --module-default: #0089FF;
+     --module-default-light: #E3F2FD;
+     --module-default-dark: #0066CC;
+     
+     /* ============================================
+        TYPOGRAPHY HIERARCHY (MD3 Web Standards)
+        ============================================ */
+     --techcloud-font-size-h1: 24px;
+     --techcloud-font-size-h2: 20px;
+     --techcloud-font-size-h3: 18px;
+     --techcloud-font-size-h4: 16px;
+     --techcloud-font-size-h5: 14px;
+     --techcloud-font-size-h6: 12px;
+     --techcloud-font-size-body: 14px;
+     --techcloud-font-size-label: 12px;
+     --techcloud-font-size-small: 11px;
+     
+     /* ============================================
+        SHADOW & ELEVATION SYSTEM (MD3)
+        ============================================ */
+     --techcloud-elevation-0: none;
+     --techcloud-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+     --techcloud-elevation-2: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+     --techcloud-elevation-3: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+     --techcloud-elevation-4: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
+     --techcloud-elevation-5: 0 16px 48px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.12);
+     
+     /* ============================================
+        TRANSITION SYSTEM (MD3 Motion)
+        ============================================ */
+     --techcloud-transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+     --techcloud-transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+     --techcloud-transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+     --techcloud-transition-color: 0.3s ease;
+     --techcloud-transition-layout: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   }
+   
+   /* ============================================
+      TYPOGRAPHY HIERARCHY APPLICATION
+      ============================================ */
+   
+   html[data-theme="material"] h1,
+   html[data-theme-mode="material"] h1 {
+     font-size: var(--techcloud-font-size-h1) !important;
+     font-weight: var(--techcloud-font-weight-bold) !important;
+     line-height: 1.3 !important;
+     margin-bottom: 16px !important;
+   }
+   
+   html[data-theme="material"] h2,
+   html[data-theme-mode="material"] h2 {
+     font-size: var(--techcloud-font-size-h2) !important;
+     font-weight: var(--techcloud-font-weight-bold) !important;
+     line-height: 1.4 !important;
+     margin-bottom: 12px !important;
+   }
+   
+   html[data-theme="material"] h3,
+   html[data-theme-mode="material"] h3 {
+     font-size: var(--techcloud-font-size-h3) !important;
+     font-weight: var(--techcloud-font-weight-semibold) !important;
+     line-height: 1.4 !important;
+     margin-bottom: 10px !important;
+   }
+   
+   html[data-theme="material"] h4,
+   html[data-theme-mode="material"] h4 {
+     font-size: var(--techcloud-font-size-h4) !important;
+     font-weight: var(--techcloud-font-weight-semibold) !important;
+     line-height: 1.5 !important;
+     margin-bottom: 8px !important;
+   }
+   
+   html[data-theme="material"] h5,
+   html[data-theme-mode="material"] h5 {
+     font-size: var(--techcloud-font-size-h5) !important;
+     font-weight: var(--techcloud-font-weight-medium) !important;
+     line-height: 1.5 !important;
+     margin-bottom: 6px !important;
+   }
+   
+   html[data-theme="material"] h6,
+   html[data-theme-mode="material"] h6 {
+     font-size: var(--techcloud-font-size-h6) !important;
+     font-weight: var(--techcloud-font-weight-medium) !important;
+     line-height: 1.5 !important;
+     margin-bottom: 4px !important;
+   }
+   
+   html[data-theme="material"] body,
+   html[data-theme-mode="material"] body {
+     font-size: var(--techcloud-font-size-body) !important;
+     font-weight: var(--techcloud-font-weight-regular) !important;
+     line-height: 1.5 !important;
+   }
+   
+   /* ============================================
+      SHADOW & ELEVATION APPLICATION
+      ============================================ */
+   
+   /* Cards use elevation-2 */
+   html[data-theme="material"] .widget,
+   html[data-theme-mode="material"] .widget,
+   html[data-theme="material"] .card,
+   html[data-theme-mode="material"] .card,
+   html[data-theme="material"] .form-section,
+   html[data-theme-mode="material"] .form-section {
+     box-shadow: var(--techcloud-elevation-2) !important;
+     transition: box-shadow var(--techcloud-transition-base) !important;
+   }
+   
+   html[data-theme="material"] .widget:hover,
+   html[data-theme-mode="material"] .widget:hover,
+   html[data-theme="material"] .card:hover,
+   html[data-theme-mode="material"] .card:hover,
+   html[data-theme="material"] .form-section:hover,
+   html[data-theme-mode="material"] .form-section:hover {
+     box-shadow: var(--techcloud-elevation-3) !important;
+   }
+   
+   /* Buttons use elevation-1 with hover elevation-2 */
+   html[data-theme="material"] .btn-primary,
+   html[data-theme-mode="material"] .btn-primary {
+     box-shadow: var(--techcloud-elevation-1) !important;
+     transition: box-shadow var(--techcloud-transition-base) !important;
+   }
+   
+   html[data-theme="material"] .btn-primary:hover,
+   html[data-theme-mode="material"] .btn-primary:hover {
+     box-shadow: var(--techcloud-elevation-2) !important;
+   }
+   
+   /* Modals use elevation-5 */
+   html[data-theme="material"] .modal-content,
+   html[data-theme-mode="material"] .modal-content {
+     box-shadow: var(--techcloud-elevation-5) !important;
+   }
+   
+  /* Sidebar - no box shadow (removed box around menu) */
+  html[data-theme="material"] .desk-sidebar,
+  html[data-theme-mode="material"] .desk-sidebar {
+    box-shadow: none !important; /* Remove box shadow around menu */
+  }
+   
+   /* ============================================
+      SMOOTH TRANSITIONS APPLICATION
+      ============================================ */
+   
+   /* Hover effects */
+   html[data-theme="material"] .btn,
+   html[data-theme-mode="material"] .btn,
+   html[data-theme="material"] .standard-sidebar-item,
+   html[data-theme-mode="material"] .standard-sidebar-item {
+     transition: all var(--techcloud-transition-base) !important;
+   }
+   
+   /* Color changes */
+   html[data-theme="material"] .btn-primary,
+   html[data-theme-mode="material"] .btn-primary,
+   html[data-theme="material"] .indicator-pill,
+   html[data-theme-mode="material"] .indicator-pill {
+     transition: background-color var(--techcloud-transition-color), color var(--techcloud-transition-color) !important;
+   }
+   
+   /* Layout changes */
+   html[data-theme="material"] .form-section,
+   html[data-theme-mode="material"] .form-section,
+   html[data-theme="material"] .widget,
+   html[data-theme-mode="material"] .widget {
+     transition: transform var(--techcloud-transition-layout), box-shadow var(--techcloud-transition-layout) !important;
+   }
+   
+   /* Input focus transitions */
+   html[data-theme="material"] .form-control,
+   html[data-theme-mode="material"] .form-control,
+   html[data-theme="material"] .control-input,
+   html[data-theme-mode="material"] .control-input {
+     transition: border-color var(--techcloud-transition-base), box-shadow var(--techcloud-transition-base) !important;
+   }
+   
+   /* ============================================
+      MODULE-SPECIFIC COLOR APPLICATION
+      Colorful & Non-Uniform Design
+      ============================================ */
+   
+   /* Sidebar Icons - Module-Specific Colors */
+   html[data-theme="material"] .standard-sidebar-item[data-route*="accounting"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="accounting"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="accounting"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="accounting"] svg {
+     fill: var(--module-accounting) !important;
+     color: var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="buying"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="buying"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="buying"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="buying"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="purchase"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="purchase"] svg {
+     fill: var(--module-buying) !important;
+     color: var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="selling"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="selling"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="selling"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="selling"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="sales"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="sales"] svg {
+     fill: var(--module-selling) !important;
+     color: var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="stock"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="stock"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="stock"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="stock"] svg {
+     fill: var(--module-stock) !important;
+     color: var(--module-stock) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="manufacturing"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="manufacturing"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="manufacturing"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="manufacturing"] svg {
+     fill: var(--module-manufacturing) !important;
+     color: var(--module-manufacturing) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="projects"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="projects"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="projects"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="projects"] svg {
+     fill: var(--module-projects) !important;
+     color: var(--module-projects) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="hr"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="hr"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="hr"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="hr"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="users"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="users"] svg {
+     fill: var(--module-hr) !important;
+     color: var(--module-hr) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="crm"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="crm"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="crm"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="crm"] svg {
+     fill: var(--module-crm) !important;
+     color: var(--module-crm) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="support"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="support"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="support"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="support"] svg {
+     fill: var(--module-support) !important;
+     color: var(--module-support) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="setup"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="setup"] svg,
+   html[data-theme="material"] .standard-sidebar-item[data-module="setup"] svg,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-module="setup"] svg {
+     fill: var(--module-setup) !important;
+     color: var(--module-setup) !important;
+   }
+   
+   /* Sidebar item hover states with module colors */
+   html[data-theme="material"] .standard-sidebar-item[data-route*="accounting"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="accounting"]:hover {
+     background: var(--module-accounting-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="buying"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="buying"]:hover,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="purchase"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="purchase"]:hover {
+     background: var(--module-buying-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="selling"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="selling"]:hover,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="sales"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="sales"]:hover {
+     background: var(--module-selling-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="stock"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="stock"]:hover {
+     background: var(--module-stock-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="manufacturing"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="manufacturing"]:hover {
+     background: var(--module-manufacturing-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="projects"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="projects"]:hover {
+     background: var(--module-projects-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="hr"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="hr"]:hover,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="users"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="users"]:hover {
+     background: var(--module-hr-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="crm"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="crm"]:hover {
+     background: var(--module-crm-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="support"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="support"]:hover {
+     background: var(--module-support-light) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="setup"]:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="setup"]:hover {
+     background: var(--module-setup-light) !important;
+   }
+   
+   /* Selected sidebar items with module colors */
+   html[data-theme="material"] .standard-sidebar-item[data-route*="accounting"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="accounting"].selected {
+     background: var(--module-accounting-light) !important;
+     border-left: 3px solid var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="buying"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="buying"].selected,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="purchase"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="purchase"].selected {
+     background: var(--module-buying-light) !important;
+     border-left: 3px solid var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="selling"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="selling"].selected,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="sales"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="sales"].selected {
+     background: var(--module-selling-light) !important;
+     border-left: 3px solid var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="stock"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="stock"].selected {
+     background: var(--module-stock-light) !important;
+     border-left: 3px solid var(--module-stock) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="manufacturing"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="manufacturing"].selected {
+     background: var(--module-manufacturing-light) !important;
+     border-left: 3px solid var(--module-manufacturing) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="projects"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="projects"].selected {
+     background: var(--module-projects-light) !important;
+     border-left: 3px solid var(--module-projects) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="hr"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="hr"].selected,
+   html[data-theme="material"] .standard-sidebar-item[data-route*="users"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="users"].selected {
+     background: var(--module-hr-light) !important;
+     border-left: 3px solid var(--module-hr) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="crm"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="crm"].selected {
+     background: var(--module-crm-light) !important;
+     border-left: 3px solid var(--module-crm) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="support"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="support"].selected {
+     background: var(--module-support-light) !important;
+     border-left: 3px solid var(--module-support) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item[data-route*="setup"].selected,
+   html[data-theme-mode="material"] .standard-sidebar-item[data-route*="setup"].selected {
+     background: var(--module-setup-light) !important;
+     border-left: 3px solid var(--module-setup) !important;
+   }
+   
+   /* ============================================
+      COLORFUL PAGE TITLES - Module Context Colors
+      ============================================ */
+   
+   /* Page titles with module colors */
+   html[data-theme="material"] [data-route*="accounting"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="accounting"] .page-title h3,
+   html[data-theme="material"] [data-route*="accounting"] .title-text,
+   html[data-theme-mode="material"] [data-route*="accounting"] .title-text {
+     color: var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="buying"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="buying"] .page-title h3,
+   html[data-theme="material"] [data-route*="buying"] .title-text,
+   html[data-theme-mode="material"] [data-route*="buying"] .title-text,
+   html[data-theme="material"] [data-route*="purchase"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="purchase"] .page-title h3,
+   html[data-theme="material"] [data-route*="purchase"] .title-text,
+   html[data-theme-mode="material"] [data-route*="purchase"] .title-text {
+     color: var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="selling"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="selling"] .page-title h3,
+   html[data-theme="material"] [data-route*="selling"] .title-text,
+   html[data-theme-mode="material"] [data-route*="selling"] .title-text,
+   html[data-theme="material"] [data-route*="sales"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="sales"] .page-title h3,
+   html[data-theme="material"] [data-route*="sales"] .title-text,
+   html[data-theme-mode="material"] [data-route*="sales"] .title-text {
+     color: var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="stock"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="stock"] .page-title h3,
+   html[data-theme="material"] [data-route*="stock"] .title-text,
+   html[data-theme-mode="material"] [data-route*="stock"] .title-text {
+     color: var(--module-stock) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="manufacturing"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="manufacturing"] .page-title h3,
+   html[data-theme="material"] [data-route*="manufacturing"] .title-text,
+   html[data-theme-mode="material"] [data-route*="manufacturing"] .title-text {
+     color: var(--module-manufacturing) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="projects"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="projects"] .page-title h3,
+   html[data-theme="material"] [data-route*="projects"] .title-text,
+   html[data-theme-mode="material"] [data-route*="projects"] .title-text {
+     color: var(--module-projects) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="hr"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="hr"] .page-title h3,
+   html[data-theme="material"] [data-route*="hr"] .title-text,
+   html[data-theme-mode="material"] [data-route*="hr"] .title-text,
+   html[data-theme="material"] [data-route*="users"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="users"] .page-title h3,
+   html[data-theme="material"] [data-route*="users"] .title-text,
+   html[data-theme-mode="material"] [data-route*="users"] .title-text {
+     color: var(--module-hr) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="crm"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="crm"] .page-title h3,
+   html[data-theme="material"] [data-route*="crm"] .title-text,
+   html[data-theme-mode="material"] [data-route*="crm"] .title-text {
+     color: var(--module-crm) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="support"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="support"] .page-title h3,
+   html[data-theme="material"] [data-route*="support"] .title-text,
+   html[data-theme-mode="material"] [data-route*="support"] .title-text {
+     color: var(--module-support) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="setup"] .page-title h3,
+   html[data-theme-mode="material"] [data-route*="setup"] .page-title h3,
+   html[data-theme="material"] [data-route*="setup"] .title-text,
+   html[data-theme-mode="material"] [data-route*="setup"] .title-text {
+     color: var(--module-setup) !important;
+   }
+   
+   /* Also apply to body[data-route] for workspace pages */
+   html[data-theme="material"] body[data-route*="buying"] .page-title h3,
+   html[data-theme-mode="material"] body[data-route*="buying"] .page-title h3,
+   html[data-theme="material"] body[data-route*="buying"] .title-text,
+   html[data-theme-mode="material"] body[data-route*="buying"] .title-text {
+     color: var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] body[data-route*="accounting"] .page-title h3,
+   html[data-theme-mode="material"] body[data-route*="accounting"] .page-title h3,
+   html[data-theme="material"] body[data-route*="accounting"] .title-text,
+   html[data-theme-mode="material"] body[data-route*="accounting"] .title-text {
+     color: var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] body[data-route*="selling"] .page-title h3,
+   html[data-theme-mode="material"] body[data-route*="selling"] .page-title h3,
+   html[data-theme="material"] body[data-route*="selling"] .title-text,
+   html[data-theme-mode="material"] body[data-route*="selling"] .title-text {
+     color: var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] body[data-route*="stock"] .page-title h3,
+   html[data-theme-mode="material"] body[data-route*="stock"] .page-title h3,
+   html[data-theme="material"] body[data-route*="stock"] .title-text,
+   html[data-theme-mode="material"] body[data-route*="stock"] .title-text {
+     color: var(--module-stock) !important;
+   }
+   
+   /* ============================================
+      COLORFUL BUTTONS - Module Context Aware
+      ============================================ */
+   
+   /* Primary buttons in module contexts */
+   html[data-theme="material"] [data-route*="accounting"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="accounting"] .btn-primary {
+     background: var(--module-accounting) !important;
+     border-color: var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="buying"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="buying"] .btn-primary,
+   html[data-theme="material"] [data-route*="purchase"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="purchase"] .btn-primary {
+     background: var(--module-buying) !important;
+     border-color: var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="selling"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="selling"] .btn-primary,
+   html[data-theme="material"] [data-route*="sales"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="sales"] .btn-primary {
+     background: var(--module-selling) !important;
+     border-color: var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="stock"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="stock"] .btn-primary {
+     background: var(--module-stock) !important;
+     border-color: var(--module-stock) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="manufacturing"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="manufacturing"] .btn-primary {
+     background: var(--module-manufacturing) !important;
+     border-color: var(--module-manufacturing) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="projects"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="projects"] .btn-primary {
+     background: var(--module-projects) !important;
+     border-color: var(--module-projects) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="hr"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="hr"] .btn-primary,
+   html[data-theme="material"] [data-route*="users"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="users"] .btn-primary {
+     background: var(--module-hr) !important;
+     border-color: var(--module-hr) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="crm"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="crm"] .btn-primary {
+     background: var(--module-crm) !important;
+     border-color: var(--module-crm) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="support"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="support"] .btn-primary {
+     background: var(--module-support) !important;
+     border-color: var(--module-support) !important;
+     color: #000 !important;
+   }
+   
+   html[data-theme="material"] [data-route*="setup"] .btn-primary,
+   html[data-theme-mode="material"] [data-route*="setup"] .btn-primary {
+     background: var(--module-setup) !important;
+     border-color: var(--module-setup) !important;
+   }
+   
+   /* ============================================
+      COLORFUL BADGES & INDICATORS
+      ============================================ */
+   
+   /* Status badges with vibrant colors */
+   html[data-theme="material"] .indicator-pill.green,
+   html[data-theme-mode="material"] .indicator-pill.green {
+     background: var(--module-manufacturing) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.blue,
+   html[data-theme-mode="material"] .indicator-pill.blue {
+     background: var(--module-accounting) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.orange,
+   html[data-theme-mode="material"] .indicator-pill.orange {
+     background: var(--module-selling) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.purple,
+   html[data-theme-mode="material"] .indicator-pill.purple {
+     background: var(--module-buying) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.red,
+   html[data-theme-mode="material"] .indicator-pill.red {
+     background: var(--module-crm) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.teal,
+   html[data-theme-mode="material"] .indicator-pill.teal {
+     background: var(--module-stock) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.pink,
+   html[data-theme-mode="material"] .indicator-pill.pink {
+     background: var(--module-hr) !important;
+     color: #fff !important;
+   }
+   
+   html[data-theme="material"] .indicator-pill.yellow,
+   html[data-theme-mode="material"] .indicator-pill.yellow {
+     background: var(--module-support) !important;
+     color: #000 !important;
+   }
+   
+   /* ============================================
+      COLORFUL CARDS & WIDGETS - Module Accents
+      ============================================ */
+   
+   /* Dashboard widgets with colored accents based on module */
+   html[data-theme="material"] .widget[data-widget-name*="Account"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Account"] {
+     border-left: 4px solid var(--module-accounting) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Purchase"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Purchase"],
+   html[data-theme="material"] .widget[data-widget-name*="Buying"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Buying"] {
+     border-left: 4px solid var(--module-buying) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Sales"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Sales"],
+   html[data-theme="material"] .widget[data-widget-name*="Selling"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Selling"] {
+     border-left: 4px solid var(--module-selling) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Stock"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Stock"] {
+     border-left: 4px solid var(--module-stock) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Manufacturing"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Manufacturing"] {
+     border-left: 4px solid var(--module-manufacturing) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Project"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Project"] {
+     border-left: 4px solid var(--module-projects) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="HR"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="HR"],
+   html[data-theme="material"] .widget[data-widget-name*="User"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="User"] {
+     border-left: 4px solid var(--module-hr) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="CRM"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="CRM"] {
+     border-left: 4px solid var(--module-crm) !important;
+   }
+   
+   html[data-theme="material"] .widget[data-widget-name*="Support"],
+   html[data-theme-mode="material"] .widget[data-widget-name*="Support"] {
+     border-left: 4px solid var(--module-support) !important;
+   }
+   
+   /* ============================================
+      COLORFUL FORM SECTIONS - Module Context
+      ============================================ */
+   
+   /* Form section headers with module colors */
+   html[data-theme="material"] [data-route*="accounting"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="accounting"] .form-section .section-head {
+     background: linear-gradient(135deg, var(--module-accounting-light) 0%, rgba(0, 137, 255, 0.1) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="accounting"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="accounting"] .form-section::before {
+     background: linear-gradient(180deg, var(--module-accounting) 0%, var(--module-accounting-dark) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="buying"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="buying"] .form-section .section-head,
+   html[data-theme="material"] [data-route*="purchase"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="purchase"] .form-section .section-head {
+     background: linear-gradient(135deg, var(--module-buying-light) 0%, rgba(123, 44, 191, 0.1) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="buying"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="buying"] .form-section::before,
+   html[data-theme="material"] [data-route*="purchase"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="purchase"] .form-section::before {
+     background: linear-gradient(180deg, var(--module-buying) 0%, var(--module-buying-dark) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="selling"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="selling"] .form-section .section-head,
+   html[data-theme="material"] [data-route*="sales"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="sales"] .form-section .section-head {
+     background: linear-gradient(135deg, var(--module-selling-light) 0%, rgba(255, 107, 53, 0.1) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="selling"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="selling"] .form-section::before,
+   html[data-theme="material"] [data-route*="sales"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="sales"] .form-section::before {
+     background: linear-gradient(180deg, var(--module-selling) 0%, var(--module-selling-dark) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="stock"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="stock"] .form-section .section-head {
+     background: linear-gradient(135deg, var(--module-stock-light) 0%, rgba(32, 178, 170, 0.1) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="stock"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="stock"] .form-section::before {
+     background: linear-gradient(180deg, var(--module-stock) 0%, var(--module-stock-dark) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="manufacturing"] .form-section .section-head,
+   html[data-theme-mode="material"] [data-route*="manufacturing"] .form-section .section-head {
+     background: linear-gradient(135deg, var(--module-manufacturing-light) 0%, rgba(76, 175, 80, 0.1) 100%) !important;
+   }
+   
+   html[data-theme="material"] [data-route*="manufacturing"] .form-section::before,
+   html[data-theme-mode="material"] [data-route*="manufacturing"] .form-section::before {
+     background: linear-gradient(180deg, var(--module-manufacturing) 0%, var(--module-manufacturing-dark) 100%) !important;
+   }
+     
      /* Professional Transitions */
      --techcloud-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
      --techcloud-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -5547,23 +6347,74 @@
      }
    }
    
-   @media (max-width: 768px) {
-     html[data-theme="material"] .unified-header,
-     html[data-theme-mode="material"] .unified-header {
-       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
-     }
+  @media (max-width: 768px) {
+    html[data-theme="material"] .unified-header,
+    html[data-theme-mode="material"] .unified-header {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
+    }
    
-     html[data-theme="material"] .page-title h3,
-     html[data-theme-mode="material"] .page-title h3 {
-       font-size: 14px;
-     }
+    html[data-theme="material"] .page-title h3,
+    html[data-theme-mode="material"] .page-title h3 {
+      font-size: 14px;
+    }
    
-     html[data-theme="material"] .page-actions .btn,
-     html[data-theme-mode="material"] .page-actions .btn {
-       height: 30px;
-       font-size: 12px;
-     }
-   }
+    html[data-theme="material"] .page-actions .btn,
+    html[data-theme-mode="material"] .page-actions .btn {
+      height: 30px;
+      font-size: 12px;
+    }
+    
+    /* Mobile navbar - prevent overlap */
+    html[data-theme="material"] .navbar > .container,
+    html[data-theme-mode="material"] .navbar > .container,
+    html[data-theme="material"] .navbar .container,
+    html[data-theme-mode="material"] .navbar .container {
+      flex-wrap: nowrap !important;
+      overflow: visible !important;
+      gap: 8px !important;
+      padding: 0 12px !important;
+    }
+    
+    html[data-theme="material"] .navbar-collapse,
+    html[data-theme-mode="material"] .navbar-collapse {
+      flex-direction: row !important;
+      align-items: center !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      gap: 8px !important;
+    }
+    
+    html[data-theme="material"] .search-bar,
+    html[data-theme-mode="material"] .search-bar {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      margin: 0 8px !important;
+      position: relative !important;
+      z-index: 1 !important;
+    }
+    
+    html[data-theme="material"] .search-bar input,
+    html[data-theme-mode="material"] .search-bar input {
+      width: 100% !important;
+      height: 36px !important;
+      padding: 0 40px 0 36px !important;
+      font-size: 14px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    
+    html[data-theme="material"] .navbar-nav,
+    html[data-theme-mode="material"] .navbar-nav {
+      flex-shrink: 0 !important;
+      gap: 4px !important;
+      margin-left: 0 !important;
+    }
+    
+    html[data-theme="material"] #navbar-breadcrumbs,
+    html[data-theme-mode="material"] #navbar-breadcrumbs {
+      display: none !important;
+    }
+  }
    
    /* ---------------------------------------------------------
       FULL WIDTH MODE FIX
@@ -5609,23 +6460,26 @@
       
      }*/
    
-   html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .layout-side-section, html[data-theme-mode="material"] .layout-side-section {
-       width: 245px !important;
-       /* min-width: 260px !important; */
-       /* background: var(--techcloud-white) !important; */
-       border-right: 1px solid var(--techcloud-border-color) !important;
-       padding: 0px 0px 0px 0px !important;
-       left: 0 !important;
-       top: 0px !important;
-       /* Dynamic height calculation for better menu visibility */
-       height: 100% !important;
-       min-height: 400px !important; /* Ensure minimum height for content */
-       overflow: visible !important; /* Remove scrollbar from desk-sidebar - let list-sidebar handle it */
-       /* box-sizing: border-box !important; */
-       z-index: 100 !important;
-       display: flex !important;
-       flex-direction: column !important;
-   }
+  html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .desk-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme="material"] .layout-side-section, html[data-theme-mode="material"] .layout-side-section {
+      width: 245px !important;
+      /* min-width: 260px !important; */
+      background: #ffffff !important; /* Ensure full-height white card behind ALL menu items */
+      border: none !important; /* Remove border around menu */
+      border-right: none !important; /* Remove right border */
+      padding: 0px 0px 0px 0px !important;
+      left: 0 !important;
+      top: 0px !important;
+      /* Dynamic height calculation for better menu visibility */
+      height: 100% !important;
+      min-height: 400px !important; /* Ensure minimum height for content */
+      /* Allow the sidebar itself to scroll so all menu items are reachable */
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      /* box-sizing: border-box !important; */
+      z-index: 100 !important;
+      display: flex !important;
+      flex-direction: column !important;
+  }
    
    /* Sidebar Logo/Brand */
    html[data-theme="material"] .desk-sidebar .sidebar-brand,
@@ -15927,9 +16781,11 @@ html[data-theme-mode="material"] .form-page {
 	background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
 	padding: 12px 16px !important;
 	min-height: calc(100vh - 120px) !important;
+	max-height: calc(100vh - 120px) !important;
+	overflow: hidden !important;
 }
 
-/* Form layout container - use almost full width */
+/* Form layout container - use almost full width with viewport height */
 html[data-theme="material"] .form-layout,
 html[data-theme-mode="material"] .form-layout {
 	background: #ffffff !important;
@@ -15940,6 +16796,9 @@ html[data-theme-mode="material"] .form-layout {
 	max-width: 98% !important;
 	width: 100% !important;
 	border: 1px solid rgba(0, 137, 255, 0.1) !important;
+	max-height: calc(100vh - 200px) !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
 }
 
 /* Enhanced form sections - ultra-compact card styling */
@@ -15975,13 +16834,13 @@ html[data-theme-mode="material"] .form-section:hover {
 	border-color: rgba(0, 137, 255, 0.2) !important;
 }
 
-/* Section headers - ultra-compact styling */
+/* Section headers - ultra-compact styling (10px padding) */
 html[data-theme="material"] .form-section .section-head,
 html[data-theme-mode="material"] .form-section .section-head {
 	background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
 	border: none !important;
 	border-radius: 8px !important;
-	padding: 8px 14px !important;
+	padding: 10px 14px !important;
 	margin: -12px -16px 10px -16px !important;
 	position: relative !important;
 	overflow: hidden !important;
@@ -16178,13 +17037,13 @@ html[data-theme-mode="material"] .control-label {
 	font-size: 12px !important;
 	font-weight: 600 !important;
 	color: #374151 !important;
-	margin-bottom: 5px !important;
+	margin-bottom: 4px !important;
 	letter-spacing: 0.2px !important;
 	text-transform: none !important;
 	line-height: 1.3 !important;
 }
 
-/* Form controls - compact input styling */
+/* Form controls - compact input styling (40px height) */
 html[data-theme="material"] .form-control,
 html[data-theme-mode="material"] .form-control,
 html[data-theme="material"] .control-input,
@@ -16193,9 +17052,10 @@ html[data-theme-mode="material"] .control-input {
 	border: 1.5px solid #e5e7eb !important;
 	padding: 8px 12px !important;
 	font-size: 13px !important;
+	height: 40px !important;
+	line-height: 1.4 !important;
 	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 	background: #ffffff !important;
-	line-height: 1.4 !important;
 }
 
 html[data-theme="material"] .form-control:focus,
@@ -16387,59 +17247,154 @@ html[data-theme-mode="material"] .text-muted {
 }
 
 /* ============================================
+   SPACE OPTIMIZATION - Reduce Empty Space Throughout
+   ============================================ */
+
+/* Page containers - reduced padding */
+html[data-theme="material"] .page-container,
+html[data-theme-mode="material"] .page-container {
+	padding: 12px 16px !important;
+}
+
+html[data-theme="material"] .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section {
+	padding: 12px 16px !important;
+}
+
+/* Dashboard widgets - compact spacing */
+html[data-theme="material"] .widget,
+html[data-theme-mode="material"] .widget {
+	padding: 16px !important;
+	margin-bottom: 16px !important;
+}
+
+html[data-theme="material"] .widget-group-body,
+html[data-theme-mode="material"] .widget-group-body {
+	gap: 12px !important;
+}
+
+/* Lists - compact row heights */
+html[data-theme="material"] .list-row,
+html[data-theme-mode="material"] .list-row {
+	min-height: 40px !important;
+	padding: 8px 12px !important;
+}
+
+/* Tables - reduced cell padding */
+html[data-theme="material"] .table td,
+html[data-theme-mode="material"] .table td,
+html[data-theme="material"] .table th,
+html[data-theme-mode="material"] .table th {
+	padding: 8px !important;
+}
+
+/* Modals - maximize content area */
+html[data-theme="material"] .modal-body,
+html[data-theme-mode="material"] .modal-body {
+	padding: 16px !important;
+}
+
+html[data-theme="material"] .modal-header,
+html[data-theme-mode="material"] .modal-header {
+	padding: 12px 16px !important;
+}
+
+html[data-theme="material"] .modal-footer,
+html[data-theme-mode="material"] .modal-footer {
+	padding: 12px 16px !important;
+}
+
+/* Cards - optimized padding */
+html[data-theme="material"] .card,
+html[data-theme-mode="material"] .card {
+	padding: 16px !important;
+	margin-bottom: 16px !important;
+}
+
+/* Section gaps - reduced margins */
+html[data-theme="material"] .section,
+html[data-theme-mode="material"] .section {
+	margin-bottom: 16px !important;
+}
+
+/* ============================================
    RESPONSIVE OPTIMIZATIONS FOR SPACE EFFICIENCY
    ============================================ */
 
-/* Large screens - maximize width usage */
+/* Large Desktop - maximize width usage */
 @media (min-width: 1400px) {
 	html[data-theme="material"] .form-layout,
 	html[data-theme-mode="material"] .form-layout {
 		max-width: 99% !important;
-		padding: 16px 24px !important;
+		padding: 20px 28px !important;
 	}
 	
-	/* Use more columns on large screens */
+	/* Use more columns on large screens - 3 columns */
 	html[data-theme="material"] .form-row > .form-group,
 	html[data-theme-mode="material"] .form-row > .form-group {
 		min-width: 220px !important;
 		max-width: calc(33.333% - 11px) !important;
 	}
+	
+	html[data-theme="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme-mode="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		width: calc(33.333% - 11px) !important;
+		margin-right: 16px !important;
+	}
+	
+	html[data-theme="material"] .section-body > .form-group:nth-child(3n),
+	html[data-theme-mode="material"] .section-body > .form-group:nth-child(3n),
+	html[data-theme="material"] .section-body .frappe-control:nth-child(3n):not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:nth-child(3n):not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		margin-right: 0 !important;
+	}
+	
+	/* Widgets 4 columns on large screens */
+	html[data-theme="material"] .widget-group-body.grid-col-3,
+	html[data-theme-mode="material"] .widget-group-body.grid-col-3 {
+		grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+	}
 }
 
-/* Medium screens - balanced layout */
-@media (min-width: 992px) and (max-width: 1399px) {
+/* Desktop - balanced layout */
+@media (min-width: 1024px) and (max-width: 1399px) {
 	html[data-theme="material"] .form-layout,
 	html[data-theme-mode="material"] .form-layout {
 		max-width: 96% !important;
+		padding: 16px 20px !important;
+	}
+	
+	/* 2-3 column layouts on desktop */
+	html[data-theme="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme-mode="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		width: calc(50% - 8px) !important;
+		margin-right: 16px !important;
+	}
+	
+	/* Full sidebar visible */
+	html[data-theme="material"] .desk-sidebar,
+	html[data-theme-mode="material"] .desk-sidebar {
+		position: relative !important;
+		display: block !important;
+	}
+	
+	/* Widgets 3 columns on desktop */
+	html[data-theme="material"] .widget-group-body.grid-col-3,
+	html[data-theme-mode="material"] .widget-group-body.grid-col-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 	}
 }
 
 /* Tablet - still use space efficiently */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1023px) {
 	html[data-theme="material"] .form-layout,
 	html[data-theme-mode="material"] .form-layout {
 		max-width: 100% !important;
-		padding: 16px 20px !important;
-	}
-	
-	html[data-theme="material"] .form-section,
-	html[data-theme-mode="material"] .form-section {
 		padding: 14px 18px !important;
-		margin-bottom: 14px !important;
-	}
-}
-
-/* Mobile - compact but readable */
-@media (max-width: 767px) {
-	html[data-theme="material"] .form-page,
-	html[data-theme-mode="material"] .form-page {
-		padding: 12px !important;
-	}
-	
-	html[data-theme="material"] .form-layout,
-	html[data-theme-mode="material"] .form-layout {
-		padding: 16px !important;
-		border-radius: 8px !important;
 	}
 	
 	html[data-theme="material"] .form-section,
@@ -16448,9 +17403,601 @@ html[data-theme-mode="material"] .text-muted {
 		margin-bottom: 12px !important;
 	}
 	
+	/* 2-column layout on tablet */
+	html[data-theme="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme-mode="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		width: calc(50% - 8px) !important;
+		margin-right: 16px !important;
+	}
+	
+	html[data-theme="material"] .section-body > .form-group:nth-child(even),
+	html[data-theme-mode="material"] .section-body > .form-group:nth-child(even),
+	html[data-theme="material"] .section-body .frappe-control:nth-child(even):not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:nth-child(even):not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		margin-right: 0 !important;
+	}
+	
+	/* Sidebar can be toggled */
+	html[data-theme="material"] .desk-sidebar,
+	html[data-theme-mode="material"] .desk-sidebar {
+		position: relative !important;
+	}
+	
+	/* Widgets 2 columns on tablet */
+	html[data-theme="material"] .widget-group-body.grid-col-3,
+	html[data-theme-mode="material"] .widget-group-body.grid-col-3 {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+}
+
+/* Mobile - compact but readable with proper touch targets */
+@media (max-width: 767px) {
+	/* Page containers - comfortable padding for mobile */
+	html[data-theme="material"] .form-page,
+	html[data-theme-mode="material"] .form-page {
+		padding: 12px !important;
+	}
+	
+	html[data-theme="material"] .page-container,
+	html[data-theme-mode="material"] .page-container {
+		padding: 12px !important;
+	}
+	
+	html[data-theme="material"] .layout-main-section,
+	html[data-theme-mode="material"] .layout-main-section {
+		padding: 12px !important;
+	}
+	
+	/* Form layout - proper mobile spacing */
+	html[data-theme="material"] .form-layout,
+	html[data-theme-mode="material"] .form-layout {
+		padding: 16px !important;
+		border-radius: 8px !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+	}
+	
+	/* Form sections - comfortable mobile padding */
+	html[data-theme="material"] .form-section,
+	html[data-theme-mode="material"] .form-section {
+		padding: 12px 16px !important;
+		margin-bottom: 12px !important;
+	}
+	
+	/* Form groups - proper spacing */
 	html[data-theme="material"] .form-group,
 	html[data-theme-mode="material"] .form-group {
-		margin-bottom: 12px !important;
+		margin-bottom: 16px !important;
+	}
+	
+	/* Input fields - touch-friendly height (44px minimum) */
+	html[data-theme="material"] .form-control,
+	html[data-theme-mode="material"] .form-control,
+	html[data-theme="material"] .control-input,
+	html[data-theme-mode="material"] .control-input {
+		height: 44px !important;
+		min-height: 44px !important;
+		padding: 12px 16px !important;
+		font-size: 16px !important; /* Prevents zoom on iOS */
+	}
+	
+	/* Labels - proper spacing */
+	html[data-theme="material"] .control-label,
+	html[data-theme-mode="material"] .control-label {
+		margin-bottom: 8px !important;
+		font-size: 13px !important;
+	}
+	
+	/* Single column layout on mobile */
+	html[data-theme="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme-mode="material"] .section-body > .form-group:not(:only-child),
+	html[data-theme="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]),
+	html[data-theme-mode="material"] .section-body .frappe-control:not([data-fieldtype="Section Break"]):not([data-fieldtype="Column Break"]):not([data-fieldtype="Page Break"]):not([data-fieldtype="Text Editor"]):not([data-fieldtype="Code"]):not([data-fieldtype="HTML"]):not([data-fieldtype="Table"]):not([data-fieldtype="Attach"]):not([data-fieldtype="Attach Image"]) {
+		width: 100% !important;
+		margin-right: 0 !important;
+		margin-bottom: 16px !important;
+	}
+	
+	/* Touch-friendly buttons - 44px minimum height */
+	html[data-theme="material"] .btn,
+	html[data-theme-mode="material"] .btn {
+		min-height: 44px !important;
+		height: 44px !important;
+		padding: 12px 20px !important;
+		font-size: 15px !important;
+		border-radius: 8px !important;
+	}
+	
+	html[data-theme="material"] .btn-sm,
+	html[data-theme-mode="material"] .btn-sm {
+		min-height: 40px !important;
+		height: 40px !important;
+		padding: 10px 16px !important;
+		font-size: 14px !important;
+	}
+	
+	/* Navbar/Header - proper mobile height and spacing */
+	html[data-theme="material"] .navbar,
+	html[data-theme-mode="material"] .navbar,
+	html[data-theme="material"] .unified-header,
+	html[data-theme-mode="material"] .unified-header,
+	html[data-theme="material"] .unified-topbar,
+	html[data-theme-mode="material"] .unified-topbar {
+		min-height: 48px !important;
+		height: auto !important;
+		padding: 8px 12px !important;
+		overflow: visible !important;
+	}
+	
+	/* Navbar container - proper mobile spacing */
+	html[data-theme="material"] .navbar > .container,
+	html[data-theme-mode="material"] .navbar > .container,
+	html[data-theme="material"] .navbar .container,
+	html[data-theme-mode="material"] .navbar .container,
+	html[data-theme="material"] .unified-topbar .navbar > .container,
+	html[data-theme-mode="material"] .unified-topbar .navbar > .container,
+	html[data-theme="material"] .unified-topbar .navbar .container,
+	html[data-theme-mode="material"] .unified-topbar .navbar .container {
+		padding: 0 12px !important;
+		gap: 8px !important;
+		flex-wrap: nowrap !important;
+		height: 48px !important;
+		align-items: center !important;
+	}
+	
+	/* Hamburger menu - proper spacing */
+	html[data-theme="material"] .navbar-toggler,
+	html[data-theme-mode="material"] .navbar-toggler,
+	html[data-theme="material"] .sidebar-toggle-btn,
+	html[data-theme-mode="material"] .sidebar-toggle-btn {
+		min-width: 44px !important;
+		min-height: 44px !important;
+		width: 44px !important;
+		height: 44px !important;
+		padding: 0 !important;
+		margin-right: 8px !important;
+		flex-shrink: 0 !important;
+	}
+	
+	/* Search bar - mobile optimized, no overlap */
+	html[data-theme="material"] .search-bar,
+	html[data-theme-mode="material"] .search-bar,
+	html[data-theme="material"] .input-group.search-bar,
+	html[data-theme-mode="material"] .input-group.search-bar {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		max-width: none !important;
+		margin: 0 8px !important;
+		position: relative !important;
+		z-index: 1 !important;
+	}
+	
+	html[data-theme="material"] .search-bar input,
+	html[data-theme-mode="material"] .search-bar input,
+	html[data-theme="material"] #navbar-search,
+	html[data-theme-mode="material"] #navbar-search {
+		width: 100% !important;
+		height: 36px !important;
+		min-height: 36px !important;
+		padding: 0 40px 0 36px !important;
+		font-size: 14px !important;
+		border-radius: 18px !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		white-space: nowrap !important;
+	}
+	
+	/* Navbar collapse - proper mobile layout */
+	html[data-theme="material"] .navbar-collapse,
+	html[data-theme-mode="material"] .navbar-collapse {
+		display: flex !important;
+		align-items: center !important;
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		gap: 8px !important;
+	}
+	
+	html[data-theme="material"] .navbar-collapse > form,
+	html[data-theme-mode="material"] .navbar-collapse > form {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+	}
+	
+	/* Right side icons - proper spacing */
+	html[data-theme="material"] .navbar-nav,
+	html[data-theme-mode="material"] .navbar-nav {
+		display: flex !important;
+		align-items: center !important;
+		flex-shrink: 0 !important;
+		gap: 4px !important;
+		margin-left: 8px !important;
+	}
+	
+	html[data-theme="material"] .navbar-nav .nav-link,
+	html[data-theme-mode="material"] .navbar-nav .nav-link {
+		min-width: 44px !important;
+		min-height: 44px !important;
+		width: 44px !important;
+		height: 44px !important;
+		padding: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+	
+	/* Page header - compact mobile */
+	html[data-theme="material"] .page-head,
+	html[data-theme-mode="material"] .page-head {
+		padding: 12px !important;
+		min-height: 48px !important;
+		margin-top: 0 !important;
+	}
+	
+	html[data-theme="material"] .page-title h3,
+	html[data-theme-mode="material"] .page-title h3 {
+		font-size: 16px !important;
+		margin: 0 !important;
+		line-height: 1.3 !important;
+	}
+	
+	/* Ensure no overlap between navbar and page content */
+	html[data-theme="material"] .layout-main-section,
+	html[data-theme-mode="material"] .layout-main-section {
+		margin-top: 0 !important;
+		padding-top: 0 !important;
+	}
+	
+	/* Breadcrumbs - hide on mobile if causing overlap */
+	html[data-theme="material"] #navbar-breadcrumbs,
+	html[data-theme-mode="material"] #navbar-breadcrumbs {
+		display: none !important;
+	}
+	
+	/* Collapsible sidebar */
+	html[data-theme="material"] .desk-sidebar,
+	html[data-theme-mode="material"] .desk-sidebar {
+		position: fixed !important;
+		left: -280px !important;
+		transition: left 0.3s ease !important;
+		z-index: 1000 !important;
+		width: 280px !important;
+		height: calc(100vh - 48px) !important;
+		top: 48px !important;
+		padding: 12px !important;
+	}
+	
+	html[data-theme="material"] .desk-sidebar.show,
+	html[data-theme-mode="material"] .desk-sidebar.show {
+		left: 0 !important;
+	}
+	
+	/* Sidebar overlay on mobile */
+	html[data-theme="material"] .sidebar-overlay,
+	html[data-theme-mode="material"] .sidebar-overlay {
+		position: fixed !important;
+		top: 48px !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 0 !important;
+		background: rgba(0, 0, 0, 0.5) !important;
+		z-index: 999 !important;
+		display: none !important;
+	}
+	
+	html[data-theme="material"] .desk-sidebar.show ~ .sidebar-overlay,
+	html[data-theme-mode="material"] .desk-sidebar.show ~ .sidebar-overlay {
+		display: block !important;
+	}
+	
+	/* Sticky navbar on mobile */
+	html[data-theme="material"] .navbar,
+	html[data-theme-mode="material"] .navbar {
+		position: sticky !important;
+		top: 0 !important;
+		z-index: 999 !important;
+	}
+	
+	/* Widgets stack on mobile */
+	html[data-theme="material"] .widget,
+	html[data-theme-mode="material"] .widget {
+		padding: 16px !important;
+		margin-bottom: 16px !important;
+	}
+	
+	html[data-theme="material"] .widget-group-body,
+	html[data-theme-mode="material"] .widget-group-body {
+		grid-template-columns: 1fr !important;
+		gap: 16px !important;
+	}
+	
+	/* Cards - mobile spacing */
+	html[data-theme="material"] .card,
+	html[data-theme-mode="material"] .card {
+		padding: 16px !important;
+		margin-bottom: 16px !important;
+	}
+	
+	/* Lists - touch-friendly row height */
+	html[data-theme="material"] .list-row,
+	html[data-theme-mode="material"] .list-row {
+		min-height: 48px !important;
+		padding: 12px 16px !important;
+	}
+	
+	/* Tables - mobile optimized */
+	html[data-theme="material"] .table td,
+	html[data-theme-mode="material"] .table td,
+	html[data-theme="material"] .table th,
+	html[data-theme-mode="material"] .table th {
+		padding: 12px 8px !important;
+		font-size: 14px !important;
+	}
+	
+	html[data-theme="material"] .table-responsive,
+	html[data-theme-mode="material"] .table-responsive {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch !important;
+		margin: 0 -12px !important;
+		padding: 0 12px !important;
+	}
+	
+	/* Modals - mobile optimized */
+	html[data-theme="material"] .modal-body,
+	html[data-theme-mode="material"] .modal-body {
+		padding: 20px 16px !important;
+	}
+	
+	html[data-theme="material"] .modal-header,
+	html[data-theme-mode="material"] .modal-header {
+		padding: 16px !important;
+		min-height: 56px !important;
+	}
+	
+	html[data-theme="material"] .modal-footer,
+	html[data-theme-mode="material"] .modal-footer {
+		padding: 12px 16px !important;
+	}
+	
+	/* Section gaps - mobile spacing */
+	html[data-theme="material"] .section,
+	html[data-theme-mode="material"] .section {
+		margin-bottom: 16px !important;
+	}
+	
+	/* Search bar - mobile optimized */
+	html[data-theme="material"] .search-bar,
+	html[data-theme-mode="material"] .search-bar {
+		min-height: 44px !important;
+		padding: 8px 12px !important;
+	}
+	
+	/* Icon buttons - touch-friendly */
+	html[data-theme="material"] .btn-icon,
+	html[data-theme-mode="material"] .btn-icon,
+	html[data-theme="material"] .icon-btn,
+	html[data-theme-mode="material"] .icon-btn {
+		min-width: 44px !important;
+		min-height: 44px !important;
+		width: 44px !important;
+		height: 44px !important;
+		padding: 0 !important;
+	}
+	
+	/* ============================================
+	   MOBILE PAGEBAR BEAUTIFICATION - Material Theme
+	   ============================================ */
+	
+	/* Unified pagebar - beautiful mobile design */
+	html[data-theme="material"] .unified-pagebar,
+	html[data-theme-mode="material"] .unified-pagebar {
+		background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+		border-bottom: 1px solid #e5e7eb !important;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+		padding: 0 !important;
+		position: sticky !important;
+		top: 48px !important;
+		z-index: 999 !important;
+	}
+	
+	/* Page head - compact and beautiful */
+	html[data-theme="material"] .unified-pagebar .page-head,
+	html[data-theme-mode="material"] .unified-pagebar .page-head {
+		min-height: 52px !important;
+		height: auto !important;
+		padding: 12px 16px !important;
+		margin: 0 !important;
+		background: transparent !important;
+		border-bottom: none !important;
+		display: flex !important;
+		align-items: center !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-head .container,
+	html[data-theme-mode="material"] .unified-pagebar .page-head .container {
+		padding: 0 !important;
+		margin: 0 !important;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-head-content,
+	html[data-theme-mode="material"] .unified-pagebar .page-head-content {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 12px !important;
+		flex-wrap: nowrap !important;
+		min-height: 44px !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		width: 100% !important;
+	}
+	
+	/* Page title - beautiful mobile styling */
+	html[data-theme="material"] .unified-pagebar .page-title,
+	html[data-theme-mode="material"] .unified-pagebar .page-title {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .title-area,
+	html[data-theme-mode="material"] .unified-pagebar .title-area {
+		display: flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		width: 100% !important;
+		min-width: 0 !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .title-text,
+	html[data-theme-mode="material"] .unified-pagebar .title-text,
+	html[data-theme="material"] .unified-pagebar h3,
+	html[data-theme-mode="material"] .unified-pagebar h3 {
+		font-size: 18px !important;
+		font-weight: 700 !important;
+		color: #0f172a !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		line-height: 1.3 !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		white-space: nowrap !important;
+		max-width: 100% !important;
+		letter-spacing: -0.01em !important;
+	}
+	
+	/* Page actions - beautiful mobile buttons */
+	html[data-theme="material"] .unified-pagebar .page-actions,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions {
+		flex-shrink: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .btn,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .btn {
+		min-height: 40px !important;
+		height: 40px !important;
+		padding: 10px 16px !important;
+		font-size: 13px !important;
+		border-radius: 10px !important;
+		font-weight: 600 !important;
+		white-space: nowrap !important;
+		transition: all 0.2s ease !important;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .btn-primary,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .btn-primary {
+		background: linear-gradient(135deg, #0089FF 0%, #0070CC 100%) !important;
+		border: none !important;
+		color: #ffffff !important;
+		box-shadow: 0 2px 8px rgba(0, 137, 255, 0.3) !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .btn-primary:hover,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .btn-primary:hover {
+		background: linear-gradient(135deg, #0070CC 0%, #0056A3 100%) !important;
+		box-shadow: 0 4px 12px rgba(0, 137, 255, 0.4) !important;
+		transform: translateY(-1px) !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .btn-secondary,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .btn-secondary {
+		background: #ffffff !important;
+		border: 1.5px solid #e5e7eb !important;
+		color: #475569 !important;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .btn-secondary:hover,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .btn-secondary:hover {
+		background: #f8fafc !important;
+		border-color: #cbd5e1 !important;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+	}
+	
+	/* Icon buttons - touch-friendly */
+	html[data-theme="material"] .unified-pagebar .page-actions .icon-btn,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .icon-btn {
+		min-width: 40px !important;
+		width: 40px !important;
+		height: 40px !important;
+		padding: 0 !important;
+		border-radius: 10px !important;
+		background: #f8fafc !important;
+		border: 1px solid #e5e7eb !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .page-actions .icon-btn:hover,
+	html[data-theme-mode="material"] .unified-pagebar .page-actions .icon-btn:hover {
+		background: #f1f5f9 !important;
+		border-color: #cbd5e1 !important;
+	}
+	
+	/* Hide empty elements */
+	html[data-theme="material"] .unified-pagebar .hide,
+	html[data-theme-mode="material"] .unified-pagebar .hide {
+		display: none !important;
+	}
+	
+	/* Indicator pill - beautiful styling */
+	html[data-theme="material"] .unified-pagebar .indicator-pill,
+	html[data-theme-mode="material"] .unified-pagebar .indicator-pill {
+		font-size: 10px !important;
+		padding: 3px 10px !important;
+		margin-left: 8px !important;
+		border-radius: 12px !important;
+		font-weight: 600 !important;
+		letter-spacing: 0.3px !important;
+	}
+	
+	/* Standard actions - compact layout */
+	html[data-theme="material"] .unified-pagebar .standard-actions,
+	html[data-theme-mode="material"] .unified-pagebar .standard-actions {
+		display: flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		flex-wrap: nowrap !important;
+	}
+	
+	/* Dropdown menus - mobile optimized */
+	html[data-theme="material"] .unified-pagebar .dropdown-menu,
+	html[data-theme-mode="material"] .unified-pagebar .dropdown-menu {
+		min-width: 200px !important;
+		max-width: calc(100vw - 24px) !important;
+		border-radius: 12px !important;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+		padding: 8px !important;
+		margin-top: 8px !important;
+		border: 1px solid #e5e7eb !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .dropdown-item,
+	html[data-theme-mode="material"] .unified-pagebar .dropdown-item {
+		padding: 12px 16px !important;
+		font-size: 14px !important;
+		border-radius: 8px !important;
+		min-height: 44px !important;
+		display: flex !important;
+		align-items: center !important;
+		transition: all 0.2s ease !important;
+	}
+	
+	html[data-theme="material"] .unified-pagebar .dropdown-item:hover,
+	html[data-theme-mode="material"] .unified-pagebar .dropdown-item:hover {
+		background: #f8fafc !important;
+		color: #0f172a !important;
 	}
 }
 

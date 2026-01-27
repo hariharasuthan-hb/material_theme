@@ -90,6 +90,286 @@
 	margin: 0 !important;
 }
 
+/* Mobile navbar fixes - prevent overlap */
+@media (max-width: 767px) {
+	.unified-topbar .navbar > .container,
+	.unified-topbar .navbar .container {
+		padding: 0 12px !important;
+		gap: 8px !important;
+		flex-wrap: nowrap !important;
+		overflow: visible !important;
+	}
+	
+	/* Hamburger menu - fixed size */
+	.unified-topbar .navbar-toggler,
+	.unified-topbar .sidebar-toggle-btn {
+		flex-shrink: 0 !important;
+		min-width: 44px !important;
+		width: 44px !important;
+		height: 44px !important;
+		margin-right: 8px !important;
+		padding: 0 !important;
+	}
+	
+	/* Search bar - flexible but constrained */
+	.unified-topbar .input-group.search-bar {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		max-width: none !important;
+		margin: 0 8px !important;
+		position: relative !important;
+		z-index: 1 !important;
+	}
+	
+	.unified-topbar .search-bar input,
+	.unified-topbar #navbar-search {
+		width: 100% !important;
+		height: 36px !important;
+		padding: 0 40px 0 36px !important;
+		font-size: 14px !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+	}
+	
+	/* Navbar collapse - horizontal layout on mobile */
+	.unified-topbar .navbar-collapse {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		gap: 8px !important;
+	}
+	
+	.unified-topbar .navbar-collapse > form {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+	}
+	
+	/* Right icons - fixed size */
+	.unified-topbar .navbar-nav {
+		display: flex !important;
+		align-items: center !important;
+		flex-shrink: 0 !important;
+		gap: 4px !important;
+		margin-left: 0 !important;
+	}
+	
+	.unified-topbar .navbar-nav .nav-link {
+		min-width: 44px !important;
+		min-height: 44px !important;
+		width: 44px !important;
+		height: 44px !important;
+		padding: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+	
+	/* Hide breadcrumbs on mobile to save space */
+	.unified-topbar #navbar-breadcrumbs {
+		display: none !important;
+	}
+	
+	/* Ensure navbar doesn't overlap content */
+	.unified-topbar {
+		position: relative !important;
+		z-index: 1000 !important;
+	}
+	
+	/* ============================================
+	   MOBILE PAGEBAR BEAUTIFICATION
+	   ============================================ */
+	
+	/* Unified pagebar - mobile optimized */
+	.unified-pagebar {
+		background: #ffffff !important;
+		border-bottom: 1px solid #e5e7eb !important;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
+		padding: 0 !important;
+	}
+	
+	/* Page head - compact mobile layout */
+	.unified-pagebar .page-head {
+		min-height: 52px !important;
+		height: auto !important;
+		padding: 10px 12px !important;
+		margin: 0 !important;
+		background: #ffffff !important;
+		border-bottom: none !important;
+	}
+	
+	.unified-pagebar .page-head .container {
+		padding: 0 !important;
+		margin: 0 !important;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
+	
+	.unified-pagebar .page-head-content {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: space-between !important;
+		gap: 12px !important;
+		flex-wrap: nowrap !important;
+		min-height: 44px !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+	
+	/* Page title - mobile optimized */
+	.unified-pagebar .page-title {
+		flex: 1 1 auto !important;
+		min-width: 0 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+	}
+	
+	.unified-pagebar .title-area {
+		display: flex !important;
+		align-items: center !important;
+		gap: 8px !important;
+		width: 100% !important;
+		min-width: 0 !important;
+	}
+	
+	.unified-pagebar .title-text,
+	.unified-pagebar h3 {
+		font-size: 18px !important;
+		font-weight: 700 !important;
+		color: #0f172a !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		line-height: 1.2 !important;
+		overflow: hidden !important;
+		text-overflow: ellipsis !important;
+		white-space: nowrap !important;
+		max-width: 100% !important;
+	}
+	
+	/* Module color for title */
+	body[data-route*="buying"] .unified-pagebar .title-text,
+	body[data-route*="buying"] .unified-pagebar h3 {
+		color: #7B2CBF !important;
+	}
+	
+	body[data-route*="accounting"] .unified-pagebar .title-text,
+	body[data-route*="accounting"] .unified-pagebar h3 {
+		color: #0089FF !important;
+	}
+	
+	body[data-route*="selling"] .unified-pagebar .title-text,
+	body[data-route*="selling"] .unified-pagebar h3 {
+		color: #FF6B35 !important;
+	}
+	
+	body[data-route*="stock"] .unified-pagebar .title-text,
+	body[data-route*="stock"] .unified-pagebar h3 {
+		color: #20B2AA !important;
+	}
+	
+	/* Page actions - mobile optimized */
+	.unified-pagebar .page-actions {
+		flex-shrink: 0 !important;
+		display: flex !important;
+		align-items: center !important;
+		gap: 6px !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	.unified-pagebar .page-actions .btn {
+		min-height: 40px !important;
+		height: 40px !important;
+		padding: 8px 14px !important;
+		font-size: 13px !important;
+		border-radius: 8px !important;
+		font-weight: 600 !important;
+		white-space: nowrap !important;
+	}
+	
+	.unified-pagebar .page-actions .btn-primary {
+		background: #0089FF !important;
+		border-color: #0089FF !important;
+		color: #ffffff !important;
+		box-shadow: 0 2px 4px rgba(0, 137, 255, 0.2) !important;
+	}
+	
+	.unified-pagebar .page-actions .btn-primary:hover {
+		background: #0070CC !important;
+		box-shadow: 0 4px 8px rgba(0, 137, 255, 0.3) !important;
+	}
+	
+	.unified-pagebar .page-actions .btn-secondary {
+		background: #f8fafc !important;
+		border-color: #e5e7eb !important;
+		color: #475569 !important;
+	}
+	
+	.unified-pagebar .page-actions .btn-secondary:hover {
+		background: #f1f5f9 !important;
+		border-color: #cbd5e1 !important;
+	}
+	
+	/* Icon buttons in page actions */
+	.unified-pagebar .page-actions .icon-btn {
+		min-width: 40px !important;
+		width: 40px !important;
+		height: 40px !important;
+		padding: 0 !important;
+		border-radius: 8px !important;
+	}
+	
+	/* Hide empty/placeholder elements */
+	.unified-pagebar .hide,
+	.unified-pagebar .more-button.hide {
+		display: none !important;
+	}
+	
+	/* Indicator pill - compact */
+	.unified-pagebar .indicator-pill {
+		font-size: 10px !important;
+		padding: 2px 8px !important;
+		margin-left: 6px !important;
+		border-radius: 12px !important;
+	}
+	
+	/* Sub-heading - hide on mobile */
+	.unified-pagebar .sub-heading {
+		display: none !important;
+	}
+	
+	/* Standard actions - compact */
+	.unified-pagebar .standard-actions {
+		display: flex !important;
+		align-items: center !important;
+		gap: 6px !important;
+		flex-wrap: nowrap !important;
+	}
+	
+	/* Dropdown menus - mobile optimized */
+	.unified-pagebar .dropdown-menu {
+		min-width: 200px !important;
+		max-width: calc(100vw - 24px) !important;
+		border-radius: 12px !important;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+		padding: 8px !important;
+		margin-top: 8px !important;
+	}
+	
+	.unified-pagebar .dropdown-item {
+		padding: 10px 12px !important;
+		font-size: 14px !important;
+		border-radius: 8px !important;
+		min-height: 44px !important;
+		display: flex !important;
+		align-items: center !important;
+	}
+}
+
 /* Remove sticky-header-container spacing */
 .unified-topbar .sticky-header-container {
 	display: none;
