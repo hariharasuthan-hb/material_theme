@@ -122,6 +122,150 @@ frappe.provide("itrostack.material");
 		});
 	}
 })();
+
+// Navbar (.sticky-top) and page-head: move into .layout-main-section so navbar is first, then page-head (removed from current position).
+(function () {
+	"use strict";
+
+	// ----- Page / layout helpers -----
+
+	function getCurrentPageContainer() {
+		// Prefer Frappe's own current page handle.
+		if (window.frappe && window.frappe.container && window.frappe.container.page) {
+			return window.frappe.container.page;
+		}
+
+		// Fallback: visible page-container inside #body.
+		const visible =
+			document.querySelector("#body .page-container:not([style*='display: none']):not(.hide)") ||
+			document.querySelector("#body .content.page-container:not([style*='display: none']):not(.hide)");
+
+		return visible || null;
+	}
+
+	function getMainSection(scope) {
+		// Use the provided scope (current page) or fall back to document as a last resort.
+		const base = scope || getCurrentPageContainer() || document;
+		return (
+			base.querySelector(".layout-main-section") ||
+			base.querySelector(".layout-main-section-wrapper")
+		);
+	}
+
+	function getSidebarContainers(scope) {
+		const base = scope || getCurrentPageContainer() || document;
+		return base.querySelectorAll(
+			".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+		);
+	}
+
+	// ----- Header relocation -----
+
+	function moveStickyTopIntoLayoutMainSection() {
+		if (!document.documentElement || document.documentElement.getAttribute("data-theme") !== "material") return;
+		const page = getCurrentPageContainer();
+		const mainSection = getMainSection(page);
+		const stickyTop = document.querySelector(".sticky-top");
+		if (!mainSection || !stickyTop) return;
+		if (mainSection.contains(stickyTop)) return;
+		mainSection.insertBefore(stickyTop, mainSection.firstChild);
+	}
+
+	function movePageHeadIntoMainSection() {
+		if (!document.documentElement || document.documentElement.getAttribute("data-theme") !== "material") return;
+		const page = getCurrentPageContainer();
+		const mainSection = getMainSection(page);
+		const pageHead = (page && page.querySelector(".page-head")) || document.querySelector(".page-head");
+		if (!mainSection || !pageHead) return;
+		if (mainSection.contains(pageHead)) return;
+		const stickyTop = mainSection.querySelector(".sticky-top");
+		mainSection.insertBefore(pageHead, stickyTop ? stickyTop.nextSibling : mainSection.firstChild);
+	}
+
+	// Sidebar logo: ensure Techcloud logo is shown in the left menu (layout-side-section / desk-sidebar),
+	// and keep it out of the sticky header navbar.
+	function ensureSidebarLogo(retryCount = 0) {
+		if (!document.documentElement || document.documentElement.getAttribute("data-theme") !== "material") return;
+
+		// If Frappe indicates there is no sidebar for this route, don't try to inject one.
+		if (document.body && document.body.getAttribute("data-sidebar") === "0") {
+			return;
+		}
+
+		const page = getCurrentPageContainer();
+		const sidebars = getSidebarContainers(page);
+
+		// If no sidebars yet and we haven't retried too many times, try again shortly.
+		if (sidebars.length === 0 && retryCount < 3) {
+			setTimeout(() => {
+				ensureSidebarLogo(retryCount + 1);
+			}, 200);
+			return;
+		}
+
+		sidebars.forEach((sidebar) => {
+			if (!sidebar) return;
+
+			// Skip menu lists / overlay sidebars
+			if (sidebar.classList.contains("list-unstyled") && sidebar.classList.contains("sidebar-menu")) return;
+			if (sidebar.classList.contains("overlay-sidebar")) return;
+
+			const style = window.getComputedStyle(sidebar);
+			if (style.display === "none" || style.visibility === "hidden") return;
+
+			// Avoid duplicates (class + data flag)
+			if (sidebar.querySelector(".techcloud-sidebar-logo") || sidebar.dataset.techcloudLogo === "1") return;
+
+			const logo = document.createElement("a");
+			logo.className = "navbar-brand navbar-home techcloud-sidebar-logo";
+			logo.href = "/app";
+
+			const img = document.createElement("img");
+			img.className = "app-logo";
+			img.src =
+				(window.frappe && window.frappe.boot && window.frappe.boot.app_logo_url) ||
+				"/assets/erpnext/images/erpnext-logo.svg";
+			img.alt = "App Logo";
+
+			logo.appendChild(img);
+			sidebar.insertBefore(logo, sidebar.firstChild);
+
+			sidebar.dataset.techcloudLogo = "1";
+		});
+	}
+
+	function runLayout() {
+		moveStickyTopIntoLayoutMainSection();
+		movePageHeadIntoMainSection();
+		ensureSidebarLogo();
+	}
+
+	if (window.frappe && typeof window.frappe.ready === "function") {
+		window.frappe.ready(runLayout);
+	}
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", runLayout);
+	} else {
+		runLayout();
+	}
+	if (window.frappe && window.frappe.router && typeof window.frappe.router.on === "function") {
+		window.frappe.router.on("change", () => {
+			setTimeout(runLayout, 0);
+		});
+	}
+	// Run after page switch so sticky/page-head move into the newly visible page's content section,
+	// and after Frappe has finished any AJAX rendering for that page.
+	if (window.$ && typeof window.$.fn.on === "function") {
+		$(document).on("page-change", () => {
+			if (window.frappe && frappe.after_ajax) {
+				frappe.after_ajax(runLayout);
+			} else {
+				setTimeout(runLayout, 0);
+			}
+		});
+	}
+})();
+
   //Code for Material Color Generation from google
   //refer https://www.npmjs.com/package/@material/material-color-utilities for details.
   function signum(num) {

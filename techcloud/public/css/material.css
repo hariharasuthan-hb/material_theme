@@ -46,6 +46,9 @@ html[data-theme-mode="material"] {
   /* Topbar (optional) - from Topbar.js */
   --tc-navbar-bg: linear-gradient(90deg, #001138, #001e66);
   --tc-navbar-height: 72px;
+  --tc-page-head-height: 50px;
+
+  height: 100%;
 }
 
 /* Base */
@@ -54,6 +57,7 @@ html[data-theme-mode="material"] body {
   font-family: var(--tc-font-family) !important;
   color: var(--tc-text-primary) !important;
   background-color: var(--tc-grey-100) !important;
+  height: 100% !important;
 }
 
 /* Layout - Navbar (minimal) */
@@ -81,6 +85,52 @@ html[data-theme-mode="material"] .navbar a:hover {
   color: #fff !important;
 }
 
+/* Sticky top navbar — content scrolls underneath, same behavior as page-head */
+html[data-theme="material"] .sticky-top,
+html[data-theme-mode="material"] .sticky-top {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1200 !important;
+  width: 100% !important;
+  background: var(--tc-navbar-bg) !important;
+  isolation: isolate !important;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
+}
+
+/* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
+html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
+html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
+  display: none !important;
+}
+
+/* Desk body: remove extra bottom gap/margin so content ends flush */
+html[data-theme="material"] #body,
+html[data-theme-mode="material"] #body {
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Header above body: #body fills .main-section (navbar moved into .layout-main-section by JS) */
+html[data-theme="material"] .main-section,
+html[data-theme-mode="material"] .main-section {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
+html[data-theme="material"] .main-section > #body,
+html[data-theme-mode="material"] .main-section > #body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Hide empty footer inside .main-section to avoid extra bottom space */
+html[data-theme="material"] .main-section > footer,
+html[data-theme-mode="material"] .main-section > footer {
+  display: none !important;
+}
+
 /* Sidebar */
 html[data-theme="material"] .desk-sidebar,
 html[data-theme="material"] .list-sidebar,
@@ -89,6 +139,26 @@ html[data-theme-mode="material"] .list-sidebar {
   font-family: var(--tc-font-family) !important;
   background: #fff !important;
   border-right: 1px solid var(--tc-divider) !important;
+}
+
+/* Sidebar logo: centered inside sidebar column */
+html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme="material"] .desk-sidebar .techcloud-sidebar-logo,
+html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 16px 0 !important;
+}
+
+html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
+html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
+  max-width: 80% !important;
+  height: auto !important;
 }
 
 html[data-theme="material"] .standard-sidebar-item,
@@ -439,6 +509,61 @@ html[data-theme="material"] .page-head-content .title,
 html[data-theme-mode="material"] .page-head-content .title {
   color: var(--tc-text-primary) !important;
   font-weight: 600 !important;
+}
+
+/* Page-head at top-left of main content area — only the main column, not .layout-main (which contains sidebar + main) */
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme="material"] .page-content,
+html[data-theme-mode="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .page-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+html[data-theme="material"] .layout-main-section-wrapper .page-head,
+html[data-theme="material"] .page-content .page-head,
+html[data-theme-mode="material"] .layout-main-section-wrapper .page-head,
+html[data-theme-mode="material"] .page-content .page-head {
+  width: 100% !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
+}
+html[data-theme="material"] .layout-main-section-wrapper .page-head .container,
+html[data-theme="material"] .page-content .page-head .container,
+html[data-theme-mode="material"] .layout-main-section-wrapper .page-head .container,
+html[data-theme-mode="material"] .page-content .page-head .container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+/* .layout-main-section: vertical stack (navbar, then page-head, then content) */
+html[data-theme="material"] .layout-main-section-wrapper .layout-main-section,
+html[data-theme="material"] .page-content .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section-wrapper .layout-main-section,
+html[data-theme-mode="material"] .page-content .layout-main-section {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+html[data-theme="material"] .layout-main-section .sticky-top,
+html[data-theme-mode="material"] .layout-main-section .sticky-top {
+  flex-shrink: 0 !important;
+}
+/* Scrolling content stays under sticky navbar and page-head — lower z-index */
+html[data-theme="material"] .layout-main-section > *:not(.page-head):not(.sticky-top),
+html[data-theme-mode="material"] .layout-main-section > *:not(.page-head):not(.sticky-top) {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+/* .layout-main row: height based on screen size (fill viewport minus navbar/page-head) */
+@media (min-width: 576px) {
+  html[data-theme="material"] .layout-main,
+  html[data-theme-mode="material"] .layout-main {
+    height: calc(100vh - var(--tc-navbar-height) - var(--tc-page-head-height, 0px)) !important;
+    min-height: 0 !important;
+  }
 }
 
 /* List rows */
