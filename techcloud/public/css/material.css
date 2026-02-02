@@ -1043,16 +1043,20 @@
      }
    
      /* Section-specific accent colors and effects */
-     /* Shortcuts section - Enhanced Blue theme */
+     /* Shortcuts section - single colorful card container */
      html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")),
      html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) {
-       border-color: rgba(0, 137, 255, 0.2) !important;
-       box-shadow: 0 8px 32px rgba(0, 137, 255, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+       background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, #f4f7fb 100%) !important;
+       border-radius: 14px !important;
+       border: 1px solid rgba(0, 137, 255, 0.15) !important;
+       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04) !important;
+       padding: 12px 18px 10px 18px !important;
+       margin-bottom: 20px !important;
      }
    
      html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts"))::before,
      html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts"))::before {
-       background: linear-gradient(90deg, #0089FF, #00D4FF, #0089FF) !important;
+       background: linear-gradient(90deg, #0089FF, #00D4FF, #7C3AED) !important;
      }
    
      /* Reports section - Purple theme */
@@ -1079,27 +1083,29 @@
        background: linear-gradient(90deg, #22c55e, #16a34a, #22c55e) !important;
      }
    
-     /* Structured Cards for Shortcuts */
-     /* Card container for each shortcut */
-     html[data-theme="material"] div[shortcut_name],
-     html[data-theme-mode="material"] div[shortcut_name] {
-       background: var(--techcloud-card-bg) !important;
-       border: 1px solid var(--techcloud-border) !important;
-       border-radius: 12px !important;
-       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
-       margin-bottom: 16px !important;
-       overflow: hidden !important;
-       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-       cursor: pointer !important;
-     }
-   
-     /* Card hover effect */
-     html[data-theme="material"] div[shortcut_name]:hover,
-     html[data-theme-mode="material"] div[shortcut_name]:hover {
-       box-shadow: 0 6px 20px rgba(0, 137, 255, 0.15) !important;
-       border-color: rgba(0, 137, 255, 0.25) !important;
-       transform: translateY(-3px) !important;
-     }
+    /* Structured Shortcuts as Simple Links (no widget/box styling) */
+    /* Shortcut container behaves like a simple text link row */
+    html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name],
+    html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name] {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      margin: 0 24px 4px 0 !important; /* compact, professional spacing */
+      overflow: visible !important;
+      transition: color 0.2s ease, transform 0.1s ease !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+  
+    /* Hover state – subtle lift on text only, no card shadow */
+    html[data-theme="material"] div[shortcut_name]:hover,
+    html[data-theme-mode="material"] div[shortcut_name]:hover {
+      box-shadow: none !important;
+      border-color: transparent !important;
+      transform: translateY(-1px) !important;
+    }
    
      /* Remove margin from the last shortcut card */
      html[data-theme="material"] div[shortcut_name]:last-child,
@@ -1121,27 +1127,46 @@
        display: block !important; /* Remove list-item from inner widget */
      }
    
-     /* Beautiful shortcut content styling */
-     html[data-theme="material"] div[shortcut_name] .widget-head,
-     html[data-theme-mode="material"] div[shortcut_name] .widget-head {
-       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
-       border: none !important;
-       padding: 16px 20px !important;
-       margin: 0 !important;
-       display: flex !important;
-       align-items: center !important;
-       justify-content: space-between !important;
-       width: 100% !important;
-       border-radius: 0 !important;
-       border-bottom: 1px solid var(--techcloud-border) !important;
-       min-height: 60px !important; /* Fixed height header */
-       position: relative !important;
-       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-     }
+    /* Shortcut content styling – inline link row, strip widget visuals */
+    html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name] .widget-head,
+    html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name] .widget-head {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      width: auto !important;
+      border-radius: 0 !important;
+      border-bottom: none !important;
+      min-height: 0 !important;
+      position: static !important;
+      transition: color 0.2s ease !important;
+    }
+
+    /* Kill any widget-based decorations for shortcuts (lines, brackets, boxes) */
+    html[data-theme="material"] div[shortcut_name]::before,
+    html[data-theme-mode="material"] div[shortcut_name]::before,
+    html[data-theme="material"] div[shortcut_name]::after,
+    html[data-theme-mode="material"] div[shortcut_name]::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    /* If core uses .shortcut-widget-box or similar, neutralize it under Material */
+    html[data-theme="material"] .shortcut-widget-box,
+    html[data-theme-mode="material"] .shortcut-widget-box {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
    
      /* Enhanced shortcut title styling */
-     html[data-theme="material"] div[shortcut_name] .widget-head .widget-title,
-     html[data-theme-mode="material"] div[shortcut_name] .widget-head .widget-title {
+    html[data-theme="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name] .widget-head .widget-title,
+    html[data-theme-mode="material"] .widget-group:has(.widget-group-title:contains("Your Shortcuts")) div[shortcut_name] .widget-head .widget-title {
        font-size: 15px !important;
        font-weight: 600 !important;
        color: var(--techcloud-text-primary) !important;
@@ -1153,8 +1178,9 @@
        padding: 0 !important;
        flex: none !important;
        line-height: 1.5 !important;
-       white-space: nowrap !important;
-       text-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+      white-space: normal !important; /* allow full link text */
+      text-overflow: clip !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
        transition: color 0.3s ease !important;
      }
    
@@ -5394,8 +5420,8 @@
    html[data-theme="material"] .navbar,
    html[data-theme-mode="material"] .navbar {
      height: 60px;
-     /* background: var(--navbar-bg); */
-     /* border-bottom: 1px solid var(--border-color); */
+    background: transparent !important;
+    border-bottom: none !important;
      padding: 0;
      position: sticky !important;
      top: 0px !important;
@@ -5407,24 +5433,24 @@
       (Top utility bar + page title bar)
       ================================ */
    
-    .unified-header, html[data-theme="material"] .unified-header, html[data-theme-mode="material"] .unified-header {
+   .unified-header, html[data-theme="material"] .unified-header, html[data-theme-mode="material"] .unified-header {
        position: unset;
        top: 0;
        z-index: 1000;
        width: 100%;
-       background-color: var(--bg-color, #fff);
-       border-bottom: 1px solid var(--border-color, #e5e7eb);
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+       background-color: transparent !important;
+       border-bottom: none !important;
+       box-shadow: none !important;
        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
    }
    
-   .unified-topbar, html[data-theme="material"] .unified-topbar, html[data-theme-mode="material"] .unified-topbar {
+  .unified-topbar, html[data-theme="material"] .unified-topbar, html[data-theme-mode="material"] .unified-topbar {
        height: 63px;
        flex-shrink: 0;
        display: flex;
        align-items: center;
-       background-color: var(--bg-color, #fff);
-       border-bottom: 1px solid var(--border-color, #f1f3f5);
+       background-color: transparent !important;
+       border-bottom: none !important;
        /* margin-bottom: 1%; */
        
    }
@@ -11196,16 +11222,16 @@
    }
    
    
-   /* Colorful accent for different widget types */
-   html[data-theme="material"] .widget:nth-child(odd) .widget-head,
-   html[data-theme-mode="material"] .widget:nth-child(odd) .widget-head {
-     border-left: 4px solid var(--techcloud-primary-blue) !important;
-   }
-   
-   html[data-theme="material"] .widget:nth-child(even) .widget-head,
-   html[data-theme-mode="material"] .widget:nth-child(even) .widget-head {
-     border-left: 4px solid var(--techcloud-primary-orange) !important;
-   }
+  /* Colorful accent for different widget types (exclude shortcuts) */
+  html[data-theme="material"] .widget-group:not(:has(div[shortcut_name])) .widget:nth-child(odd) .widget-head,
+  html[data-theme-mode="material"] .widget-group:not(:has(div[shortcut_name])) .widget:nth-child(odd) .widget-head {
+    border-left: 4px solid var(--techcloud-primary-blue) !important;
+  }
+  
+  html[data-theme="material"] .widget-group:not(:has(div[shortcut_name])) .widget:nth-child(even) .widget-head,
+  html[data-theme-mode="material"] .widget-group:not(:has(div[shortcut_name])) .widget:nth-child(even) .widget-head {
+    border-left: 4px solid var(--techcloud-primary-orange) !important;
+  }
    
    
    /* ============================================

@@ -472,12 +472,23 @@
 	
 	function showAjaxLoader() {
 		if (!isTechCloudTheme()) return;
-		
-		const loader = createAjaxLoader();
-		if (loader) {
-			loader.classList.add("active");
-			document.body.classList.add("ajax-loading");
+
+		// If a previous "show" is pending, don't stack more timers
+		if (loaderTimeout) {
+			clearTimeout(loaderTimeout);
+			loaderTimeout = null;
 		}
+
+		// Delay a bit so that very fast navigations don't flash the loader
+		// and to avoid the loader appearing AFTER the header/content is ready.
+		loaderTimeout = setTimeout(() => {
+			const loader = createAjaxLoader();
+			if (loader) {
+				loader.classList.add("active");
+				document.body.classList.add("ajax-loading");
+			}
+			loaderTimeout = null;
+		}, 120);
 	}
 	
 	function hideAjaxLoader() {
@@ -531,13 +542,14 @@
 
 	function scheduleApply() {
 		if (applyTimer) clearTimeout(applyTimer);
-		// Increased delay to ensure Frappe finishes updating page-head content during AJAX
+		// Short debounce so unified header/topbar apply quickly after AJAX,
+		// but we still avoid thrashing during rapid DOM mutations.
 		applyTimer = setTimeout(() => {
 			requestAnimationFrame(() => {
 				applyUnifiedHeader();
 				// ensurePrimaryActionsVisible is called inside applyUnifiedHeader
 			});
-		}, 250);
+		}, 60);
 	}
 
 	function startObserver() {
@@ -675,29 +687,18 @@
 			// Use frappe.after_ajax to ensure Frappe finishes DOM updates first
 			if (window.frappe && frappe.after_ajax) {
 				frappe.after_ajax(() => {
-					setTimeout(() => {
-						scheduleApply();
-						ensureSidebarLogo();
-						cleanupUnwantedLayout();
-						
-						// Hide loader after DOM is ready
-						// Wait a bit more to ensure all content is rendered
-						loaderTimeout = setTimeout(() => {
-							hideAjaxLoader();
-						}, 100);
-					}, 150);
+					// Apply unified header as soon as AJAX work is done.
+					scheduleApply();
+					ensureSidebarLogo();
+					cleanupUnwantedLayout();
 				});
 			} else {
+				// Fallback: small delay if after_ajax is unavailable
 				setTimeout(() => {
 					scheduleApply();
 					ensureSidebarLogo();
 					cleanupUnwantedLayout();
-					
-					// Hide loader after DOM is ready
-					loaderTimeout = setTimeout(() => {
-						hideAjaxLoader();
-					}, 100);
-				}, 200);
+				}, 80);
 			}
 		});
 	} else if (window.jQuery) {
@@ -708,36 +709,24 @@
 			
 			if (window.frappe && frappe.after_ajax) {
 				frappe.after_ajax(() => {
-					setTimeout(() => {
-						scheduleApply();
-						ensureSidebarLogo();
-						cleanupUnwantedLayout();
-						
-						// Hide loader after DOM is ready
-						loaderTimeout = setTimeout(() => {
-							hideAjaxLoader();
-						}, 100);
-					}, 150);
+					scheduleApply();
+					ensureSidebarLogo();
+					cleanupUnwantedLayout();
 				});
 			} else {
 				setTimeout(() => {
 					scheduleApply();
 					ensureSidebarLogo();
 					cleanupUnwantedLayout();
-					
-					// Hide loader after DOM is ready
-					loaderTimeout = setTimeout(() => {
-						hideAjaxLoader();
-					}, 100);
-				}, 200);
+				}, 80);
 			}
 		});
 	}
 
 	if (window.frappe && frappe.after_ajax) {
 		frappe.after_ajax(() => {
-			// Additional delay to ensure page-head content is fully updated
-			setTimeout(scheduleApply, 200);
+			// Re-apply unified header quickly after generic AJAX completions.
+			setTimeout(scheduleApply, 80);
 		});
 	}
 
