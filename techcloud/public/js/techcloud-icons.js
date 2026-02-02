@@ -301,21 +301,22 @@
                 return;
             }
 
-            // Find the parent standard-sidebar-item to get menu text
-            const sidebarItem = svg.closest('.standard-sidebar-item');
+            // Find the parent sidebar item (workspace sidebar may use .sidebar-item or parent of .sidebar-item-icon)
+            const sidebarItem = svg.closest('.standard-sidebar-item') ||
+                svg.closest('.sidebar-item') ||
+                svg.closest('[class*="sidebar-item"]') ||
+                svg.closest('.sidebar-item-icon')?.parentElement;
             if (!sidebarItem) return;
 
-            // Get menu item text from .sidebar-item-label
-            const labelElement = sidebarItem.querySelector('.sidebar-item-label');
+            // Get menu item text from .sidebar-item-label, .item-anchor, or first text in row
+            let labelElement = sidebarItem.querySelector('.sidebar-item-label');
+            if (!labelElement) labelElement = sidebarItem.querySelector('.item-anchor');
+            if (!labelElement) labelElement = sidebarItem.querySelector('a');
             let menuText = '';
             if (labelElement) {
                 menuText = labelElement.textContent || labelElement.innerText || '';
             } else {
-                // Fallback: get text from the item-anchor
-                const anchor = sidebarItem.querySelector('.item-anchor');
-                if (anchor) {
-                    menuText = anchor.textContent || anchor.innerText || '';
-                }
+                menuText = sidebarItem.textContent || sidebarItem.innerText || '';
             }
 
             // Clean the text
@@ -543,8 +544,10 @@
                 mutation.addedNodes.forEach(function(node) {
                     if (node.nodeType === 1 && (
                         node.classList.contains('sidebar-item') ||
+                        node.classList.contains('standard-sidebar-item') ||
                         node.classList.contains('web-sidebar') ||
-                        node.querySelector('.sidebar-item, .web-sidebar')
+                        node.classList.contains('layout-side-section') ||
+                        node.querySelector('.sidebar-item, .standard-sidebar-item, .web-sidebar, .layout-side-section')
                     )) {
                         shouldUpdate = true;
                     }
