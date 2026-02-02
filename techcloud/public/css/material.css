@@ -99,6 +99,38 @@ html[data-theme-mode="material"] .standard-sidebar-item {
   color: var(--tc-text-secondary) !important;
 }
 
+/* Tighten icon-to-text spacing in sidebar menu */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item a,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item a,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item a,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item a,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item a,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item a {
+  gap: 6px !important;
+}
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon {
+  margin-right: 6px !important;
+}
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .techcloud-icon {
+  margin-right: 6px !important;
+}
+
 html[data-theme="material"] .standard-sidebar-item:hover,
 html[data-theme-mode="material"] .standard-sidebar-item:hover {
   background: var(--tc-action-hover) !important;
@@ -473,3 +505,13 @@ html[data-theme-mode="material"] kbd {
   font-size: 11px !important;
   color: var(--tc-text-secondary) !important;
 }
+
+@media (min-width: 768px) {
+  html[data-theme="material"] body.full-width .container,
+  html[data-theme-mode="material"] body.full-width .container,
+  body.full-width .container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+

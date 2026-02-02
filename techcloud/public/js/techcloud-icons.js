@@ -264,7 +264,7 @@
                 svg.style.color = 'inherit';
                 svg.style.overflow = 'visible';
                 svg.style.order = '-1'; // Place icon before text
-                svg.style.marginRight = '12px'; // Add spacing
+                svg.style.marginRight = '8px'; // Tight spacing between icon and text
 
                 const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
                 use.setAttribute('href', `#${iconInfo.id}`);
@@ -281,7 +281,7 @@
                 if (computedStyle.display === 'block' || !computedStyle.display || computedStyle.display === '') {
                     link.style.display = 'flex';
                     link.style.alignItems = 'center';
-                    link.style.gap = '12px';
+                    link.style.gap = '8px';
                 }
             }
         });
