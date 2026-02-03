@@ -110,6 +110,22 @@ html[data-theme-mode="material"] #body {
   padding-bottom: 0 !important;
 }
 
+/* Page container: ensure main content area reaches viewport bottom */
+html[data-theme="material"] #body .page-container,
+html[data-theme="material"] #body .content.page-container,
+html[data-theme-mode="material"] #body .page-container,
+html[data-theme-mode="material"] #body .content.page-container {
+  min-height: 100vh !important;
+}
+
+/* Row layout-main inside page-container should also stretch */
+html[data-theme="material"] #body .page-container .row.layout-main,
+html[data-theme="material"] #body .content.page-container .row.layout-main,
+html[data-theme-mode="material"] #body .page-container .row.layout-main,
+html[data-theme-mode="material"] #body .content.page-container .row.layout-main {
+  min-height: 100vh !important;
+}
+
 /* Header above body: #body fills .main-section (navbar moved into .layout-main-section by JS) */
 html[data-theme="material"] .main-section,
 html[data-theme-mode="material"] .main-section {
@@ -519,6 +535,7 @@ html[data-theme-mode="material"] .page-content {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch !important;
+  min-height: 100vh !important;
 }
 html[data-theme="material"] .layout-main-section-wrapper .page-head,
 html[data-theme="material"] .page-content .page-head,
