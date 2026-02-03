@@ -273,20 +273,30 @@ frappe.provide("itrostack.material");
 		const sidebarObserver = new MutationObserver((mutations) => {
 			for (const mutation of mutations) {
 				if (mutation.type !== "childList") continue;
+
+				// Helper: does this element either *is* a sidebar container or contain one?
+				const elementHasSidebar = (el) =>
+					el.matches?.(
+						".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+					) ||
+					el.querySelector?.(
+						".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+					);
+
+				// Case 1: new nodes added that include a sidebar container.
 				for (const node of mutation.addedNodes) {
 					if (!(node instanceof HTMLElement)) continue;
-					// If a new sidebar container or a node that contains one appears, re-run logo injection.
-					if (
-						node.matches?.(
-							".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
-						) ||
-						node.querySelector?.(
-							".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
-						)
-					) {
+					if (elementHasSidebar(node)) {
 						setTimeout(() => ensureSidebarLogo(), 0);
 						return;
 					}
+				}
+
+				// Case 2: existing sidebar's children changed (AJAX re-render),
+				// which might remove and recreate its inner contents.
+				if (mutation.target instanceof HTMLElement && elementHasSidebar(mutation.target)) {
+					setTimeout(() => ensureSidebarLogo(), 0);
+					return;
 				}
 			}
 		});

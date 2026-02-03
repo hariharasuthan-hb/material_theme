@@ -169,6 +169,15 @@ html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
   padding: 16px 0 !important;
 }
 
+/* Keep sidebar logo visible at top while scrolling */
+html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2 !important;
+  background: #fff !important;
+}
+
 html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
 html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
   max-width: 80% !important;
