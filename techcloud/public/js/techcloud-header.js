@@ -21,17 +21,25 @@
         }
     }
 
-    // Run once when route changes
-    if (typeof frappe !== 'undefined') {
-        frappe.router.on('change', () => {
-            setTimeout(fixNavbarHeader, 0);
-        });
+	// Run once when route changes
+	if (typeof frappe !== 'undefined') {
+		// Guard: router is not available on some website / login routes
+		if (frappe.router && typeof frappe.router.on === 'function') {
+			frappe.router.on('change', () => {
+				setTimeout(fixNavbarHeader, 0);
+			});
+		}
 
-        frappe.ready(() => {
-            fixNavbarHeader();
-        });
-    } else {
-        document.addEventListener('DOMContentLoaded', fixNavbarHeader);
-    }
+		// Guard: frappe.ready may not exist on every page
+		if (typeof frappe.ready === 'function') {
+			frappe.ready(() => {
+				fixNavbarHeader();
+			});
+		} else {
+			document.addEventListener('DOMContentLoaded', fixNavbarHeader);
+		}
+	} else {
+		document.addEventListener('DOMContentLoaded', fixNavbarHeader);
+	}
 })();
 
