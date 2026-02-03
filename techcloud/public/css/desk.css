@@ -1,993 +1,802 @@
 /* ======================================================
-   UNIFIED HEADER – CLEAN & MINIMAL
-   Theme-Compatible (Light/Dark/Material)
-   ERPNext-safe
-====================================================== */
-
-/* ===== UNIFIED HEADER ===== */
-.unified-header {
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	width: 100%;
-	background-color: var(--bg-color, #fff);
-	border-bottom: 1px solid var(--border-color, #e5e7eb);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-/* Ensure topbar stays above pagebar */
-.unified-topbar {
-	position: relative;
-	z-index: 2;
-}
-
-.unified-pagebar {
-	position: relative;
-	z-index: 1;
-}
-
-/* Remove unnecessary shadows */
-.unified-topbar,
-.unified-pagebar {
-	box-shadow: none;
-}
-
-/* Remove default spacing when unified header is present */
-.layout-main-section .unified-header,
-.layout-main-section.frappe-card .unified-header {
-	margin: 0 0 12px 0;
-}
-
-.layout-main-section .unified-header .page-head-content,
-.layout-main-section.frappe-card .unified-header .page-head-content {
-	position: static;
-}
-
-/* Remove layout top padding pushing content down */
-.layout-main-section {
-	padding-top: 0 !important;
-}
-
-/* Remove ERPNext default margins */
-.page-head,
-.navbar {
-	margin: 0 !important;
-}
-
-/* ---------- TOPBAR / NAVBAR ---------- */
-
-.unified-topbar {
-	height: 48px;
-	flex-shrink: 0;
-	display: flex;
-	align-items: center;
-	background-color: var(--bg-color, #fff);
-	border-bottom: 1px solid var(--border-color, #f1f3f5);
-}
-
-.unified-topbar header.navbar,
-.unified-topbar .navbar {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.5rem 1rem;
-	height: 48px;
-	background: transparent;
-	border-bottom: none;
-}
-
-/* Make navbar full width */
-.unified-topbar .navbar > .container,
-.unified-topbar .navbar .container {
-	max-width: 100% !important;
-	width: 100% !important;
-	display: flex !important;
-	align-items: center;
-	gap: 16px;
-	height: 48px;
-	padding: 0 16px;
-	margin: 0 !important;
-}
-
-/* Remove sticky-header-container spacing */
-.unified-topbar .sticky-header-container {
-	display: none;
-}
-
-.unified-topbar .header-content {
-	display: none;
-}
-
-/* Breadcrumbs stay LEFT */
-#navbar-breadcrumbs {
-	display: flex;
-	gap: 10px;
-	padding-top: 4px !important;
-	padding-bottom: 4px !important;
-	margin-bottom: 0 !important;
-	flex: 0 0 auto;
-}
-
-#navbar-breadcrumbs a {
-	font-size: 12px;
-	font-weight: 500;
-	color: var(--text-muted, #6b7280);
-	text-decoration: none;
-}
-
-#navbar-breadcrumbs a:hover {
-	color: var(--primary, #2563eb);
-}
-
-/* Navbar collapse becomes flex */
-.unified-topbar .navbar-collapse {
-	display: flex !important;
-	align-items: center;
-	flex: 1;
-}
-
-/* Search CENTERED */
-.unified-topbar .navbar-collapse > form {
-	flex: 1;
-	display: flex;
-	justify-content: center;
-}
-
-.unified-topbar .form-inline.fill-width {
-	flex: 1;
-	display: flex;
-	justify-content: flex-end;
-}
-
-/* Search Bar */
-.input-group.search-bar {
-	position: relative;
-	width: 250px;
-	max-width: 100%;
-}
-
-.unified-topbar .input-group.search-bar {
-	width: 100%;
-	max-width: 420px;
-	background: var(--control-bg, #f3f4f6);
-	border-radius: 999px;
-	padding: 0;
-}
-
-.unified-topbar .input-group.search-bar .awesomplete {
-	width: 100%;
-}
-
-.input-group.search-bar input,
-.unified-topbar .search-bar input,
-.unified-topbar #navbar-search {
-	width: 100% !important;
-	height: 32px !important;
-	padding: 0 36px 0 36px !important;
-	border: none !important;
-	border-radius: 999px !important;
-	font-size: 0.875rem;
-	background: transparent !important;
-	color: var(--text-color, #333);
-}
-
-.unified-topbar .search-bar input:focus,
-.unified-topbar #navbar-search:focus {
-	border: none !important;
-	box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 37, 99, 235), 0.1);
-	outline: none;
-}
-
-.input-group.search-bar .search-icon,
-.unified-topbar .search-icon {
-	position: absolute;
-	top: 50%;
-	left: 12px;
-	transform: translateY(-50%);
-	pointer-events: none;
-	color: var(--text-muted, #6b7280);
-	z-index: 1;
-}
-
-/* Right menu HARD RIGHT */
-.unified-topbar .navbar-collapse > .navbar-nav {
-	flex: 0 0 auto;
-	display: flex;
-	align-items: center;
-	margin-left: auto !important;
-}
-
-.navbar-nav {
-	display: flex;
-	align-items: center;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.navbar-nav li {
-	margin-left: 1rem;
-}
-
-.unified-topbar .navbar-nav > li {
-	margin-left: 10px;
-}
-
-.navbar-nav .nav-link,
-.unified-topbar .nav-link {
-	display: flex;
-	align-items: center;
-	color: var(--text-color, #333);
-	font-size: 0.875rem;
-	text-decoration: none;
-	padding: 0 10px;
-}
-
-.navbar-nav .nav-link:hover,
-.unified-topbar .nav-link:hover {
-	color: var(--primary, #2563eb);
-}
-
-.navbar-nav .nav-link svg,
-.unified-topbar .nav-link svg {
-	margin-left: 0.25rem;
-}
-
-.vertical-bar {
-	width: 1px;
-	height: 20px;
-	background: var(--border-color, #e5e7eb);
-	margin: 0 8px;
-}
-
-.unified-topbar .vertical-bar {
-	margin: 0 8px;
-}
-
-/* Height & padding polish */
-.unified-topbar .navbar {
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-}
-
-/* Mobile fix */
-@media (max-width: 991px) {
-	.unified-topbar .navbar .container {
-		flex-direction: column;
-		align-items: stretch;
-	}
-
-	.unified-topbar .navbar-collapse {
-		flex-direction: column;
-	}
-
-	.unified-topbar .navbar-collapse > form {
-		justify-content: flex-start;
-		margin-bottom: 8px;
-	}
-
-	.unified-topbar .navbar-collapse > .navbar-nav {
-		margin-left: 0 !important;
-	}
-}
-
-/* ---------- DROPDOWNS ---------- */
-
-.dropdown-menu {
-	min-width: 220px;
-	background: var(--bg-color, #fff);
-	border: 1px solid var(--border-color, #eee);
-	border-radius: 4px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-	padding: 0.5rem 0;
-}
-
-.dropdown-item {
-	font-size: 0.875rem;
-	color: var(--text-color, #333);
-	padding: 0.5rem 1rem;
-}
-
-.dropdown-item:hover {
-	background-color: var(--bg-hover-color, #f7f7f7);
-	cursor: pointer;
-}
-
-/* ---------- PAGEBAR ---------- */
-
-.unified-pagebar {
-	background-color: var(--fg-color, #fafafa);
-	border-bottom: 1px solid var(--border-color, #eee);
-	min-height: 44px;
-	height: auto;
-	display: flex;
-	align-items: center;
-}
-
-.unified-pagebar .page-head {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: space-between !important;
-	min-height: 44px !important;
-	height: 44px !important;
-	padding: 0 !important;
-	width: 100%;
-	background: transparent;
-	margin: 0;
-	box-shadow: none !important;
-	border-bottom: none !important;
-}
-
-.unified-pagebar .page-head .container {
-	padding: 0 16px !important;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
-	display: flex !important;
-	align-items: center !important;
-	height: 100%;
-	margin: 0;
-}
-
-/* Critical: proper alignment - NO WRAP for compact layout */
-.page-head-content {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: space-between !important;
-	flex-wrap: nowrap !important;
-	gap: 12px;
-	margin: 0 !important;
-	padding: 0 !important;
-	width: 100%;
-}
-
-/* Row container alignment */
-.page-head-content .row {
-	display: flex !important;
-	align-items: center !important;
-	width: 100%;
-	margin: 0;
-}
-
-.page-title {
-	display: flex !important;
-	align-items: center !important;
-	gap: 8px;
-	margin: 0;
-	padding: 0;
-}
-
-.unified-pagebar .page-head .page-title {
-	padding: 0 !important;
-	gap: 8px;
-}
-
-/* Sidebar toggle button */
-.sidebar-toggle-btn {
-	display: inline-flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	margin: 0 !important;
-	margin-right: 8px !important;
-	padding: 4px !important;
-	color: var(--text-color, #333);
-	vertical-align: middle;
-	line-height: 1;
-}
-
-/* Control sidebar toggle icon visibility */
-.sidebar-toggle-btn .sidebar-toggle-placeholder {
-	display: inline-block !important;
-}
-
-.sidebar-toggle-btn .sidebar-toggle-icon {
-	display: none !important;
-}
-
-/* When sidebar is collapsed, show the toggle icon and hide placeholder */
-body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder {
-	display: none !important;
-}
-
-body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon {
-	display: inline-block !important;
-}
-
-.title-area {
-	display: flex !important;
-	flex-direction: row !important;
-	align-items: center !important;
-	gap: 8px;
-	flex: 1;
-}
-
-.title-area .flex {
-	display: flex !important;
-	align-items: center !important;
-	gap: 8px;
-}
-
-.title-text,
-.unified-pagebar h3,
-.unified-pagebar .page-title h3 {
-	font-size: 1rem !important;
-	font-weight: 600 !important;
-	color: var(--text-color, #333) !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	line-height: 1.2 !important;
-	vertical-align: middle;
-}
-
-.sub-heading {
-	font-size: 0.875rem;
-	color: var(--text-muted, #888);
-}
-
-.unified-pagebar .sub-heading {
-	font-size: 0.875rem;
-	color: var(--text-muted, #888);
-}
-
-/* Three-dot menu */
-.page-title .btn {
-	margin-left: 4px;
-}
-
-/* ---------- ACTION BUTTONS ---------- */
-
-.page-actions {
-	display: flex !important;
-	align-items: center !important;
-	gap: 8px;
-	flex-wrap: nowrap;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-
-.page-actions > * {
-	white-space: nowrap;
-	margin: 0;
-}
-
-/* Column container for page actions */
-.page-head-content .col.page-actions,
-.page-head-content .flex.col.page-actions {
-	display: flex !important;
-	align-items: center !important;
-	justify-content: flex-end !important;
-	flex: 0 0 auto;
-	margin: 0;
-	padding: 0;
-}
-
-.btn {
-	font-size: 0.875rem;
-	padding: 0.375rem 0.75rem;
-	border-radius: 4px;
-	border: none;
-	cursor: pointer;
-}
-
-.page-actions .btn {
-	border-radius: 8px;
-	height: 34px;
-}
-
-.btn-primary {
-	background-color: var(--primary, #0056b3);
-	color: #fff;
-}
-
-.page-actions .btn-primary {
-	padding: 0 16px;
-	font-weight: 500;
-}
-
-.btn-primary:hover {
-	background-color: var(--primary-dark, #004494);
-}
-
-.page-actions .btn:hover {
-	transform: translateY(-0.5px);
-	transition: transform 0.15s ease;
-}
-
-/* ---------- AVATAR ---------- */
-
-.avatar-frame,
-.avatar.avatar-medium .avatar-frame {
-	width: 32px !important;
-	height: 32px !important;
-	border-radius: 50% !important;
-	display: flex !important;
-	align-items: center !important;
-	justify-content: center !important;
-	font-weight: 600;
-	color: #fff;
-	background-color: var(--primary, #0056b3);
-	flex-shrink: 0;
-}
-
-/* Ensure avatar doesn't overlap */
-.unified-topbar .navbar-nav .nav-link .avatar {
-	margin: 0;
-	padding: 0;
-}
-
-.unified-topbar .navbar-nav .nav-link .avatar .avatar-frame {
-	margin: 0;
-}
-
-/* ---------- UTILITIES ---------- */
-
-.flex {
-	display: flex;
-}
-
-.fill-width {
-	width: 100%;
-}
-
-.hidden {
-	display: none !important;
-}
-
-.ellipsis {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.indicator-pill {
-	display: inline-block;
-	min-width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background-color: #ff4d4f;
-	margin-left: 0.5rem;
-	flex-shrink: 0;
-}
-
-/* Fix column alignment in page head */
-.page-head-content .col-md-4,
-.page-head-content .col-sm-6,
-.page-head-content .col-xs-7 {
-	display: flex !important;
-	align-items: center !important;
-	padding: 0 !important;
-	margin: 0 !important;
-}
-
-.page-head-content .col.page-actions {
-	flex: 0 0 auto;
-}
-
-/* Prevent layout reflow on sticky headers */
-body {
-	overflow-anchor: none;
-}
-
-/* ---------- DARK MODE SUPPORT ---------- */
-
-[data-theme="dark"] .unified-header,
-[data-theme-mode="dark"] .unified-header {
-	background-color: var(--bg-color, #1a1a1a);
-	border-bottom-color: var(--border-color, #333);
-}
-
-[data-theme="dark"] .unified-topbar,
-[data-theme-mode="dark"] .unified-topbar {
-	background-color: var(--bg-color, #1a1a1a);
-	border-bottom-color: var(--border-color, #333);
-}
-
-[data-theme="dark"] .unified-pagebar,
-[data-theme-mode="dark"] .unified-pagebar {
-	background-color: var(--fg-color, #242424);
-	border-bottom-color: var(--border-color, #333);
-}
-
-[data-theme="dark"] .dropdown-menu,
-[data-theme-mode="dark"] .dropdown-menu {
-	background-color: var(--bg-color, #1a1a1a);
-	border-color: var(--border-color, #333);
-	z-index: 1000 !important;
-}
-
-[data-theme="dark"] .dropdown-item,
-[data-theme-mode="dark"] .dropdown-item {
-	color: var(--text-color, #e0e0e0);
-}
-
-[data-theme="dark"] .dropdown-item:hover,
-[data-theme-mode="dark"] .dropdown-item:hover {
-	background-color: var(--bg-hover-color, #2a2a2a);
-}
-
-[data-theme="dark"] .dropdown-menu.show,
-[data-theme-mode="dark"] .dropdown-menu.show {
-	z-index: 1050 !important;
-}
-
-/* Dark theme sidebar toggle button */
-[data-theme="dark"] .sidebar-toggle-btn,
-[data-theme-mode="dark"] .sidebar-toggle-btn {
-	color: var(--text-color, #e0e0e0);
-}
-
-[data-theme="dark"] .sidebar-toggle-btn:hover,
-[data-theme-mode="dark"] .sidebar-toggle-btn:hover {
-	background-color: var(--bg-hover-color, #2a2a2a);
-}
-
-/* Safe navbar alignment */
-.techcloud-navbar-brand {
-    margin-right: auto;
-    flex-shrink: 0;
-}
-
-.techcloud-navbar-right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-}
-
-/* ============================= */
-/* Dashboard Widget Header Style */
-/* ============================= */
-
-.widget-head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 12px 14px;
-	border-bottom: 1px solid var(--border-color, #e5e7eb);
-	background: var(--card-bg, #fff);
-}
-
-/* Left section */
-.widget-label {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-	min-width: 0;
-}
-
-/* Title */
-.widget-title {
-	font-size: 14px;
-	font-weight: 600;
-	color: var(--text-color, #111827);
-	line-height: 1.3;
-}
-
-/* Subtitle */
-.widget-subtitle {
-	font-size: 12px;
-	color: var(--text-muted, #6b7280);
-	display: flex;
-	align-items: center;
-	gap: 4px;
-}
-
-/* Timestamp */
-.widget-subtitle .frappe-timestamp {
-	font-weight: 500;
-	color: var(--text-muted, #6b7280);
-}
-
-/* Right controls container */
-.widget-control {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-
-/* Icon buttons */
-.widget-control .btn,
-.widget-control .filter-chart {
-	background: transparent;
-	border: none;
-	padding: 4px;
-	border-radius: 6px;
-	transition: background 0.15s ease;
-	cursor: pointer;
-}
-
-/* Hover effect */
-.widget-control .btn:hover,
-.widget-control .filter-chart:hover {
-	background: rgba(0, 0, 0, 0.04);
-}
-
-/* Icons */
-.widget-control svg.icon {
-	width: 14px;
-	height: 14px;
-	fill: var(--text-muted, #6b7280);
-}
-
-/* Dropdown menu */
-.chart-actions .dropdown-menu {
-	border-radius: 8px;
-	padding: 4px 0;
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-	font-size: 13px;
-}
-
-/* Dropdown items */
-.chart-actions .dropdown-item {
-	padding: 6px 12px;
-	border-radius: 4px;
-}
-
-.chart-actions .dropdown-item:hover {
-	background: var(--control-bg, #f3f4f6);
-}
-
-/* ============================= */
-/* Optional Polish Enhancements */
-/* ============================= */
-
-/* Subtle divider between actions */
-.widget-control > *:not(:last-child) {
-	border-right: 1px solid rgba(0, 0, 0, 0.06);
-	padding-right: 6px;
-}
-
-/* Reduce visual noise for icons */
-.widget-control svg.icon {
-	opacity: 0.75;
-}
-
-.widget-control .btn:hover svg.icon,
-.widget-control .filter-chart:hover svg.icon {
-	opacity: 1;
-}
-
-/* Make header feel more card-like */
-.widget-head {
-	border-radius: 8px 8px 0 0;
-}
-
-/* ============================= */
-/* Dark Theme Support */
-/* ============================= */
-
-[data-theme="dark"] .widget-head,
-[data-theme-mode="dark"] .widget-head {
-	background: var(--bg-color, #1a1a1a);
-	border-bottom-color: var(--border-color, #333);
-}
-
-[data-theme="dark"] .widget-title,
-[data-theme-mode="dark"] .widget-title {
-	color: var(--text-color, #e0e0e0);
-}
-
-[data-theme="dark"] .widget-subtitle,
-[data-theme-mode="dark"] .widget-subtitle {
-	color: var(--text-muted, #9ca3af);
-}
-
-[data-theme="dark"] .widget-subtitle .frappe-timestamp,
-[data-theme-mode="dark"] .widget-subtitle .frappe-timestamp {
-	color: var(--text-muted, #9ca3af);
-}
-
-[data-theme="dark"] .widget-control .btn:hover,
-[data-theme="dark"] .widget-control .filter-chart:hover,
-[data-theme-mode="dark"] .widget-control .btn:hover,
-[data-theme-mode="dark"] .widget-control .filter-chart:hover {
-	background: var(--bg-hover-color, #2a2a2a);
-}
-
-[data-theme="dark"] .widget-control svg.icon,
-[data-theme-mode="dark"] .widget-control svg.icon {
-	fill: var(--text-muted, #9ca3af);
-}
-
-[data-theme="dark"] .chart-actions .dropdown-item:hover,
-[data-theme-mode="dark"] .chart-actions .dropdown-item:hover {
-	background: var(--control-bg, #2a2a2a);
-}
-
-[data-theme="dark"] .widget-control > *:not(:last-child),
-[data-theme-mode="dark"] .widget-control > *:not(:last-child) {
-	border-right-color: rgba(255, 255, 255, 0.06);
-}
-
-/* ============================= */
-/* Professional Dashboard Widget Styling */
-/* ============================= */
-
-/* Widget container (card polish) */
-.dashboard-widget-box {
-	border-radius: 12px;
-	border: 1px solid #e5e7eb;
-	background: #ffffff;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-	overflow: hidden;
-}
-
-/* Header - clean & compact */
-.widget-head {
-	padding: 14px 16px;
-	background: #f9fafb;
-	border-bottom: 1px solid #e5e7eb;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-/* Title */
-.widget-title {
-	font-size: 15px;
-	font-weight: 600;
-	color: #111827;
-	letter-spacing: 0.2px;
-}
-
-/* Subtitle */
-.widget-subtitle {
-	font-size: 12px;
-	color: #6b7280;
-	margin-top: 2px;
-}
-
-/* Controls (menu + filter = one group) */
-.widget-control {
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-
-.chart-menu,
-.filter-chart {
-	background: #ffffff;
-	border: 1px solid #e5e7eb;
-	border-radius: 8px;
-	padding: 4px 6px;
-}
-
-.chart-menu:hover,
-.filter-chart:hover {
-	background: #f3f4f6;
-}
-
-/* Chart body - fixes the "odd" look */
-.widget-body {
-	padding: 16px;
-	background: #ffffff;
-}
-
-/* Chart canvas */
-.chart-container {
-	background: #f9fafb;
-	border-radius: 10px;
-	padding: 12px;
-}
-
-/* Chart bars (major improvement) */
-.frappe-chart .bar {
-	fill: #60a5fa !important; /* stronger blue */
-	transition: fill 0.15s ease;
-}
-
-.frappe-chart .bar:hover {
-	fill: #2563eb !important;
-}
-
-/* Axes & labels (clean readability) */
-.frappe-chart text {
-	fill: #6b7280;
-	font-size: 11px;
-}
-
-.frappe-chart .line-horizontal {
-	stroke: #e5e7eb;
-}
-
-.frappe-chart .line-vertical {
-	stroke: #d1d5db;
-}
-
-/* Tooltip polish */
-.graph-svg-tip {
-	border-radius: 10px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-	font-size: 12px;
-}
-
-/* ============================= */
-/* Optional Premium Enhancements */
-/* ============================= */
-
-/* Slight animation */
-.frappe-chart .bar {
-	transition: transform 0.15s ease, fill 0.15s ease;
-}
-
-.frappe-chart .bar:hover {
-	transform: scaleY(1.03);
-}
-
-/* Reduce excess vertical space */
-.widget-footer {
-	display: none;
-}
-
-/* ============================= */
-/* Dark Theme Support for Dashboard */
-/* ============================= */
-
-[data-theme="dark"] .dashboard-widget-box,
-[data-theme-mode="dark"] .dashboard-widget-box {
-	background: var(--bg-color, #1a1a1a);
-	border-color: var(--border-color, #333);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="dark"] .widget-head,
-[data-theme-mode="dark"] .widget-head {
-	background: var(--fg-color, #242424);
-	border-bottom-color: var(--border-color, #333);
-}
-
-[data-theme="dark"] .widget-title,
-[data-theme-mode="dark"] .widget-title {
-	color: var(--text-color, #e0e0e0);
-}
-
-[data-theme="dark"] .widget-subtitle,
-[data-theme-mode="dark"] .widget-subtitle {
-	color: var(--text-muted, #9ca3af);
-}
-
-[data-theme="dark"] .chart-menu,
-[data-theme="dark"] .filter-chart,
-[data-theme-mode="dark"] .chart-menu,
-[data-theme-mode="dark"] .filter-chart {
-	background: var(--bg-color, #1a1a1a);
-	border-color: var(--border-color, #333);
+   Techcloud Desk Theme (from html/techcloud sample)
+   Scoped: html[data-theme="material"], html[data-theme-mode="material"]
+   ====================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+html[data-theme="material"],
+html[data-theme-mode="material"] {
+  /* Palette - from DefaultColors.js */
+  --tc-primary: #5D87FF;
+  --tc-primary-light: #ECF2FF;
+  --tc-primary-dark: #4570EA;
+  --tc-primary-contrast: #ffffff;
+  --tc-secondary: #49BEFF;
+  --tc-secondary-light: #E8F7FF;
+  --tc-secondary-dark: #23afdb;
+  --tc-success: #13DEB9;
+  --tc-success-light: #E6FFFA;
+  --tc-error: #FA896B;
+  --tc-error-light: #FDEDE8;
+  --tc-warning: #FFAE1F;
+  --tc-warning-light: #FEF5E5;
+  --tc-info: #539BFF;
+  --tc-info-light: #EBF3FE;
+  --tc-grey-100: #F2F6FA;
+  --tc-grey-200: #EAEFF4;
+  --tc-grey-300: #DFE5EF;
+  --tc-grey-400: #7C8FAC;
+  --tc-grey-500: #5A6A85;
+  --tc-grey-600: #2A3547;
+  --tc-text-primary: #2A3547;
+  --tc-text-secondary: #5A6A85;
+  --tc-divider: #e5eaef;
+  --tc-action-hover: #f6f9fc;
+  --tc-action-disabled: rgba(73,82,88,0.12);
+
+  /* Typography - from Typography.js */
+  --tc-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --tc-radius: 7px;
+  --tc-card-shadow: 0 9px 17.5px rgb(0,0,0,0.05);
+  --tc-shadow-dropdown: 0 0 1px 0 rgba(0,0,0,0.31), 0 4px 8px -2px rgba(0,0,0,0.25);
+  --tc-shadow-modal: 0 0 1px 0 rgba(0,0,0,0.31), 0 14px 24px -8px rgba(0,0,0,0.25);
+
+  /* Topbar (optional) - from Topbar.js */
+  --tc-navbar-bg: linear-gradient(90deg, #001138, #001e66);
+  --tc-navbar-height: 72px;
+  --tc-page-head-height: 50px;
+
+  height: 100%;
+}
+
+/* Base */
+html[data-theme="material"] body,
+html[data-theme-mode="material"] body {
+  font-family: var(--tc-font-family) !important;
+  color: var(--tc-text-primary) !important;
+  background-color: var(--tc-grey-100) !important;
+  height: 100% !important;
+}
+
+/* Layout - Navbar (minimal) */
+html[data-theme="material"] .navbar,
+html[data-theme-mode="material"] .navbar {
+  font-family: var(--tc-font-family) !important;
+  min-height: var(--tc-navbar-height) !important;
+  background: var(--tc-navbar-bg) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="material"] .navbar .container,
+html[data-theme-mode="material"] .navbar .container {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+html[data-theme="material"] .navbar a,
+html[data-theme-mode="material"] .navbar a {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+html[data-theme="material"] .navbar a:hover,
+html[data-theme-mode="material"] .navbar a:hover {
+  color: #fff !important;
+}
+
+/* Sticky top navbar — content scrolls underneath, same behavior as page-head */
+html[data-theme="material"] .sticky-top,
+html[data-theme-mode="material"] .sticky-top {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1200 !important;
+  width: 100% !important;
+  background: var(--tc-navbar-bg) !important;
+  isolation: isolate !important;
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
+}
+
+/* Sticky header: make all text and icons white for contrast on blue bg */
+html[data-theme="material"] .sticky-top .navbar,
+html[data-theme-mode="material"] .sticky-top .navbar {
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sticky-top .navbar a,
+html[data-theme-mode="material"] .sticky-top .navbar a,
+html[data-theme="material"] .sticky-top .navbar span,
+html[data-theme-mode="material"] .sticky-top .navbar span {
+  color: #ffffff !important;
 }
-
-[data-theme="dark"] .chart-menu:hover,
-[data-theme="dark"] .filter-chart:hover,
-[data-theme-mode="dark"] .chart-menu:hover,
-[data-theme-mode="dark"] .filter-chart:hover {
-	background: var(--bg-hover-color, #2a2a2a);
-}
-
-[data-theme="dark"] .chart-container,
-[data-theme-mode="dark"] .chart-container {
-	background: var(--bg-color, #242424);
-}
-
-[data-theme="dark"] .frappe-chart .bar,
-[data-theme-mode="dark"] .frappe-chart .bar {
-	fill: #3b82f6 !important; /* stronger blue for dark */
+
+html[data-theme="material"] .sticky-top .navbar svg,
+html[data-theme-mode="material"] .sticky-top .navbar svg {
+  color: #ffffff !important;
+  fill: currentColor !important;
+  stroke: none !important;
 }
 
-[data-theme="dark"] .frappe-chart .bar:hover,
-[data-theme-mode="dark"] .frappe-chart .bar:hover {
-	fill: #1d4ed8 !important;
+/* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
+html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
+html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
+  display: none !important;
+}
+
+/* Desk body: remove extra bottom gap/margin so content ends flush */
+html[data-theme="material"] #body,
+html[data-theme-mode="material"] #body {
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Page container: ensure main content area reaches viewport bottom */
+html[data-theme="material"] #body .page-container,
+html[data-theme="material"] #body .content.page-container,
+html[data-theme-mode="material"] #body .page-container,
+html[data-theme-mode="material"] #body .content.page-container {
+  min-height: 100vh !important;
+}
+
+/* Row layout-main inside page-container should also stretch */
+html[data-theme="material"] #body .page-container .row.layout-main,
+html[data-theme="material"] #body .content.page-container .row.layout-main,
+html[data-theme-mode="material"] #body .page-container .row.layout-main,
+html[data-theme-mode="material"] #body .content.page-container .row.layout-main {
+  min-height: 100vh !important;
+}
+
+/* Header above body: #body fills .main-section (navbar moved into .layout-main-section by JS) */
+html[data-theme="material"] .main-section,
+html[data-theme-mode="material"] .main-section {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100% !important;
+}
+html[data-theme="material"] .main-section > #body,
+html[data-theme-mode="material"] .main-section > #body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Hide empty footer inside .main-section to avoid extra bottom space */
+html[data-theme="material"] .main-604 > footer,
+html[data-theme-mode="material"] .main-section > footer {
+  display: none !important;
+}
+
+/* Sidebar */
+html[data-theme="material"] .desk-sidebar,
+html[data-theme="material"] .list-sidebar,
+html[data-theme-mode="material"] .desk-sidebar,
+html[data-theme-mode="material"] .list-sidebar {
+  font-family: var(--tc-font-family) !important;
+  background: #fff !important;
+}
+
+/* Sidebar logo: centered inside sidebar column */
+html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme="material"] .desk-sidebar .techcloud-sidebar-logo,
+html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 16px 0 !important;
+}
+
+/* Keep sidebar logo visible at top while scrolling */
+html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2 !important;
+  background: #fff !important;
+}
+
+html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
+html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
+  max-width: 80% !important;
+  height: auto !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item,
+html[data-theme-mode="material"] .standard-sidebar-item {
+  border-radius: var(--tc-radius) !important;
+  margin: 2px 8px !important;
+  padding: 8px 12px !important;
+  color: var(--tc-text-secondary) !important;
+}
+
+/* Tighten icon-to-text spacing in sidebar menu */
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item a,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item a,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item a,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item a,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item a,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item a {
+  gap: 6px !important;
+}
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon {
+  margin-right: 6px !important;
+}
+html[data-theme="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .techcloud-icon {
+  margin-right: 6px !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item:hover,
+html[data-theme-mode="material"] .standard-sidebar-item:hover {
+  background: var(--tc-action-hover) !important;
+  color: var(--tc-text-primary) !important;
+}
+
+html[data-theme="material"] .standard-sidebar-item.selected,
+html[data-theme-mode="material"] .standard-sidebar-item.selected {
+  background: var(--tc-primary-light) !important;
+  color: var(--tc-primary) !important;
+}
+
+/* Sidebar menu – colorful icons (techcloud-icons.js adds icon-* color classes) */
+/* Universal: any svg.techcloud-icon with color class gets the color (symbols use stroke="currentColor") */
+html[data-theme="material"] svg.techcloud-icon.icon-blue,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-blue use,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-blue use { color: inherit !important; fill: inherit !important; stroke: inherit !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-purple,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-gold,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-cyan,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-amber,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-green,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-orange,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-teal,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-red,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-gray,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-brown,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-pink,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-indigo,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
+html[data-theme="material"] svg.techcloud-icon.icon-lime,
+html[data-theme-mode="material"] svg.techcloud-icon.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
+
+/* Sidebar / workspace: ensure opacity and scoped overrides */
+/* Include .layout-side-section for workspace sidebar (PUBLIC / MY WORKSPACES list) */
+html[data-theme="material"] .desk-sidebar .techcloud-icon,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg,
+html[data-theme="material"] .list-sidebar .techcloud-icon,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg,
+html[data-theme="material"] .layout-side-section .techcloud-icon,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg {
+  opacity: 1 !important;
+}
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-blue,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-blue,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-blue,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-blue,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-blue,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-blue,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-blue,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-purple,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-purple,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-purple,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-purple,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-purple,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-purple,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-purple,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gold,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gold,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gold,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gold,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gold,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gold,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gold,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-cyan,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-cyan,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-cyan,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-cyan,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-cyan,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-cyan,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-amber,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-amber,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-amber,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-amber,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-amber,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-amber,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-amber,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-green,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-green,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-green,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-green,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-green,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-green,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-green,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-orange,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-orange,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-orange,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-orange,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-orange,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-orange,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-orange,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-teal,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-teal,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-teal,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-teal,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-teal,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-teal,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-teal,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-red,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-red,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-red,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-red,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-red,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-red,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-red,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gray,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gray,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gray,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gray,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gray,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gray,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gray,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-brown,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-brown,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-brown,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-brown,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-brown,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-brown,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-brown,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-pink,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-pink,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-pink,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-pink,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-pink,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-pink,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-pink,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-indigo,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-indigo,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-indigo,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-indigo,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-indigo,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-indigo,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
+html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-lime,
+html[data-theme="material"] .list-sidebar .techcloud-icon.icon-lime,
+html[data-theme="material"] .layout-side-section .techcloud-icon.icon-lime,
+html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-lime,
+html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-lime,
+html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-lime,
+html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
+html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
+html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-lime,
+html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
+html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
+html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
+
+/* Buttons */
+html[data-theme="material"] .btn,
+html[data-theme-mode="material"] .btn {
+  font-family: var(--tc-font-family) !important;
+  border-radius: var(--tc-radius) !important;
+  box-shadow: none !important;
+  font-weight: 500 !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+}
+
+html[data-theme="material"] .btn:hover,
+html[data-theme-mode="material"] .btn:hover {
+  box-shadow: none !important;
+}
+
+html[data-theme="material"] .btn-primary,
+html[data-theme-mode="material"] .btn-primary {
+  background: var(--tc-primary) !important;
+  border-color: var(--tc-primary) !important;
+  color: var(--tc-primary-contrast) !important;
+}
+
+html[data-theme="material"] .btn-primary:hover,
+html[data-theme-mode="material"] .btn-primary:hover {
+  background: var(--tc-primary-dark) !important;
+  border-color: var(--tc-primary-dark) !important;
+}
+
+html[data-theme="material"] .btn-secondary,
+html[data-theme-mode="material"] .btn-secondary {
+  background: var(--tc-grey-200) !important;
+  border-color: var(--tc-divider) !important;
+  color: var(--tc-text-primary) !important;
+}
+
+html[data-theme="material"] .btn-default,
+html[data-theme-mode="material"] .btn-default {
+  background: #fff !important;
+  border: 1px solid var(--tc-divider) !important;
+  color: var(--tc-text-primary) !important;
+}
+
+html[data-theme="material"] .btn-default:hover,
+html[data-theme-mode="material"] .btn-default:hover {
+  background: var(--tc-action-hover) !important;
+  border-color: var(--tc-primary) !important;
+  color: var(--tc-primary) !important;
+}
+
+html[data-theme="material"] .icon-btn,
+html[data-theme-mode="material"] .icon-btn {
+  border-radius: var(--tc-radius) !important;
+  padding: 6px !important;
+}
+
+/* Form controls */
+html[data-theme="material"] .form-control,
+html[data-theme-mode="material"] .form-control {
+  font-family: var(--tc-font-family) !important;
+  border: 1px solid var(--tc-divider) !important;
+  border-radius: var(--tc-radius) !important;
+  color: var(--tc-text-primary) !important;
+  padding: 8px 12px !important;
+}
+
+html[data-theme="material"] .form-control:focus,
+html[data-theme-mode="material"] .form-control:focus {
+  border-color: var(--tc-primary) !important;
+  box-shadow: 0 0 0 2px var(--tc-primary-light) !important;
+  outline: none !important;
+}
+
+html[data-theme="material"] .form-control:hover,
+html[data-theme-mode="material"] .form-control:hover {
+  border-color: var(--tc-primary) !important;
+}
+
+/* Cards */
+html[data-theme="material"] .frappe-card,
+html[data-theme-mode="material"] .frappe-card {
+  border-radius: var(--tc-radius) !important;
+  box-shadow: var(--tc-card-shadow) !important;
+  border: 1px solid var(--tc-divider) !important;
+  background: #fff !important;
+}
+
+html[data-theme="material"] .widget,
+html[data-theme-mode="material"] .widget {
+  border-radius: var(--tc-radius) !important;
+  border: 1px solid var(--tc-divider) !important;
+  background: #fff !important;
+  box-shadow: var(--tc-card-shadow) !important;
+}
+
+/* Modals */
+html[data-theme="material"] .modal-content,
+html[data-theme-mode="material"] .modal-content {
+  border-radius: var(--tc-radius) !important;
+  box-shadow: var(--tc-shadow-modal) !important;
+  border: 1px solid var(--tc-divider) !important;
+}
+
+/* Dropdowns */
+html[data-theme="material"] .dropdown-menu,
+html[data-theme-mode="material"] .dropdown-menu {
+  border-radius: var(--tc-radius) !important;
+  box-shadow: var(--tc-shadow-dropdown) !important;
+  border: 1px solid var(--tc-divider) !important;
+  padding: 6px !important;
+}
+
+html[data-theme="material"] .dropdown-item,
+html[data-theme-mode="material"] .dropdown-item {
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+}
+
+html[data-theme="material"] .dropdown-item:hover,
+html[data-theme-mode="material"] .dropdown-item:hover {
+  background: var(--tc-action-hover) !important;
+}
+
+/* Page head — sticky, always on top of scrolling content */
+html[data-theme="material"] .page-head,
+html[data-theme-mode="material"] .page-head {
+  font-family: var(--tc-font-family) !important;
+  border-bottom: 1px solid var(--tc-divider) !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 11px !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1100 !important;
+  width: 100% !important;
+  background-color: #fff !important;
+  isolation: isolate !important; /* own stacking context so content scrolls underneath */
+  box-shadow: 0 1px 0 0 var(--tc-divider) !important; /* subtle edge so content doesn’t show through */
+}
+
+html[data-theme="material"] .page-head-content .title,
+html[data-theme-mode="material"] .page-head-content .title {
+  color: var(--tc-text-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Page-head at top-left of main content area — only the main column, not .layout-main (which contains sidebar + main) */
+html[data-theme="material"] .layout-main-section-wrapper,
+html[data-theme="material"] .page-content,
+html[data-theme-mode="material"] .layout-main-section-wrapper,
+html[data-theme-mode="material"] .page-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  min-height: 100vh !important;
+}
+html[data-theme="material"] .layout-main-section-wrapper .page-head,
+html[data-theme="material"] .page-content .page-head,
+html[data-theme-mode="material"] .layout-main-section-wrapper .page-head,
+html[data-theme-mode="material"] .page-content .page-head {
+  width: 100% !important;
+  align-self: flex-start !important;
+  flex-shrink: 0 !important;
+}
+html[data-theme="material"] .layout-main-section-wrapper .page-head .container,
+html[data-theme="material"] .page-content .page-head .container,
+html[data-theme-mode="material"] .layout-main-section-wrapper .page-head .container,
+html[data-theme-mode="material"] .page-content .page-head .container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+/* .layout-main-section: vertical stack (navbar, then page-head, then content) */
+html[data-theme="material"] .layout-main-section-wrapper .layout-main-section,
+html[data-theme="material"] .page-content .layout-main-section,
+html[data-theme-mode="material"] .layout-main-section-wrapper .layout-main-section,
+html[data-theme-mode="material"] .page-content .layout-main-section {
+  flex: 1 1 auto !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+html[data-theme="material"] .layout-main-section .sticky-top,
+html[data-theme-mode="material"] .layout-main-section .sticky-top {
+  flex-shrink: 0 !important;
+}
+/* Scrolling content stays under sticky navbar and page-head — lower z-index */
+html[data-theme="material"] .layout-main-section > *:not(.page-head):not(.sticky-top),
+html[data-theme-mode="material"] .layout-main-section > *:not(.page-head):not(.sticky-top) {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+/* .layout-main row: height based on screen size (fill viewport minus navbar/page-head) */
+@media (min-width: 576px) {
+  html[data-theme="material"] .layout-main,
+  html[data-theme-mode="material"] .layout-main {
+    height: calc(100vh - var(--tc-navbar-height) - var(--tc-page-head-height, 0px)) !important;
+    min-height: 0 !important;
+  }
+}
+
+/* List rows */
+html[data-theme="material"] .list-row-container,
+html[data-theme-mode="material"] .list-row-container {
+  border-bottom: 1px solid var(--tc-grey-200) !important;
+}
+
+html[data-theme="material"] .list-row-container:hover,
+html[data-theme-mode="material"] .list-row-container:hover {
+  background: var(--tc-action-hover) !important;
+}
+
+/* Links */
+html[data-theme="material"] a,
+html[data-theme-mode="material"] a {
+  color: var(--tc-primary) !important;
+  text-decoration: none !important;
+}
+
+html[data-theme="material"] a:hover,
+html[data-theme-mode="material"] a:hover {
+  color: var(--tc-primary-dark) !important;
+}
+
+/* Icons (minimal) – do not override techcloud sidebar colorful icons */
+html[data-theme="material"] .icon:not(.techcloud-icon),
+html[data-theme-mode="material"] .icon:not(.techcloud-icon) {
+  color: var(--tc-text-secondary) !important;
+}
+
+/* Scrollbar - from DefaultColors MuiCssBaseline */
+html[data-theme="material"] .simplebar-scrollbar:before,
+html[data-theme-mode="material"] .simplebar-scrollbar:before {
+  background: var(--tc-grey-300) !important;
+}
+
+/* Primary action visibility (keep buttons visible) */
+html[data-theme="material"] .primary-action:not(.hide):not(:empty),
+html[data-theme-mode="material"] .primary-action:not(.hide):not(:empty),
+html[data-theme="material"] .page-actions .btn:not(.hide):not(:empty),
+html[data-theme-mode="material"] .page-actions .btn:not(.hide):not(:empty) {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Standard actions */
+html[data-theme="material"] .standard-actions,
+html[data-theme-mode="material"] .standard-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* kbd */
+html[data-theme="material"] kbd,
+html[data-theme-mode="material"] kbd {
+  background: var(--tc-grey-200) !important;
+  border: 1px solid var(--tc-divider) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+  color: var(--tc-text-secondary) !important;
+}
+
+@media (min-width: 768px) {
+  html[data-theme="material"] body.full-width .container,
+  html[data-theme-mode="material"] body.full-width .container,
+  body.full-width .container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* ============================================
+   Sidebar collapsed state (Material theme)
+   - Hide sidebar column, main content takes full width
+   ============================================ */
+html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme="material"] body.sidebar-collapsed .standard-sidebar,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme-mode="material"] body.sidebar-collapsed .standard-sidebar {
+  display: none !important;
+}
+
+/* ============================================
+   Sidebar toggle button (Material theme)
+   - Clickable above overlays; SVG does not steal clicks
+   - Icons in white; only one icon visible based on sidebar state
+   ============================================ */
+html[data-theme="material"] .sidebar-toggle-btn,
+html[data-theme-mode="material"] .sidebar-toggle-btn {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn svg,
+html[data-theme-mode="material"] .sidebar-toggle-btn svg {
+  pointer-events: none !important;
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Default state: show placeholder (hamburger), hide collapse icon */
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
+  display: inline-flex !important;
+}
+
+html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
+  display: none !important;
+}
+
+/* Collapsed state: hide placeholder, show collapse icon */
+html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder,
+html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder {
+  display: none !important;
+}
+
+html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon,
+html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon {
+  display: inline-flex !important;
 }
 
-[data-theme="dark"] .frappe-chart text,
-[data-theme-mode="dark"] .frappe-chart text {
-	fill: var(--text-muted, #9ca3af);
-}
-
-[data-theme="dark"] .frappe-chart .line-horizontal,
-[data-theme-mode="dark"] .frappe-chart .line-horizontal {
-	stroke: var(--border-color, #374151);
-}
-
-[data-theme="dark"] .frappe-chart .line-vertical,
-[data-theme-mode="dark"] .frappe-chart .line-vertical {
-	stroke: var(--border-color, #4b5563);
-}
