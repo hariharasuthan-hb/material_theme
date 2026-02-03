@@ -213,8 +213,11 @@ frappe.provide("itrostack.material");
 			const style = window.getComputedStyle(sidebar);
 			if (style.display === "none" || style.visibility === "hidden") return;
 
-			// Avoid duplicates (class + data flag)
-			if (sidebar.querySelector(".techcloud-sidebar-logo") || sidebar.dataset.techcloudLogo === "1") return;
+			// Avoid duplicates: if a logo element is already present, don't add another.
+			// NOTE: we intentionally ignore sidebar.dataset.techcloudLogo here, because
+			// other scripts or DOM updates might remove the logo element while leaving
+			// the data attribute behind. In that case we still want to re-inject it.
+			if (sidebar.querySelector(".techcloud-sidebar-logo")) return;
 
 			const logo = document.createElement("a");
 			logo.className = "navbar-brand navbar-home techcloud-sidebar-logo";
@@ -263,6 +266,31 @@ frappe.provide("itrostack.material");
 				setTimeout(runLayout, 0);
 			}
 		});
+	}
+
+	// Also watch for sidebars that appear later via AJAX (without a full page-change event).
+	if (window.MutationObserver && document.body) {
+		const sidebarObserver = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				if (mutation.type !== "childList") continue;
+				for (const node of mutation.addedNodes) {
+					if (!(node instanceof HTMLElement)) continue;
+					// If a new sidebar container or a node that contains one appears, re-run logo injection.
+					if (
+						node.matches?.(
+							".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+						) ||
+						node.querySelector?.(
+							".layout-side-section, .desk-sidebar:not(.list-unstyled):not(.sidebar-menu), .standard-sidebar, .list-sidebar:not(.overlay-sidebar)"
+						)
+					) {
+						setTimeout(() => ensureSidebarLogo(), 0);
+						return;
+					}
+				}
+			}
+		});
+		sidebarObserver.observe(document.body, { childList: true, subtree: true });
 	}
 })();
 
