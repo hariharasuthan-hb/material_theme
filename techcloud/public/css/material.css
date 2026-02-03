@@ -97,6 +97,26 @@ html[data-theme-mode="material"] .sticky-top {
   box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
 }
 
+/* Sticky header: make all text and icons white for contrast on blue bg */
+html[data-theme="material"] .sticky-top .navbar,
+html[data-theme-mode="material"] .sticky-top .navbar {
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sticky-top .navbar a,
+html[data-theme-mode="material"] .sticky-top .navbar a,
+html[data-theme="material"] .sticky-top .navbar span,
+html[data-theme-mode="material"] .sticky-top .navbar span {
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sticky-top .navbar svg,
+html[data-theme-mode="material"] .sticky-top .navbar svg {
+  color: #ffffff !important;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
 /* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
 html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
 html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
@@ -581,6 +601,17 @@ html[data-theme="material"] .layout-main-section > *:not(.page-head):not(.sticky
 html[data-theme-mode="material"] .layout-main-section > *:not(.page-head):not(.sticky-top) {
   position: relative !important;
   z-index: 0 !important;
+}
+
+/* Sidebar collapsed state (Material theme)
+   - Hide sidebar column when body.sidebar-collapsed is present */
+html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme="material"] body.sidebar-collapsed .standard-sidebar,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme-mode="material"] body.sidebar-collapsed .standard-sidebar {
+  display: none !important;
 }
 
 /* .layout-main row: height based on screen size (fill viewport minus navbar/page-head) */

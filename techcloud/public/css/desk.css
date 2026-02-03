@@ -96,6 +96,26 @@ html[data-theme-mode="material"] .sticky-top {
   box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
 }
 
+/* Sticky header: make all text and icons white for contrast on blue bg */
+html[data-theme="material"] .sticky-top .navbar,
+html[data-theme-mode="material"] .sticky-top .navbar {
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sticky-top .navbar a,
+html[data-theme-mode="material"] .sticky-top .navbar a,
+html[data-theme="material"] .sticky-top .navbar span,
+html[data-theme-mode="material"] .sticky-top .navbar span {
+  color: #ffffff !important;
+}
+
+html[data-theme="material"] .sticky-top .navbar svg,
+html[data-theme-mode="material"] .sticky-top .navbar svg {
+  color: #ffffff !important;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
 /* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
 html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
 html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
@@ -727,17 +747,33 @@ html[data-theme-mode="material"] kbd {
 }
 
 /* ============================================
+   Sidebar collapsed state (Material theme)
+   - Hide sidebar column, main content takes full width
+   ============================================ */
+html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme="material"] body.sidebar-collapsed .standard-sidebar,
+html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
+html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+html[data-theme-mode="material"] body.sidebar-collapsed .standard-sidebar {
+  display: none !important;
+}
+
+/* ============================================
    Sidebar toggle button (Material theme)
-   - Icons in white
-   - Only one icon visible based on sidebar state
+   - Clickable above overlays; SVG does not steal clicks
+   - Icons in white; only one icon visible based on sidebar state
    ============================================ */
 html[data-theme="material"] .sidebar-toggle-btn,
 html[data-theme-mode="material"] .sidebar-toggle-btn {
+  pointer-events: auto !important;
+  z-index: 9999 !important;
   color: #ffffff !important;
 }
 
 html[data-theme="material"] .sidebar-toggle-btn svg,
 html[data-theme-mode="material"] .sidebar-toggle-btn svg {
+  pointer-events: none !important;
   color: inherit !important;
   fill: currentColor !important;
 }

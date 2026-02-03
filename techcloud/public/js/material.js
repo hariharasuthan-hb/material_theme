@@ -123,6 +123,21 @@ frappe.provide("itrostack.material");
 	}
 })();
 
+// Sidebar toggle: define early so button onclick works before techcloud-fixes.js runs.
+// techcloud-fixes.js may overwrite with full version (delegated handlers, localStorage).
+(function () {
+	if (typeof window.techcloudToggleSidebar === "function") return;
+	window.techcloudToggleSidebar = function () {
+		document.body.classList.toggle("sidebar-collapsed");
+		try {
+			localStorage.setItem(
+				"techcloud-sidebar-collapsed",
+				document.body.classList.contains("sidebar-collapsed")
+			);
+		} catch (e) {}
+	};
+})();
+
 // Navbar (.sticky-top) and page-head: move into .layout-main-section so navbar is first, then page-head (removed from current position).
 (function () {
 	"use strict";
