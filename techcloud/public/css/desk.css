@@ -3,800 +3,956 @@
    Scoped: html[data-theme="material"], html[data-theme-mode="material"]
    ====================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-
-html[data-theme="material"],
-html[data-theme-mode="material"] {
-  /* Palette - from DefaultColors.js */
-  --tc-primary: #5D87FF;
-  --tc-primary-light: #ECF2FF;
-  --tc-primary-dark: #4570EA;
-  --tc-primary-contrast: #ffffff;
-  --tc-secondary: #49BEFF;
-  --tc-secondary-light: #E8F7FF;
-  --tc-secondary-dark: #23afdb;
-  --tc-success: #13DEB9;
-  --tc-success-light: #E6FFFA;
-  --tc-error: #FA896B;
-  --tc-error-light: #FDEDE8;
-  --tc-warning: #FFAE1F;
-  --tc-warning-light: #FEF5E5;
-  --tc-info: #539BFF;
-  --tc-info-light: #EBF3FE;
-  --tc-grey-100: #F2F6FA;
-  --tc-grey-200: #EAEFF4;
-  --tc-grey-300: #DFE5EF;
-  --tc-grey-400: #7C8FAC;
-  --tc-grey-500: #5A6A85;
-  --tc-grey-600: #2A3547;
-  --tc-text-primary: #2A3547;
-  --tc-text-secondary: #5A6A85;
-  --tc-divider: #e5eaef;
-  --tc-action-hover: #f6f9fc;
-  --tc-action-disabled: rgba(73,82,88,0.12);
-
-  /* Typography - from Typography.js */
-  --tc-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --tc-radius: 7px;
-  --tc-card-shadow: 0 9px 17.5px rgb(0,0,0,0.05);
-  --tc-shadow-dropdown: 0 0 1px 0 rgba(0,0,0,0.31), 0 4px 8px -2px rgba(0,0,0,0.25);
-  --tc-shadow-modal: 0 0 1px 0 rgba(0,0,0,0.31), 0 14px 24px -8px rgba(0,0,0,0.25);
-
-  /* Topbar (optional) - from Topbar.js */
-  --tc-navbar-bg: linear-gradient(90deg, #001138, #001e66);
-  --tc-navbar-height: 72px;
-  --tc-page-head-height: 50px;
-
-  height: 100%;
-}
-
-/* Base */
-html[data-theme="material"] body,
-html[data-theme-mode="material"] body {
-  font-family: var(--tc-font-family) !important;
-  color: var(--tc-text-primary) !important;
-  background-color: var(--tc-grey-100) !important;
-  height: 100% !important;
-}
-
-/* Layout - Navbar (minimal) */
-html[data-theme="material"] .navbar,
-html[data-theme-mode="material"] .navbar {
-  font-family: var(--tc-font-family) !important;
-  min-height: var(--tc-navbar-height) !important;
-  background: var(--tc-navbar-bg) !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
-
-html[data-theme="material"] .navbar .container,
-html[data-theme-mode="material"] .navbar .container {
-  color: rgba(255,255,255,0.9) !important;
-}
-
-html[data-theme="material"] .navbar a,
-html[data-theme-mode="material"] .navbar a {
-  color: rgba(255,255,255,0.9) !important;
-}
-
-html[data-theme="material"] .navbar a:hover,
-html[data-theme-mode="material"] .navbar a:hover {
-  color: #fff !important;
-}
-
-/* Sticky top navbar — content scrolls underneath, same behavior as page-head */
-html[data-theme="material"] .sticky-top,
-html[data-theme-mode="material"] .sticky-top {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1200 !important;
-  width: 100% !important;
-  background: var(--tc-navbar-bg) !important;
-  isolation: isolate !important;
-  box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
-}
-
-/* Sticky header: make all text and icons white for contrast on blue bg */
-html[data-theme="material"] .sticky-top .navbar,
-html[data-theme-mode="material"] .sticky-top .navbar {
-  color: #ffffff !important;
-}
-
-html[data-theme="material"] .sticky-top .navbar a,
-html[data-theme-mode="material"] .sticky-top .navbar a,
-html[data-theme="material"] .sticky-top .navbar span,
-html[data-theme-mode="material"] .sticky-top .navbar span {
-  color: #ffffff !important;
-}
-
-html[data-theme="material"] .sticky-top .navbar svg,
-html[data-theme-mode="material"] .sticky-top .navbar svg {
-  color: #ffffff !important;
-  fill: currentColor !important;
-  stroke: none !important;
-}
-
-/* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
-html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
-html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
-  display: none !important;
-}
-
-/* Desk body: remove extra bottom gap/margin so content ends flush */
-html[data-theme="material"] #body,
-html[data-theme-mode="material"] #body {
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* Page container: ensure main content area reaches viewport bottom */
-html[data-theme="material"] #body .page-container,
-html[data-theme="material"] #body .content.page-container,
-html[data-theme-mode="material"] #body .page-container,
-html[data-theme-mode="material"] #body .content.page-container {
-  min-height: 100vh !important;
-}
-
-/* Row layout-main inside page-container should also stretch */
-html[data-theme="material"] #body .page-container .row.layout-main,
-html[data-theme="material"] #body .content.page-container .row.layout-main,
-html[data-theme-mode="material"] #body .page-container .row.layout-main,
-html[data-theme-mode="material"] #body .content.page-container .row.layout-main {
-  min-height: 100vh !important;
-}
-
-/* Header above body: #body fills .main-section (navbar moved into .layout-main-section by JS) */
-html[data-theme="material"] .main-section,
-html[data-theme-mode="material"] .main-section {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 100% !important;
-}
-html[data-theme="material"] .main-section > #body,
-html[data-theme-mode="material"] .main-section > #body {
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* Hide empty footer inside .main-section to avoid extra bottom space */
-html[data-theme="material"] .main-604 > footer,
-html[data-theme-mode="material"] .main-section > footer {
-  display: none !important;
-}
-
-/* Sidebar */
-html[data-theme="material"] .desk-sidebar,
-html[data-theme="material"] .list-sidebar,
-html[data-theme-mode="material"] .desk-sidebar,
-html[data-theme-mode="material"] .list-sidebar {
-  font-family: var(--tc-font-family) !important;
-  background: #fff !important;
-}
-
-/* Sidebar logo: centered inside sidebar column */
-html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
-html[data-theme="material"] .desk-sidebar .techcloud-sidebar-logo,
-html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
-html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-sidebar-logo,
-html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  padding: 16px 0 !important;
-}
-
-/* Keep sidebar logo visible at top while scrolling */
-html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
-html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo {
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 2 !important;
-  background: #fff !important;
-}
-
-html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
-html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
-  max-width: 80% !important;
-  height: auto !important;
-}
-
-html[data-theme="material"] .standard-sidebar-item,
-html[data-theme-mode="material"] .standard-sidebar-item {
-  border-radius: var(--tc-radius) !important;
-  margin: 2px 8px !important;
-  padding: 8px 12px !important;
-  color: var(--tc-text-secondary) !important;
-}
-
-/* Tighten icon-to-text spacing in sidebar menu */
-html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
-html[data-theme="material"] .desk-sidebar .standard-sidebar-item a,
-html[data-theme="material"] .list-sidebar .standard-sidebar-item .item-anchor,
-html[data-theme="material"] .list-sidebar .standard-sidebar-item a,
-html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
-html[data-theme="material"] .layout-side-section .standard-sidebar-item a,
-html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
-html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item a,
-html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .item-anchor,
-html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item a,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item a {
-  gap: 6px !important;
-}
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon {
-  margin-right: 6px !important;
-}
-html[data-theme="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
-html[data-theme="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
-html[data-theme="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
-html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
-html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
-html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .techcloud-icon {
-  margin-right: 6px !important;
-}
-
-html[data-theme="material"] .standard-sidebar-item:hover,
-html[data-theme-mode="material"] .standard-sidebar-item:hover {
-  background: var(--tc-action-hover) !important;
-  color: var(--tc-text-primary) !important;
-}
-
-html[data-theme="material"] .standard-sidebar-item.selected,
-html[data-theme-mode="material"] .standard-sidebar-item.selected {
-  background: var(--tc-primary-light) !important;
-  color: var(--tc-primary) !important;
-}
-
-/* Sidebar menu – colorful icons (techcloud-icons.js adds icon-* color classes) */
-/* Universal: any svg.techcloud-icon with color class gets the color (symbols use stroke="currentColor") */
-html[data-theme="material"] svg.techcloud-icon.icon-blue,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-blue use,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-blue use { color: inherit !important; fill: inherit !important; stroke: inherit !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-purple,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-gold,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-cyan,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-amber,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-green,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-orange,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-teal,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-red,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-gray,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-brown,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-pink,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-indigo,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
-html[data-theme="material"] svg.techcloud-icon.icon-lime,
-html[data-theme-mode="material"] svg.techcloud-icon.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
-
-/* Sidebar / workspace: ensure opacity and scoped overrides */
-/* Include .layout-side-section for workspace sidebar (PUBLIC / MY WORKSPACES list) */
-html[data-theme="material"] .desk-sidebar .techcloud-icon,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg,
-html[data-theme="material"] .list-sidebar .techcloud-icon,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg,
-html[data-theme="material"] .layout-side-section .techcloud-icon,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg {
-  opacity: 1 !important;
-}
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-blue,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-blue,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-blue,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-blue,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-blue,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-blue,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-blue,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-purple,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-purple,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-purple,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-purple,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-purple,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-purple,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-purple,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gold,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gold,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gold,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gold,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gold,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gold,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gold,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-cyan,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-cyan,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-cyan,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-cyan,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-cyan,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-cyan,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-amber,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-amber,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-amber,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-amber,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-amber,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-amber,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-amber,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-green,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-green,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-green,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-green,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-green,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-green,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-green,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-orange,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-orange,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-orange,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-orange,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-orange,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-orange,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-orange,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-teal,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-teal,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-teal,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-teal,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-teal,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-teal,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-teal,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-red,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-red,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-red,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-red,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-red,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-red,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-red,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gray,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gray,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gray,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gray,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gray,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gray,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gray,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-brown,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-brown,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-brown,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-brown,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-brown,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-brown,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-brown,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-pink,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-pink,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-pink,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-pink,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-pink,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-pink,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-pink,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-indigo,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-indigo,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-indigo,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-indigo,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-indigo,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-indigo,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
-html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-lime,
-html[data-theme="material"] .list-sidebar .techcloud-icon.icon-lime,
-html[data-theme="material"] .layout-side-section .techcloud-icon.icon-lime,
-html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-lime,
-html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-lime,
-html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-lime,
-html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
-html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
-html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-lime,
-html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
-html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
-html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
-
-/* Buttons */
-html[data-theme="material"] .btn,
-html[data-theme-mode="material"] .btn {
-  font-family: var(--tc-font-family) !important;
-  border-radius: var(--tc-radius) !important;
-  box-shadow: none !important;
-  font-weight: 500 !important;
-  transition: background-color 0.2s ease, border-color 0.2s ease !important;
-}
-
-html[data-theme="material"] .btn:hover,
-html[data-theme-mode="material"] .btn:hover {
-  box-shadow: none !important;
-}
-
-html[data-theme="material"] .btn-primary,
-html[data-theme-mode="material"] .btn-primary {
-  background: var(--tc-primary) !important;
-  border-color: var(--tc-primary) !important;
-  color: var(--tc-primary-contrast) !important;
-}
-
-html[data-theme="material"] .btn-primary:hover,
-html[data-theme-mode="material"] .btn-primary:hover {
-  background: var(--tc-primary-dark) !important;
-  border-color: var(--tc-primary-dark) !important;
-}
-
-html[data-theme="material"] .btn-secondary,
-html[data-theme-mode="material"] .btn-secondary {
-  background: var(--tc-grey-200) !important;
-  border-color: var(--tc-divider) !important;
-  color: var(--tc-text-primary) !important;
-}
-
-html[data-theme="material"] .btn-default,
-html[data-theme-mode="material"] .btn-default {
-  background: #fff !important;
-  border: 1px solid var(--tc-divider) !important;
-  color: var(--tc-text-primary) !important;
-}
-
-html[data-theme="material"] .btn-default:hover,
-html[data-theme-mode="material"] .btn-default:hover {
-  background: var(--tc-action-hover) !important;
-  border-color: var(--tc-primary) !important;
-  color: var(--tc-primary) !important;
-}
-
-html[data-theme="material"] .icon-btn,
-html[data-theme-mode="material"] .icon-btn {
-  border-radius: var(--tc-radius) !important;
-  padding: 6px !important;
-}
-
-/* Form controls */
-html[data-theme="material"] .form-control,
-html[data-theme-mode="material"] .form-control {
-  font-family: var(--tc-font-family) !important;
-  border: 1px solid var(--tc-divider) !important;
-  border-radius: var(--tc-radius) !important;
-  color: var(--tc-text-primary) !important;
-  padding: 8px 12px !important;
-}
-
-html[data-theme="material"] .form-control:focus,
-html[data-theme-mode="material"] .form-control:focus {
-  border-color: var(--tc-primary) !important;
-  box-shadow: 0 0 0 2px var(--tc-primary-light) !important;
-  outline: none !important;
-}
-
-html[data-theme="material"] .form-control:hover,
-html[data-theme-mode="material"] .form-control:hover {
-  border-color: var(--tc-primary) !important;
-}
-
-/* Cards */
-html[data-theme="material"] .frappe-card,
-html[data-theme-mode="material"] .frappe-card {
-  border-radius: var(--tc-radius) !important;
-  box-shadow: var(--tc-card-shadow) !important;
-  border: 1px solid var(--tc-divider) !important;
-  background: #fff !important;
-}
-
-html[data-theme="material"] .widget,
-html[data-theme-mode="material"] .widget {
-  border-radius: var(--tc-radius) !important;
-  border: 1px solid var(--tc-divider) !important;
-  background: #fff !important;
-  box-shadow: var(--tc-card-shadow) !important;
-}
-
-/* Modals */
-html[data-theme="material"] .modal-content,
-html[data-theme-mode="material"] .modal-content {
-  border-radius: var(--tc-radius) !important;
-  box-shadow: var(--tc-shadow-modal) !important;
-  border: 1px solid var(--tc-divider) !important;
-}
-
-/* Dropdowns */
-html[data-theme="material"] .dropdown-menu,
-html[data-theme-mode="material"] .dropdown-menu {
-  border-radius: var(--tc-radius) !important;
-  box-shadow: var(--tc-shadow-dropdown) !important;
-  border: 1px solid var(--tc-divider) !important;
-  padding: 6px !important;
-}
-
-html[data-theme="material"] .dropdown-item,
-html[data-theme-mode="material"] .dropdown-item {
-  border-radius: 4px !important;
-  padding: 6px 10px !important;
-}
-
-html[data-theme="material"] .dropdown-item:hover,
-html[data-theme-mode="material"] .dropdown-item:hover {
-  background: var(--tc-action-hover) !important;
-}
-
-/* Page head — sticky, always on top of scrolling content */
-html[data-theme="material"] .page-head,
-html[data-theme-mode="material"] .page-head {
-  font-family: var(--tc-font-family) !important;
-  border-bottom: 1px solid var(--tc-divider) !important;
-  padding-bottom: 0 !important;
-  margin-bottom: 11px !important;
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 1100 !important;
-  width: 100% !important;
-  background-color: #fff !important;
-  isolation: isolate !important; /* own stacking context so content scrolls underneath */
-  box-shadow: 0 1px 0 0 var(--tc-divider) !important; /* subtle edge so content doesn’t show through */
-}
-
-html[data-theme="material"] .page-head-content .title,
-html[data-theme-mode="material"] .page-head-content .title {
-  color: var(--tc-text-primary) !important;
-  font-weight: 600 !important;
-}
-
-/* Page-head at top-left of main content area — only the main column, not .layout-main (which contains sidebar + main) */
-html[data-theme="material"] .layout-main-section-wrapper,
-html[data-theme="material"] .page-content,
-html[data-theme-mode="material"] .layout-main-section-wrapper,
-html[data-theme-mode="material"] .page-content {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: stretch !important;
-  min-height: 100vh !important;
-}
-html[data-theme="material"] .layout-main-section-wrapper .page-head,
-html[data-theme="material"] .page-content .page-head,
-html[data-theme-mode="material"] .layout-main-section-wrapper .page-head,
-html[data-theme-mode="material"] .page-content .page-head {
-  width: 100% !important;
-  align-self: flex-start !important;
-  flex-shrink: 0 !important;
-}
-html[data-theme="material"] .layout-main-section-wrapper .page-head .container,
-html[data-theme="material"] .page-content .page-head .container,
-html[data-theme-mode="material"] .layout-main-section-wrapper .page-head .container,
-html[data-theme-mode="material"] .page-content .page-head .container {
-  max-width: 100% !important;
-  width: 100% !important;
-}
-/* .layout-main-section: vertical stack (navbar, then page-head, then content) */
-html[data-theme="material"] .layout-main-section-wrapper .layout-main-section,
-html[data-theme="material"] .page-content .layout-main-section,
-html[data-theme-mode="material"] .layout-main-section-wrapper .layout-main-section,
-html[data-theme-mode="material"] .page-content .layout-main-section {
-  flex: 1 1 auto !important;
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-html[data-theme="material"] .layout-main-section .sticky-top,
-html[data-theme-mode="material"] .layout-main-section .sticky-top {
-  flex-shrink: 0 !important;
-}
-/* Scrolling content stays under sticky navbar and page-head — lower z-index */
-html[data-theme="material"] .layout-main-section > *:not(.page-head):not(.sticky-top),
-html[data-theme-mode="material"] .layout-main-section > *:not(.page-head):not(.sticky-top) {
-  position: relative !important;
-  z-index: 0 !important;
-}
-
-/* .layout-main row: height based on screen size (fill viewport minus navbar/page-head) */
-@media (min-width: 576px) {
-  html[data-theme="material"] .layout-main,
-  html[data-theme-mode="material"] .layout-main {
-    height: calc(100vh - var(--tc-navbar-height) - var(--tc-page-head-height, 0px)) !important;
-    min-height: 0 !important;
-  }
-}
-
-/* List rows */
-html[data-theme="material"] .list-row-container,
-html[data-theme-mode="material"] .list-row-container {
-  border-bottom: 1px solid var(--tc-grey-200) !important;
-}
-
-html[data-theme="material"] .list-row-container:hover,
-html[data-theme-mode="material"] .list-row-container:hover {
-  background: var(--tc-action-hover) !important;
-}
-
-/* Links */
-html[data-theme="material"] a,
-html[data-theme-mode="material"] a {
-  color: var(--tc-primary) !important;
-  text-decoration: none !important;
-}
-
-html[data-theme="material"] a:hover,
-html[data-theme-mode="material"] a:hover {
-  color: var(--tc-primary-dark) !important;
-}
-
-/* Icons (minimal) – do not override techcloud sidebar colorful icons */
-html[data-theme="material"] .icon:not(.techcloud-icon),
-html[data-theme-mode="material"] .icon:not(.techcloud-icon) {
-  color: var(--tc-text-secondary) !important;
-}
-
-/* Scrollbar - from DefaultColors MuiCssBaseline */
-html[data-theme="material"] .simplebar-scrollbar:before,
-html[data-theme-mode="material"] .simplebar-scrollbar:before {
-  background: var(--tc-grey-300) !important;
-}
-
-/* Primary action visibility (keep buttons visible) */
-html[data-theme="material"] .primary-action:not(.hide):not(:empty),
-html[data-theme-mode="material"] .primary-action:not(.hide):not(:empty),
-html[data-theme="material"] .page-actions .btn:not(.hide):not(:empty),
-html[data-theme-mode="material"] .page-actions .btn:not(.hide):not(:empty) {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-/* Standard actions */
-html[data-theme="material"] .standard-actions,
-html[data-theme-mode="material"] .standard-actions {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
-/* kbd */
-html[data-theme="material"] kbd,
-html[data-theme-mode="material"] kbd {
-  background: var(--tc-grey-200) !important;
-  border: 1px solid var(--tc-divider) !important;
-  border-radius: 4px !important;
-  padding: 2px 6px !important;
-  font-size: 11px !important;
-  color: var(--tc-text-secondary) !important;
-}
-
-@media (min-width: 768px) {
-  html[data-theme="material"] body.full-width .container,
-  html[data-theme-mode="material"] body.full-width .container,
-  body.full-width .container {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-}
-
-/* ============================================
-   Sidebar collapsed state (Material theme)
-   - Hide sidebar column, main content takes full width
-   ============================================ */
-html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
-html[data-theme="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
-html[data-theme="material"] body.sidebar-collapsed .standard-sidebar,
-html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
-html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
-html[data-theme-mode="material"] body.sidebar-collapsed .standard-sidebar {
-  display: none !important;
-}
-
-/* ============================================
-   Sidebar toggle button (Material theme)
-   - Clickable above overlays; SVG does not steal clicks
-   - Icons in white; only one icon visible based on sidebar state
-   ============================================ */
-html[data-theme="material"] .sidebar-toggle-btn,
-html[data-theme-mode="material"] .sidebar-toggle-btn {
-  pointer-events: auto !important;
-  z-index: 9999 !important;
-  color: #ffffff !important;
-}
-
-html[data-theme="material"] .sidebar-toggle-btn svg,
-html[data-theme-mode="material"] .sidebar-toggle-btn svg {
-  pointer-events: none !important;
-  color: inherit !important;
-  fill: currentColor !important;
-}
-
-/* Default state: show placeholder (hamburger), hide collapse icon */
-html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
-html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
-  display: inline-flex !important;
-}
-
-html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
-html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
-  display: none !important;
-}
-
-/* Collapsed state: hide placeholder, show collapse icon */
-html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder,
-html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder {
-  display: none !important;
-}
-
-html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon,
-html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon {
-  display: inline-flex !important;
-}
-
+   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+   html[data-theme="material"],
+   html[data-theme-mode="material"] {
+     /* Palette - from DefaultColors.js */
+     --tc-primary: #5D87FF;
+     --tc-primary-light: #ECF2FF;
+     --tc-primary-dark: #4570EA;
+     --tc-primary-contrast: #ffffff;
+     --tc-secondary: #49BEFF;
+     --tc-secondary-light: #E8F7FF;
+     --tc-secondary-dark: #23afdb;
+     --tc-success: #13DEB9;
+     --tc-success-light: #E6FFFA;
+     --tc-error: #FA896B;
+     --tc-error-light: #FDEDE8;
+     --tc-warning: #FFAE1F;
+     --tc-warning-light: #FEF5E5;
+     --tc-info: #539BFF;
+     --tc-info-light: #EBF3FE;
+     --tc-grey-100: #F2F6FA;
+     --tc-grey-200: #EAEFF4;
+     --tc-grey-300: #DFE5EF;
+     --tc-grey-400: #7C8FAC;
+     --tc-grey-500: #5A6A85;
+     --tc-grey-600: #2A3547;
+     --tc-text-primary: #2A3547;
+     --tc-text-secondary: #5A6A85;
+     --tc-divider: #e5eaef;
+     --tc-action-hover: #f6f9fc;
+     --tc-action-disabled: rgba(73,82,88,0.12);
+   
+     /* Typography - from Typography.js */
+     --tc-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+     --tc-radius: 7px;
+     --tc-card-shadow: 0 9px 17.5px rgb(0,0,0,0.05);
+     --tc-shadow-dropdown: 0 0 1px 0 rgba(0,0,0,0.31), 0 4px 8px -2px rgba(0,0,0,0.25);
+     --tc-shadow-modal: 0 0 1px 0 rgba(0,0,0,0.31), 0 14px 24px -8px rgba(0,0,0,0.25);
+   
+     /* Topbar (optional) - from Topbar.js */
+     --tc-navbar-bg: linear-gradient(90deg, #001138, #001e66);
+     --tc-navbar-height: 72px;
+     --tc-page-head-height: 50px;
+   
+     height: 100%;
+   }
+   
+   /* Base */
+   html[data-theme="material"] body,
+   html[data-theme-mode="material"] body {
+     font-family: var(--tc-font-family) !important;
+     color: var(--tc-text-primary) !important;
+     background-color: var(--tc-grey-100) !important;
+     height: 100% !important;
+     overflow-x:hidden;
+   }
+   
+   /* Layout - Navbar (minimal) */
+   html[data-theme="material"] .navbar,
+   html[data-theme-mode="material"] .navbar {
+     font-family: var(--tc-font-family) !important;
+     min-height: var(--tc-navbar-height) !important;
+     background: var(--tc-navbar-bg) !important;
+     border-bottom: none !important;
+     box-shadow: none !important;
+   }
+   
+   html[data-theme="material"] .navbar .container,
+   html[data-theme-mode="material"] .navbar .container {
+     color: rgba(255,255,255,0.9) !important;
+   }
+   
+   html[data-theme="material"] .navbar a,
+   html[data-theme-mode="material"] .navbar a {
+     color: rgba(255,255,255,0.9) !important;
+   }
+   
+   html[data-theme="material"] .navbar a:hover,
+   html[data-theme-mode="material"] .navbar a:hover {
+     color: #fff !important;
+   }
+   
+   /* Sticky top navbar — content scrolls underneath, same behavior as page-head */
+   html[data-theme="material"] .sticky-top,
+   html[data-theme-mode="material"] .sticky-top {
+     position: sticky !important;
+     top: 0 !important;
+     z-index: 1200 !important;
+     width: 100% !important;
+     background: var(--tc-navbar-bg) !important;
+     isolation: isolate !important;
+     box-shadow: 0 1px 0 0 rgba(0,0,0,0.1) !important;
+   }
+   
+   /* Sticky header: make all text and icons white for contrast on blue bg */
+   html[data-theme="material"] .sticky-top .navbar,
+   html[data-theme-mode="material"] .sticky-top .navbar {
+     color: #ffffff !important;
+   }
+   
+   html[data-theme="material"] .sticky-top .navbar a,
+   html[data-theme-mode="material"] .sticky-top .navbar a,
+   html[data-theme="material"] .sticky-top .navbar span,
+   html[data-theme-mode="material"] .sticky-top .navbar span {
+     color: #000000;
+   }
+   
+   html[data-theme="material"] .sticky-top .navbar svg,
+   html[data-theme-mode="material"] .sticky-top .navbar svg {
+     color: #ffffff !important;
+     fill: currentColor !important;
+     stroke: none !important;
+   }
+   
+   /* Hide navbar-brand logo in sticky header; sidebar owns the logo instead */
+   html[data-theme="material"] .sticky-top .navbar .navbar-brand.navbar-home,
+   html[data-theme-mode="material"] .sticky-top .navbar .navbar-brand.navbar-home {
+     display: none !important;
+   }
+   
+   /* Desk body: remove extra bottom gap/margin so content ends flush */
+   html[data-theme="material"] #body,
+   html[data-theme-mode="material"] #body {
+     margin: 0 !important;
+     padding-bottom: 0 !important;
+   }
+   
+   /* Page container: ensure main content area reaches viewport bottom */
+   html[data-theme="material"] #body .page-container,
+   html[data-theme="material"] #body .content.page-container,
+   html[data-theme-mode="material"] #body .page-container,
+   html[data-theme-mode="material"] #body .content.page-container {
+     min-height: 100vh !important;
+   }
+   
+   /* Row layout-main inside page-container should also stretch */
+   html[data-theme="material"] #body .page-container .row.layout-main,
+   html[data-theme="material"] #body .content.page-container .row.layout-main,
+   html[data-theme-mode="material"] #body .page-container .row.layout-main,
+   html[data-theme-mode="material"] #body .content.page-container .row.layout-main {
+     min-height: 100vh !important;
+   }
+   
+   /* Header above body: #body fills .main-section (navbar moved into .layout-main-section by JS) */
+   html[data-theme="material"] .main-section,
+   html[data-theme-mode="material"] .main-section {
+     display: flex !important;
+     flex-direction: column !important;
+     min-height: 100% !important;
+   }
+   html[data-theme="material"] .main-section > #body,
+   html[data-theme-mode="material"] .main-section > #body {
+     flex: 1 1 auto !important;
+     min-height: 0 !important;
+     display: flex !important;
+     flex-direction: column !important;
+   }
+   
+   /* Hide empty footer inside .main-section to avoid extra bottom space */
+   html[data-theme="material"] .main-604 > footer,
+   html[data-theme-mode="material"] .main-section > footer {
+     display: none !important;
+   }
+   
+   /* Sidebar */
+   html[data-theme="material"] .desk-sidebar,
+   html[data-theme="material"] .list-sidebar,
+   html[data-theme-mode="material"] .desk-sidebar,
+   html[data-theme-mode="material"] .list-sidebar {
+     font-family: var(--tc-font-family) !important;
+     background: #fff !important;
+   }
+   
+   /* Sidebar logo: centered inside sidebar column */
+   html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+   html[data-theme="material"] .desk-sidebar .techcloud-sidebar-logo,
+   html[data-theme="material"] .list-sidebar .techcloud-sidebar-logo,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-sidebar-logo,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-sidebar-logo {
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     width: 100% !important;
+     padding: 16px 0 !important;
+     margin: 0px !important;
+   }
+   
+   /* Keep sidebar logo visible at top while scrolling */
+   html[data-theme="material"] .layout-side-section .techcloud-sidebar-logo,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-sidebar-logo {
+     position: sticky !important;
+     top: 0 !important;
+     z-index: 2 !important;
+     background: #fff !important;
+   }
+   
+   html[data-theme="material"] .techcloud-sidebar-logo .app-logo,
+   html[data-theme-mode="material"] .techcloud-sidebar-logo .app-logo {
+     max-width: 80% !important;
+     height: auto !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item,
+   html[data-theme-mode="material"] .standard-sidebar-item {
+     border-radius: var(--tc-radius) !important;
+     margin: 2px 8px !important;
+     padding: 8px 12px 8px 20px !important;
+     color: var(--tc-text-secondary) !important;
+   }
+   
+   /* Tighten icon-to-text spacing in sidebar menu */
+   html[data-theme="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+   html[data-theme="material"] .desk-sidebar .standard-sidebar-item a,
+   html[data-theme="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+   html[data-theme="material"] .list-sidebar .standard-sidebar-item a,
+   html[data-theme="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+   html[data-theme="material"] .layout-side-section .standard-sidebar-item a,
+   html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .item-anchor,
+   html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item a,
+   html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .item-anchor,
+   html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item a,
+   html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .item-anchor,
+   html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item a {
+     gap: 6px !important;
+   }
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon {
+     margin-right: 6px !important;
+   }
+   html[data-theme="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+   html[data-theme="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+   html[data-theme="material"] .layout-side-section .standard-sidebar-item .techcloud-icon,
+   html[data-theme-mode="material"] .desk-sidebar .standard-sidebar-item .techcloud-icon,
+   html[data-theme-mode="material"] .list-sidebar .standard-sidebar-item .techcloud-icon,
+   html[data-theme-mode="material"] .layout-side-section .standard-sidebar-item .techcloud-icon {
+     margin-right: 6px !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item:hover,
+   html[data-theme-mode="material"] .standard-sidebar-item:hover {
+     background: var(--tc-action-hover) !important;
+     color: var(--tc-text-primary) !important;
+   }
+   
+   html[data-theme="material"] .standard-sidebar-item.selected,
+   html[data-theme-mode="material"] .standard-sidebar-item.selected {
+     background: var(--tc-primary-light) !important;
+     color: var(--tc-primary) !important;
+   }
+   
+   /* Sidebar menu – colorful icons (techcloud-icons.js adds icon-* color classes) */
+   /* Universal: any svg.techcloud-icon with color class gets the color (symbols use stroke="currentColor") */
+   html[data-theme="material"] svg.techcloud-icon.icon-blue,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-blue use,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-blue use { color: inherit !important; fill: inherit !important; stroke: inherit !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-purple,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-gold,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-cyan,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-amber,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-green,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-orange,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-teal,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-red,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-gray,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-brown,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-pink,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-indigo,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
+   html[data-theme="material"] svg.techcloud-icon.icon-lime,
+   html[data-theme-mode="material"] svg.techcloud-icon.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
+   
+   /* Sidebar / workspace: ensure opacity and scoped overrides */
+   /* Include .layout-side-section for workspace sidebar (PUBLIC / MY WORKSPACES list) */
+   html[data-theme="material"] .desk-sidebar .techcloud-icon,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg,
+   html[data-theme="material"] .list-sidebar .techcloud-icon,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg,
+   html[data-theme="material"] .layout-side-section .techcloud-icon,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg {
+     opacity: 1 !important;
+   }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-blue,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-blue,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-blue,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-blue,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-blue,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-blue,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-blue,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-blue,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-blue,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-blue { color: #5D87FF !important; fill: #5D87FF !important; stroke: #5D87FF !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-purple,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-purple,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-purple,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-purple,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-purple,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-purple,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-purple,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-purple,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-purple,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-purple { color: #7C4DFF !important; fill: #7C4DFF !important; stroke: #7C4DFF !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gold,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gold,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gold,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gold,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gold,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gold,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gold,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gold,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gold,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gold { color: #FFB74D !important; fill: #FFB74D !important; stroke: #FFB74D !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-cyan,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-cyan,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-cyan,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-cyan,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-cyan,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-cyan,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-cyan,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-cyan,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-cyan { color: #26C6DA !important; fill: #26C6DA !important; stroke: #26C6DA !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-amber,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-amber,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-amber,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-amber,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-amber,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-amber,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-amber,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-amber,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-amber,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-amber { color: #FFC107 !important; fill: #FFC107 !important; stroke: #FFC107 !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-green,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-green,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-green,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-green,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-green,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-green,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-green,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-green,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-green,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-green { color: #13DEB9 !important; fill: #13DEB9 !important; stroke: #13DEB9 !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-orange,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-orange,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-orange,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-orange,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-orange,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-orange,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-orange,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-orange,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-orange,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-orange { color: #FFAE1F !important; fill: #FFAE1F !important; stroke: #FFAE1F !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-teal,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-teal,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-teal,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-teal,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-teal,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-teal,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-teal,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-teal,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-teal,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-teal { color: #009688 !important; fill: #009688 !important; stroke: #009688 !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-red,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-red,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-red,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-red,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-red,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-red,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-red,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-red,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-red,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-red { color: #FA896B !important; fill: #FA896B !important; stroke: #FA896B !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-gray,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-gray,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-gray,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-gray,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-gray,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-gray,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-gray,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-gray,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-gray,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-gray { color: #7C8FAC !important; fill: #7C8FAC !important; stroke: #7C8FAC !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-brown,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-brown,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-brown,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-brown,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-brown,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-brown,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-brown,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-brown,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-brown,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-brown { color: #8D6E63 !important; fill: #8D6E63 !important; stroke: #8D6E63 !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-pink,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-pink,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-pink,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-pink,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-pink,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-pink,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-pink,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-pink,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-pink,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-pink { color: #EC407A !important; fill: #EC407A !important; stroke: #EC407A !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-indigo,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-indigo,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-indigo,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-indigo,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-indigo,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-indigo,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-indigo,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-indigo,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-indigo { color: #5C6BC0 !important; fill: #5C6BC0 !important; stroke: #5C6BC0 !important; }
+   html[data-theme="material"] .desk-sidebar .techcloud-icon.icon-lime,
+   html[data-theme="material"] .list-sidebar .techcloud-icon.icon-lime,
+   html[data-theme="material"] .layout-side-section .techcloud-icon.icon-lime,
+   html[data-theme-mode="material"] .desk-sidebar .techcloud-icon.icon-lime,
+   html[data-theme-mode="material"] .list-sidebar .techcloud-icon.icon-lime,
+   html[data-theme-mode="material"] .layout-side-section .techcloud-icon.icon-lime,
+   html[data-theme="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
+   html[data-theme="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
+   html[data-theme="material"] .layout-side-section .sidebar-item-icon svg.icon-lime,
+   html[data-theme-mode="material"] .desk-sidebar .sidebar-item-icon svg.icon-lime,
+   html[data-theme-mode="material"] .list-sidebar .sidebar-item-icon svg.icon-lime,
+   html[data-theme-mode="material"] .layout-side-section .sidebar-item-icon svg.icon-lime { color: #9E9D24 !important; fill: #9E9D24 !important; stroke: #9E9D24 !important; }
+   
+   /* Buttons */
+   html[data-theme="material"] .btn,
+   html[data-theme-mode="material"] .btn {
+     font-family: var(--tc-font-family) !important;
+     border-radius: var(--tc-radius) !important;
+     box-shadow: none !important;
+     font-weight: 500 !important;
+     transition: background-color 0.2s ease, border-color 0.2s ease !important;
+   }
+   
+   html[data-theme="material"] .btn:hover,
+   html[data-theme-mode="material"] .btn:hover {
+     box-shadow: none !important;
+   }
+   
+   html[data-theme="material"] .btn-primary,
+   html[data-theme-mode="material"] .btn-primary {
+     background: var(--tc-primary) !important;
+     border-color: var(--tc-primary) !important;
+     color: var(--tc-primary-contrast) !important;
+   }
+   
+   html[data-theme="material"] .btn-primary:hover,
+   html[data-theme-mode="material"] .btn-primary:hover {
+     background: var(--tc-primary-dark) !important;
+     border-color: var(--tc-primary-dark) !important;
+   }
+   
+   html[data-theme="material"] .btn-secondary,
+   html[data-theme-mode="material"] .btn-secondary {
+     background: #f3f3f3 !important;
+     border-color: #e4e4e4 !important;
+     color: #000000 !important;
+     border: 1px solid;
+   }
+   
+   html[data-theme="material"] .btn-default,
+   html[data-theme-mode="material"] .btn-default {
+     background: #ff5c93 !important;
+       border: transparent;
+       color: #ffffff !important;
+   }
+   
+   html[data-theme="material"] .btn-default:hover,
+   html[data-theme-mode="material"] .btn-default:hover {
+         background: #ff3c7e !important;
+       border-color: #ffffff !important;
+       color: #ffffff !important;
+   }
+   
+   html[data-theme="material"] .icon-btn,
+   html[data-theme-mode="material"] .icon-btn {
+     border-radius: var(--tc-radius) !important;
+     padding: 6px !important;
+   }
+   
+   /* Form controls */
+   html[data-theme="material"] .form-control,
+   html[data-theme-mode="material"] .form-control {
+     font-family: var(--tc-font-family) !important;
+     border: 1px solid var(--tc-divider) !important;
+     border-radius: var(--tc-radius) !important;
+     color: var(--tc-text-primary) !important;
+     padding: 8px 12px !important;
+   }
+   
+   html[data-theme="material"] .form-control:focus,
+   html[data-theme-mode="material"] .form-control:focus {
+     border-color: var(--tc-primary) !important;
+     box-shadow: 0 0 0 2px var(--tc-primary-light) !important;
+     outline: none !important;
+   }
+   
+   html[data-theme="material"] .form-control:hover,
+   html[data-theme-mode="material"] .form-control:hover {
+     border-color: var(--tc-primary) !important;
+   }
+   
+   /* Cards */
+   html[data-theme="material"] .frappe-card,
+   html[data-theme-mode="material"] .frappe-card {
+     border-radius: var(--tc-radius) !important;
+     box-shadow: var(--tc-card-shadow) !important;
+     border: 1px solid var(--tc-divider) !important;
+     background: #fff !important;
+   }
+   
+   html[data-theme="material"] .widget,
+   html[data-theme-mode="material"] .widget {
+     border-radius: var(--tc-radius) !important;
+     border: 1px solid var(--tc-divider) !important;
+     background: #fff !important;
+     box-shadow: var(--tc-card-shadow) !important;
+   }
+   
+   /* Modals */
+   html[data-theme="material"] .modal-content,
+   html[data-theme-mode="material"] .modal-content {
+     border-radius: var(--tc-radius) !important;
+     box-shadow: var(--tc-shadow-modal) !important;
+     border: 1px solid var(--tc-divider) !important;
+   }
+   
+   /* Dropdowns */
+   html[data-theme="material"] .dropdown-menu,
+   html[data-theme-mode="material"] .dropdown-menu {
+     border-radius: var(--tc-radius) !important;
+     box-shadow: var(--tc-shadow-dropdown) !important;
+     border: 1px solid var(--tc-divider) !important;
+     padding: 6px !important;
+   }
+   
+   html[data-theme="material"] .dropdown-item,
+   html[data-theme-mode="material"] .dropdown-item {
+     border-radius: 4px !important;
+     padding: 6px 10px !important;
+   }
+   
+   html[data-theme="material"] .dropdown-item:hover,
+   html[data-theme-mode="material"] .dropdown-item:hover {
+     background: var(--tc-action-hover) !important;
+   }
+   
+   /* Page head — sticky, always on top of scrolling content */
+   html[data-theme="material"] .page-head,
+   html[data-theme-mode="material"] .page-head {
+     font-family: var(--tc-font-family) !important;
+     border-bottom: 1px solid var(--tc-divider) !important;
+     padding-bottom: 0 !important;
+     margin-bottom: 11px !important;
+     position: sticky !important;
+     top: 0 !important;
+     z-index: 1100 !important;
+     width: 100% !important;
+     background-color: #fff !important;
+     isolation: isolate !important; /* own stacking context so content scrolls underneath */
+     box-shadow: 0 1px 0 0 var(--tc-divider) !important; /* subtle edge so content doesn’t show through */
+   }
+   
+   html[data-theme="material"] .page-head-content .title,
+   html[data-theme-mode="material"] .page-head-content .title {
+     color: var(--tc-text-primary) !important;
+     font-weight: 600 !important;
+   }
+   
+   /* Page-head at top-left of main content area — only the main column, not .layout-main (which contains sidebar + main) */
+   html[data-theme="material"] .layout-main-section-wrapper,
+   html[data-theme="material"] .page-content,
+   html[data-theme-mode="material"] .layout-main-section-wrapper,
+   html[data-theme-mode="material"] .page-content {
+     display: flex !important;
+     flex-direction: column !important;
+     align-items: stretch !important;
+     min-height: 100vh !important;
+   }
+   html[data-theme="material"] .layout-main-section-wrapper .page-head,
+   html[data-theme="material"] .page-content .page-head,
+   html[data-theme-mode="material"] .layout-main-section-wrapper .page-head,
+   html[data-theme-mode="material"] .page-content .page-head {
+     width: 100% !important;
+     align-self: flex-start !important;
+     flex-shrink: 0 !important;
+   }
+   html[data-theme="material"] .layout-main-section-wrapper .page-head .container,
+   html[data-theme="material"] .page-content .page-head .container,
+   html[data-theme-mode="material"] .layout-main-section-wrapper .page-head .container,
+   html[data-theme-mode="material"] .page-content .page-head .container {
+     max-width: 100% !important;
+     width: 100% !important;
+   }
+   /* .layout-main-section: vertical stack (navbar, then page-head, then content) */
+   html[data-theme="material"] .layout-main-section-wrapper .layout-main-section,
+   html[data-theme="material"] .page-content .layout-main-section,
+   html[data-theme-mode="material"] .layout-main-section-wrapper .layout-main-section,
+   html[data-theme-mode="material"] .page-content .layout-main-section {
+     flex: 1 1 auto !important;
+     position: relative !important;
+     display: flex !important;
+     flex-direction: column !important;
+   }
+   html[data-theme="material"] .layout-main-section .sticky-top,
+   html[data-theme-mode="material"] .layout-main-section .sticky-top {
+     flex-shrink: 0 !important;
+   }
+   /* Scrolling content stays under sticky navbar and page-head — lower z-index */
+   html[data-theme="material"] .layout-main-section > *:not(.page-head):not(.sticky-top),
+   html[data-theme-mode="material"] .layout-main-section > *:not(.page-head):not(.sticky-top) {
+     position: relative !important;
+     z-index: 0 !important;
+   }
+   
+   /* .layout-main row: height based on screen size (fill viewport minus navbar/page-head) */
+   @media (min-width: 576px) {
+     html[data-theme="material"] .layout-main,
+     html[data-theme-mode="material"] .layout-main {
+       height: calc(100vh - var(--tc-navbar-height) - var(--tc-page-head-height, 0px)) !important;
+       min-height: 0 !important;
+     }
+   }
+   
+   /* List rows */
+   html[data-theme="material"] .list-row-container,
+   html[data-theme-mode="material"] .list-row-container {
+     border-bottom: 1px solid var(--tc-grey-200) !important;
+   }
+   
+   html[data-theme="material"] .list-row-container:hover,
+   html[data-theme-mode="material"] .list-row-container:hover {
+     background: var(--tc-action-hover) !important;
+   }
+   
+   /* Links */
+   html[data-theme="material"] a,
+   html[data-theme-mode="material"] a {
+     color: var(--tc-primary) !important;
+     text-decoration: none !important;
+   }
+   
+   html[data-theme="material"] a:hover,
+   html[data-theme-mode="material"] a:hover {
+     color: var(--tc-primary-dark) !important;
+   }
+   
+   /* Icons (minimal) – do not override techcloud sidebar colorful icons */
+   html[data-theme="material"] .icon:not(.techcloud-icon),
+   html[data-theme-mode="material"] .icon:not(.techcloud-icon) {
+     color: var(--tc-text-secondary) !important;
+   }
+   
+   /* Scrollbar - from DefaultColors MuiCssBaseline */
+   html[data-theme="material"] .simplebar-scrollbar:before,
+   html[data-theme-mode="material"] .simplebar-scrollbar:before {
+     background: var(--tc-grey-300) !important;
+   }
+   
+   /* Primary action visibility (keep buttons visible) */
+   html[data-theme="material"] .primary-action:not(.hide):not(:empty),
+   html[data-theme-mode="material"] .primary-action:not(.hide):not(:empty),
+   html[data-theme="material"] .page-actions .btn:not(.hide):not(:empty),
+   html[data-theme-mode="material"] .page-actions .btn:not(.hide):not(:empty) {
+     display: inline-flex !important;
+     visibility: visible !important;
+     opacity: 1 !important;
+   }
+   
+   /* Standard actions */
+   html[data-theme="material"] .standard-actions,
+   html[data-theme-mode="material"] .standard-actions {
+     display: flex !important;
+     align-items: center !important;
+     gap: 6px !important;
+   }
+   
+   /* kbd */
+   html[data-theme="material"] kbd,
+   html[data-theme-mode="material"] kbd {
+     background: var(--tc-grey-200) !important;
+     border: 1px solid var(--tc-divider) !important;
+     border-radius: 4px !important;
+     padding: 2px 6px !important;
+     font-size: 11px !important;
+     color: var(--tc-text-secondary) !important;
+   }
+   
+   @media (min-width: 768px) {
+     html[data-theme="material"] body.full-width .container,
+     html[data-theme-mode="material"] body.full-width .container,
+     body.full-width .container {
+       max-width: 100% !important;
+       width: 100% !important;
+     }
+   }
+   
+   /* ============================================
+      Sidebar collapsed state (Material theme)
+      - Hide sidebar column, main content takes full width
+      ============================================ */
+   html[data-theme="material"] body.sidebar-collapsed .layout-side-section,
+   html[data-theme="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+   html[data-theme="material"] body.sidebar-collapsed .standard-sidebar,
+   html[data-theme-mode="material"] body.sidebar-collapsed .layout-side-section,
+   html[data-theme-mode="material"] body.sidebar-collapsed .desk-sidebar:not(.overlay-sidebar),
+   html[data-theme-mode="material"] body.sidebar-collapsed .standard-sidebar {
+     display: none !important;
+   }
+   
+   /* ============================================
+      Sidebar toggle button (Material theme)
+      - Clickable above overlays; SVG does not steal clicks
+      - Icons in white; only one icon visible based on sidebar state
+      ============================================ */
+   html[data-theme="material"] .sidebar-toggle-btn,
+   html[data-theme-mode="material"] .sidebar-toggle-btn {
+     pointer-events: auto !important;
+     z-index: 9999 !important;
+     color: #ffffff !important;
+   }
+   
+   html[data-theme="material"] .sidebar-toggle-btn svg,
+   html[data-theme-mode="material"] .sidebar-toggle-btn svg {
+     pointer-events: none !important;
+     color: inherit !important;
+     fill: currentColor !important;
+   }
+   
+   /* Default state: show placeholder (hamburger), hide collapse icon */
+   html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder,
+   html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-placeholder {
+     display: inline-flex !important;
+   }
+   
+   html[data-theme="material"] .sidebar-toggle-btn .sidebar-toggle-icon,
+   html[data-theme-mode="material"] .sidebar-toggle-btn .sidebar-toggle-icon {
+     display: none !important;
+   }
+   
+   /* Collapsed state: hide placeholder, show collapse icon */
+   html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder,
+   html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-placeholder {
+     display: none !important;
+   }
+   
+   html[data-theme="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon,
+   html[data-theme-mode="material"] body.sidebar-collapsed .sidebar-toggle-btn .sidebar-toggle-icon {
+     display: inline-flex !important;
+   }
+   
+   /* sakthi start */
+   @media (min-width: 992px) {
+   .page-body {
+       max-width: 100%;
+       padding: 0px 15px;
+   }
+   .layout-side-section {
+       flex: 0 0 18%;
+       max-width: 18%;
+       padding: 0px !important;
+   }
+   }
+   html[data-theme="material"] .standard-sidebar-item, html[data-theme-mode="material"] .standard-sidebar-item {
+       margin: 0px !important;
+   }
+   [data-page-route=Workspaces] .standard-sidebar-item .sidebar-item-control .drop-icon {
+       padding: 0 2px 0 2px;
+   }
+   html[data-theme="material"] .desk-sidebar, html[data-theme="material"] .list-sidebar, html[data-theme-mode="material"] .desk-sidebar, html[data-theme-mode="material"] .list-sidebar {
+       background: linear-gradient(90deg, #001138, #001e66) !important;
+   }
+   html[data-theme="material"] .standard-sidebar-item.selected, html[data-theme-mode="material"] .standard-sidebar-item.selected {
+       background: #ff5c93 !important;
+       color: #ffffff !important;
+   }
+   .desk-sidebar-item.standard-sidebar-item a {
+       color: #fff !important;
+   }
+   html[data-theme="material"] .standard-sidebar-item:hover, html[data-theme-mode="material"] .standard-sidebar-item:hover{
+     background: #ff5c93 !important;
+     color: #ffffff !important;
+   }
+   html[data-theme="material"] .standard-sidebar-item a:hover{
+     color: #ffffff !important;
+   }
+   .standard-sidebar-label{
+     color: #fff !important;
+   }
+   .navbar,.sticky-top{
+     border-radius:10px;
+   }
+   .search-bar .awesomplete input{
+     height:36px !important
+   }
+   html[data-theme="material"] #navbar-search, html[data-theme-mode="material"] #navbar-search{
+     padding: 8px 12px 8px 30px !important;
+   }
+   .nav-item.dropdown.dropdown-navbar-user.dropdown-mobile a, .nav-item.dropdown.dropdown-navbar-user.dropdown-mobile button,
+   .nav-item.dropdown.dropdown-help.dropdown-mobile a, .nav-item.dropdown.dropdown-help.dropdown-mobile button {
+       color:#383838 !important;
+   }
+   button.btn-reset.nav-link span {
+       color: #fff !important;
+   }
+   html[data-theme="material"] .btn, html[data-theme-mode="material"] .btn{
+     padding: 6px 12px !important;
+     transition:.3s;
+   }
+   .widget.onboarding-widget-box .widget-body .onboarding-step.active, .widget.onboarding-widget-box .widget-body .onboarding-step:hover {
+       background-color: #f3f4ff;
+   }
+   html[data-theme="material"] .widget.onboarding-widget-box .widget-body .onboarding-step, html[data-theme-mode="material"] .widget.onboarding-widget-box .widget-body .onboarding-step {
+       color: #7a7a7a !important;
+   }
+   html[data-theme="material"] .widget.onboarding-widget-box .widget-body .onboarding-step:hover, html[data-theme-mode="material"] .widget.onboarding-widget-box .widget-body .onboarding-step:hover {
+       color: #474747 !important;
+   }
+   [data-page-route=Workspaces] .workspace-footer{
+     height:auto;
+   }
+   a.onboarding-step .es-icon.es-line.step-icon,
+   a.link-item.ellipsis.onboard-spotlight .es-icon,
+   .ce-block .ce-block__content .widget-control .es-icon,
+   .ce-block .ce-block__content .link-content .es-icon{
+       fill: #ff3c7e;
+       stroke: #ff3c7e;
+   }
+   .es-icon {
+       fill: #ffffff;
+       stroke: #ffffff;
+   }
+   html[data-theme="material"] .ce-block .widget.shortcut-widget-box {
+       box-shadow: none !important;
+       padding: 10px !important;
+   }
+   .ce-block .widget spacer{
+     display:none !important;
+   }
+   .widget.links-widget-box .link-item{
+     color: #7a7a7a !important;
+   }
+   .frappe-list .list-row-col a,a.grey-link.dropdown-item {
+       color: #7a7a7a !important;
+       transition:.3s;
+   }
+   .frappe-list .list-row-col a:hover,a.grey-link.dropdown-item:hover {
+       color: #474747 !important;
+   }
+   .frappe-list .list-row-col span.indicator-pill.blue.filterable.no-indicator-dot.ellipsis {
+       background: #3F51B5;
+       color: #fff !important;
+       padding: 10px !important;
+   }
+   .list-paging-area.level .level-left .btn-group .btn {
+       margin: 0px 2px;
+   }
+   html[data-theme="material"] .sidebar-section.filter-section .btn-default, html[data-theme-mode="material"] .sidebar-section.filter-section .btn-default {
+       background: #ffffff !important;
+       border: transparent;
+       color: #001a58 !important;
+       border-radius: 0px !important;
+       box-shadow: -4px 3px 5px 0px #001035 !important;
+   }
+   html[data-theme="material"] .page-actions .btn, html[data-theme-mode="material"] .page-actions .btn {
+       background: #29B6F6 !important;
+       margin: 0px 2px;
+   }
+   html[data-theme="material"] .page-actions .btn:hover, html[data-theme-mode="material"] .page-actions .btn:hover {
+       background: #2599ce !important;
+   }
+   html[data-theme="material"] .filter-section .filter-selector .btn, html[data-theme-mode="material"] .filter-section .filter-selector .btn,
+   html[data-theme="material"] .filter-section .sort-selector .btn, html[data-theme-mode="material"] .filter-section .sort-selector .btn {
+       background: #3F51B5 !important;
+       margin: 0px 2px;
+       color:#fff !important
+   }
+   html[data-theme="material"] .filter-section .filter-selector .btn:hover, html[data-theme-mode="material"] .filter-section .filter-selector .btn:hover,
+   html[data-theme="material"] .filter-section .sort-selector .btn:hover, html[data-theme-mode="material"] .filter-section .sort-selector .btn:hover  {
+       background: #2c3e9d !important;
+   }
+   html[data-theme="material"] .list-paging-area .btn-default, html[data-theme-mode="material"] .list-paging-area .btn-default {
+       background: #9E9E9E !important;
+       font-size: 12px !important;
+       border-radius: 100px !important;
+   }
+   html[data-theme="material"] .list-paging-area .btn-default:hover, html[data-theme-mode="material"] .list-paging-area .btn-default:hover {
+       background: #828282 !important;
+   }
+   html[data-theme="material"] .list-paging-area .btn-group{
+     border:none !important;
+   }
+   html[data-theme="material"] .form-control, html[data-theme-mode="material"] .form-control{
+     min-height:34px !important
+   }
+   html[data-theme="material"] .sidebar-section .sidebar-label, html[data-theme-mode="material"] .sidebar-section .sidebar-label, 
+   html[data-theme="material"] .sidebar-section a.list-tag-preview, html[data-theme-mode="material"] .sidebar-section a.list-tag-preview, 
+   html[data-theme="material"] .sidebar-section a.add-group-by, html[data-theme-mode="material"] .sidebar-section a.add-group-by {
+       color: #fff !important;
+   }
+   ul.list-unstyled.sidebar-menu {
+       padding: 5px;
+   }
+   /* sakthi end */
